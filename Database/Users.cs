@@ -25,7 +25,7 @@ namespace Database
             this.WinCounts = new HashSet<WinCounts>();
         }
     
-        public System.Guid UserID { get; set; }
+        public int UserID { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }

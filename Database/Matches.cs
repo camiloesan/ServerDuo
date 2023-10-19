@@ -16,7 +16,7 @@ namespace Database
     {
         public int MatchID { get; set; }
         public Nullable<int> SecondsLong { get; set; }
-        public System.Guid Winner { get; set; }
+        public Nullable<int> Winner { get; set; }
     
         public virtual Users Users { get; set; }
     }

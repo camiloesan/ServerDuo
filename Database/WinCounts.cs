@@ -15,7 +15,7 @@ namespace Database
     public partial class WinCounts
     {
         public int WinCountID { get; set; }
-        public Nullable<System.Guid> UserID { get; set; }
+        public Nullable<int> UserID { get; set; }
         public Nullable<int> TotalWins { get; set; }
     
         public virtual Users Users { get; set; }

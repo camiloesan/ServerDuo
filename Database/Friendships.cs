@@ -15,8 +15,8 @@ namespace Database
     public partial class Friendships
     {
         public int FriendshipID { get; set; }
-        public System.Guid User1 { get; set; }
-        public System.Guid User2 { get; set; }
+        public Nullable<int> User1 { get; set; }
+        public Nullable<int> User2 { get; set; }
     
         public virtual Users Users { get; set; }
         public virtual Users Users1 { get; set; }
