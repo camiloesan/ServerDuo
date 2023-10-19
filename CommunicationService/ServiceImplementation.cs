@@ -6,6 +6,7 @@ using System.Data.Entity.Infrastructure.Interception;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
+using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
 using System.Text;
 
@@ -58,13 +59,21 @@ namespace CommunicationService
             IPartyManagerCallback operationContext = OperationContext.Current.GetCallbackChannel<IPartyManagerCallback>();
 
             instanceContextsDictionary.Add(email, operationContext);
-            OperationContext.Current.GetCallbackChannel<IPartyManagerCallback>().PlayerJoined(instanceContextsDictionary);
+
+            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in instanceContextsDictionary)
+            {
+                keyValuePair.Value.PlayerJoined(instanceContextsDictionary);
+            }
         }
 
         public void LeaveParty(string email)
         {
             instanceContextsDictionary.Remove(email);
-            OperationContext.Current.GetCallbackChannel<IPartyManagerCallback>().PlayerLeft(instanceContextsDictionary);
+
+            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in instanceContextsDictionary)
+            {
+                keyValuePair.Value.PlayerLeft(instanceContextsDictionary);
+            }
         }
 
         public void SendMessage(string message)
