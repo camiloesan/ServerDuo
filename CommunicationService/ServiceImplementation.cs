@@ -14,6 +14,9 @@ namespace CommunicationService
 {
     public partial class ServiceImplementation : IUsersManager
     {
+        // temporal fix of onlinplayers, should be binary tree somehow
+        public List<string> onlineUsers = new List<string>();
+
         public bool AddUserToDatabase(string username, string email, string password)
         {
             using (var databaseContext = new DuoContext())
@@ -39,6 +42,11 @@ namespace CommunicationService
             }
         }
 
+        public List<string> GetOnlineFriends(string username)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool IsLoginValid(string email, string password)
         {
             using (var databaseContext = new DuoContext())
@@ -52,33 +60,49 @@ namespace CommunicationService
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
     public partial class ServiceImplementation : IPartyManager
     {
-        static Dictionary<string, IPartyManagerCallback> instanceContextsDictionary = new Dictionary<string, IPartyManagerCallback>();
+        static Dictionary<int, Dictionary<string, IPartyManagerCallback>> activePartiesDictionary = new Dictionary<int, Dictionary<string, IPartyManagerCallback>>();
+        static Dictionary<string, IPartyManagerCallback> partyContextsDictionary;
 
-        public void JoinParty(string email)
+        public void NewParty(int partyCode, string email) //should be int, user
+        {
+            partyContextsDictionary = new Dictionary<string, IPartyManagerCallback>();
+            IPartyManagerCallback operationContext = OperationContext.Current.GetCallbackChannel<IPartyManagerCallback>();
+            partyContextsDictionary.Add(email, operationContext);
+            activePartiesDictionary.Add(partyCode, partyContextsDictionary);
+
+            operationContext.PartyCreated(partyContextsDictionary);
+        }
+
+        public void JoinParty(int partyCode, string email) //should be int, user or at least username
         {
             IPartyManagerCallback operationContext = OperationContext.Current.GetCallbackChannel<IPartyManagerCallback>();
 
-            instanceContextsDictionary.Add(email, operationContext);
+            var partyMap = activePartiesDictionary[partyCode];
 
-            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in instanceContextsDictionary)
+            partyMap.Add(email, operationContext);
+
+            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in partyMap)
             {
-                keyValuePair.Value.PlayerJoined(instanceContextsDictionary);
+                keyValuePair.Value.PlayerJoined(partyMap);
             }
         }
 
-        public void LeaveParty(string email)
+        public void LeaveParty(int partyCode, string email)
         {
-            instanceContextsDictionary.Remove(email);
+            var partyMap = activePartiesDictionary[partyCode];
+            partyMap.Remove(email);
 
-            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in instanceContextsDictionary)
+            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in partyMap)
             {
-                keyValuePair.Value.PlayerLeft(instanceContextsDictionary);
+                keyValuePair.Value.PlayerLeft(partyContextsDictionary);
             }
         }
 
-        public void SendMessage(string message)
+        public void SendMessage(int partyCode, string message)
         {
-            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in instanceContextsDictionary)
+            var partyMap = activePartiesDictionary[partyCode];
+
+            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in partyMap)
             {
                 keyValuePair.Value.MessageReceived(message);
             }

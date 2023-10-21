@@ -13,18 +13,24 @@ namespace CommunicationService
     internal interface IPartyManager
     {
         [OperationContract(IsOneWay = true)]
-        void JoinParty(string email);
+        void NewParty(int partyCode, string email);
 
         [OperationContract(IsOneWay = true)]
-        void SendMessage(string message);
+        void JoinParty(int partyCode, string email);
 
         [OperationContract(IsOneWay = true)]
-        void LeaveParty(string email);
+        void SendMessage(int partyCode ,string message);
+
+        [OperationContract(IsOneWay = true)]
+        void LeaveParty(int partyCode, string email);
     }
 
     [ServiceContract]
     internal interface IPartyManagerCallback
     {
+        [OperationContract]
+        void PartyCreated(Dictionary<string, IPartyManagerCallback> playersInLobby);
+
         [OperationContract]
         void PlayerJoined(Dictionary<string, IPartyManagerCallback> playersInLobby);
 
