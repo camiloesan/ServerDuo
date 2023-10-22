@@ -9,6 +9,16 @@ using System.Threading.Tasks;
 
 namespace CommunicationService
 {
+    [ServiceContract]
+    internal interface IPartyValidator
+    {
+        [OperationContract]
+        bool IsPartyExistent(int partyCode);
+
+        [OperationContract]
+        bool IsSpaceAvailable(int partyCode);
+    }
+
     [ServiceContract(CallbackContract = typeof(IPartyManagerCallback))]
     internal interface IPartyManager
     {

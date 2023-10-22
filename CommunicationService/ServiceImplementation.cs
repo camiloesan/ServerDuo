@@ -108,4 +108,26 @@ namespace CommunicationService
             }
         }
     }
+
+    public partial class ServiceImplementation : IPartyValidator
+    {
+        public bool IsPartyExistent(int partyCode)
+        {
+            return activePartiesDictionary.ContainsKey(partyCode);
+        }
+
+        public bool IsSpaceAvailable(int partyCode)
+        {
+            if (activePartiesDictionary.ContainsKey(partyCode))
+            {
+                var partyMap = activePartiesDictionary[partyCode];
+                
+                if (partyMap.Count == 4)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
 }
