@@ -17,6 +17,12 @@ namespace CommunicationService
         bool IsLoginValid(string email, string password);
 
         [OperationContract]
+        bool IsUsernameTaken(string username);
+
+        [OperationContract]
+        bool IsEmailTaken(String email);
+
+        [OperationContract]
         List<String> GetOnlineFriends(string username);
     }
 }

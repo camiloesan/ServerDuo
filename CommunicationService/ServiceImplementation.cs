@@ -47,12 +47,28 @@ namespace CommunicationService
             throw new NotImplementedException();
         }
 
+        public bool IsEmailTaken(string email)
+        {
+            using (var databaseContext = new DuoContext())
+            {
+                return databaseContext.Users.Any(user => user.Email == email);
+            }
+        }
+
         public bool IsLoginValid(string email, string password)
         {
             using (var databaseContext = new DuoContext())
             {
                 bool exists = databaseContext.Users.Any(user => user.Email == email && user.Password == password);
                 return exists;
+            }
+        }
+
+        public bool IsUsernameTaken(string username)
+        {
+            using (var databaseContext = new DuoContext())
+            {
+                return databaseContext.Users.Any(user => username == user.Username);
             }
         }
     }
