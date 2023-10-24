@@ -23,16 +23,16 @@ namespace CommunicationService
     internal interface IPartyManager
     {
         [OperationContract(IsOneWay = true)]
-        void NewParty(int partyCode, string email);
+        void NewParty(int partyCode, string username);
 
         [OperationContract(IsOneWay = true)]
-        void JoinParty(int partyCode, string email);
+        void JoinParty(int partyCode, string username);
 
         [OperationContract(IsOneWay = true)]
         void SendMessage(int partyCode ,string message);
 
         [OperationContract(IsOneWay = true)]
-        void LeaveParty(int partyCode, string email);
+        void LeaveParty(int partyCode, string username);
     }
 
     [ServiceContract]

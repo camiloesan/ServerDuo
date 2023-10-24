@@ -17,20 +17,20 @@ namespace CommunicationService
         // temporal fix of onlinplayers, should be binary tree somehow
         public List<string> onlineUsers = new List<string>();
 
-        public bool AddUserToDatabase(string username, string email, string password)
+        public bool AddUserToDatabase(User user)
         {
             using (var databaseContext = new DuoContext())
             {
-                var user = new Users
+                var databaseUser = new Users
                 {
-                    Username = username,
-                    Email = email,
-                    Password = password
+                    Username = user.UserName,
+                    Email = user.Email,
+                    Password = user.Password
                 };
 
                 try
                 {
-                    databaseContext.Users.Add(user);
+                    databaseContext.Users.Add(databaseUser);
                     databaseContext.SaveChanges();
                 }
                 catch (Exception ex)
@@ -55,11 +55,11 @@ namespace CommunicationService
             }
         }
 
-        public bool IsLoginValid(string email, string password)
+        public bool IsLoginValid(string username, string password)
         {
             using (var databaseContext = new DuoContext())
             {
-                bool exists = databaseContext.Users.Any(user => user.Email == email && user.Password == password);
+                bool exists = databaseContext.Users.Any(user => user.Username == username && user.Password == password);
                 return exists;
             }
         }
@@ -79,23 +79,24 @@ namespace CommunicationService
         static Dictionary<int, Dictionary<string, IPartyManagerCallback>> activePartiesDictionary = new Dictionary<int, Dictionary<string, IPartyManagerCallback>>();
         static Dictionary<string, IPartyManagerCallback> partyContextsDictionary;
 
-        public void NewParty(int partyCode, string email) //should be int, user
+        public void NewParty(int partyCode, string username) //should be int, user
         {
             partyContextsDictionary = new Dictionary<string, IPartyManagerCallback>();
             IPartyManagerCallback operationContext = OperationContext.Current.GetCallbackChannel<IPartyManagerCallback>();
-            partyContextsDictionary.Add(email, operationContext);
+
+            partyContextsDictionary.Add(username, operationContext);
             activePartiesDictionary.Add(partyCode, partyContextsDictionary);
 
             operationContext.PartyCreated(partyContextsDictionary);
         }
 
-        public void JoinParty(int partyCode, string email) //should be int, user or at least username
+        public void JoinParty(int partyCode, string username) //should be int, user or at least username
         {
             IPartyManagerCallback operationContext = OperationContext.Current.GetCallbackChannel<IPartyManagerCallback>();
 
             var partyMap = activePartiesDictionary[partyCode];
 
-            partyMap.Add(email, operationContext);
+            partyMap.Add(username, operationContext);
 
             foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in partyMap)
             {
@@ -103,10 +104,10 @@ namespace CommunicationService
             }
         }
 
-        public void LeaveParty(int partyCode, string email)
+        public void LeaveParty(int partyCode, string username)
         {
             var partyMap = activePartiesDictionary[partyCode];
-            partyMap.Remove(email);
+            partyMap.Remove(username);
 
             foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in partyMap)
             {
