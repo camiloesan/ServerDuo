@@ -79,7 +79,7 @@ namespace CommunicationService
         static Dictionary<int, Dictionary<string, IPartyManagerCallback>> activePartiesDictionary = new Dictionary<int, Dictionary<string, IPartyManagerCallback>>();
         static Dictionary<string, IPartyManagerCallback> partyContextsDictionary;
 
-        public void NewParty(int partyCode, string username) //should be int, user
+        public void NewParty(int partyCode, string username)
         {
             partyContextsDictionary = new Dictionary<string, IPartyManagerCallback>();
             IPartyManagerCallback operationContext = OperationContext.Current.GetCallbackChannel<IPartyManagerCallback>();
@@ -90,7 +90,7 @@ namespace CommunicationService
             operationContext.PartyCreated(partyContextsDictionary);
         }
 
-        public void JoinParty(int partyCode, string username) //should be int, user or at least username
+        public void JoinParty(int partyCode, string username)
         {
             IPartyManagerCallback operationContext = OperationContext.Current.GetCallbackChannel<IPartyManagerCallback>();
 
