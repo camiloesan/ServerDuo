@@ -33,6 +33,9 @@ namespace CommunicationService
 
         [OperationContract(IsOneWay = true)]
         void LeaveParty(int partyCode, string username);
+
+        [OperationContract(IsOneWay = true)]
+        void IsPlayerActive();
     }
 
     [ServiceContract]
