@@ -4,7 +4,16 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DuoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="duoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FriendRequests">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserSender" Type="int" />
+          <Property Name="UserReceiver" Type="int" />
+          <Property Name="Status" Type="varchar" MaxLength="30" />
+        </EntityType>
         <EntityType Name="Friendships">
           <Key>
             <PropertyRef Name="FriendshipID" />
@@ -47,6 +56,30 @@
           <Property Name="UserID" Type="int" />
           <Property Name="TotalWins" Type="int" />
         </EntityType>
+        <Association Name="FK_FriendRequests_UsernameReceiver">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="FriendRequests" Type="Self.FriendRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="FriendRequests">
+              <PropertyRef Name="UserReceiver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FriendRequests_UsernameSender">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="FriendRequests" Type="Self.FriendRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="FriendRequests">
+              <PropertyRef Name="UserSender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Friendships_Users1">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Friendships" Type="Self.Friendships" Multiplicity="*" />
@@ -119,12 +152,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DuoModelStoreContainer">
+        <EntityContainer Name="duoModelStoreContainer">
+          <EntitySet Name="FriendRequests" EntityType="Self.FriendRequests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Friendships" EntityType="Self.Friendships" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Matches" EntityType="Self.Matches" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserBlocks" EntityType="Self.UserBlocks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WinCounts" EntityType="Self.WinCounts" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_FriendRequests_UsernameReceiver" Association="Self.FK_FriendRequests_UsernameReceiver">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="FriendRequests" EntitySet="FriendRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FriendRequests_UsernameSender" Association="Self.FK_FriendRequests_UsernameSender">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="FriendRequests" EntitySet="FriendRequests" />
+          </AssociationSet>
           <AssociationSet Name="FK_Friendships_Users1" Association="Self.FK_Friendships_Users1">
             <End Role="Users" EntitySet="Users" />
             <End Role="Friendships" EntitySet="Friendships" />
@@ -150,10 +192,22 @@
             <End Role="WinCounts" EntitySet="WinCounts" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DuoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="FriendRequests">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserSender" Type="Int32" />
+          <Property Name="UserReceiver" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_FriendRequests_UsernameReceiver" FromRole="FriendRequests" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK_FriendRequests_UsernameSender" FromRole="FriendRequests" ToRole="Users" />
+        </EntityType>
         <EntityType Name="Friendships">
           <Key>
             <PropertyRef Name="FriendshipID" />
@@ -192,6 +246,8 @@
           <Property Name="Username" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FriendRequests" Relationship="Self.FK_FriendRequests_UsernameReceiver" FromRole="Users" ToRole="FriendRequests" />
+          <NavigationProperty Name="FriendRequests1" Relationship="Self.FK_FriendRequests_UsernameSender" FromRole="Users" ToRole="FriendRequests" />
           <NavigationProperty Name="Friendships" Relationship="Self.FK_Friendships_Users1" FromRole="Users" ToRole="Friendships" />
           <NavigationProperty Name="Friendships1" Relationship="Self.FK_Friendships_Users2" FromRole="Users" ToRole="Friendships" />
           <NavigationProperty Name="Matches" Relationship="Self.FK_Matches_Users" FromRole="Users" ToRole="Matches" />
@@ -208,6 +264,30 @@
           <Property Name="TotalWins" Type="Int32" />
           <NavigationProperty Name="Users" Relationship="Self.FK_WinCounts_Users" FromRole="WinCounts" ToRole="Users" />
         </EntityType>
+        <Association Name="FK_FriendRequests_UsernameReceiver">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="FriendRequests" Type="Self.FriendRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="FriendRequests">
+              <PropertyRef Name="UserReceiver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FriendRequests_UsernameSender">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="FriendRequests" Type="Self.FriendRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="FriendRequests">
+              <PropertyRef Name="UserSender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Friendships_Users1">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Friendships" Type="Self.Friendships" Multiplicity="*" />
@@ -281,11 +361,20 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DuoContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FriendRequests" EntityType="Self.FriendRequests" />
           <EntitySet Name="Friendships" EntityType="Self.Friendships" />
           <EntitySet Name="Matches" EntityType="Self.Matches" />
           <EntitySet Name="UserBlocks" EntityType="Self.UserBlocks" />
           <EntitySet Name="Users" EntityType="Self.Users" />
           <EntitySet Name="WinCounts" EntityType="Self.WinCounts" />
+          <AssociationSet Name="FK_FriendRequests_UsernameReceiver" Association="Self.FK_FriendRequests_UsernameReceiver">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="FriendRequests" EntitySet="FriendRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FriendRequests_UsernameSender" Association="Self.FK_FriendRequests_UsernameSender">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="FriendRequests" EntitySet="FriendRequests" />
+          </AssociationSet>
           <AssociationSet Name="FK_Friendships_Users1" Association="Self.FK_Friendships_Users1">
             <End Role="Users" EntitySet="Users" />
             <End Role="Friendships" EntitySet="Friendships" />
@@ -316,7 +405,17 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DuoModelStoreContainer" CdmEntityContainer="DuoContext">
+        <EntityContainerMapping StorageEntityContainer="duoModelStoreContainer" CdmEntityContainer="DuoContext">
+          <EntitySetMapping Name="FriendRequests">
+            <EntityTypeMapping TypeName="DuoModel.FriendRequests">
+              <MappingFragment StoreEntitySet="FriendRequests">
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="UserSender" ColumnName="UserSender" />
+                <ScalarProperty Name="UserReceiver" ColumnName="UserReceiver" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Friendships">
             <EntityTypeMapping TypeName="DuoModel.Friendships">
               <MappingFragment StoreEntitySet="Friendships">

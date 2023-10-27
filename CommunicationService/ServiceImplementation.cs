@@ -2,8 +2,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.Entity.Infrastructure.Interception;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
@@ -42,6 +44,19 @@ namespace CommunicationService
             }
         }
 
+        public void GetFriendRequestsList(int userID)
+        {
+            using (var databaseContext = new DuoContext())
+            {
+                var requestInfo = databaseContext.FriendRequests.Where(request => request.UserReceiver == userID);
+                
+                foreach (var i in requestInfo)
+                {
+                    Console.Write(i.UserSender);
+                }
+            }
+        }
+
         public List<string> GetOnlineFriends(string username)
         {
             throw new NotImplementedException();
@@ -71,6 +86,34 @@ namespace CommunicationService
                 return databaseContext.Users.Any(user => username == user.Username);
             }
         }
+
+        public bool SendFriendRequest(int senderID, int receiverID)
+        {
+            using (var databaseContext = new DuoContext())
+            {
+                var friendRequest = new FriendRequests
+                {
+                    UserSender = senderID,
+                    UserReceiver = receiverID,
+                };
+
+                try
+                {
+                    databaseContext.FriendRequests.Add(friendRequest);
+                    databaseContext.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        public bool SendFriendResponse()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
@@ -79,7 +122,7 @@ namespace CommunicationService
         static Dictionary<int, Dictionary<string, IPartyManagerCallback>> activePartiesDictionary = new Dictionary<int, Dictionary<string, IPartyManagerCallback>>();
         static Dictionary<string, IPartyManagerCallback> partyContextsDictionary;
 
-        public void NewParty(int partyCode, string username) //should be int, user
+        public void NewParty(int partyCode, string username)
         {
             partyContextsDictionary = new Dictionary<string, IPartyManagerCallback>();
             IPartyManagerCallback operationContext = OperationContext.Current.GetCallbackChannel<IPartyManagerCallback>();
@@ -90,7 +133,7 @@ namespace CommunicationService
             operationContext.PartyCreated(partyContextsDictionary);
         }
 
-        public void JoinParty(int partyCode, string username) //should be int, user or at least username
+        public void JoinParty(int partyCode, string username)
         {
             IPartyManagerCallback operationContext = OperationContext.Current.GetCallbackChannel<IPartyManagerCallback>();
 
@@ -122,6 +165,19 @@ namespace CommunicationService
             foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in partyMap)
             {
                 keyValuePair.Value.MessageReceived(message);
+            }
+        }
+
+        public void IsPlayerActive()
+        {
+            //var partyMap = activePartiesDictionary[partyCode];
+
+            foreach (var value in activePartiesDictionary.Values)
+            {
+                foreach (var context in value)
+                {
+                    //if (context.Value.GetStatus()) ;
+                }
             }
         }
     }
