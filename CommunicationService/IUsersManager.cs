@@ -15,7 +15,7 @@ namespace CommunicationService
         bool AddUserToDatabase(User user);
 
         [OperationContract]
-        bool IsLoginValid(string username, string password);
+        User IsLoginValid(string username, string password);
 
         [OperationContract]
         bool IsUsernameTaken(string username);
@@ -27,10 +27,16 @@ namespace CommunicationService
         bool SendFriendRequest(int senderID, int receiverID);
 
         [OperationContract]
-        bool SendFriendResponse();
+        bool AcceptFriendRequest(FriendRequest friendRequest);
 
         [OperationContract]
-        void GetFriendRequestsList(int userID);
+        bool RejectFriendRequest(int friendRequestID);
+
+        [OperationContract]
+        List<FriendRequest> GetFriendRequestsList(int userID);
+
+        [OperationContract]
+        List<Friendship> GetFriendsList(int userID);
 
         [OperationContract]
         List<String> GetOnlineFriends(string username);
@@ -39,6 +45,9 @@ namespace CommunicationService
     [DataContract]
     public class User
     {
+        [DataMember]
+        public int ID {  get; set; }
+
         [DataMember]
         public string UserName { get; set; }
 
@@ -49,15 +58,43 @@ namespace CommunicationService
     }
 
     [DataContract]
+    public class Friendship
+    {
+        [DataMember]
+        public int FriendshipID { get; set; }
+
+        [DataMember]
+        public int Friend1ID { get; set; }
+
+        [DataMember]
+        public string Friend1Username { get; set; }
+
+        [DataMember]
+        public int Friend2ID { get; set; }
+
+        [DataMember]
+        public string Friend2Username { get; set; }
+    }
+
+    [DataContract]
     public class FriendRequest
     {
         [DataMember]
-        public string SenderID { get; set; }
+        public int FriendRequestID { get; set; }
 
         [DataMember]
-        public string ReceiverID { get; set; }
+        public int SenderID { get; set; }
 
         [DataMember]
-        public string Status { get; set; }
+        public string SenderUsername { get; set; }
+
+        [DataMember]
+        public int ReceiverID { get; set; }
+
+        [DataMember]
+        public string ReceiverUsername { get; set; }
+
+        [DataMember]
+        public int Status { get; set; }
     }
 }

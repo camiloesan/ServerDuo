@@ -16,9 +16,6 @@ namespace CommunicationService
 {
     public partial class ServiceImplementation : IUsersManager
     {
-        // temporal fix of onlinplayers, should be binary tree somehow
-        public List<string> onlineUsers = new List<string>();
-
         public bool AddUserToDatabase(User user)
         {
             using (var databaseContext = new DuoContext())
@@ -44,16 +41,30 @@ namespace CommunicationService
             }
         }
 
-        public void GetFriendRequestsList(int userID)
+        public List<FriendRequest> GetFriendRequestsList(int userID)
         {
             using (var databaseContext = new DuoContext())
             {
-                var requestInfo = databaseContext.FriendRequests.Where(request => request.UserReceiver == userID);
-                
-                foreach (var i in requestInfo)
+                var friendResquestsList = databaseContext.FriendRequests
+                    .Where(request => request.UserReceiver == userID)
+                    .ToList();
+
+                List<FriendRequest> list = new List<FriendRequest>();
+                foreach (var item in friendResquestsList)
                 {
-                    Console.Write(i.UserSender);
+                    FriendRequest friendRequest = new FriendRequest
+                    {
+                        FriendRequestID = item.RequestID,
+                        SenderID = (int)item.UserSender,
+                        SenderUsername = item.Users1.Username,
+                        ReceiverID = (int)item.UserReceiver,
+                        ReceiverUsername = item.Users.Username
+                    };
+
+                    list.Add(friendRequest);
                 }
+
+                return list;
             }
         }
 
@@ -70,12 +81,20 @@ namespace CommunicationService
             }
         }
 
-        public bool IsLoginValid(string username, string password)
+        public User IsLoginValid(string username, string password)
         {
             using (var databaseContext = new DuoContext())
             {
-                bool exists = databaseContext.Users.Any(user => user.Username == username && user.Password == password);
-                return exists;
+                User userData = new User();
+                var databaseUser = databaseContext.Users.FirstOrDefault(user => user.Username == username && user.Password == password);
+
+                if (databaseUser != null)
+                {
+                    userData.ID = databaseUser.UserID;
+                    userData.UserName = databaseUser.Username;
+                    userData.Email = databaseUser.Email;
+                }
+                return userData;
             }
         }
 
@@ -95,6 +114,7 @@ namespace CommunicationService
                 {
                     UserSender = senderID,
                     UserReceiver = receiverID,
+                    Status = "pending"
                 };
 
                 try
@@ -102,7 +122,7 @@ namespace CommunicationService
                     databaseContext.FriendRequests.Add(friendRequest);
                     databaseContext.SaveChanges();
                 }
-                catch (Exception ex)
+                catch
                 {
                     return false;
                 }
@@ -110,9 +130,74 @@ namespace CommunicationService
             }
         }
 
-        public bool SendFriendResponse()
+        public bool AcceptFriendRequest(FriendRequest friendRequest)
         {
-            throw new NotImplementedException();
+            using (var databaseContext = new DuoContext())
+            {
+                var friendship = new Friendships
+                {
+                    User1 = friendRequest.SenderID, 
+                    User2 = friendRequest.ReceiverID,
+                };
+
+                try
+                {
+                    databaseContext.Friendships.Add(friendship);
+                    var requestToDelete = databaseContext.FriendRequests.Find(friendRequest.FriendRequestID);
+                    databaseContext.FriendRequests.Remove(requestToDelete);
+                    databaseContext.SaveChanges();
+                }
+                catch
+                {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
+        public bool RejectFriendRequest(int friendRequestID)
+        {
+            using (var databaseContext = new DuoContext())
+            {
+                try
+                {
+                    var requestToDelete = databaseContext.FriendRequests.Find(friendRequestID);
+                    databaseContext.FriendRequests.Remove(requestToDelete);
+                }
+                catch
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        public List<Friendship> GetFriendsList(int userID)
+        {
+            using (var databaseContext = new DuoContext())
+            {
+                var friendshipsList = databaseContext.Friendships
+                    .Where(friendship => friendship.User2 == userID || friendship.User1 == userID)
+                    .ToList();
+
+                Console.WriteLine(friendshipsList.Count);
+
+                List<Friendship> friendships = new List<Friendship>();
+                foreach (var item in friendshipsList)
+                {
+                    Friendship friendship = new Friendship()
+                    {
+                        FriendshipID = item.FriendshipID,
+                        Friend1ID = (int)item.User1,
+                        Friend1Username = item.Users.Username,
+                        Friend2ID = (int)item.User2,
+                        Friend2Username = item.Users1.Username
+                    };
+                    friendships.Add(friendship);
+                }
+                return friendships;
+            }
         }
     }
 
@@ -178,6 +263,16 @@ namespace CommunicationService
                 {
                     //if (context.Value.GetStatus()) ;
                 }
+            }
+        }
+
+        public void StartGame(int partyCode)
+        {
+            var partyMap = activePartiesDictionary[partyCode];
+
+            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in partyMap)
+            {
+                keyValuePair.Value.GameStarted();
             }
         }
     }
