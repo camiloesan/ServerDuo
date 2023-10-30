@@ -5,11 +5,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.Entity.Infrastructure.Interception;
 using System.Linq;
-<<<<<<< HEAD
-using System.Net.Mime;
-=======
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
->>>>>>> 386a2af845595e4a3d49aac3d51bf1d15f7a3ce9
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
