@@ -39,6 +39,9 @@ namespace CommunicationService
 
         [OperationContract(IsOneWay = true)]
         void IsPlayerActive();
+
+        [OperationContract(IsOneWay = true)]
+        void KickPlayer(int partyCode, string username);
     }
 
     [ServiceContract]
@@ -55,6 +58,9 @@ namespace CommunicationService
 
         [OperationContract]
         void PlayerLeft(Dictionary<string, IPartyManagerCallback> playersInLobby);
+
+        [OperationContract]
+        void PlayerKicked();
 
         [OperationContract]
         void GameStarted();

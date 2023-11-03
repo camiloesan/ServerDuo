@@ -84,15 +84,22 @@ namespace CommunicationService
         {
             using (var databaseContext = new DuoContext())
             {
-                User userData = new User();
-                var databaseUser = databaseContext.Users.FirstOrDefault(user => user.Username == username && user.Password == password);
-
-                if (databaseUser != null)
+                Users databaseUser;
+                try
                 {
-                    userData.ID = databaseUser.UserID;
-                    userData.UserName = databaseUser.Username;
-                    userData.Email = databaseUser.Email;
+                    databaseUser = databaseContext.Users.First(user => user.Username == username && user.Password == password);
                 }
+                catch
+                {
+                    return null;
+                }
+
+                User userData = new User
+                {
+                    ID = databaseUser.UserID,
+                    UserName = databaseUser.Username,
+                    Email = databaseUser.Email
+                };
                 return userData;
             }
         }
@@ -105,10 +112,33 @@ namespace CommunicationService
             }
         }
 
-        public bool SendFriendRequest(int senderID, int receiverID)
+        public bool SendFriendRequest(string usernameSender, string usernameReceiver)
         {
             using (var databaseContext = new DuoContext())
             {
+                int senderID;
+                try
+                {
+                    Users userSender = databaseContext.Users.First(user => user.Username == usernameSender);
+                    senderID = userSender.UserID;
+                }
+                catch
+                {
+                    return false;
+                }
+
+                int receiverID;
+                try
+                {
+                    Users userReceiver = databaseContext.Users.First(user => user.Username == usernameReceiver);
+                    receiverID = userReceiver.UserID;
+                }
+                catch
+                {
+                    return false;
+                }
+                
+
                 var friendRequest = new FriendRequests
                 {
                     UserSender = senderID,
@@ -198,6 +228,24 @@ namespace CommunicationService
                 return friendships;
             }
         }
+
+        public bool DeleteUserFromDatabaseByUsername(string username)
+        {
+            using (var databaseContext = new DuoContext())
+            {
+                bool result = false;
+                var userEntity = databaseContext.Users.FirstOrDefault(user => user.Username == username);
+
+                if (userEntity != null)
+                {
+                    databaseContext.Users.Remove(userEntity);
+                    databaseContext.SaveChanges();
+                    result = true;
+                }
+
+                return result;
+            }
+        }
     }
 
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
@@ -272,6 +320,20 @@ namespace CommunicationService
             foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in partyMap)
             {
                 keyValuePair.Value.GameStarted();
+            }
+        }
+
+        public void KickPlayer(int partyCode, string username)
+        {
+            var partyMap = activePartiesDictionary[partyCode];
+
+            partyMap[username].PlayerKicked();
+
+            partyMap.Remove(username);
+
+            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in partyMap)
+            {
+                keyValuePair.Value.PlayerLeft(partyContextsDictionary);
             }
         }
     }
