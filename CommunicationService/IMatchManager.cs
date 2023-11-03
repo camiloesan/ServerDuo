@@ -9,32 +9,46 @@ using System.ServiceModel;
 
 namespace CommunicationService
 {
+    [ServiceContract(CallbackContract = typeof(IMatchManagerCallback))]
+    internal interface IMatchManager
+    {
+        [OperationContract(IsOneWay = true)]
+        void EndTurn(int gameId);
+
+        [OperationContract(IsOneWay = true)]
+        void EndRound(int gameId);
+
+        [OperationContract]
+        void EndGame(int gameId);
+    }
+
     [ServiceContract]
-    public interface IMatchManager
+    internal interface IMatchManagerCallback
+    {
+        [OperationContract(IsOneWay = true)]
+        void UpdateTableCards();
+
+        [OperationContract(IsOneWay = true)]
+        void NotifyEndRound(int gameId);
+
+        [OperationContract(IsOneWay = true)]
+        void NotifyEndGame(int gameId);
+    }
+
+    [ServiceContract]
+    internal interface ICardManager
     {
         [OperationContract]
         Card DrawCard();
 
         [OperationContract]
-        Card[] GetTableCards();
-        
-        [OperationContract(IsOneWay = true)]
-        void DealTableCards();
+        Card[] GetCards(int gameId);
 
         [OperationContract(IsOneWay = true)]
-        void EndTurn();
+        void DealCards(int gameId);
 
         [OperationContract(IsOneWay = true)]
-        void EndRound();
-
-        [OperationContract]
-        void EndGame();
-
-        [OperationContract]
-        void InitializeData();
-        
-        [OperationContract(IsOneWay = true)]
-        void PlayCard(int position);
+        void PlayCard(int gameId, int position);
     }
 
     [DataContract]

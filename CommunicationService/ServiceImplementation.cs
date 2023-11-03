@@ -268,11 +268,25 @@ namespace CommunicationService
         public void StartGame(int partyCode)
         {
             var partyMap = activePartiesDictionary[partyCode];
+            Dictionary<string, int> playerScores = new Dictionary<string, int>();
 
             foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in partyMap)
             {
                 keyValuePair.Value.GameStarted();
+
+                playerScores.Add(keyValuePair.Key, 0);
             }
+
+            _playerScores.Add(partyCode, playerScores);
+            _gameCards.Add(partyCode, new Card[3]);
+
+            for (int i = 0; i < _gameCards[partyCode].Length; i++)
+            {
+                _gameCards[partyCode][i] = new Card();
+                _gameCards[partyCode][i].Number = "";
+            }
+
+            _numberGenerator.Next(0, _playerScores.Count);
         }
     }
 
@@ -300,9 +314,52 @@ namespace CommunicationService
 
     public partial class ServiceImplementation : IMatchManager
     {
-        static Card[] _tableCards = new Card[3];
-        static Random _numberGenerator = new Random();
+        Dictionary<int, Dictionary<string, int>> _playerScores = new Dictionary<int, Dictionary<string, int>>();
+        Dictionary<int, Dictionary<string, IMatchManagerCallback>> _playerCallbacks = new Dictionary<int, Dictionary<string, IMatchManagerCallback>>();
+        int currentTurn;
 
+        public void EndGame(int partyCode)
+        {
+            _gameCards.Remove(partyCode);
+            _playerScores.Remove(partyCode);
+
+            //TODO: Store scores in DB after game ends
+        }
+
+        public void EndRound(int partyCode)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndTurn(int partyCode)
+        {
+            List<string> playerList = new List<string>(_playerScores[partyCode].Keys);
+            //playerList[currentTurn + 1];
+
+            currentTurn = ;
+        }
+
+        public void NotifyEndGame(int gameId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void NotifyEndRound(int gameId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void NotifyPlayedCard(int gameId)
+        {
+            foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[gameId])
+            {
+                player.Value.UpdateTableCards();
+            }
+        }
+    }
+
+    public partial class ServiceImplementation : ICardManager
+    {
         static readonly List<string> _cardColors = new List<string>()
         {
             "#0000FF", //Blue
@@ -324,79 +381,67 @@ namespace CommunicationService
             ("10", 8),
             ("#", 8)
         };
+        static Dictionary<int, Card[]> _gameCards = new Dictionary<int, Card[]>();
+        static Random _numberGenerator = new Random();
 
-        public void InitializeData()
+        public void DealCards(int gameId)
         {
-            for (int i = 0; i < _tableCards.Length; i++)
+            for (int i = 0; i < _gameCards[gameId].Length - 1; i++)
             {
-                _tableCards[i] = new Card();
-                _tableCards[i].Number = "";
-            }
-        }
-
-        public void DealTableCards()
-        {
-            for (int i = 0; i < _tableCards.Length - 1; i++)
-            {
-                if (_tableCards[i].Number == "")
+                if (_gameCards[gameId][i].Number.Equals(""))
                 {
                     do
                     {
-                        _tableCards[i].Number = _numberGenerator.Next(1, 11).ToString();
-                    } while (_tableCards[i].Number == "2");
+                        _gameCards[gameId][i].Number = _numberGenerator.Next(1, 11).ToString();
+                    } while (_gameCards[gameId][i].Number.Equals("2"));
 
-                    _tableCards[i].Color = _cardColors[_numberGenerator.Next(0, 4)];
+                    _gameCards[gameId][i].Color = _cardColors[_numberGenerator.Next(0, 4)];
                 }
             }
         }
 
         public Card DrawCard()
         {
-            Card _card = new Card();
-            int _accumulatedWeight = 0;
-            int _cardNumber = _numberGenerator.Next(0, 120) + 1; //108 is the total of cards in a standard DUO deck
+            Card card = new Card();
+            int accumulatedWeight = 0;
+            int cardNumber = _numberGenerator.Next(0, 120) + 1;
 
             foreach (var (number, weight) in _cardNumbers)
             {
-                _accumulatedWeight += weight;
+                accumulatedWeight += weight;
 
-                if (_accumulatedWeight <= _cardNumber)
+                if (accumulatedWeight <= cardNumber)
                 {
-                    _card.Number = number;
+                    card.Number = number;
                 }
             }
 
-            if (_card.Number.CompareTo("2") != 0)
+            if (!card.Number.Equals("2"))
             {
-                _card.Color = _cardColors[_numberGenerator.Next(0, 4)];
+                card.Color = _cardColors[_numberGenerator.Next(0, 4)];
             }
 
-            return _card;
+            return card;
         }
 
-        public void EndGame()
+        public Card[] GetCards(int gameId)
         {
-            throw new NotImplementedException();
+            return _gameCards[gameId];
         }
 
-        public void EndRound()
+        public bool isValidMove()
         {
-            throw new NotImplementedException();
+            bool result = false;
+
+
+            return result;
         }
 
-        public void EndTurn()
+        public void PlayCard(int gameId, int position)
         {
-            throw new NotImplementedException();
-        }
+            _gameCards[gameId][position].Number = "";
 
-        public Card[] GetTableCards()
-        {
-            return _tableCards;
-        }
-
-        public void PlayCard(int position)
-        {
-            _tableCards[position].Number = "";
+            NotifyPlayedCard(gameId);
         }
     }
 }
