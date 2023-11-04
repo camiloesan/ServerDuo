@@ -334,26 +334,28 @@ namespace CommunicationService
         public void EndTurn(int partyCode)
         {
             List<string> playerList = new List<string>(_playerScores[partyCode].Keys);
-            //playerList[currentTurn + 1];
-
-            currentTurn = ;
+            currentTurn = (currentTurn + 1) % playerList.Count;
         }
+
+        public Dictionary<string, int> GetPlayerScores(int partyCode)
+        {
+            return _playerScores[partyCode];
+        }
+
 
         public void NotifyEndGame(int gameId)
         {
-            throw new NotImplementedException();
+            foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[gameId])
+            {
+                player.Value.EndGame();
+            }
         }
 
         public void NotifyEndRound(int gameId)
         {
-            throw new NotImplementedException();
-        }
-
-        public void NotifyPlayedCard(int gameId)
-        {
             foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[gameId])
             {
-                player.Value.UpdateTableCards();
+                player.Value.EndRound();
             }
         }
     }
@@ -429,19 +431,19 @@ namespace CommunicationService
             return _gameCards[gameId];
         }
 
-        public bool isValidMove()
-        {
-            bool result = false;
-
-
-            return result;
-        }
-
         public void PlayCard(int gameId, int position)
         {
             _gameCards[gameId][position].Number = "";
 
             NotifyPlayedCard(gameId);
+        }
+
+        public void NotifyPlayedCard(int gameId)
+        {
+            foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[gameId])
+            {
+                player.Value.UpdateTableCards();
+            }
         }
     }
 }

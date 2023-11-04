@@ -25,14 +25,14 @@ namespace CommunicationService
     [ServiceContract]
     internal interface IMatchManagerCallback
     {
-        [OperationContract(IsOneWay = true)]
+        [OperationContract]
         void UpdateTableCards();
 
-        [OperationContract(IsOneWay = true)]
-        void NotifyEndRound(int gameId);
+        [OperationContract]
+        void EndRound();
 
-        [OperationContract(IsOneWay = true)]
-        void NotifyEndGame(int gameId);
+        [OperationContract]
+        void EndGame();
     }
 
     [ServiceContract]
