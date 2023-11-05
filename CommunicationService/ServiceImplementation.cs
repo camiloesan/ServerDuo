@@ -1,6 +1,7 @@
 ﻿    using Database;
 using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.Entity.Infrastructure.Interception;
@@ -249,66 +250,53 @@ namespace CommunicationService
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
     public partial class ServiceImplementation : IPartyManager
     {
-        static Dictionary<int, Dictionary<string, IPartyManagerCallback>> activePartiesDictionary = new Dictionary<int, Dictionary<string, IPartyManagerCallback>>();
-        static Dictionary<string, IPartyManagerCallback> partyContextsDictionary;
+        static ConcurrentDictionary<int, ConcurrentDictionary<string, IPartyManagerCallback>> activePartiesDictionary = new ConcurrentDictionary<int, ConcurrentDictionary<string, IPartyManagerCallback>>();
 
         public void NewParty(int partyCode, string username)
         {
-            partyContextsDictionary = new Dictionary<string, IPartyManagerCallback>();
             IPartyManagerCallback operationContext = OperationContext.Current.GetCallbackChannel<IPartyManagerCallback>();
+            ConcurrentDictionary<string, IPartyManagerCallback> partyContextsDictionary = new ConcurrentDictionary<string, IPartyManagerCallback>();
+            partyContextsDictionary.TryAdd(username, operationContext);
+            activePartiesDictionary.TryAdd(partyCode, partyContextsDictionary);
 
-            partyContextsDictionary.Add(username, operationContext);
-            activePartiesDictionary.Add(partyCode, partyContextsDictionary);
-
-            operationContext.PartyCreated(partyContextsDictionary);
+            operationContext.NotifyPartyCreated(partyContextsDictionary);
         }
 
         public void JoinParty(int partyCode, string username)
         {
             IPartyManagerCallback operationContext = OperationContext.Current.GetCallbackChannel<IPartyManagerCallback>();
 
-            var partyMap = activePartiesDictionary[partyCode];
-
-            partyMap.Add(username, operationContext);
-
-            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in partyMap)
+            activePartiesDictionary[partyCode].TryAdd(username, operationContext);
+            foreach (var item in activePartiesDictionary[partyCode])
             {
-                keyValuePair.Value.PlayerJoined(partyMap);
+                item.Value.NotifyPlayerJoined(activePartiesDictionary[partyCode]);
             }
+
         }
 
         public void LeaveParty(int partyCode, string username)
         {
-            var partyMap = activePartiesDictionary[partyCode];
+            activePartiesDictionary[partyCode].TryRemove(username, out _);
+            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in activePartiesDictionary[partyCode])
+            {
+                keyValuePair.Value.NotifyPlayerLeft(activePartiesDictionary[partyCode]);
+            }
+        }
 
-            if (partyMap.ElementAt(0).Key == username)
+        public void CloseParty(int partyCode)
+        {
+            foreach (var item in activePartiesDictionary[partyCode])
             {
-                foreach (var item in partyMap)
-                {
-                    if (item.Key != username)
-                    {
-                        item.Value.PlayerKicked();
-                    }
-                }
-                activePartiesDictionary.Remove(partyCode);
+                item.Value.NotifyPlayerKicked();
             }
-            else
-            {
-                partyMap.Remove(username);
-                foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in partyMap)
-                {
-                    keyValuePair.Value.PlayerLeft(partyContextsDictionary);
-                }
-            }
+            activePartiesDictionary.TryRemove(partyCode, out _);
         }
 
         public void SendMessage(int partyCode, string message)
         {
-            var partyMap = activePartiesDictionary[partyCode];
-
-            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in partyMap)
+            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in activePartiesDictionary[partyCode])
             {
-                keyValuePair.Value.MessageReceived(message);
+                keyValuePair.Value.NotifyMessageReceived(message);
             }
         }
 
@@ -329,23 +317,21 @@ namespace CommunicationService
         {
             var partyMap = activePartiesDictionary[partyCode];
 
-            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in partyMap)
+            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in activePartiesDictionary[partyCode])
             {
-                keyValuePair.Value.GameStarted();
+                keyValuePair.Value.NotifyGameStarted();
             }
         }
 
         public void KickPlayer(int partyCode, string username)
         {
-            var partyMap = activePartiesDictionary[partyCode];
+            activePartiesDictionary[partyCode][username].NotifyPlayerKicked();
 
-            partyMap[username].PlayerKicked();
+            activePartiesDictionary[partyCode].TryRemove(username, out _);
 
-            partyMap.Remove(username);
-
-            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in partyMap)
+            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in activePartiesDictionary[partyCode])
             {
-                keyValuePair.Value.PlayerLeft(partyContextsDictionary);
+                keyValuePair.Value.NotifyPlayerLeft(activePartiesDictionary[partyCode]);
             }
         }
     }
@@ -359,16 +345,7 @@ namespace CommunicationService
 
         public bool IsSpaceAvailable(int partyCode)
         {
-            if (activePartiesDictionary.ContainsKey(partyCode))
-            {
-                var partyMap = activePartiesDictionary[partyCode];
-                
-                if (partyMap.Count == 4)
-                {
-                    return false;
-                }
-            }
-            return true;
+            return activePartiesDictionary[partyCode].Count < 4;
         }
     }
 
