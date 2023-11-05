@@ -269,15 +269,15 @@ namespace CommunicationService
         {
             var partyMap = activePartiesDictionary[partyCode];
             Dictionary<string, int> playerScores = new Dictionary<string, int>();
+            _playerScores.Add(partyCode, playerScores);
 
             foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in partyMap)
             {
-                keyValuePair.Value.GameStarted();
-
                 playerScores.Add(keyValuePair.Key, 0);
-            }
 
-            _playerScores.Add(partyCode, playerScores);
+                keyValuePair.Value.GameStarted();
+            }
+            
             _gameCards.Add(partyCode, new Card[3]);
 
             for (int i = 0; i < _gameCards[partyCode].Length; i++)
@@ -318,23 +318,51 @@ namespace CommunicationService
         Dictionary<int, Dictionary<string, IMatchManagerCallback>> _playerCallbacks = new Dictionary<int, Dictionary<string, IMatchManagerCallback>>();
         int currentTurn;
 
+        public void Subscribe(int partyCode, string username)
+        {
+            IMatchManagerCallback playerCallback = OperationContext.Current.GetCallbackChannel<IMatchManagerCallback>();
+
+            if (_playerCallbacks.ContainsKey(partyCode))
+            {
+                _playerCallbacks[partyCode].Add(username, playerCallback);
+            }
+            else
+            {
+                Dictionary<string, IMatchManagerCallback> player = new Dictionary<string, IMatchManagerCallback>();
+                player.Add(username, playerCallback);
+
+                _playerCallbacks.Add(partyCode, player);
+            }
+            
+        }
+
         public void EndGame(int partyCode)
         {
             _gameCards.Remove(partyCode);
             _playerScores.Remove(partyCode);
 
-            //TODO: Store scores in DB after game ends
+            NotifyEndGame(partyCode);
         }
 
         public void EndRound(int partyCode)
         {
-            throw new NotImplementedException();
+            NotifyEndRound(partyCode);
         }
 
         public void EndTurn(int partyCode)
         {
             List<string> playerList = new List<string>(_playerScores[partyCode].Keys);
             currentTurn = (currentTurn + 1) % playerList.Count;
+
+            NotifyEndTurn(partyCode);
+        }
+
+        public string GetCurrentTurn(int partyCode)
+        {
+            List<string> playerList = new List<string>(_playerScores[partyCode].Keys);
+            currentTurn = (currentTurn + 1) % playerList.Count;
+
+            return playerList[currentTurn];
         }
 
         public Dictionary<string, int> GetPlayerScores(int partyCode)
@@ -342,20 +370,29 @@ namespace CommunicationService
             return _playerScores[partyCode];
         }
 
-
-        public void NotifyEndGame(int gameId)
+        void NotifyEndTurn(int partyCode)
         {
-            foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[gameId])
+            List<string> playerList = new List<string>(_playerScores[partyCode].Keys);
+
+            foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[partyCode])
             {
-                player.Value.EndGame();
+                player.Value.TurnFinished(playerList[currentTurn]);
             }
         }
 
-        public void NotifyEndRound(int gameId)
+        void NotifyEndGame(int partyCode)
         {
-            foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[gameId])
+            foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[partyCode])
             {
-                player.Value.EndRound();
+                player.Value.GameOver();
+            }
+        }
+
+        void NotifyEndRound(int partyCode)
+        {
+            foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[partyCode])
+            {
+                player.Value.RoundOver();
             }
         }
     }

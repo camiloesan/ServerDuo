@@ -13,13 +13,22 @@ namespace CommunicationService
     internal interface IMatchManager
     {
         [OperationContract(IsOneWay = true)]
-        void EndTurn(int gameId);
+        void Subscribe(int partyCode, string username);
 
         [OperationContract(IsOneWay = true)]
-        void EndRound(int gameId);
+        void EndGame(int partyCode);
+
+        [OperationContract(IsOneWay = true)]
+        void EndRound(int partyCode);
+
+        [OperationContract(IsOneWay = true)]
+        void EndTurn(int partyCode);
 
         [OperationContract]
-        void EndGame(int gameId);
+        string GetCurrentTurn(int partyCode);
+
+        [OperationContract]
+        Dictionary<string, int> GetPlayerScores(int partyCode);
     }
 
     [ServiceContract]
@@ -29,10 +38,13 @@ namespace CommunicationService
         void UpdateTableCards();
 
         [OperationContract]
-        void EndRound();
+        void TurnFinished(string currentTurn);
 
         [OperationContract]
-        void EndGame();
+        void RoundOver();
+
+        [OperationContract]
+        void GameOver();
     }
 
     [ServiceContract]
@@ -42,13 +54,13 @@ namespace CommunicationService
         Card DrawCard();
 
         [OperationContract]
-        Card[] GetCards(int gameId);
+        Card[] GetCards(int partyCode);
 
         [OperationContract(IsOneWay = true)]
-        void DealCards(int gameId);
+        void DealCards(int partyCode);
 
         [OperationContract(IsOneWay = true)]
-        void PlayCard(int gameId, int position);
+        void PlayCard(int partyCode, int position);
     }
 
     [DataContract]
