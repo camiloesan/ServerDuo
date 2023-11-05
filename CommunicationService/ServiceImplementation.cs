@@ -210,8 +210,6 @@ namespace CommunicationService
                     .Where(friendship => friendship.User2 == userID || friendship.User1 == userID)
                     .ToList();
 
-                Console.WriteLine(friendshipsList.Count);
-
                 List<Friendship> friendships = new List<Friendship>();
                 foreach (var item in friendshipsList)
                 {
@@ -282,11 +280,25 @@ namespace CommunicationService
         public void LeaveParty(int partyCode, string username)
         {
             var partyMap = activePartiesDictionary[partyCode];
-            partyMap.Remove(username);
 
-            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in partyMap)
+            if (partyMap.ElementAt(0).Key == username)
             {
-                keyValuePair.Value.PlayerLeft(partyContextsDictionary);
+                foreach (var item in partyMap)
+                {
+                    if (item.Key != username)
+                    {
+                        item.Value.PlayerKicked();
+                    }
+                }
+                activePartiesDictionary.Remove(partyCode);
+            }
+            else
+            {
+                partyMap.Remove(username);
+                foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in partyMap)
+                {
+                    keyValuePair.Value.PlayerLeft(partyContextsDictionary);
+                }
             }
         }
 
