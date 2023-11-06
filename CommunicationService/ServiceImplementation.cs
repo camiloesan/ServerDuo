@@ -268,13 +268,10 @@ namespace CommunicationService
         public void StartGame(int partyCode)
         {
             var partyMap = activePartiesDictionary[partyCode];
-            Dictionary<string, int> playerScores = new Dictionary<string, int>();
-            _playerScores.Add(partyCode, playerScores);
+            
 
             foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in partyMap)
             {
-                playerScores.Add(keyValuePair.Key, 0);
-
                 keyValuePair.Value.GameStarted();
             }
             
@@ -287,6 +284,9 @@ namespace CommunicationService
             }
 
             _numberGenerator.Next(0, _playerScores.Count);
+
+            Dictionary<string, int> scores = new Dictionary<string, int>();
+            _playerScores.Add(partyCode, scores);
         }
     }
 
@@ -334,6 +334,7 @@ namespace CommunicationService
                 _playerCallbacks.Add(partyCode, player);
             }
             
+            _playerScores[partyCode].Add(username, 0);
         }
 
         public void EndGame(int partyCode)
