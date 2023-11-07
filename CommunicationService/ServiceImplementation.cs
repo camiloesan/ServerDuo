@@ -1,6 +1,7 @@
 ﻿    using Database;
 using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.Entity.Infrastructure.Interception;
@@ -269,13 +270,7 @@ namespace CommunicationService
         {
             var partyMap = activePartiesDictionary[partyCode];
             
-
-            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in partyMap)
-            {
-                keyValuePair.Value.GameStarted();
-            }
-            
-            _gameCards.Add(partyCode, new Card[3]);
+            _gameCards.TryAdd(partyCode, new Card[3]);
 
             for (int i = 0; i < _gameCards[partyCode].Length; i++)
             {
@@ -283,10 +278,12 @@ namespace CommunicationService
                 _gameCards[partyCode][i].Number = "";
             }
 
-            _numberGenerator.Next(0, _playerScores.Count);
+            DealCards(partyCode);
 
-            Dictionary<string, int> scores = new Dictionary<string, int>();
-            _playerScores.Add(partyCode, scores);
+            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in partyMap)
+            {
+                keyValuePair.Value.GameStarted();
+            }
         }
     }
 
@@ -314,8 +311,8 @@ namespace CommunicationService
 
     public partial class ServiceImplementation : IMatchManager
     {
-        Dictionary<int, Dictionary<string, int>> _playerScores = new Dictionary<int, Dictionary<string, int>>();
-        Dictionary<int, Dictionary<string, IMatchManagerCallback>> _playerCallbacks = new Dictionary<int, Dictionary<string, IMatchManagerCallback>>();
+        ConcurrentDictionary<int, ConcurrentDictionary<string, int>> _playerScores = new ConcurrentDictionary<int, ConcurrentDictionary<string, int>>();
+        ConcurrentDictionary<int, ConcurrentDictionary<string, IMatchManagerCallback>> _playerCallbacks = new ConcurrentDictionary<int, ConcurrentDictionary<string, IMatchManagerCallback>>();
         int currentTurn;
 
         public void Subscribe(int partyCode, string username)
@@ -324,23 +321,35 @@ namespace CommunicationService
 
             if (_playerCallbacks.ContainsKey(partyCode))
             {
-                _playerCallbacks[partyCode].Add(username, playerCallback);
+                _playerCallbacks[partyCode].TryAdd(username, playerCallback);
             }
             else
             {
-                Dictionary<string, IMatchManagerCallback> player = new Dictionary<string, IMatchManagerCallback>();
-                player.Add(username, playerCallback);
+                ConcurrentDictionary<string, IMatchManagerCallback> player = new ConcurrentDictionary<string, IMatchManagerCallback>();
+                player.TryAdd(username, playerCallback);
 
-                _playerCallbacks.Add(partyCode, player);
+                _playerCallbacks.TryAdd(partyCode, player);
             }
+
+            if (_playerScores.ContainsKey(partyCode))
+            {
+                _playerScores[partyCode].TryAdd(username, 0);
+            }
+            else
+            {
+                ConcurrentDictionary<string, int> score = new ConcurrentDictionary<string, int>();
+                score.TryAdd(username, 0);
+
+                _playerScores.TryAdd(partyCode, score);
+            }
+
             
-            _playerScores[partyCode].Add(username, 0);
         }
 
         public void EndGame(int partyCode)
         {
-            _gameCards.Remove(partyCode);
-            _playerScores.Remove(partyCode);
+            _gameCards.TryRemove(partyCode, out _);
+            _playerScores.TryRemove(partyCode, out _);
 
             NotifyEndGame(partyCode);
         }
@@ -366,9 +375,16 @@ namespace CommunicationService
             return playerList[currentTurn];
         }
 
-        public Dictionary<string, int> GetPlayerScores(int partyCode)
+        public ConcurrentDictionary<string, int> GetPlayerScores(int partyCode)
         {
-            return _playerScores[partyCode];
+            if (_playerScores.TryGetValue(partyCode, out ConcurrentDictionary<string, int> playerScores))
+            {
+                return playerScores;
+            }
+            else
+            {
+                return new ConcurrentDictionary<string, int>();
+            }
         }
 
         void NotifyEndTurn(int partyCode)
@@ -421,7 +437,7 @@ namespace CommunicationService
             ("10", 8),
             ("#", 8)
         };
-        static Dictionary<int, Card[]> _gameCards = new Dictionary<int, Card[]>();
+        static ConcurrentDictionary<int, Card[]> _gameCards = new ConcurrentDictionary<int, Card[]>();
         static Random _numberGenerator = new Random();
 
         public void DealCards(int gameId)

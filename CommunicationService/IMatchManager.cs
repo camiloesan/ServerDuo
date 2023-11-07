@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Database;
 using System.Runtime.Serialization;
 using System.ServiceModel;
+using System.Collections.Concurrent;
 
 namespace CommunicationService
 {
@@ -28,7 +29,7 @@ namespace CommunicationService
         string GetCurrentTurn(int partyCode);
 
         [OperationContract]
-        Dictionary<string, int> GetPlayerScores(int partyCode);
+        ConcurrentDictionary<string, int> GetPlayerScores(int partyCode);
     }
 
     [ServiceContract]
