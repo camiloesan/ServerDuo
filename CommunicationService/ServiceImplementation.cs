@@ -85,15 +85,22 @@ namespace CommunicationService
         {
             using (var databaseContext = new DuoContext())
             {
-                User userData = new User();
-                var databaseUser = databaseContext.Users.FirstOrDefault(user => user.Username == username && user.Password == password);
-
-                if (databaseUser != null)
+                Users databaseUser;
+                try
                 {
-                    userData.ID = databaseUser.UserID;
-                    userData.UserName = databaseUser.Username;
-                    userData.Email = databaseUser.Email;
+                    databaseUser = databaseContext.Users.First(user => user.Username == username && user.Password == password);
                 }
+                catch
+                {
+                    return null;
+                }
+
+                User userData = new User
+                {
+                    ID = databaseUser.UserID,
+                    UserName = databaseUser.Username,
+                    Email = databaseUser.Email
+                };
                 return userData;
             }
         }
@@ -106,10 +113,33 @@ namespace CommunicationService
             }
         }
 
-        public bool SendFriendRequest(int senderID, int receiverID)
+        public bool SendFriendRequest(string usernameSender, string usernameReceiver)
         {
             using (var databaseContext = new DuoContext())
             {
+                int senderID;
+                try
+                {
+                    Users userSender = databaseContext.Users.First(user => user.Username == usernameSender);
+                    senderID = userSender.UserID;
+                }
+                catch
+                {
+                    return false;
+                }
+
+                int receiverID;
+                try
+                {
+                    Users userReceiver = databaseContext.Users.First(user => user.Username == usernameReceiver);
+                    receiverID = userReceiver.UserID;
+                }
+                catch
+                {
+                    return false;
+                }
+                
+
                 var friendRequest = new FriendRequests
                 {
                     UserSender = senderID,
@@ -181,8 +211,6 @@ namespace CommunicationService
                     .Where(friendship => friendship.User2 == userID || friendship.User1 == userID)
                     .ToList();
 
-                Console.WriteLine(friendshipsList.Count);
-
                 List<Friendship> friendships = new List<Friendship>();
                 foreach (var item in friendshipsList)
                 {
@@ -199,57 +227,76 @@ namespace CommunicationService
                 return friendships;
             }
         }
+
+        public bool DeleteUserFromDatabaseByUsername(string username)
+        {
+            using (var databaseContext = new DuoContext())
+            {
+                bool result = false;
+                var userEntity = databaseContext.Users.FirstOrDefault(user => user.Username == username);
+
+                if (userEntity != null)
+                {
+                    databaseContext.Users.Remove(userEntity);
+                    databaseContext.SaveChanges();
+                    result = true;
+                }
+
+                return result;
+            }
+        }
     }
 
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
     public partial class ServiceImplementation : IPartyManager
     {
-        static Dictionary<int, Dictionary<string, IPartyManagerCallback>> activePartiesDictionary = new Dictionary<int, Dictionary<string, IPartyManagerCallback>>();
-        static Dictionary<string, IPartyManagerCallback> partyContextsDictionary;
+        static ConcurrentDictionary<int, ConcurrentDictionary<string, IPartyManagerCallback>> activePartiesDictionary = new ConcurrentDictionary<int, ConcurrentDictionary<string, IPartyManagerCallback>>();
 
         public void NewParty(int partyCode, string username)
         {
-            partyContextsDictionary = new Dictionary<string, IPartyManagerCallback>();
             IPartyManagerCallback operationContext = OperationContext.Current.GetCallbackChannel<IPartyManagerCallback>();
+            ConcurrentDictionary<string, IPartyManagerCallback> partyContextsDictionary = new ConcurrentDictionary<string, IPartyManagerCallback>();
+            partyContextsDictionary.TryAdd(username, operationContext);
+            activePartiesDictionary.TryAdd(partyCode, partyContextsDictionary);
 
-            partyContextsDictionary.Add(username, operationContext);
-            activePartiesDictionary.Add(partyCode, partyContextsDictionary);
-
-            operationContext.PartyCreated(partyContextsDictionary);
+            operationContext.NotifyPartyCreated(partyContextsDictionary);
         }
 
         public void JoinParty(int partyCode, string username)
         {
             IPartyManagerCallback operationContext = OperationContext.Current.GetCallbackChannel<IPartyManagerCallback>();
 
-            var partyMap = activePartiesDictionary[partyCode];
-
-            partyMap.Add(username, operationContext);
-
-            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in partyMap)
+            activePartiesDictionary[partyCode].TryAdd(username, operationContext);
+            foreach (var item in activePartiesDictionary[partyCode])
             {
-                keyValuePair.Value.PlayerJoined(partyMap);
+                item.Value.NotifyPlayerJoined(activePartiesDictionary[partyCode]);
             }
+
         }
 
         public void LeaveParty(int partyCode, string username)
         {
-            var partyMap = activePartiesDictionary[partyCode];
-            partyMap.Remove(username);
-
-            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in partyMap)
+            activePartiesDictionary[partyCode].TryRemove(username, out _);
+            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in activePartiesDictionary[partyCode])
             {
-                keyValuePair.Value.PlayerLeft(partyContextsDictionary);
+                keyValuePair.Value.NotifyPlayerLeft(activePartiesDictionary[partyCode]);
             }
+        }
+
+        public void CloseParty(int partyCode)
+        {
+            foreach (var item in activePartiesDictionary[partyCode])
+            {
+                item.Value.NotifyPlayerKicked();
+            }
+            activePartiesDictionary.TryRemove(partyCode, out _);
         }
 
         public void SendMessage(int partyCode, string message)
         {
-            var partyMap = activePartiesDictionary[partyCode];
-
-            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in partyMap)
+            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in activePartiesDictionary[partyCode])
             {
-                keyValuePair.Value.MessageReceived(message);
+                keyValuePair.Value.NotifyMessageReceived(message);
             }
         }
 
@@ -280,9 +327,21 @@ namespace CommunicationService
 
             DealCards(partyCode);
 
-            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in partyMap)
+            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in activePartiesDictionary[partyCode])
             {
-                keyValuePair.Value.GameStarted();
+                keyValuePair.Value.NotifyGameStarted();
+            }
+        }
+
+        public void KickPlayer(int partyCode, string username)
+        {
+            activePartiesDictionary[partyCode][username].NotifyPlayerKicked();
+
+            activePartiesDictionary[partyCode].TryRemove(username, out _);
+
+            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in activePartiesDictionary[partyCode])
+            {
+                keyValuePair.Value.NotifyPlayerLeft(activePartiesDictionary[partyCode]);
             }
         }
     }
@@ -296,16 +355,7 @@ namespace CommunicationService
 
         public bool IsSpaceAvailable(int partyCode)
         {
-            if (activePartiesDictionary.ContainsKey(partyCode))
-            {
-                var partyMap = activePartiesDictionary[partyCode];
-                
-                if (partyMap.Count == 4)
-                {
-                    return false;
-                }
-            }
-            return true;
+            return activePartiesDictionary[partyCode].Count < 4;
         }
     }
 

@@ -15,6 +15,9 @@ namespace CommunicationService
         bool AddUserToDatabase(User user);
 
         [OperationContract]
+        bool DeleteUserFromDatabaseByUsername(String username);
+
+        [OperationContract]
         User IsLoginValid(string username, string password);
 
         [OperationContract]
@@ -24,7 +27,7 @@ namespace CommunicationService
         bool IsEmailTaken(String email);
 
         [OperationContract]
-        bool SendFriendRequest(int senderID, int receiverID);
+        bool SendFriendRequest(string usernameSender, string usernameReceiver);
 
         [OperationContract]
         bool AcceptFriendRequest(FriendRequest friendRequest);
