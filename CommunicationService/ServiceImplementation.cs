@@ -311,9 +311,9 @@ namespace CommunicationService
 
     public partial class ServiceImplementation : IMatchManager
     {
-        ConcurrentDictionary<int, ConcurrentDictionary<string, int>> _playerScores = new ConcurrentDictionary<int, ConcurrentDictionary<string, int>>();
-        ConcurrentDictionary<int, ConcurrentDictionary<string, IMatchManagerCallback>> _playerCallbacks = new ConcurrentDictionary<int, ConcurrentDictionary<string, IMatchManagerCallback>>();
-        int currentTurn;
+        static ConcurrentDictionary<int, ConcurrentDictionary<string, int>> _playerScores = new ConcurrentDictionary<int, ConcurrentDictionary<string, int>>();
+        static ConcurrentDictionary<int, ConcurrentDictionary<string, IMatchManagerCallback>> _playerCallbacks = new ConcurrentDictionary<int, ConcurrentDictionary<string, IMatchManagerCallback>>();
+        static int currentTurn;
 
         public void Subscribe(int partyCode, string username)
         {
