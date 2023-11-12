@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Security.Policy;
 using System.ServiceModel;
 using System.Text;
 
@@ -43,6 +44,9 @@ namespace CommunicationService
 
         [OperationContract]
         List<String> GetOnlineFriends(string username);
+
+        [OperationContract]
+        bool DeleteFriendshipByID(int friendshipID);
     }
 
     [DataContract]

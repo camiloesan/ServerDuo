@@ -228,7 +228,23 @@ namespace CommunicationService
             }
         }
 
-        public bool DeleteUserFromDatabaseByUsername(string username)
+        public bool DeleteFriendshipByID(int friendshipID)
+        {
+            using (var databaseContext = new DuoContext())
+            {
+                bool result = false;
+                var friendshipObject = databaseContext.Friendships.FirstOrDefault(friendship => friendship.FriendshipID == friendshipID);
+                if (friendshipObject != null)
+                {
+                    databaseContext.Friendships.Remove(friendshipObject);
+                    databaseContext.SaveChanges();
+                    result = true;
+                }
+                return result;
+            }
+        }
+
+        public bool DeleteUserFromDatabaseByUsername(string username) 
         {
             using (var databaseContext = new DuoContext())
             {
