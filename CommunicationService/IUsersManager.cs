@@ -30,6 +30,9 @@ namespace CommunicationService
         bool SendFriendRequest(string usernameSender, string usernameReceiver);
 
         [OperationContract]
+        bool IsFriendRequestAlreadyExistent(string usernameSender, string usernameReceiver);
+
+        [OperationContract]
         bool AcceptFriendRequest(FriendRequest friendRequest);
 
         [OperationContract]
@@ -43,6 +46,30 @@ namespace CommunicationService
 
         [OperationContract]
         List<String> GetOnlineFriends(string username);
+
+        [OperationContract]
+        bool DeleteFriendshipByID(int friendshipID);
+
+        [OperationContract]
+        bool IsAlreadyFriend(string senderUsername, string receiverUsername);
+    }
+
+    [ServiceContract(CallbackContract = typeof(IUserConnectionHandlerCallback))]
+    public interface IUserConnectionHandler
+    {
+        [OperationContract(IsOneWay = true)]
+        void NotifyLogIn(User user);
+
+        [OperationContract(IsOneWay = true)]
+        void NotifyLogOut(User user);
+    }
+
+    public interface IUserConnectionHandlerCallback {
+        [OperationContract]
+        void UserLogged(string username);
+
+        [OperationContract]
+        void UserLoggedOut(string username);
     }
 
     [DataContract]

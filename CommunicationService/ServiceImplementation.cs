@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.Entity.Infrastructure.Interception;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
@@ -241,8 +242,89 @@ namespace CommunicationService
                     databaseContext.SaveChanges();
                     result = true;
                 }
-
                 return result;
+            }
+        }
+
+        public bool DeleteFriendshipByID(int friendshipID)
+        {
+            using (var databaseContext = new DuoContext())
+            {
+                bool result = false;
+                var friendshipEntity = databaseContext.Friendships.FirstOrDefault(friendship => friendship.FriendshipID == friendshipID);
+
+                if (friendshipEntity != null)
+                {
+                    databaseContext.Friendships.Remove(friendshipEntity);
+                    databaseContext.SaveChanges(); 
+                    result = true;
+                }
+                return result;
+            }
+        }
+
+        public bool IsFriendRequestAlreadyExistent(string usernameSender, string usernameReceiver)
+        {
+            using (var databaseContext = new DuoContext())
+            {
+                int senderID;
+                try
+                {
+                    Users userSender = databaseContext.Users.First(user => user.Username == usernameSender);
+                    senderID = userSender.UserID;
+                }
+                catch
+                {
+                    return false;
+                }
+
+                int receiverID;
+                try
+                {
+                    Users userReceiver = databaseContext.Users.First(user => user.Username == usernameReceiver);
+                    receiverID = userReceiver.UserID;
+                }
+                catch
+                {
+                    return false;
+                }
+                var friendRequestEntity = databaseContext.FriendRequests
+                    .FirstOrDefault(friendRequest => 
+                    (friendRequest.UserSender == senderID && friendRequest.UserReceiver == receiverID) 
+                    || (friendRequest.UserSender == receiverID && friendRequest.UserReceiver == senderID));
+                return friendRequestEntity != null;
+            }
+        }
+
+        public bool IsAlreadyFriend(string senderUsername, string receiverUsername)
+        {
+            using (var databaseContext = new DuoContext())
+            {
+                Users userSender;
+                try
+                {
+                    userSender = databaseContext.Users.First(user => user.Username == senderUsername);
+                }
+                catch
+                {
+                    return false;
+                }
+
+                Users userReceiver;
+                try
+                {
+                    userReceiver = databaseContext.Users.First(user => user.Username == receiverUsername);
+                }
+                catch
+                {
+                    return false;
+                }
+
+                var friendshipEntity = databaseContext.Friendships.FirstOrDefault(friendship => 
+                (friendship.User1 == userSender.UserID && friendship.User2 == userReceiver.UserID)
+                || (friendship.User1 == userReceiver.UserID && friendship.User2 == userSender.UserID));
+
+                return friendshipEntity != null;
             }
         }
     }
@@ -333,6 +415,46 @@ namespace CommunicationService
             {
                 keyValuePair.Value.NotifyPlayerLeft(activePartiesDictionary[partyCode]);
             }
+        }
+    }
+
+    public partial class ServiceImplementation : IUserConnectionHandler
+    {
+        static ConcurrentDictionary<int, IUserConnectionHandlerCallback> _onlineUsers = new ConcurrentDictionary<int, IUserConnectionHandlerCallback>();
+
+        public void NotifyLogIn(User user)
+        {
+            IUserConnectionHandlerCallback operationContext = OperationContext.Current.GetCallbackChannel<IUserConnectionHandlerCallback>();
+            _onlineUsers.TryAdd(user.ID, operationContext);
+
+            using (var databaseContext = new DuoContext())
+            {
+                var friendshipsList = databaseContext.Friendships
+                                    .Where(friendship => friendship.User2 == user.ID || friendship.User1 == user.ID)
+                                    .ToList();
+                foreach (var friend in friendshipsList)
+                {
+                    if (friend.User1 == user.ID)
+                    {
+                        if (_onlineUsers.ContainsKey((int)friend.User2))
+                        {
+                            _onlineUsers[friend.Users1.UserID].UserLogged(friend.Users.Username);
+                        }
+                    }
+                    else if (friend.User2 == user.ID)
+                    {
+                        if(_onlineUsers.ContainsKey((int)friend.User1))
+                        {
+                            _onlineUsers[friend.Users.UserID].UserLogged(friend.Users1.Username);
+                        }
+                    }
+                }
+            }
+        }
+
+        public void NotifyLogOut(User user)
+        {
+            throw new NotImplementedException();
         }
     }
 
