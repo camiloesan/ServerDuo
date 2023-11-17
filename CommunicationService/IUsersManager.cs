@@ -1,10 +1,7 @@
-﻿using Database;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.Text;
 
 namespace CommunicationService
 {
@@ -64,7 +61,8 @@ namespace CommunicationService
         void NotifyLogOut(User user);
     }
 
-    public interface IUserConnectionHandlerCallback {
+    public interface IUserConnectionHandlerCallback
+    {
         [OperationContract]
         void UserLogged(string username);
 
@@ -76,7 +74,7 @@ namespace CommunicationService
     public class User
     {
         [DataMember]
-        public int ID {  get; set; }
+        public int ID { get; set; }
 
         [DataMember]
         public string UserName { get; set; }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Database;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 using System.ServiceModel;
 
 namespace CommunicationService
@@ -17,7 +11,7 @@ namespace CommunicationService
 
         [OperationContract]
         Card[] GetTableCards();
-        
+
         [OperationContract(IsOneWay = true)]
         void DealTableCards();
 
@@ -32,7 +26,7 @@ namespace CommunicationService
 
         [OperationContract]
         void InitializeData();
-        
+
         [OperationContract(IsOneWay = true)]
         void PlayCard(int position);
     }
@@ -48,7 +42,7 @@ namespace CommunicationService
 
         [DataMember]
         public string Number { get; set; }
-        
+
         [DataMember]
         public string Color { get; set; }
     }
