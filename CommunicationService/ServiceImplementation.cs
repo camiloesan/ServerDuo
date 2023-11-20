@@ -298,7 +298,7 @@ namespace CommunicationService
         static ConcurrentDictionary<int, ConcurrentDictionary<string, IPartyManagerCallback>> _activePartiesDictionary
             = new ConcurrentDictionary<int, ConcurrentDictionary<string, IPartyManagerCallback>>();
 
-        public void NewParty(int partyCode, string username)
+        public void NotifyCreateParty(int partyCode, string hostUsername)
         {
             IPartyManagerCallback callback;
             callback = OperationContext.Current.GetCallbackChannel<IPartyManagerCallback>();
@@ -306,13 +306,13 @@ namespace CommunicationService
             ConcurrentDictionary<string, IPartyManagerCallback> partyContextsDictionary;
             partyContextsDictionary = new ConcurrentDictionary<string, IPartyManagerCallback>();
 
-            partyContextsDictionary.TryAdd(username, callback);
+            partyContextsDictionary.TryAdd(hostUsername, callback);
             _activePartiesDictionary.TryAdd(partyCode, partyContextsDictionary);
 
-            callback.NotifyPartyCreated(partyContextsDictionary);
+            callback.PartyCreated(partyContextsDictionary);
         }
 
-        public void JoinParty(int partyCode, string username)
+        public void NotifyJoinParty(int partyCode, string username)
         {
             IPartyManagerCallback callback;
             callback = OperationContext.Current.GetCallbackChannel<IPartyManagerCallback>();
@@ -320,53 +320,53 @@ namespace CommunicationService
             _activePartiesDictionary[partyCode].TryAdd(username, callback);
             foreach (var activeParty in _activePartiesDictionary[partyCode])
             {
-                activeParty.Value.NotifyPlayerJoined(_activePartiesDictionary[partyCode]);
+                activeParty.Value.PlayerJoined(_activePartiesDictionary[partyCode]);
             }
         }
 
-        public void LeaveParty(int partyCode, string username)
+        public void NotifyLeaveParty(int partyCode, string username)
         {
             _activePartiesDictionary[partyCode].TryRemove(username, out _);
             foreach (var player in _activePartiesDictionary[partyCode])
             {
-                player.Value.NotifyPlayerLeft(_activePartiesDictionary[partyCode]);
+                player.Value.PlayerLeft(_activePartiesDictionary[partyCode]);
             }
         }
 
-        public void CloseParty(int partyCode)
+        public void NotifyCloseParty(int partyCode)
         {
             foreach (var player in _activePartiesDictionary[partyCode])
             {
-                player.Value.NotifyPlayerKicked();
+                player.Value.PlayerKicked();
             }
             _activePartiesDictionary.TryRemove(partyCode, out _);
         }
 
-        public void SendMessage(int partyCode, string message)
+        public void NotifySendMessage(int partyCode, string message)
         {
             foreach (var player in _activePartiesDictionary[partyCode])
             {
-                player.Value.NotifyMessageReceived(message);
+                player.Value.MessageReceived(message);
             }
         }
 
-        public void StartGame(int partyCode)
+        public void NotifyStartGame(int partyCode)
         {
             foreach (var player in _activePartiesDictionary[partyCode])
             {
-                player.Value.NotifyGameStarted();
+                player.Value.GameStarted();
             }
         }
 
-        public void KickPlayer(int partyCode, string username)
+        public void NotifyKickPlayer(int partyCode, string username)
         {
-            _activePartiesDictionary[partyCode][username].NotifyPlayerKicked();
+            _activePartiesDictionary[partyCode][username].PlayerKicked();
 
             _activePartiesDictionary[partyCode].TryRemove(username, out _);
 
             foreach (var player in _activePartiesDictionary[partyCode])
             {
-                player.Value.NotifyPlayerLeft(_activePartiesDictionary[partyCode]);
+                player.Value.PlayerLeft(_activePartiesDictionary[partyCode]);
             }
         }
     }

@@ -17,46 +17,46 @@ namespace CommunicationService
     internal interface IPartyManager
     {
         [OperationContract(IsOneWay = true)]
-        void NewParty(int partyCode, string username);
+        void NotifyCreateParty(int partyCode, string hostUsername);
 
         [OperationContract(IsOneWay = true)]
-        void JoinParty(int partyCode, string username);
+        void NotifyJoinParty(int partyCode, string username);
 
         [OperationContract(IsOneWay = true)]
-        void SendMessage(int partyCode, string message);
+        void NotifySendMessage(int partyCode, string message);
 
         [OperationContract(IsOneWay = true)]
-        void LeaveParty(int partyCode, string username);
+        void NotifyLeaveParty(int partyCode, string username);
 
         [OperationContract(IsOneWay = true)]
-        void CloseParty(int partyCode);
+        void NotifyCloseParty(int partyCode);
 
         [OperationContract(IsOneWay = true)]
-        void StartGame(int partyCode);
+        void NotifyStartGame(int partyCode);
 
         [OperationContract(IsOneWay = true)]
-        void KickPlayer(int partyCode, string username);
+        void NotifyKickPlayer(int partyCode, string username);
     }
 
     [ServiceContract]
     internal interface IPartyManagerCallback
     {
         [OperationContract]
-        void NotifyPartyCreated(ConcurrentDictionary<string, IPartyManagerCallback> playersInLobby);
+        void PartyCreated(ConcurrentDictionary<string, IPartyManagerCallback> playersInLobby);
 
         [OperationContract]
-        void NotifyPlayerJoined(ConcurrentDictionary<string, IPartyManagerCallback> playersInLobby);
+        void PlayerJoined(ConcurrentDictionary<string, IPartyManagerCallback> playersInLobby);
 
         [OperationContract]
-        void NotifyMessageReceived(string messageSent);
+        void MessageReceived(string messageSent);
 
         [OperationContract]
-        void NotifyPlayerLeft(ConcurrentDictionary<string, IPartyManagerCallback> playersInLobby);
+        void PlayerLeft(ConcurrentDictionary<string, IPartyManagerCallback> playersInLobby);
 
         [OperationContract]
-        void NotifyPlayerKicked();
+        void PlayerKicked();
 
         [OperationContract]
-        void NotifyGameStarted();
+        void GameStarted();
     }
 }
