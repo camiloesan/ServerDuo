@@ -359,6 +359,7 @@ namespace CommunicationService
         public void LeaveParty(int partyCode, string username)
         {
             activePartiesDictionary[partyCode].TryRemove(username, out _);
+
             foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in activePartiesDictionary[partyCode])
             {
                 keyValuePair.Value.NotifyPlayerLeft(activePartiesDictionary[partyCode]);
@@ -398,6 +399,16 @@ namespace CommunicationService
         public void StartGame(int partyCode)
         {
             var partyMap = activePartiesDictionary[partyCode];
+            
+            _gameCards.TryAdd(partyCode, new Card[3]);
+
+            for (int i = 0; i < _gameCards[partyCode].Length; i++)
+            {
+                _gameCards[partyCode][i] = new Card();
+                _gameCards[partyCode][i].Number = "";
+            }
+
+            DealCards(partyCode);
 
             foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in activePartiesDictionary[partyCode])
             {
@@ -473,17 +484,137 @@ namespace CommunicationService
 
     public partial class ServiceImplementation : IMatchManager
     {
-        static Card[] _tableCards = new Card[3];
-        static Random _numberGenerator = new Random();
+        private static ConcurrentDictionary<int, ConcurrentDictionary<string, int>> _matchResults = new ConcurrentDictionary<int, ConcurrentDictionary<string, int>>();
+        private static ConcurrentDictionary<int, ConcurrentDictionary<string, IMatchManagerCallback>> _playerCallbacks = new ConcurrentDictionary<int, ConcurrentDictionary<string, IMatchManagerCallback>>();
+        private static ConcurrentDictionary<int, int> currentTurn = new ConcurrentDictionary<int, int>();
 
-        static readonly List<string> _cardColors = new List<string>()
+        public void Subscribe(int partyCode, string username)
         {
-            "#0000FF", //Blue
-            "#FFFF00", //Yellow
-            "#008000", //Green
-            "#FF0000"  //Red
+            IMatchManagerCallback playerCallback = OperationContext.Current.GetCallbackChannel<IMatchManagerCallback>();
+
+            if (_playerCallbacks.ContainsKey(partyCode))
+            {
+                _playerCallbacks[partyCode].TryAdd(username, playerCallback);
+            }
+            else
+            {
+                ConcurrentDictionary<string, IMatchManagerCallback> player = new ConcurrentDictionary<string, IMatchManagerCallback>();
+                player.TryAdd(username, playerCallback);
+
+                _playerCallbacks.TryAdd(partyCode, player);
+            }
+
+            if (_matchResults.ContainsKey(partyCode))
+            {
+                _matchResults[partyCode].TryAdd(username, 5);
+            }
+            else
+            {
+                ConcurrentDictionary<string, int> playerScore = new ConcurrentDictionary<string, int>();
+                playerScore.TryAdd(username, 5);
+
+                _matchResults.TryAdd(partyCode, playerScore);
+            }
+        }
+
+        public void setGameScore(int partyCode, string username, int cardCount)
+        {
+            _matchResults[partyCode][username] = cardCount;
+        }
+
+        public void EndGame(int partyCode)
+        {
+            _gameCards.TryRemove(partyCode, out _);
+
+            NotifyEndGame(partyCode);
+        }
+
+        public void EndTurn(int partyCode)
+        {
+            List<string> playerList = new List<string>(_playerCallbacks[partyCode].Keys);
+            currentTurn[partyCode] = (currentTurn[partyCode] + 1) % playerList.Count;
+
+            NotifyEndTurn(partyCode);
+        }
+
+        public string GetCurrentTurn(int partyCode)
+        {
+            List<string> playerList = new List<string>(_playerCallbacks[partyCode].Keys);
+
+            return playerList[currentTurn[partyCode]];
+        }
+
+        public List<string> GetPlayerList(int partyCode)
+        {
+            return new List<string>(_playerCallbacks[partyCode].Keys);
+        }
+
+        public ConcurrentDictionary<string, int> GetMatchResults(int partyCode)
+        {
+            return _matchResults[partyCode];
+        }
+
+        private void NotifyEndTurn(int partyCode)
+        {
+            List<string> playerList = new List<string>(_playerCallbacks[partyCode].Keys);
+
+            foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[partyCode])
+            {
+                try
+                {
+                    player.Value.TurnFinished(playerList[currentTurn[partyCode]]);
+                }
+                catch
+                {
+                    _playerCallbacks[partyCode].TryRemove(player.Key, out _);
+                    NotifyPlayerQuit(partyCode);
+                }
+            }
+        }
+
+        private void NotifyEndGame(int partyCode)
+        {
+            foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[partyCode])
+            {
+                try
+                {
+                    player.Value.GameOver();
+                }
+                catch
+                {
+                    _playerCallbacks[partyCode].TryRemove(player.Key, out _);
+                    NotifyPlayerQuit(partyCode);
+                }
+            }
+        }
+
+        private void NotifyPlayerQuit(int partyCode)
+        {
+            foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[partyCode])
+            {
+                try
+                {
+                    player.Value.PlayerLeft(player.Key);
+                }
+                catch
+                {
+                    //TODO Log it
+                }
+            }
+        }
+    }
+
+    public partial class ServiceImplementation : ICardManager
+    {
+        //Lists are stored for random card generation
+        private static readonly List<string> _cardColors = new List<string>()
+        {
+            CardColors.BLUE,
+            CardColors.YELLOW,
+            CardColors.GREEN,
+            CardColors.RED,
         };
-        static readonly List<(string, int)> _cardNumbers = new List<(string, int)>()
+        private static readonly List<(string, int)> _cardNumbers = new List<(string, int)>()
         {
             ("1", 12),
             ("2", 12),
@@ -497,79 +628,64 @@ namespace CommunicationService
             ("10", 8),
             ("#", 8)
         };
+        private static ConcurrentDictionary<int, Card[]> _gameCards = new ConcurrentDictionary<int, Card[]>();
+        private static Random _numberGenerator = new Random();
 
-        public void InitializeData()
+        public void DealCards(int gameId)
         {
-            for (int i = 0; i < _tableCards.Length; i++)
+            for (int i = 0; i < _gameCards[gameId].Length - 1; i++)
             {
-                _tableCards[i] = new Card();
-                _tableCards[i].Number = "";
-            }
-        }
-
-        public void DealTableCards()
-        {
-            for (int i = 0; i < _tableCards.Length - 1; i++)
-            {
-                if (_tableCards[i].Number == "")
+                if (_gameCards[gameId][i].Number.Equals(""))
                 {
                     do
                     {
-                        _tableCards[i].Number = _numberGenerator.Next(1, 11).ToString();
-                    } while (_tableCards[i].Number == "2");
+                        _gameCards[gameId][i].Number = _numberGenerator.Next(1, 11).ToString();
+                    } while (_gameCards[gameId][i].Number.Equals("2"));
 
-                    _tableCards[i].Color = _cardColors[_numberGenerator.Next(0, 4)];
+                    _gameCards[gameId][i].Color = _cardColors[_numberGenerator.Next(0, 4)];
                 }
             }
         }
 
         public Card DrawCard()
         {
-            Card _card = new Card();
-            int _accumulatedWeight = 0;
-            int _cardNumber = _numberGenerator.Next(0, 120) + 1; //108 is the total of cards in a standard DUO deck
+            Card card = new Card();
+            int accumulatedWeight = 0;
+            int cardNumber = _numberGenerator.Next(0, 120) + 1;
 
             foreach (var (number, weight) in _cardNumbers)
             {
-                _accumulatedWeight += weight;
+                accumulatedWeight += weight;
 
-                if (_accumulatedWeight <= _cardNumber)
+                if (accumulatedWeight <= cardNumber)
                 {
-                    _card.Number = number;
+                    card.Number = number;
                 }
             }
 
-            if (_card.Number.CompareTo("2") != 0)
+            if (!card.Number.Equals("2"))
             {
-                _card.Color = _cardColors[_numberGenerator.Next(0, 4)];
+                card.Color = _cardColors[_numberGenerator.Next(0, 4)];
             }
 
-            return _card;
+            return card;
         }
 
-        public void EndGame()
+        public Card[] GetCards(int gameId)
         {
-            throw new NotImplementedException();
+            return _gameCards[gameId];
         }
 
-        public void EndRound()
+        public void PlayCard(int partyCode, int position, Card card)
         {
-            throw new NotImplementedException();
-        }
-
-        public void EndTurn()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Card[] GetTableCards()
-        {
-            return _tableCards;
-        }
-
-        public void PlayCard(int position)
-        {
-            _tableCards[position].Number = "";
+            if (_gameCards[partyCode][position].Number.Equals(""))
+            {
+                _gameCards[partyCode][position] = card;
+            }
+            else
+            {
+                _gameCards[partyCode][position].Number = "";
+            }
         }
     }
 }
