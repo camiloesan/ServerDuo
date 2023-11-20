@@ -42,16 +42,16 @@ namespace CommunicationService
     internal interface IPartyManagerCallback
     {
         [OperationContract]
-        void PartyCreated(ConcurrentDictionary<string, IPartyManagerCallback> playersInLobby);
+        void PartyCreated();
 
         [OperationContract]
-        void PlayerJoined(ConcurrentDictionary<string, IPartyManagerCallback> playersInLobby);
+        void PlayerJoined();
 
         [OperationContract]
         void MessageReceived(string messageSent);
 
         [OperationContract]
-        void PlayerLeft(ConcurrentDictionary<string, IPartyManagerCallback> playersInLobby);
+        void PlayerLeft();
 
         [OperationContract]
         void PlayerKicked();

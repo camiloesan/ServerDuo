@@ -309,7 +309,7 @@ namespace CommunicationService
             partyContextsDictionary.TryAdd(hostUsername, callback);
             _activePartiesDictionary.TryAdd(partyCode, partyContextsDictionary);
 
-            callback.PartyCreated(partyContextsDictionary);
+            callback.PartyCreated();
         }
 
         public void NotifyJoinParty(int partyCode, string username)
@@ -320,7 +320,7 @@ namespace CommunicationService
             _activePartiesDictionary[partyCode].TryAdd(username, callback);
             foreach (var activeParty in _activePartiesDictionary[partyCode])
             {
-                activeParty.Value.PlayerJoined(_activePartiesDictionary[partyCode]);
+                activeParty.Value.PlayerJoined();
             }
         }
 
@@ -329,7 +329,7 @@ namespace CommunicationService
             _activePartiesDictionary[partyCode].TryRemove(username, out _);
             foreach (var player in _activePartiesDictionary[partyCode])
             {
-                player.Value.PlayerLeft(_activePartiesDictionary[partyCode]);
+                player.Value.PlayerLeft();
             }
         }
 
@@ -361,12 +361,11 @@ namespace CommunicationService
         public void NotifyKickPlayer(int partyCode, string username)
         {
             _activePartiesDictionary[partyCode][username].PlayerKicked();
-
             _activePartiesDictionary[partyCode].TryRemove(username, out _);
 
             foreach (var player in _activePartiesDictionary[partyCode])
             {
-                player.Value.PlayerLeft(_activePartiesDictionary[partyCode]);
+                player.Value.PlayerLeft();
             }
         }
     }
