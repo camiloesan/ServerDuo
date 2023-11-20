@@ -17,10 +17,10 @@ namespace CommunicationService
         void Subscribe(int partyCode, string username);
 
         [OperationContract(IsOneWay = true)]
-        void EndGame(int partyCode);
+        void setGameScore(int partyCode, string username, int cardCount);
 
         [OperationContract(IsOneWay = true)]
-        void EndRound(int partyCode);
+        void EndGame(int partyCode);
 
         [OperationContract(IsOneWay = true)]
         void EndTurn(int partyCode);
@@ -29,7 +29,10 @@ namespace CommunicationService
         string GetCurrentTurn(int partyCode);
 
         [OperationContract]
-        ConcurrentDictionary<string, int> GetPlayerScores(int partyCode);
+        List<string> GetPlayerList(int partyCode);
+
+        [OperationContract]
+        ConcurrentDictionary<string, int> GetMatchResults(int partyCode);
     }
 
     [ServiceContract]
@@ -39,10 +42,10 @@ namespace CommunicationService
         void UpdateTableCards();
 
         [OperationContract]
-        void TurnFinished(string currentTurn);
+        void PlayerLeft(string username);
 
         [OperationContract]
-        void RoundOver();
+        void TurnFinished(string currentTurn);
 
         [OperationContract]
         void GameOver();
@@ -61,7 +64,7 @@ namespace CommunicationService
         void DealCards(int partyCode);
 
         [OperationContract(IsOneWay = true)]
-        void PlayCard(int partyCode, int position);
+        void PlayCard(int partyCode, int position, Card card);
     }
 
     [DataContract]
@@ -75,8 +78,27 @@ namespace CommunicationService
 
         [DataMember]
         public string Number { get; set; }
-        
+
         [DataMember]
         public string Color { get; set; }
+    }
+
+    [DataContract]
+    public class CardColors
+    {
+        [DataMember]
+        public static readonly string BLUE = "#0000FF";
+
+        [DataMember]
+        public static readonly string YELLOW = "#FFFF00";
+
+        [DataMember]
+        public static readonly string GREEN = "#008000";
+
+        [DataMember]
+        public static readonly string RED = "#FF0000";
+
+        [DataMember]
+        public static  readonly string BLACK = "#000000";
     }
 }

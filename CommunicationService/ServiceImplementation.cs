@@ -277,6 +277,7 @@ namespace CommunicationService
         public void LeaveParty(int partyCode, string username)
         {
             activePartiesDictionary[partyCode].TryRemove(username, out _);
+
             foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in activePartiesDictionary[partyCode])
             {
                 keyValuePair.Value.NotifyPlayerLeft(activePartiesDictionary[partyCode]);
@@ -361,9 +362,9 @@ namespace CommunicationService
 
     public partial class ServiceImplementation : IMatchManager
     {
-        static ConcurrentDictionary<int, ConcurrentDictionary<string, int>> _playerScores = new ConcurrentDictionary<int, ConcurrentDictionary<string, int>>();
-        static ConcurrentDictionary<int, ConcurrentDictionary<string, IMatchManagerCallback>> _playerCallbacks = new ConcurrentDictionary<int, ConcurrentDictionary<string, IMatchManagerCallback>>();
-        static int currentTurn;
+        private static ConcurrentDictionary<int, ConcurrentDictionary<string, int>> _matchResults = new ConcurrentDictionary<int, ConcurrentDictionary<string, int>>();
+        private static ConcurrentDictionary<int, ConcurrentDictionary<string, IMatchManagerCallback>> _playerCallbacks = new ConcurrentDictionary<int, ConcurrentDictionary<string, IMatchManagerCallback>>();
+        private static ConcurrentDictionary<int, int> currentTurn = new ConcurrentDictionary<int, int>();
 
         public void Subscribe(int partyCode, string username)
         {
@@ -381,99 +382,117 @@ namespace CommunicationService
                 _playerCallbacks.TryAdd(partyCode, player);
             }
 
-            if (_playerScores.ContainsKey(partyCode))
+            if (_matchResults.ContainsKey(partyCode))
             {
-                _playerScores[partyCode].TryAdd(username, 0);
+                _matchResults[partyCode].TryAdd(username, 5);
             }
             else
             {
-                ConcurrentDictionary<string, int> score = new ConcurrentDictionary<string, int>();
-                score.TryAdd(username, 0);
+                ConcurrentDictionary<string, int> playerScore = new ConcurrentDictionary<string, int>();
+                playerScore.TryAdd(username, 5);
 
-                _playerScores.TryAdd(partyCode, score);
+                _matchResults.TryAdd(partyCode, playerScore);
             }
+        }
 
-            
+        public void setGameScore(int partyCode, string username, int cardCount)
+        {
+            _matchResults[partyCode][username] = cardCount;
         }
 
         public void EndGame(int partyCode)
         {
             _gameCards.TryRemove(partyCode, out _);
-            _playerScores.TryRemove(partyCode, out _);
 
             NotifyEndGame(partyCode);
         }
 
-        public void EndRound(int partyCode)
-        {
-            NotifyEndRound(partyCode);
-        }
-
         public void EndTurn(int partyCode)
         {
-            List<string> playerList = new List<string>(_playerScores[partyCode].Keys);
-            currentTurn = (currentTurn + 1) % playerList.Count;
+            List<string> playerList = new List<string>(_playerCallbacks[partyCode].Keys);
+            currentTurn[partyCode] = (currentTurn[partyCode] + 1) % playerList.Count;
 
             NotifyEndTurn(partyCode);
         }
 
         public string GetCurrentTurn(int partyCode)
         {
-            List<string> playerList = new List<string>(_playerScores[partyCode].Keys);
-            currentTurn = (currentTurn + 1) % playerList.Count;
+            List<string> playerList = new List<string>(_playerCallbacks[partyCode].Keys);
 
-            return playerList[currentTurn];
+            return playerList[currentTurn[partyCode]];
         }
 
-        public ConcurrentDictionary<string, int> GetPlayerScores(int partyCode)
+        public List<string> GetPlayerList(int partyCode)
         {
-            if (_playerScores.TryGetValue(partyCode, out ConcurrentDictionary<string, int> playerScores))
-            {
-                return playerScores;
-            }
-            else
-            {
-                return new ConcurrentDictionary<string, int>();
-            }
+            return new List<string>(_playerCallbacks[partyCode].Keys);
         }
 
-        void NotifyEndTurn(int partyCode)
+        public ConcurrentDictionary<string, int> GetMatchResults(int partyCode)
         {
-            List<string> playerList = new List<string>(_playerScores[partyCode].Keys);
+            return _matchResults[partyCode];
+        }
+
+        private void NotifyEndTurn(int partyCode)
+        {
+            List<string> playerList = new List<string>(_playerCallbacks[partyCode].Keys);
 
             foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[partyCode])
             {
-                player.Value.TurnFinished(playerList[currentTurn]);
+                try
+                {
+                    player.Value.TurnFinished(playerList[currentTurn[partyCode]]);
+                }
+                catch
+                {
+                    _playerCallbacks[partyCode].TryRemove(player.Key, out _);
+                    NotifyPlayerQuit(partyCode);
+                }
             }
         }
 
-        void NotifyEndGame(int partyCode)
+        private void NotifyEndGame(int partyCode)
         {
             foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[partyCode])
             {
-                player.Value.GameOver();
+                try
+                {
+                    player.Value.GameOver();
+                }
+                catch
+                {
+                    _playerCallbacks[partyCode].TryRemove(player.Key, out _);
+                    NotifyPlayerQuit(partyCode);
+                }
             }
         }
 
-        void NotifyEndRound(int partyCode)
+        private void NotifyPlayerQuit(int partyCode)
         {
             foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[partyCode])
             {
-                player.Value.RoundOver();
+                try
+                {
+                    player.Value.PlayerLeft(player.Key);
+                }
+                catch
+                {
+                    //TODO Log it
+                }
             }
         }
     }
 
     public partial class ServiceImplementation : ICardManager
     {
-        static readonly List<string> _cardColors = new List<string>()
+        //Lists are stored for random card generation
+        private static readonly List<string> _cardColors = new List<string>()
         {
-            "#0000FF", //Blue
-            "#FFFF00", //Yellow
-            "#008000", //Green
-            "#FF0000"  //Red
+            CardColors.BLUE,
+            CardColors.YELLOW,
+            CardColors.GREEN,
+            CardColors.RED,
         };
-        static readonly List<(string, int)> _cardNumbers = new List<(string, int)>()
+        private static readonly List<(string, int)> _cardNumbers = new List<(string, int)>()
         {
             ("1", 12),
             ("2", 12),
@@ -487,8 +506,8 @@ namespace CommunicationService
             ("10", 8),
             ("#", 8)
         };
-        static ConcurrentDictionary<int, Card[]> _gameCards = new ConcurrentDictionary<int, Card[]>();
-        static Random _numberGenerator = new Random();
+        private static ConcurrentDictionary<int, Card[]> _gameCards = new ConcurrentDictionary<int, Card[]>();
+        private static Random _numberGenerator = new Random();
 
         public void DealCards(int gameId)
         {
@@ -535,18 +554,15 @@ namespace CommunicationService
             return _gameCards[gameId];
         }
 
-        public void PlayCard(int gameId, int position)
+        public void PlayCard(int partyCode, int position, Card card)
         {
-            _gameCards[gameId][position].Number = "";
-
-            NotifyPlayedCard(gameId);
-        }
-
-        public void NotifyPlayedCard(int gameId)
-        {
-            foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[gameId])
+            if (_gameCards[partyCode][position].Number.Equals(""))
             {
-                player.Value.UpdateTableCards();
+                _gameCards[partyCode][position] = card;
+            }
+            else
+            {
+                _gameCards[partyCode][position].Number = "";
             }
         }
     }
