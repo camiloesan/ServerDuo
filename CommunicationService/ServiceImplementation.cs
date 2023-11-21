@@ -364,7 +364,7 @@ namespace CommunicationService
     {
         private static ConcurrentDictionary<int, ConcurrentDictionary<string, int>> _matchResults = new ConcurrentDictionary<int, ConcurrentDictionary<string, int>>();
         private static ConcurrentDictionary<int, ConcurrentDictionary<string, IMatchManagerCallback>> _playerCallbacks = new ConcurrentDictionary<int, ConcurrentDictionary<string, IMatchManagerCallback>>();
-        private static ConcurrentDictionary<int, int> currentTurn = new ConcurrentDictionary<int, int>();
+        private static ConcurrentDictionary<int, int> _currentTurn = new ConcurrentDictionary<int, int>();
 
         public void Subscribe(int partyCode, string username)
         {
@@ -393,6 +393,11 @@ namespace CommunicationService
 
                 _matchResults.TryAdd(partyCode, playerScore);
             }
+
+            if (!_currentTurn.ContainsKey(partyCode))
+            {
+                _currentTurn.TryAdd(partyCode, 0);
+            }
         }
 
         public void setGameScore(int partyCode, string username, int cardCount)
@@ -410,7 +415,7 @@ namespace CommunicationService
         public void EndTurn(int partyCode)
         {
             List<string> playerList = new List<string>(_playerCallbacks[partyCode].Keys);
-            currentTurn[partyCode] = (currentTurn[partyCode] + 1) % playerList.Count;
+            _currentTurn[partyCode] = (_currentTurn[partyCode] + 1) % playerList.Count;
 
             NotifyEndTurn(partyCode);
         }
@@ -419,7 +424,7 @@ namespace CommunicationService
         {
             List<string> playerList = new List<string>(_playerCallbacks[partyCode].Keys);
 
-            return playerList[currentTurn[partyCode]];
+            return playerList[_currentTurn[partyCode]];
         }
 
         public List<string> GetPlayerList(int partyCode)
@@ -440,7 +445,7 @@ namespace CommunicationService
             {
                 try
                 {
-                    player.Value.TurnFinished(playerList[currentTurn[partyCode]]);
+                    player.Value.TurnFinished(playerList[_currentTurn[partyCode]]);
                 }
                 catch
                 {
@@ -490,7 +495,7 @@ namespace CommunicationService
             CardColors.BLUE,
             CardColors.YELLOW,
             CardColors.GREEN,
-            CardColors.RED,
+            CardColors.RED
         };
         private static readonly List<(string, int)> _cardNumbers = new List<(string, int)>()
         {
