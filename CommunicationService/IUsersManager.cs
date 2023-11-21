@@ -49,6 +49,9 @@ namespace CommunicationService
 
         [OperationContract]
         bool IsAlreadyFriend(string senderUsername, string receiverUsername);
+
+        [OperationContract]
+        bool IsUserAlreadyLoggedIn(int userId);
     }
 
     [ServiceContract(CallbackContract = typeof(IUserConnectionHandlerCallback))]

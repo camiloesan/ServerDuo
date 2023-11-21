@@ -11,6 +11,9 @@ namespace CommunicationService
 
         [OperationContract]
         bool IsSpaceAvailable(int partyCode);
+
+        [OperationContract]
+        bool IsUsernameInParty(int partyCode, string username);
     }
 
     [ServiceContract(CallbackContract = typeof(IPartyManagerCallback))]
@@ -42,16 +45,16 @@ namespace CommunicationService
     internal interface IPartyManagerCallback
     {
         [OperationContract]
-        void PartyCreated();
+        void PartyCreated(ConcurrentDictionary<string, IPartyManagerCallback> playersInLobby);
 
         [OperationContract]
-        void PlayerJoined();
+        void PlayerJoined(ConcurrentDictionary<string, IPartyManagerCallback> playersInLobby);
 
         [OperationContract]
         void MessageReceived(string messageSent);
 
         [OperationContract]
-        void PlayerLeft();
+        void PlayerLeft(ConcurrentDictionary<string, IPartyManagerCallback> playersInLobby);
 
         [OperationContract]
         void PlayerKicked();
