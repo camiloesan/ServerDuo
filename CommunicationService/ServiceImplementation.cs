@@ -11,6 +11,7 @@ using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
 using System.Text;
+using System.Threading;
 
 namespace CommunicationService
 {
@@ -365,6 +366,7 @@ namespace CommunicationService
         private static ConcurrentDictionary<int, ConcurrentDictionary<string, int>> _matchResults = new ConcurrentDictionary<int, ConcurrentDictionary<string, int>>();
         private static ConcurrentDictionary<int, ConcurrentDictionary<string, IMatchManagerCallback>> _playerCallbacks = new ConcurrentDictionary<int, ConcurrentDictionary<string, IMatchManagerCallback>>();
         private static ConcurrentDictionary<int, int> _currentTurn = new ConcurrentDictionary<int, int>();
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public void Subscribe(int partyCode, string username)
         {
@@ -400,14 +402,20 @@ namespace CommunicationService
             }
         }
 
-        public void setGameScore(int partyCode, string username, int cardCount)
+        public void SetGameScore(int partyCode, string username, int cardCount)
         {
             _matchResults[partyCode][username] = cardCount;
+        }
+
+        public void KickPlayerFromGame(int partyCode, string username)
+        {
+            NotifyPlayerQuit(partyCode, username);
         }
 
         public void EndGame(int partyCode)
         {
             _gameCards.TryRemove(partyCode, out _);
+            _currentTurn.TryRemove(partyCode, out _);
 
             NotifyEndGame(partyCode);
         }
@@ -449,8 +457,7 @@ namespace CommunicationService
                 }
                 catch
                 {
-                    _playerCallbacks[partyCode].TryRemove(player.Key, out _);
-                    NotifyPlayerQuit(partyCode);
+                    NotifyPlayerQuit(partyCode, player.Key);
                 }
             }
         }
@@ -465,23 +472,38 @@ namespace CommunicationService
                 }
                 catch
                 {
-                    _playerCallbacks[partyCode].TryRemove(player.Key, out _);
-                    NotifyPlayerQuit(partyCode);
+                    NotifyPlayerQuit(partyCode, player.Key);
                 }
             }
+
+            //Match data will be deleted 30 seconds after the match ends to ensure players get their data
+            Thread.Sleep(30000);
+            _playerCallbacks.TryRemove(partyCode, out _);
+            _matchResults.TryRemove(partyCode, out _);
         }
 
-        private void NotifyPlayerQuit(int partyCode)
+        private void NotifyPlayerQuit(int partyCode, string username)
         {
             foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[partyCode])
             {
                 try
                 {
-                    player.Value.PlayerLeft(player.Key);
+                    _playerCallbacks[partyCode].TryRemove(player.Key, out _);
+                    activePartiesDictionary[partyCode].TryRemove(player.Key, out _);
+
+                    if (_playerCallbacks.Count > 1)
+                    {
+                        player.Value.PlayerLeft(player.Key);
+                    }
+                    else
+                    {
+                        EndGame(partyCode);
+                    }
+                    
                 }
-                catch
+                catch(Exception ex)
                 {
-                    //TODO Log it
+                    log.Error(ex);
                 }
             }
         }
@@ -561,9 +583,10 @@ namespace CommunicationService
 
         public void PlayCard(int partyCode, int position, Card card)
         {
-            if (_gameCards[partyCode][position].Number.Equals(""))
+            if (_gameCards[partyCode][position].Number.Equals("") && !card.Number.Equals("#"))
             {
                 _gameCards[partyCode][position] = card;
+
             }
             else
             {

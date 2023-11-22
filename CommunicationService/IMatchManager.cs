@@ -17,7 +17,10 @@ namespace CommunicationService
         void Subscribe(int partyCode, string username);
 
         [OperationContract(IsOneWay = true)]
-        void setGameScore(int partyCode, string username, int cardCount);
+        void SetGameScore(int partyCode, string username, int cardCount);
+
+        [OperationContract(IsOneWay = true)]
+        void KickPlayerFromGame(int partyCode, string username);
 
         [OperationContract(IsOneWay = true)]
         void EndGame(int partyCode);
