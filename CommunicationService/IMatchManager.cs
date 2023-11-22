@@ -1,34 +1,65 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.ServiceModel;
 
 namespace CommunicationService
 {
+    [ServiceContract(CallbackContract = typeof(IMatchManagerCallback))]
+    internal interface IMatchManager
+    {
+        [OperationContract(IsOneWay = true)]
+        void Subscribe(int partyCode, string username);
+
+        [OperationContract(IsOneWay = true)]
+        void setGameScore(int partyCode, string username, int cardCount);
+
+        [OperationContract(IsOneWay = true)]
+        void EndGame(int partyCode);
+
+        [OperationContract(IsOneWay = true)]
+        void EndTurn(int partyCode);
+
+        [OperationContract]
+        string GetCurrentTurn(int partyCode);
+
+        [OperationContract]
+        List<string> GetPlayerList(int partyCode);
+
+        [OperationContract]
+        ConcurrentDictionary<string, int> GetMatchResults(int partyCode);
+    }
+
     [ServiceContract]
-    public interface IMatchManager
+    internal interface IMatchManagerCallback
+    {
+        [OperationContract]
+        void UpdateTableCards();
+
+        [OperationContract]
+        void PlayerLeft(string username);
+
+        [OperationContract]
+        void TurnFinished(string currentTurn);
+
+        [OperationContract]
+        void GameOver();
+    }
+
+    [ServiceContract]
+    internal interface ICardManager
     {
         [OperationContract]
         Card DrawCard();
 
         [OperationContract]
-        Card[] GetTableCards();
+        Card[] GetCards(int partyCode);
 
         [OperationContract(IsOneWay = true)]
-        void DealTableCards();
+        void DealCards(int partyCode);
 
         [OperationContract(IsOneWay = true)]
-        void EndTurn();
-
-        [OperationContract(IsOneWay = true)]
-        void EndRound();
-
-        [OperationContract]
-        void EndGame();
-
-        [OperationContract]
-        void InitializeData();
-
-        [OperationContract(IsOneWay = true)]
-        void PlayCard(int position);
+        void PlayCard(int partyCode, int position, Card card);
     }
 
     [DataContract]
@@ -45,5 +76,24 @@ namespace CommunicationService
 
         [DataMember]
         public string Color { get; set; }
+    }
+
+    [DataContract]
+    public class CardColors
+    {
+        [DataMember]
+        public static readonly string BLUE = "#0000FF";
+
+        [DataMember]
+        public static readonly string YELLOW = "#FFFF00";
+
+        [DataMember]
+        public static readonly string GREEN = "#008000";
+
+        [DataMember]
+        public static readonly string RED = "#FF0000";
+
+        [DataMember]
+        public static  readonly string BLACK = "#000000";
     }
 }
