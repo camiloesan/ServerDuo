@@ -1,12 +1,8 @@
-﻿    using Database;
+﻿using Database;
 using System;
-using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data.Entity.Infrastructure.Interception;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
@@ -33,9 +29,8 @@ namespace CommunicationService
                     databaseContext.Users.Add(databaseUser);
                     databaseContext.SaveChanges();
                 }
-                catch (Exception ex)
+                catch
                 {
-                    Console.WriteLine(ex.ToString());
                     return false;
                 }
                 return true;
@@ -46,32 +41,31 @@ namespace CommunicationService
         {
             using (var databaseContext = new DuoContext())
             {
-                var friendResquestsList = databaseContext.FriendRequests
+                var friendRequestsList = databaseContext.FriendRequests
                     .Where(request => request.UserReceiver == userID)
                     .ToList();
 
-                List<FriendRequest> list = new List<FriendRequest>();
-                foreach (var item in friendResquestsList)
+                List<FriendRequest> resultList = new List<FriendRequest>();
+                foreach (var friendRequestItem in friendRequestsList)
                 {
                     FriendRequest friendRequest = new FriendRequest
                     {
-                        FriendRequestID = item.RequestID,
-                        SenderID = (int)item.UserSender,
-                        SenderUsername = item.Users1.Username,
-                        ReceiverID = (int)item.UserReceiver,
-                        ReceiverUsername = item.Users.Username
+                        FriendRequestID = friendRequestItem.RequestID,
+                        SenderID = (int)friendRequestItem.UserSender,
+                        SenderUsername = friendRequestItem.Users1.Username,
+                        ReceiverID = (int)friendRequestItem.UserReceiver,
+                        ReceiverUsername = friendRequestItem.Users.Username
                     };
-
-                    list.Add(friendRequest);
+                    resultList.Add(friendRequest);
                 }
-
-                return list;
+                return resultList;
             }
         }
 
         public List<string> GetOnlineFriends(string username)
         {
-            throw new NotImplementedException();
+            //todo
+            return null;
         }
 
         public bool IsEmailTaken(string email)
@@ -96,13 +90,13 @@ namespace CommunicationService
                     return null;
                 }
 
-                User userData = new User
+                var resultUser = new User
                 {
                     ID = databaseUser.UserID,
                     UserName = databaseUser.Username,
                     Email = databaseUser.Email
                 };
-                return userData;
+                return resultUser;
             }
         }
 
@@ -118,33 +112,22 @@ namespace CommunicationService
         {
             using (var databaseContext = new DuoContext())
             {
-                int senderID;
+                int senderId;
+                int receiverId;
                 try
                 {
-                    Users userSender = databaseContext.Users.First(user => user.Username == usernameSender);
-                    senderID = userSender.UserID;
+                    senderId = databaseContext.Users.First(user => user.Username == usernameSender).UserID;
+                    receiverId = databaseContext.Users.First(user => user.Username == usernameReceiver).UserID;
                 }
                 catch
                 {
                     return false;
                 }
-
-                int receiverID;
-                try
-                {
-                    Users userReceiver = databaseContext.Users.First(user => user.Username == usernameReceiver);
-                    receiverID = userReceiver.UserID;
-                }
-                catch
-                {
-                    return false;
-                }
-                
 
                 var friendRequest = new FriendRequests
                 {
-                    UserSender = senderID,
-                    UserReceiver = receiverID,
+                    UserSender = senderId,
+                    UserReceiver = receiverId,
                     Status = "pending"
                 };
 
@@ -167,33 +150,32 @@ namespace CommunicationService
             {
                 var friendship = new Friendships
                 {
-                    User1 = friendRequest.SenderID, 
+                    User1 = friendRequest.SenderID,
                     User2 = friendRequest.ReceiverID,
                 };
 
                 try
                 {
                     databaseContext.Friendships.Add(friendship);
-                    var requestToDelete = databaseContext.FriendRequests.Find(friendRequest.FriendRequestID);
-                    databaseContext.FriendRequests.Remove(requestToDelete);
+                    var friendRequestToDelete = databaseContext.FriendRequests.Find(friendRequest.FriendRequestID);
+                    databaseContext.FriendRequests.Remove(friendRequestToDelete);
                     databaseContext.SaveChanges();
                 }
                 catch
                 {
                     return false;
                 }
-
                 return true;
             }
         }
 
-        public bool RejectFriendRequest(int friendRequestID)
+        public bool RejectFriendRequest(int friendRequestId)
         {
             using (var databaseContext = new DuoContext())
             {
                 try
                 {
-                    var requestToDelete = databaseContext.FriendRequests.Find(friendRequestID);
+                    var requestToDelete = databaseContext.FriendRequests.Find(friendRequestId);
                     databaseContext.FriendRequests.Remove(requestToDelete);
                 }
                 catch
@@ -212,20 +194,20 @@ namespace CommunicationService
                     .Where(friendship => friendship.User2 == userID || friendship.User1 == userID)
                     .ToList();
 
-                List<Friendship> friendships = new List<Friendship>();
-                foreach (var item in friendshipsList)
+                List<Friendship> resultList = new List<Friendship>();
+                foreach (var friendshipItem in friendshipsList)
                 {
                     Friendship friendship = new Friendship()
                     {
-                        FriendshipID = item.FriendshipID,
-                        Friend1ID = (int)item.User1,
-                        Friend1Username = item.Users.Username,
-                        Friend2ID = (int)item.User2,
-                        Friend2Username = item.Users1.Username
+                        FriendshipID = friendshipItem.FriendshipID,
+                        Friend1ID = (int)friendshipItem.User1,
+                        Friend1Username = friendshipItem.Users.Username,
+                        Friend2ID = (int)friendshipItem.User2,
+                        Friend2Username = friendshipItem.Users1.Username
                     };
-                    friendships.Add(friendship);
+                    resultList.Add(friendship);
                 }
-                return friendships;
+                return resultList;
             }
         }
 
@@ -242,109 +224,197 @@ namespace CommunicationService
                     databaseContext.SaveChanges();
                     result = true;
                 }
-
                 return result;
             }
+        }
+
+        public bool DeleteFriendshipByID(int friendshipID)
+        {
+            using (var databaseContext = new DuoContext())
+            {
+                bool result = false;
+                var friendshipEntity = databaseContext.Friendships.FirstOrDefault(friendship => friendship.FriendshipID == friendshipID);
+
+                if (friendshipEntity != null)
+                {
+                    databaseContext.Friendships.Remove(friendshipEntity);
+                    databaseContext.SaveChanges();
+                    result = true;
+                }
+                return result;
+            }
+        }
+
+        public bool IsFriendRequestAlreadyExistent(string usernameSender, string usernameReceiver)
+        {
+            using (var databaseContext = new DuoContext())
+            {
+                int senderId;
+                int receiverId;
+                try
+                {
+                    senderId = databaseContext.Users.First(user => user.Username == usernameSender).UserID;
+                    receiverId = databaseContext.Users.First(user => user.Username == usernameReceiver).UserID;
+                }
+                catch
+                {
+                    return false;
+                }
+
+                var friendRequestEntity = databaseContext.FriendRequests
+                    .FirstOrDefault(friendRequest =>
+                    (friendRequest.UserSender == senderId && friendRequest.UserReceiver == receiverId)
+                    || (friendRequest.UserSender == receiverId && friendRequest.UserReceiver == senderId));
+                return friendRequestEntity != null;
+            }
+        }
+
+        public bool IsAlreadyFriend(string senderUsername, string receiverUsername)
+        {
+            using (var databaseContext = new DuoContext())
+            {
+                Users userSender;
+                Users userReceiver;
+                try
+                {
+                    userSender = databaseContext.Users
+                        .First(user => user.Username == senderUsername);
+                    userReceiver = databaseContext.Users
+                        .First(user => user.Username == receiverUsername);
+                }
+                catch
+                {
+                    return false;
+                }
+
+                var friendshipEntity = databaseContext.Friendships
+                    .FirstOrDefault(friendship =>
+                    (friendship.User1 == userSender.UserID && friendship.User2 == userReceiver.UserID)
+                    || (friendship.User1 == userReceiver.UserID && friendship.User2 == userSender.UserID));
+                return friendshipEntity != null;
+            }
+        }
+
+        public bool IsUserAlreadyLoggedIn(int userId)
+        {
+            return _onlineUsers.ContainsKey(userId);
         }
     }
 
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
     public partial class ServiceImplementation : IPartyManager
     {
-        static ConcurrentDictionary<int, ConcurrentDictionary<string, IPartyManagerCallback>> activePartiesDictionary = new ConcurrentDictionary<int, ConcurrentDictionary<string, IPartyManagerCallback>>();
+        static ConcurrentDictionary<int, ConcurrentDictionary<string, IPartyManagerCallback>> _activePartiesDictionary
+            = new ConcurrentDictionary<int, ConcurrentDictionary<string, IPartyManagerCallback>>();
 
-        public void NewParty(int partyCode, string username)
+        public void NotifyCreateParty(int partyCode, string hostUsername)
         {
-            IPartyManagerCallback operationContext = OperationContext.Current.GetCallbackChannel<IPartyManagerCallback>();
-            ConcurrentDictionary<string, IPartyManagerCallback> partyContextsDictionary = new ConcurrentDictionary<string, IPartyManagerCallback>();
-            partyContextsDictionary.TryAdd(username, operationContext);
-            activePartiesDictionary.TryAdd(partyCode, partyContextsDictionary);
+            var callback = OperationContext.Current.GetCallbackChannel<IPartyManagerCallback>();
 
-            operationContext.NotifyPartyCreated(partyContextsDictionary);
+            var partyContextsDictionary = new ConcurrentDictionary<string, IPartyManagerCallback>();
+
+            partyContextsDictionary.TryAdd(hostUsername, callback);
+            _activePartiesDictionary.TryAdd(partyCode, partyContextsDictionary);
+
+            callback.PartyCreated(partyContextsDictionary);
         }
 
-        public void JoinParty(int partyCode, string username)
+        public void NotifyJoinParty(int partyCode, string username)
         {
-            IPartyManagerCallback operationContext = OperationContext.Current.GetCallbackChannel<IPartyManagerCallback>();
+            var callback = OperationContext.Current.GetCallbackChannel<IPartyManagerCallback>();
 
-            activePartiesDictionary[partyCode].TryAdd(username, operationContext);
-            foreach (var item in activePartiesDictionary[partyCode])
+            _activePartiesDictionary[partyCode].TryAdd(username, callback);
+            foreach (var activeParty in _activePartiesDictionary[partyCode])
             {
-                item.Value.NotifyPlayerJoined(activePartiesDictionary[partyCode]);
-            }
-
-        }
-
-        public void LeaveParty(int partyCode, string username)
-        {
-            activePartiesDictionary[partyCode].TryRemove(username, out _);
-
-            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in activePartiesDictionary[partyCode])
-            {
-                keyValuePair.Value.NotifyPlayerLeft(activePartiesDictionary[partyCode]);
+                activeParty.Value.PlayerJoined(_activePartiesDictionary[partyCode]);
             }
         }
 
-        public void CloseParty(int partyCode)
+        public void NotifyLeaveParty(int partyCode, string username)
         {
-            foreach (var item in activePartiesDictionary[partyCode])
+            _activePartiesDictionary[partyCode].TryRemove(username, out _);
+            foreach (var player in _activePartiesDictionary[partyCode])
             {
-                item.Value.NotifyPlayerKicked();
-            }
-            activePartiesDictionary.TryRemove(partyCode, out _);
-        }
-
-        public void SendMessage(int partyCode, string message)
-        {
-            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in activePartiesDictionary[partyCode])
-            {
-                keyValuePair.Value.NotifyMessageReceived(message);
+                player.Value.PlayerLeft(_activePartiesDictionary[partyCode]);
             }
         }
 
-        public void IsPlayerActive()
+        public void NotifyCloseParty(int partyCode)
         {
-            //var partyMap = activePartiesDictionary[partyCode];
-
-            foreach (var value in activePartiesDictionary.Values)
+            foreach (var player in _activePartiesDictionary[partyCode])
             {
-                foreach (var context in value)
+                player.Value.PlayerKicked();
+            }
+            _activePartiesDictionary.TryRemove(partyCode, out _);
+        }
+
+        public void NotifySendMessage(int partyCode, string message)
+        {
+            foreach (var player in _activePartiesDictionary[partyCode])
+            {
+                player.Value.MessageReceived(message);
+            }
+        }
+
+        public void NotifyStartGame(int partyCode)
+        {
+            foreach (var player in _activePartiesDictionary[partyCode])
+            {
+                player.Value.GameStarted();
+            }
+        }
+
+        public void NotifyKickPlayer(int partyCode, string username)
+        {
+            _activePartiesDictionary[partyCode][username].PlayerKicked();
+
+            _activePartiesDictionary[partyCode].TryRemove(username, out _);
+
+            foreach (var player in _activePartiesDictionary[partyCode])
+            {
+                player.Value.PlayerLeft(_activePartiesDictionary[partyCode]);
+            }
+        }
+    }
+
+    public partial class ServiceImplementation : IUserConnectionHandler
+    {
+        static ConcurrentDictionary<int, IUserConnectionHandlerCallback> _onlineUsers 
+            = new ConcurrentDictionary<int, IUserConnectionHandlerCallback>();
+
+        public void NotifyLogIn(User user)
+        {
+            var callback = OperationContext.Current.GetCallbackChannel<IUserConnectionHandlerCallback>();
+            _onlineUsers.TryAdd(user.ID, callback);
+
+            using (var databaseContext = new DuoContext())
+            {
+                var friendshipsList = databaseContext.Friendships
+                                    .Where(friendship => friendship.User2 == user.ID || friendship.User1 == user.ID)
+                                    .ToList();
+                foreach (var friend in friendshipsList)
                 {
-                    //if (context.Value.GetStatus()) ;
+                    if (friend.User1 == user.ID)
+                    {
+                        if (_onlineUsers.ContainsKey((int)friend.User2))
+                        {
+                            _onlineUsers[friend.Users1.UserID].UserLogged(friend.Users.Username);
+                        }
+                    }
+                    else if (friend.User2 == user.ID)
+                    {
+                        if (_onlineUsers.ContainsKey((int)friend.User1))
+                        {
+                            _onlineUsers[friend.Users.UserID].UserLogged(friend.Users1.Username);
+                        }
+                    }
                 }
             }
         }
 
-        public void StartGame(int partyCode)
+        public void NotifyLogOut(User user)
         {
-            var partyMap = activePartiesDictionary[partyCode];
-            
-            _gameCards.TryAdd(partyCode, new Card[3]);
-
-            for (int i = 0; i < _gameCards[partyCode].Length; i++)
-            {
-                _gameCards[partyCode][i] = new Card();
-                _gameCards[partyCode][i].Number = "";
-            }
-
-            DealCards(partyCode);
-
-            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in activePartiesDictionary[partyCode])
-            {
-                keyValuePair.Value.NotifyGameStarted();
-            }
-        }
-
-        public void KickPlayer(int partyCode, string username)
-        {
-            activePartiesDictionary[partyCode][username].NotifyPlayerKicked();
-
-            activePartiesDictionary[partyCode].TryRemove(username, out _);
-
-            foreach (KeyValuePair<string, IPartyManagerCallback> keyValuePair in activePartiesDictionary[partyCode])
-            {
-                keyValuePair.Value.NotifyPlayerLeft(activePartiesDictionary[partyCode]);
-            }
+            throw new NotImplementedException();
         }
     }
 
@@ -352,12 +422,17 @@ namespace CommunicationService
     {
         public bool IsPartyExistent(int partyCode)
         {
-            return activePartiesDictionary.ContainsKey(partyCode);
+            return _activePartiesDictionary.ContainsKey(partyCode);
         }
 
         public bool IsSpaceAvailable(int partyCode)
         {
-            return activePartiesDictionary[partyCode].Count < 4;
+            return _activePartiesDictionary[partyCode].Count < 4;
+        }
+
+        public bool IsUsernameInParty(int partyCode, string username)
+        {
+            return _activePartiesDictionary[partyCode].ContainsKey(username);
         }
     }
 
