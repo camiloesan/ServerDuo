@@ -4,7 +4,7 @@ using System.ServiceModel;
 namespace CommunicationService
 {
     [ServiceContract]
-    internal interface IPartyValidator
+    public interface IPartyValidator
     {
         [OperationContract]
         bool IsPartyExistent(int partyCode);
@@ -17,7 +17,7 @@ namespace CommunicationService
     }
 
     [ServiceContract(CallbackContract = typeof(IPartyManagerCallback))]
-    internal interface IPartyManager
+    public interface IPartyManager
     {
         [OperationContract(IsOneWay = true)]
         void NotifyCreateParty(int partyCode, string hostUsername);
@@ -42,7 +42,7 @@ namespace CommunicationService
     }
 
     [ServiceContract]
-    internal interface IPartyManagerCallback
+    public interface IPartyManagerCallback
     {
         [OperationContract]
         void PartyCreated(ConcurrentDictionary<string, IPartyManagerCallback> playersInLobby);

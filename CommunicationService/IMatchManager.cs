@@ -1,11 +1,12 @@
 ﻿using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 
 namespace CommunicationService
 {
     [ServiceContract(CallbackContract = typeof(IMatchManagerCallback))]
-    internal interface IMatchManager
+    public interface IMatchManager
     {
         [OperationContract(IsOneWay = true)]
         void Subscribe(int partyCode, string username);
@@ -33,13 +34,13 @@ namespace CommunicationService
     }
 
     [ServiceContract]
-    internal interface IMatchManagerCallback
+    public interface IMatchManagerCallback
     {
         [OperationContract]
         void UpdateTableCards();
 
         [OperationContract]
-        void PlayerLeft(string username);
+        void PlayerLeftGame(string username);
 
         [OperationContract]
         void TurnFinished(string currentTurn);
@@ -49,7 +50,7 @@ namespace CommunicationService
     }
 
     [ServiceContract]
-    internal interface ICardManager
+    public interface ICardManager
     {
         [OperationContract]
         Card DrawCard();
@@ -57,10 +58,10 @@ namespace CommunicationService
         [OperationContract]
         Card[] GetCards(int partyCode);
 
-        [OperationContract(IsOneWay = true)]
+        [OperationContract]
         void DealCards(int partyCode);
 
-        [OperationContract(IsOneWay = true)]
+        [OperationContract]
         void PlayCard(int partyCode, int position, Card card);
     }
 
@@ -96,6 +97,6 @@ namespace CommunicationService
         public static readonly string RED = "#FF0000";
 
         [DataMember]
-        public static  readonly string BLACK = "#000000";
+        public static readonly string BLACK = "#000000";
     }
 }

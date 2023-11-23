@@ -356,13 +356,6 @@ namespace CommunicationService
             }
         }
 
-        public void NotifyStartGame(int partyCode)
-        {
-            foreach (var player in _activePartiesDictionary[partyCode])
-            {
-                player.Value.GameStarted();
-            }
-        }
 
         public void NotifyKickPlayer(int partyCode, string username)
         {
@@ -373,6 +366,26 @@ namespace CommunicationService
             foreach (var player in _activePartiesDictionary[partyCode])
             {
                 player.Value.PlayerLeft(_activePartiesDictionary[partyCode]);
+            }
+        }
+
+        public void NotifyStartGame(int partyCode)
+        {
+            var partyMap = _activePartiesDictionary[partyCode];
+
+            _gameCards.TryAdd(partyCode, new Card[3]);
+
+            for (int i = 0; i < _gameCards[partyCode].Length; i++)
+            {
+                _gameCards[partyCode][i] = new Card();
+                _gameCards[partyCode][i].Number = "";
+            }
+
+            DealCards(partyCode);
+
+            foreach (var player in _activePartiesDictionary[partyCode])
+            {
+                player.Value.GameStarted();
             }
         }
     }
@@ -564,11 +577,11 @@ namespace CommunicationService
                 try
                 {
                     _playerCallbacks[partyCode].TryRemove(player.Key, out _);
-                    activePartiesDictionary[partyCode].TryRemove(player.Key, out _);
+                    _activePartiesDictionary[partyCode].TryRemove(player.Key, out _);
 
                     if (_playerCallbacks.Count > 1)
                     {
-                        player.Value.PlayerLeft(player.Key);
+                        player.Value.PlayerLeftGame(player.Key);
                     }
                     else
                     {

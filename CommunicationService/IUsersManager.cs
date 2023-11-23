@@ -57,13 +57,14 @@ namespace CommunicationService
     [ServiceContract(CallbackContract = typeof(IUserConnectionHandlerCallback))]
     public interface IUserConnectionHandler
     {
-        [OperationContract(IsOneWay = true)]
+        [OperationContract]
         void NotifyLogIn(User user);
 
-        [OperationContract(IsOneWay = true)]
+        [OperationContract]
         void NotifyLogOut(User user);
     }
 
+    [ServiceContract]
     public interface IUserConnectionHandlerCallback
     {
         [OperationContract]
