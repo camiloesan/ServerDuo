@@ -371,8 +371,6 @@ namespace CommunicationService
 
         public void NotifyStartGame(int partyCode)
         {
-            var partyMap = _activePartiesDictionary[partyCode];
-
             _gameCards.TryAdd(partyCode, new Card[3]);
 
             for (int i = 0; i < _gameCards[partyCode].Length; i++)
