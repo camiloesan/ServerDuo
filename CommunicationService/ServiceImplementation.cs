@@ -470,18 +470,6 @@ namespace CommunicationService
                 _playerCallbacks.TryAdd(partyCode, player);
             }
 
-            if (_matchResults.ContainsKey(partyCode))
-            {
-                _matchResults[partyCode].TryAdd(username, 5);
-            }
-            else
-            {
-                ConcurrentDictionary<string, int> playerScore = new ConcurrentDictionary<string, int>();
-                playerScore.TryAdd(username, 5);
-
-                _matchResults.TryAdd(partyCode, playerScore);
-            }
-
             if (!_currentTurn.ContainsKey(partyCode))
             {
                 _currentTurn.TryAdd(partyCode, 0);
@@ -490,7 +478,17 @@ namespace CommunicationService
 
         public void SetGameScore(int partyCode, string username, int cardCount)
         {
-            _matchResults[partyCode][username] = cardCount;
+            if (_matchResults.ContainsKey(partyCode))
+            {
+                _matchResults[partyCode].TryAdd(username, cardCount);
+            }
+            else
+            {
+                ConcurrentDictionary<string, int> playerScore = new ConcurrentDictionary<string, int>();
+                playerScore.TryAdd(username, cardCount);
+
+                _matchResults.TryAdd(partyCode, playerScore);
+            }
         }
 
         public void KickPlayerFromGame(int partyCode, string username)
@@ -500,9 +498,6 @@ namespace CommunicationService
 
         public void EndGame(int partyCode)
         {
-            _gameCards.TryRemove(partyCode, out _);
-            _currentTurn.TryRemove(partyCode, out _);
-
             NotifyEndGame(partyCode);
         }
 
@@ -541,7 +536,7 @@ namespace CommunicationService
                 {
                     player.Value.TurnFinished(playerList[_currentTurn[partyCode]]);
                 }
-                catch
+                catch 
                 {
                     NotifyPlayerQuit(partyCode, player.Key);
                 }
@@ -562,8 +557,10 @@ namespace CommunicationService
                 }
             }
 
-            //Match data will be deleted 30 seconds after the match ends to ensure players get their data
-            Thread.Sleep(30000);
+            //Match data will be deleted 1 minute after the match ends to ensure players get their data
+            Thread.Sleep(60000);
+            _gameCards.TryRemove(partyCode, out _);
+            _currentTurn.TryRemove(partyCode, out _);
             _playerCallbacks.TryRemove(partyCode, out _);
             _matchResults.TryRemove(partyCode, out _);
         }
@@ -587,7 +584,7 @@ namespace CommunicationService
                     }
                     
                 }
-                catch(Exception ex)
+                catch(TimeoutException ex)
                 {
                     log.Error(ex);
                 }
