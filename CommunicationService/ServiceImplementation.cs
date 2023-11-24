@@ -425,7 +425,7 @@ namespace CommunicationService
 
         public void NotifyLogOut(User user)
         {
-            throw new NotImplementedException();
+            _onlineUsers.TryRemove(user.ID, out _);
         }
     }
 
