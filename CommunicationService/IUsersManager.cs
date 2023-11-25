@@ -21,7 +21,7 @@ namespace CommunicationService
         bool IsUsernameTaken(string username);
 
         [OperationContract]
-        bool IsEmailTaken(String email);
+        bool IsEmailTaken(string email);
 
         [OperationContract]
         bool SendFriendRequest(string usernameSender, string usernameReceiver);
@@ -33,19 +33,19 @@ namespace CommunicationService
         bool AcceptFriendRequest(FriendRequest friendRequest);
 
         [OperationContract]
-        bool RejectFriendRequest(int friendRequestID);
+        bool RejectFriendRequest(int friendRequestId);
 
         [OperationContract]
-        List<FriendRequest> GetFriendRequestsList(int userID);
+        List<FriendRequest> GetFriendRequestsList(int userId);
 
         [OperationContract]
-        List<Friendship> GetFriendsList(int userID);
+        List<Friendship> GetFriendsList(int userId);
 
         [OperationContract]
-        List<String> GetOnlineFriends(string username);
+        List<string> GetOnlineFriends(string username);
 
         [OperationContract]
-        bool DeleteFriendshipByID(int friendshipID);
+        bool DeleteFriendshipById(int friendshipId);
 
         [OperationContract]
         bool IsAlreadyFriend(string senderUsername, string receiverUsername);
