@@ -9,6 +9,7 @@ using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Data.Entity;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -41,12 +42,13 @@ namespace CommunicationService
             }
         }
 
-        public List<FriendRequest> GetFriendRequestsList(int userID)
+        public List<FriendRequest> GetFriendRequestsList(int userId)
         {
             using (var databaseContext = new DuoContext())
             {
                 var friendRequestsList = databaseContext.FriendRequests
-                    .Where(request => request.UserReceiver == userID)
+                    .Where(request => request.UserReceiver == userId).Include(friendRequests => friendRequests.Users1)
+                    .Include(friendRequests1 => friendRequests1.Users)
                     .ToList();
 
                 List<FriendRequest> resultList = new List<FriendRequest>();
@@ -190,12 +192,13 @@ namespace CommunicationService
             }
         }
 
-        public List<Friendship> GetFriendsList(int userID)
+        public List<Friendship> GetFriendsList(int userId)
         {
             using (var databaseContext = new DuoContext())
             {
                 var friendshipsList = databaseContext.Friendships
-                    .Where(friendship => friendship.User2 == userID || friendship.User1 == userID)
+                    .Where(friendship => friendship.User2 == userId || friendship.User1 == userId)
+                    .Include(friendships => friendships.Users).Include(friendships1 => friendships1.Users1)
                     .ToList();
 
                 List<Friendship> resultList = new List<Friendship>();
@@ -219,33 +222,29 @@ namespace CommunicationService
         {
             using (var databaseContext = new DuoContext())
             {
-                bool result = false;
                 var userEntity = databaseContext.Users.FirstOrDefault(user => user.Username == username);
 
-                if (userEntity != null)
-                {
-                    databaseContext.Users.Remove(userEntity);
-                    databaseContext.SaveChanges();
-                    result = true;
-                }
-                return result;
+                if (userEntity == null) return false;
+                
+                databaseContext.Users.Remove(userEntity);
+                databaseContext.SaveChanges();
+                return true;
             }
         }
 
-        public bool DeleteFriendshipByID(int friendshipID)
+        public bool DeleteFriendshipById(int friendshipId)
         {
             using (var databaseContext = new DuoContext())
             {
-                bool result = false;
-                var friendshipEntity = databaseContext.Friendships.FirstOrDefault(friendship => friendship.FriendshipID == friendshipID);
+                var friendshipEntity = databaseContext
+                    .Friendships.FirstOrDefault(friendship => friendship.FriendshipID == friendshipId);
 
-                if (friendshipEntity != null)
-                {
-                    databaseContext.Friendships.Remove(friendshipEntity);
-                    databaseContext.SaveChanges();
-                    result = true;
-                }
-                return result;
+                if (friendshipEntity == null) return false;
+                
+                databaseContext.Friendships.Remove(friendshipEntity);
+                databaseContext.SaveChanges();
+                
+                return true;
             }
         }
 
@@ -406,8 +405,9 @@ namespace CommunicationService
             using (var databaseContext = new DuoContext())
             {
                 var friendshipsList = databaseContext.Friendships
-                                    .Where(friendship => friendship.User2 == user.ID || friendship.User1 == user.ID)
-                                    .ToList();
+                    .Where(friendship => friendship.User2 == user.ID || friendship.User1 == user.ID)
+                    .Include(friendships => friendships.Users).Include(friendships1 => friendships1.Users1)
+                    .ToList();
                 foreach (var friend in friendshipsList)
                 {
                     if (friend.User1 == user.ID)
@@ -430,7 +430,7 @@ namespace CommunicationService
 
         public void NotifyLogOut(User user)
         {
-            //throw new NotImplementedException();
+            _onlineUsers.TryRemove(user.ID, out _);
         }
     }
 
