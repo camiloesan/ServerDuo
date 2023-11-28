@@ -17,7 +17,7 @@ namespace Database
         public int UserBlockID { get; set; }
         public Nullable<int> BlockerID { get; set; }
         public Nullable<int> BlockedID { get; set; }
-        public string reason { get; set; }
+        public string Reason { get; set; }
     
         public virtual Users Users { get; set; }
         public virtual Users Users1 { get; set; }
