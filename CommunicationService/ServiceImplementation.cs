@@ -2,12 +2,15 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace CommunicationService
 {
@@ -21,7 +24,8 @@ namespace CommunicationService
                 {
                     Username = user.UserName,
                     Email = user.Email,
-                    Password = user.Password
+                    Password = user.Password,
+                    TotalWins = 0
                 };
 
                 try
@@ -304,8 +308,7 @@ namespace CommunicationService
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
     public partial class ServiceImplementation : IPartyManager
     {
-        static ConcurrentDictionary<int, ConcurrentDictionary<string, IPartyManagerCallback>> _activePartiesDictionary
-            = new ConcurrentDictionary<int, ConcurrentDictionary<string, IPartyManagerCallback>>();
+        static ConcurrentDictionary<int, ConcurrentDictionary<string, IPartyManagerCallback>> _activePartiesDictionary = new ConcurrentDictionary<int, ConcurrentDictionary<string, IPartyManagerCallback>>();
 
         public void NotifyCreateParty(int partyCode, string hostUsername)
         {
@@ -369,7 +372,7 @@ namespace CommunicationService
             }
         }
 
-        public void NotifyStartGame(int partyCode)
+        public async void NotifyStartGame(int partyCode)
         {
             _gameCards.TryAdd(partyCode, new Card[3]);
 
@@ -385,13 +388,15 @@ namespace CommunicationService
             {
                 player.Value.GameStarted();
             }
+
+            await Task.Delay(5000);
+            _activePartiesDictionary.TryRemove(partyCode, out _);
         }
     }
 
     public partial class ServiceImplementation : IUserConnectionHandler
     {
-        static ConcurrentDictionary<int, IUserConnectionHandlerCallback> _onlineUsers 
-            = new ConcurrentDictionary<int, IUserConnectionHandlerCallback>();
+        static ConcurrentDictionary<int, IUserConnectionHandlerCallback> _onlineUsers = new ConcurrentDictionary<int, IUserConnectionHandlerCallback>();
 
         public void NotifyLogIn(User user)
         {
@@ -425,7 +430,7 @@ namespace CommunicationService
 
         public void NotifyLogOut(User user)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 
@@ -496,9 +501,11 @@ namespace CommunicationService
             NotifyPlayerQuit(partyCode, username);
         }
 
-        public void EndGame(int partyCode)
+        public async void EndGame(int partyCode)
         {
-            NotifyEndGame(partyCode);
+            await Task.Delay(1000);
+
+            NotifyEndGameAsync(partyCode);
         }
 
         public void EndTurn(int partyCode)
@@ -529,66 +536,106 @@ namespace CommunicationService
         private void NotifyEndTurn(int partyCode)
         {
             List<string> playerList = new List<string>(_playerCallbacks[partyCode].Keys);
+            string currentCallback = "";
 
-            foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[partyCode])
+            try
             {
-                try
+                foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[partyCode])
                 {
+                    currentCallback = player.Key;
                     player.Value.TurnFinished(playerList[_currentTurn[partyCode]]);
                 }
-                catch 
-                {
-                    NotifyPlayerQuit(partyCode, player.Key);
-                }
             }
+            catch 
+            {
+                NotifyPlayerQuit(partyCode, currentCallback);
+            }
+            
         }
 
-        private void NotifyEndGame(int partyCode)
+        private async Task NotifyEndGameAsync(int partyCode)
         {
-            foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[partyCode])
+            string currentCallback = "";
+
+            try
             {
-                try
+                foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[partyCode])
                 {
+                    currentCallback = player.Key;
                     player.Value.GameOver();
-                }
-                catch
+                }    
+            }
+            catch
+            {
+                NotifyPlayerQuit(partyCode, currentCallback);
+            }
+
+            //Match data will be deleted so players start out with fresh data every match
+            using (DuoContext databaseContext = new DuoContext())
+            {
+                string winner = _matchResults[partyCode].OrderBy(x => x.Value).First().Key;
+                int winnerUserId = databaseContext.Users.Where(u => u.Username == winner).Select(u => u.UserID).FirstOrDefault();
+
+                if (winnerUserId > 0)
                 {
-                    NotifyPlayerQuit(partyCode, player.Key);
+                    try
+                    {
+                        Users user = databaseContext.Users.Where(u => u.UserID == winnerUserId).FirstOrDefault();
+
+                        if (user != null)
+                        {
+                            user.TotalWins++;
+
+                            databaseContext.SaveChanges();
+                        }
+                    }
+                    catch (DbUpdateException exception)
+                    {
+                        log.Error("An error happened while trying to save a match into the DB", exception);
+                    }
                 }
             }
 
-            //Match data will be deleted 1 minute after the match ends to ensure players get their data
-            Thread.Sleep(60000);
+            await Task.Delay(10000);
             _gameCards.TryRemove(partyCode, out _);
             _currentTurn.TryRemove(partyCode, out _);
             _playerCallbacks.TryRemove(partyCode, out _);
             _matchResults.TryRemove(partyCode, out _);
         }
 
-        private void NotifyPlayerQuit(int partyCode, string username)
+        private async void NotifyPlayerQuit(int partyCode, string username)
         {
+            List<string> playerList = new List<string>(_playerCallbacks[partyCode].Keys);
+            string currentPlayerTurn = playerList[_currentTurn[partyCode]];
+
+            if (currentPlayerTurn.Equals(username))
+            {
+                EndTurn(partyCode);
+            }
+
             foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[partyCode])
             {
                 try
                 {
-                    _playerCallbacks[partyCode].TryRemove(player.Key, out _);
-                    _activePartiesDictionary[partyCode].TryRemove(player.Key, out _);
-
-                    if (_playerCallbacks.Count > 1)
+                    if (_playerCallbacks[partyCode].Count > 1)
                     {
-                        player.Value.PlayerLeftGame(player.Key);
+                        player.Value.PlayerLeftGame(username);
                     }
                     else
                     {
-                        EndGame(partyCode);
+                        if (!player.Key.Equals(username))
+                        {
+                            EndGame(partyCode);
+                        }
                     }
-                    
                 }
                 catch(TimeoutException ex)
                 {
-                    log.Error(ex);
+                    log.Error("Timeout error while kicking a player from a match", ex);
                 }
             }
+
+            _playerCallbacks[partyCode].TryRemove(username, out _);
         }
     }
 

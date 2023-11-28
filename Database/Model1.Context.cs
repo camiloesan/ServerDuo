@@ -27,9 +27,7 @@ namespace Database
     
         public virtual DbSet<FriendRequests> FriendRequests { get; set; }
         public virtual DbSet<Friendships> Friendships { get; set; }
-        public virtual DbSet<Matches> Matches { get; set; }
         public virtual DbSet<UserBlocks> UserBlocks { get; set; }
         public virtual DbSet<Users> Users { get; set; }
-        public virtual DbSet<WinCounts> WinCounts { get; set; }
     }
 }
