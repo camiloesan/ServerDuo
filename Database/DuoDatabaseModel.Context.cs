@@ -25,11 +25,9 @@ namespace Database
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<FriendRequests> FriendRequests { get; set; }
-        public virtual DbSet<Friendships> Friendships { get; set; }
-        public virtual DbSet<Matches> Matches { get; set; }
-        public virtual DbSet<UserBlocks> UserBlocks { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
-        public virtual DbSet<WinCounts> WinCounts { get; set; }
+        public virtual DbSet<FriendRequest> FriendRequests { get; set; }
+        public virtual DbSet<Friendship> Friendships { get; set; }
+        public virtual DbSet<UserBlock> UserBlocks { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

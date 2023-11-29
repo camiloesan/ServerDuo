@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="34a5688321c940a7b6b9933f1793f6e2" Name="Diagram1">
+        <EntityTypeShape EntityType="duoModel.FriendRequest" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="duoModel.Friendship" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="duoModel.UserBlock" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="duoModel.User" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <AssociationConnector Association="duoModel.FK_FriendRequests_UsernameReceiver" ManuallyRouted="false" />
+        <AssociationConnector Association="duoModel.FK_FriendRequests_UsernameSender" ManuallyRouted="false" />
+        <AssociationConnector Association="duoModel.FK_Friendships_Users1" ManuallyRouted="false" />
+        <AssociationConnector Association="duoModel.FK_Friendships_Users2" ManuallyRouted="false" />
+        <AssociationConnector Association="duoModel.FK_UserBlocks_Users1" ManuallyRouted="false" />
+        <AssociationConnector Association="duoModel.FK_UserBlocks_Users2" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -9,13 +9,13 @@ namespace CommunicationService
     public interface IUsersManager
     {
         [OperationContract]
-        bool AddUserToDatabase(User user);
+        bool AddUserToDatabase(UserDTO user);
 
         [OperationContract]
         bool DeleteUserFromDatabaseByUsername(String username);
 
         [OperationContract]
-        User IsLoginValid(string username, string password);
+        UserDTO IsLoginValid(string username, string password);
 
         [OperationContract]
         bool IsUsernameTaken(string username);
@@ -30,16 +30,16 @@ namespace CommunicationService
         bool IsFriendRequestAlreadyExistent(string usernameSender, string usernameReceiver);
 
         [OperationContract]
-        bool AcceptFriendRequest(FriendRequest friendRequest);
+        bool AcceptFriendRequest(FriendRequestDTO friendRequest);
 
         [OperationContract]
         bool RejectFriendRequest(int friendRequestId);
 
         [OperationContract]
-        List<FriendRequest> GetFriendRequestsList(int userId);
+        List<FriendRequestDTO> GetFriendRequestsList(int userId);
 
         [OperationContract]
-        List<Friendship> GetFriendsList(int userId);
+        List<FriendshipDTO> GetFriendsList(int userId);
 
         [OperationContract]
         List<string> GetOnlineFriends(string username);
@@ -52,16 +52,34 @@ namespace CommunicationService
 
         [OperationContract]
         bool IsUserAlreadyLoggedIn(int userId);
+
+        [OperationContract]
+        int SendConfirmationCode(string email);
+
+        [OperationContract]
+        bool ModifyPasswordByEmail(string email, string newPassword);
+
+        [OperationContract]
+        bool BlockUserByUsername(string blockerUsername, string blockedUsername);
+
+        [OperationContract]
+        bool UnblockUserByBlockId(int blockId);
+
+        [OperationContract]
+        bool IsUserBlockedByUsername(string usernameBlocker, string usernameBlocked);
+
+        [OperationContract]
+        List<UserBlockedDTO> GetBlockedUsersListByUserId(int userId);
     }
 
     [ServiceContract(CallbackContract = typeof(IUserConnectionHandlerCallback))]
     public interface IUserConnectionHandler
     {
         [OperationContract]
-        void NotifyLogIn(User user);
+        void NotifyLogIn(UserDTO user);
 
         [OperationContract]
-        void NotifyLogOut(User user);
+        void NotifyLogOut(UserDTO user);
     }
 
     [ServiceContract]
@@ -75,7 +93,7 @@ namespace CommunicationService
     }
 
     [DataContract]
-    public class User
+    public class UserDTO
     {
         [DataMember]
         public int ID { get; set; }
@@ -90,7 +108,7 @@ namespace CommunicationService
     }
 
     [DataContract]
-    public class Friendship
+    public class FriendshipDTO
     {
         [DataMember]
         public int FriendshipID { get; set; }
@@ -109,7 +127,7 @@ namespace CommunicationService
     }
 
     [DataContract]
-    public class FriendRequest
+    public class FriendRequestDTO
     {
         [DataMember]
         public int FriendRequestID { get; set; }
@@ -128,5 +146,19 @@ namespace CommunicationService
 
         [DataMember]
         public int Status { get; set; }
+    }
+
+    [DataContract]
+    public class UserBlockedDTO
+    {
+        [DataMember]
+        public int BlockID { get; set; }
+
+
+        [DataMember]
+        public int BlockedID { get; set; }
+
+        [DataMember]
+        public string BlockedUsername { get; set; }
     }
 }

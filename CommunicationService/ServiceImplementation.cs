@@ -4,18 +4,21 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.ServiceModel;
 using System.Threading;
+using System.Xml.Linq;
 
 namespace CommunicationService
 {
     public partial class ServiceImplementation : IUsersManager
     {
-        public bool AddUserToDatabase(User user)
+        public bool AddUserToDatabase(UserDTO user)
         {
             using (var databaseContext = new DuoContext())
             {
-                var databaseUser = new Users
+                var databaseUser = new User
                 {
                     Username = user.UserName,
                     Email = user.Email,
@@ -35,25 +38,24 @@ namespace CommunicationService
             }
         }
 
-        public List<FriendRequest> GetFriendRequestsList(int userId)
+        public List<FriendRequestDTO> GetFriendRequestsList(int userId)
         {
             using (var databaseContext = new DuoContext())
             {
                 var friendRequestsList = databaseContext.FriendRequests
-                    .Where(request => request.UserReceiver == userId).Include(friendRequests => friendRequests.Users1)
-                    .Include(friendRequests1 => friendRequests1.Users)
+                    .Where(friendRequest => friendRequest.ReceiverID == userId)
                     .ToList();
 
-                List<FriendRequest> resultList = new List<FriendRequest>();
+                List<FriendRequestDTO> resultList = new List<FriendRequestDTO>();
                 foreach (var friendRequestItem in friendRequestsList)
                 {
-                    FriendRequest friendRequest = new FriendRequest
+                    FriendRequestDTO friendRequest = new FriendRequestDTO
                     {
                         FriendRequestID = friendRequestItem.RequestID,
-                        SenderID = (int)friendRequestItem.UserSender,
-                        SenderUsername = friendRequestItem.Users1.Username,
-                        ReceiverID = (int)friendRequestItem.UserReceiver,
-                        ReceiverUsername = friendRequestItem.Users.Username
+                        SenderID = (int)friendRequestItem.SenderID,
+                        SenderUsername = friendRequestItem.User1.Username, //could be upside down
+                        ReceiverID = (int)friendRequestItem.ReceiverID,
+                        ReceiverUsername = friendRequestItem.User.Username
                     };
                     resultList.Add(friendRequest);
                 }
@@ -75,11 +77,11 @@ namespace CommunicationService
             }
         }
 
-        public User IsLoginValid(string username, string password)
+        public UserDTO IsLoginValid(string username, string password)
         {
             using (var databaseContext = new DuoContext())
             {
-                Users databaseUser;
+                User databaseUser;
                 try
                 {
                     databaseUser = databaseContext.Users.First(user => user.Username == username && user.Password == password);
@@ -89,7 +91,7 @@ namespace CommunicationService
                     return null;
                 }
 
-                var resultUser = new User
+                var resultUser = new UserDTO
                 {
                     ID = databaseUser.UserID,
                     UserName = databaseUser.Username,
@@ -123,11 +125,10 @@ namespace CommunicationService
                     return false;
                 }
 
-                var friendRequest = new FriendRequests
+                var friendRequest = new FriendRequest
                 {
-                    UserSender = senderId,
-                    UserReceiver = receiverId,
-                    Status = "pending"
+                    SenderID = senderId,
+                    ReceiverID = receiverId,
                 };
 
                 try
@@ -143,14 +144,14 @@ namespace CommunicationService
             }
         }
 
-        public bool AcceptFriendRequest(FriendRequest friendRequest)
+        public bool AcceptFriendRequest(FriendRequestDTO friendRequest)
         {
             using (var databaseContext = new DuoContext())
             {
-                var friendship = new Friendships
+                var friendship = new Friendship
                 {
-                    User1 = friendRequest.SenderID,
-                    User2 = friendRequest.ReceiverID,
+                    SenderID = friendRequest.SenderID,
+                    ReceiverID = friendRequest.ReceiverID,
                 };
 
                 try
@@ -185,25 +186,24 @@ namespace CommunicationService
             }
         }
 
-        public List<Friendship> GetFriendsList(int userId)
+        public List<FriendshipDTO> GetFriendsList(int userId)
         {
             using (var databaseContext = new DuoContext())
             {
                 var friendshipsList = databaseContext.Friendships
-                    .Where(friendship => friendship.User2 == userId || friendship.User1 == userId)
-                    .Include(friendships => friendships.Users).Include(friendships1 => friendships1.Users1)
+                    .Where(friendship => friendship.SenderID == userId || friendship.ReceiverID == userId)
                     .ToList();
 
-                List<Friendship> resultList = new List<Friendship>();
+                List<FriendshipDTO> resultList = new List<FriendshipDTO>();
                 foreach (var friendshipItem in friendshipsList)
                 {
-                    Friendship friendship = new Friendship()
+                    FriendshipDTO friendship = new FriendshipDTO()
                     {
                         FriendshipID = friendshipItem.FriendshipID,
-                        Friend1ID = (int)friendshipItem.User1,
-                        Friend1Username = friendshipItem.Users.Username,
-                        Friend2ID = (int)friendshipItem.User2,
-                        Friend2Username = friendshipItem.Users1.Username
+                        Friend1ID = (int)friendshipItem.SenderID,
+                        Friend1Username = friendshipItem.User.Username,
+                        Friend2ID = (int)friendshipItem.ReceiverID,
+                        Friend2Username = friendshipItem.User1.Username
                     };
                     resultList.Add(friendship);
                 }
@@ -259,8 +259,8 @@ namespace CommunicationService
 
                 var friendRequestEntity = databaseContext.FriendRequests
                     .FirstOrDefault(friendRequest =>
-                    (friendRequest.UserSender == senderId && friendRequest.UserReceiver == receiverId)
-                    || (friendRequest.UserSender == receiverId && friendRequest.UserReceiver == senderId));
+                    (friendRequest.SenderID == senderId && friendRequest.ReceiverID == receiverId)
+                    || (friendRequest.SenderID == receiverId && friendRequest.ReceiverID == senderId));
                 return friendRequestEntity != null;
             }
         }
@@ -269,8 +269,8 @@ namespace CommunicationService
         {
             using (var databaseContext = new DuoContext())
             {
-                Users userSender;
-                Users userReceiver;
+                User userSender;
+                User userReceiver;
                 try
                 {
                     userSender = databaseContext.Users
@@ -285,8 +285,8 @@ namespace CommunicationService
 
                 var friendshipEntity = databaseContext.Friendships
                     .FirstOrDefault(friendship =>
-                    (friendship.User1 == userSender.UserID && friendship.User2 == userReceiver.UserID)
-                    || (friendship.User1 == userReceiver.UserID && friendship.User2 == userSender.UserID));
+                    (friendship.SenderID == userSender.UserID && friendship.ReceiverID == userReceiver.UserID)
+                    || (friendship.SenderID == userReceiver.UserID && friendship.ReceiverID == userSender.UserID));
                 return friendshipEntity != null;
             }
         }
@@ -294,6 +294,157 @@ namespace CommunicationService
         public bool IsUserAlreadyLoggedIn(int userId)
         {
             return _onlineUsers.ContainsKey(userId);
+        }
+
+        public int SendConfirmationCode(string email)
+        {
+            var randomCode = new Random();
+            var confirmationCode = randomCode.Next(1000, 10000);
+
+            string to = email;
+            string subject = "Password reset request"; //internationalize
+            string body = "We have received a request to change your password, if you did it, here's the code you need to enter: \n\n" + confirmationCode;
+
+            string from = "duogamefei@gmail.com";
+            string smtpServer = "smtp.gmail.com";
+            int smtpPort = 587;
+            string username = "duogamefei@gmail.com";
+            string password = "rfis qkfp zmub hcft"; //how can i make this secure
+
+            try
+            {
+                using (SmtpClient client = new SmtpClient(smtpServer, smtpPort))
+                {
+                    client.EnableSsl = true;
+                    client.Credentials = new NetworkCredential(username, password);
+
+                    MailMessage mailMessage = new MailMessage(from, to, subject, body);
+                    client.Send(mailMessage);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error sending email: {ex.Message}"); //log
+                return -1;
+            }
+
+            return confirmationCode;
+        }
+
+        public bool IsUserBlockedByUsername(string usernameBlocker, string usernameBlocked)
+        {
+            using (var databaseContext = new DuoContext())
+            {
+                try
+                {
+                    UserBlock userBlocks = new UserBlock
+                    {
+                        BlockerID = databaseContext.Users.First(user => user.Username == usernameBlocker).UserID,
+                        BlockedID = databaseContext.Users.First(user => user.Username == usernameBlocked).UserID,
+                    };
+
+                    var userBlockEntity = databaseContext.UserBlocks
+                        .First(block => block.BlockerID == userBlocks.BlockerID 
+                        && block.BlockedID == userBlocks.BlockedID);
+                }
+                catch
+                {
+                    //log
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public bool ModifyPasswordByEmail(string email, string newPassword) //not secure ?
+        {
+            using (var databaseContext = new DuoContext())
+            {
+                try
+                {
+                    User userToModify = databaseContext.Users
+                        .First(user => user.Email == email);
+                    userToModify.Password = newPassword;
+                    databaseContext.SaveChanges();
+                }
+                catch
+                {
+                    //log
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public bool BlockUserByUsername(string blockerUsername, string blockedUsername)
+        {
+            using (var databaseContext = new DuoContext())
+            {
+                try
+                {
+                    UserBlock userBlocks = new UserBlock
+                    {
+                        BlockerID = databaseContext.Users.First(user => user.Username == blockerUsername).UserID,
+                        BlockedID = databaseContext.Users.First(user => user.Username == blockedUsername).UserID,
+                    };
+
+                    databaseContext.UserBlocks.Add(userBlocks);
+                    databaseContext.SaveChanges();
+                }
+                catch
+                {
+                    //log
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
+        public bool UnblockUserByBlockId(int blockId)
+        {
+            using (var databaseContext = new DuoContext())
+            {
+                try
+                {
+                    UserBlock userBlockedDatabase = databaseContext.UserBlocks
+                        .First(block => block.UserBlockID == blockId);
+                    databaseContext.UserBlocks.Remove(userBlockedDatabase);
+                    databaseContext.SaveChanges();
+                }
+                catch
+                {
+                    //log
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
+        public List<UserBlockedDTO> GetBlockedUsersListByUserId(int userId)
+        {
+            using (var databaseContext = new DuoContext())
+            {
+                List<UserBlockedDTO> resultList = new List<UserBlockedDTO>();
+
+                var blockedUsersList = databaseContext.UserBlocks
+                    .Where(blocks => blocks.BlockerID == userId)
+                    .ToList();
+                
+                foreach (var blockedUserItem in blockedUsersList)
+                {
+                    UserBlockedDTO userBlocked = new UserBlockedDTO
+                    {
+                        BlockID = blockedUserItem.UserBlockID,
+                        BlockedID = (int)blockedUserItem.BlockedID,
+                        BlockedUsername = blockedUserItem.User1.Username
+                    };
+
+                    resultList.Add(userBlocked);
+                }
+                return resultList;
+            }
         }
     }
 
@@ -352,7 +503,6 @@ namespace CommunicationService
             }
         }
 
-
         public void NotifyKickPlayer(int partyCode, string username)
         {
             _activePartiesDictionary[partyCode][username].PlayerKicked();
@@ -389,7 +539,7 @@ namespace CommunicationService
         static ConcurrentDictionary<int, IUserConnectionHandlerCallback> _onlineUsers 
             = new ConcurrentDictionary<int, IUserConnectionHandlerCallback>();
 
-        public void NotifyLogIn(User user)
+        public void NotifyLogIn(UserDTO user)
         {
             var callback = OperationContext.Current.GetCallbackChannel<IUserConnectionHandlerCallback>();
             _onlineUsers.TryAdd(user.ID, callback);
@@ -397,30 +547,29 @@ namespace CommunicationService
             using (var databaseContext = new DuoContext())
             {
                 var friendshipsList = databaseContext.Friendships
-                    .Where(friendship => friendship.User2 == user.ID || friendship.User1 == user.ID)
-                    .Include(friendships => friendships.Users).Include(friendships1 => friendships1.Users1)
+                    .Where(friendship => friendship.ReceiverID == user.ID || friendship.SenderID == user.ID)
                     .ToList();
                 foreach (var friend in friendshipsList)
                 {
-                    if (friend.User1 == user.ID)
+                    if (friend.SenderID == user.ID)
                     {
-                        if (_onlineUsers.ContainsKey((int)friend.User2))
+                        if (_onlineUsers.ContainsKey((int)friend.ReceiverID))
                         {
-                            _onlineUsers[friend.Users1.UserID].UserLogged(friend.Users.Username);
+                            _onlineUsers[friend.User1.UserID].UserLogged(friend.User.Username);
                         }
                     }
-                    else if (friend.User2 == user.ID)
+                    else if (friend.ReceiverID == user.ID)
                     {
-                        if (_onlineUsers.ContainsKey((int)friend.User1))
+                        if (_onlineUsers.ContainsKey((int)friend.SenderID))
                         {
-                            _onlineUsers[friend.Users.UserID].UserLogged(friend.Users1.Username);
+                            _onlineUsers[friend.User.UserID].UserLogged(friend.User1.Username);
                         }
                     }
                 }
             }
         }
 
-        public void NotifyLogOut(User user)
+        public void NotifyLogOut(UserDTO user)
         {
             _onlineUsers.TryRemove(user.ID, out _);
         }
@@ -441,6 +590,11 @@ namespace CommunicationService
         public bool IsUsernameInParty(int partyCode, string username)
         {
             return _activePartiesDictionary[partyCode].ContainsKey(username);
+        }
+
+        public List<string> GetPlayersInParty(int partyCode)
+        {
+            return _activePartiesDictionary[partyCode].Keys.ToList();
         }
     }
 

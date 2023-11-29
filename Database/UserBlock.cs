@@ -12,14 +12,13 @@ namespace Database
     using System;
     using System.Collections.Generic;
     
-    public partial class FriendRequests
+    public partial class UserBlock
     {
-        public int RequestID { get; set; }
-        public Nullable<int> UserSender { get; set; }
-        public Nullable<int> UserReceiver { get; set; }
-        public string Status { get; set; }
+        public int UserBlockID { get; set; }
+        public Nullable<int> BlockerID { get; set; }
+        public Nullable<int> BlockedID { get; set; }
     
-        public virtual Users Users { get; set; }
-        public virtual Users Users1 { get; set; }
+        public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
     }
 }

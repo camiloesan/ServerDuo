@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.ServiceModel;
 
 namespace CommunicationService
@@ -14,6 +15,9 @@ namespace CommunicationService
 
         [OperationContract]
         bool IsUsernameInParty(int partyCode, string username);
+
+        [OperationContract]
+        List<string> GetPlayersInParty(int partyCode);
     }
 
     [ServiceContract(CallbackContract = typeof(IPartyManagerCallback))]
