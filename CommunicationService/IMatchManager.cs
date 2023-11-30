@@ -15,7 +15,10 @@ namespace CommunicationService
         void SetGameScore(int partyCode, string username, int cardCount);
 
         [OperationContract(IsOneWay = true)]
-        void KickPlayerFromGame(int partyCode, string username);
+        void ExitMatch(int partyCode, string username);
+
+        [OperationContract(IsOneWay = true)]
+        void KickPlayerFromGame(int partyCode, string username, string reason);
 
         [OperationContract(IsOneWay = true)]
         void EndGame(int partyCode);
@@ -40,7 +43,7 @@ namespace CommunicationService
         void UpdateTableCards();
 
         [OperationContract]
-        void PlayerLeftGame(string username);
+        void PlayerLeftGame(string username, string reason);
 
         [OperationContract]
         void TurnFinished(string currentTurn);

@@ -5,12 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.ServiceModel;
-using System.ServiceModel.Channels;
-using System.ServiceModel.Dispatcher;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Data.Entity;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace CommunicationService
@@ -496,16 +491,29 @@ namespace CommunicationService
             }
         }
 
-        public void KickPlayerFromGame(int partyCode, string username)
+        public void ExitMatch(int partyCode, string username)
         {
-            NotifyPlayerQuit(partyCode, username);
+            List<string> playerList = GetPlayerList(partyCode);
+            string currentPlayerTurn = playerList[_currentTurn[partyCode]];
+
+            if (currentPlayerTurn.Equals(username))
+            {
+                EndTurn(partyCode);
+            }
+
+            _playerCallbacks[partyCode].TryRemove(username, out _);
+
+            NotifyPlayerQuit(partyCode, username, "User clicked exit button");
+        }
+
+        public void KickPlayerFromGame(int partyCode, string username, string reason)
+        {
+            NotifyPlayerQuit(partyCode, username, reason);
         }
 
         public async void EndGame(int partyCode)
         {
-            await Task.Delay(1000);
-
-            NotifyEndGameAsync(partyCode);
+            await NotifyEndGame(partyCode);
         }
 
         public void EndTurn(int partyCode)
@@ -548,12 +556,12 @@ namespace CommunicationService
             }
             catch 
             {
-                NotifyPlayerQuit(partyCode, currentCallback);
+                NotifyPlayerQuit(partyCode, currentCallback, "Timeout");
             }
             
         }
 
-        private async Task NotifyEndGameAsync(int partyCode)
+        private async Task NotifyEndGame(int partyCode)
         {
             string currentCallback = "";
 
@@ -567,10 +575,10 @@ namespace CommunicationService
             }
             catch
             {
-                NotifyPlayerQuit(partyCode, currentCallback);
+                NotifyPlayerQuit(partyCode, currentCallback, "Timeout");
             }
 
-            //Match data will be deleted so players start out with fresh data every match
+            
             using (DuoContext databaseContext = new DuoContext())
             {
                 string winner = _matchResults[partyCode].OrderBy(x => x.Value).First().Key;
@@ -597,15 +605,16 @@ namespace CommunicationService
             }
 
             await Task.Delay(10000);
+            //Match data will be deleted so players start out with fresh data every match
             _gameCards.TryRemove(partyCode, out _);
             _currentTurn.TryRemove(partyCode, out _);
             _playerCallbacks.TryRemove(partyCode, out _);
             _matchResults.TryRemove(partyCode, out _);
         }
 
-        private async void NotifyPlayerQuit(int partyCode, string username)
+        private async void NotifyPlayerQuit(int partyCode, string username, string reason)
         {
-            List<string> playerList = new List<string>(_playerCallbacks[partyCode].Keys);
+            List<string> playerList = GetPlayerList(partyCode);
             string currentPlayerTurn = playerList[_currentTurn[partyCode]];
 
             if (currentPlayerTurn.Equals(username))
@@ -617,17 +626,7 @@ namespace CommunicationService
             {
                 try
                 {
-                    if (_playerCallbacks[partyCode].Count > 1)
-                    {
-                        player.Value.PlayerLeftGame(username);
-                    }
-                    else
-                    {
-                        if (!player.Key.Equals(username))
-                        {
-                            EndGame(partyCode);
-                        }
-                    }
+                    player.Value.PlayerLeftGame(username, reason);
                 }
                 catch(TimeoutException ex)
                 {
@@ -635,7 +634,15 @@ namespace CommunicationService
                 }
             }
 
-            _playerCallbacks[partyCode].TryRemove(username, out _);
+            if (_playerCallbacks[partyCode].ContainsKey(username))
+            {
+                _playerCallbacks[partyCode].TryRemove(username, out _);
+            }
+
+            if (_playerCallbacks[partyCode].Count <= 1)
+            {
+                EndGame(partyCode);
+            }
         }
     }
 
