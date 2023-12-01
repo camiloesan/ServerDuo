@@ -70,6 +70,9 @@ namespace CommunicationService
 
         [OperationContract]
         List<UserBlockedDTO> GetBlockedUsersListByUserId(int userId);
+
+        [OperationContract]
+        List<UserDTO> GetTopTenWinners();
     }
 
     [ServiceContract(CallbackContract = typeof(IUserConnectionHandlerCallback))]
@@ -100,6 +103,9 @@ namespace CommunicationService
 
         [DataMember]
         public string UserName { get; set; }
+
+        [DataMember]
+        public int TotalWins { get; set; }
 
         [DataMember]
         public string Email { get; set; }

@@ -8,6 +8,8 @@ using System.Net;
 using System.Net.Mail;
 using System.ServiceModel;
 using System.Threading;
+using System.Configuration;
+using System.Collections.Specialized;
 using System.Xml.Linq;
 
 namespace CommunicationService
@@ -22,6 +24,7 @@ namespace CommunicationService
                 {
                     Username = user.UserName,
                     Email = user.Email,
+                    TotalWins = 0,
                     Password = user.Password
                 };
 
@@ -30,8 +33,9 @@ namespace CommunicationService
                     databaseContext.Users.Add(databaseUser);
                     databaseContext.SaveChanges();
                 }
-                catch
+                catch (Exception ex)
                 {
+                    log.Error(ex);
                     return false;
                 }
                 return true;
@@ -42,12 +46,20 @@ namespace CommunicationService
         {
             using (var databaseContext = new DuoContext())
             {
-                var friendRequestsList = databaseContext.FriendRequests
-                    .Where(friendRequest => friendRequest.ReceiverID == userId)
-                    .ToList();
+                List<FriendRequest> friendRequests = new List<FriendRequest>();
+                try
+                {
+                    friendRequests = databaseContext.FriendRequests
+                        .Where(friendRequest => friendRequest.ReceiverID == userId)
+                        .ToList();
+                } 
+                catch (Exception ex)
+                {
+                    log.Error(ex);
+                }
 
                 List<FriendRequestDTO> resultList = new List<FriendRequestDTO>();
-                foreach (var friendRequestItem in friendRequestsList)
+                foreach (var friendRequestItem in friendRequests)
                 {
                     FriendRequestDTO friendRequest = new FriendRequestDTO
                     {
@@ -65,7 +77,7 @@ namespace CommunicationService
 
         public List<string> GetOnlineFriends(string username)
         {
-            //todo
+            //TODO
             return null;
         }
 
@@ -81,10 +93,11 @@ namespace CommunicationService
         {
             using (var databaseContext = new DuoContext())
             {
-                User databaseUser;
+                var databaseUser = new User();
                 try
                 {
-                    databaseUser = databaseContext.Users.First(user => user.Username == username && user.Password == password);
+                    databaseUser = databaseContext.Users
+                        .First(user => user.Username == username && user.Password == password);
                 }
                 catch
                 {
@@ -95,6 +108,7 @@ namespace CommunicationService
                 {
                     ID = databaseUser.UserID,
                     UserName = databaseUser.Username,
+                    TotalWins = (int)databaseUser.TotalWins,
                     Email = databaseUser.Email
                 };
                 return resultUser;
@@ -308,8 +322,13 @@ namespace CommunicationService
             string from = "duogamefei@gmail.com";
             string smtpServer = "smtp.gmail.com";
             int smtpPort = 587;
-            string username = "duogamefei@gmail.com";
-            string password = "rfis qkfp zmub hcft"; //how can i make this secure
+            string username = ConfigurationManager.AppSettings.Get("email");
+            NameValueCollection secretSection = ConfigurationManager.GetSection("localSecrets") as NameValueCollection;
+            string password = "";
+            if (secretSection != null)
+            {
+                password = secretSection["password"]?.ToString();
+            }
 
             try
             {
@@ -324,7 +343,7 @@ namespace CommunicationService
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error sending email: {ex.Message}"); //log
+                log.Error(ex);
                 return -1;
             }
 
@@ -443,6 +462,40 @@ namespace CommunicationService
 
                     resultList.Add(userBlocked);
                 }
+                return resultList;
+            }
+        }
+
+        public List<UserDTO> GetTopTenWinners()
+        {
+            using (var databaseContext = new DuoContext())
+            {
+                List<UserDTO> resultList = new List<UserDTO>();
+
+                List<User> topTenWinners = new List<User>();
+                try
+                {
+                    topTenWinners = databaseContext.Users
+                        .OrderByDescending(user => user.TotalWins)
+                        .Take(10)
+                        .ToList();
+                } 
+                catch (Exception ex)
+                {
+                    log.Error(ex);
+                }
+                
+                foreach (var user in topTenWinners)
+                {
+                    UserDTO userDTO = new UserDTO
+                    {
+                        UserName = user.Username,
+                        TotalWins = (int)user.TotalWins
+                    };
+
+                    resultList.Add(userDTO);
+                }
+
                 return resultList;
             }
         }
