@@ -4,7 +4,11 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
+<<<<<<<< HEAD:Database/DuoDatabaseModel.edmx
     <Schema Namespace="duoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+========
+      <Schema Namespace="duoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+>>>>>>>> FinalBranchXavi(Don't-Touch):Database/DuoContext.edmx
         <EntityType Name="FriendRequests">
           <Key>
             <PropertyRef Name="RequestID" />
@@ -18,8 +22,13 @@
             <PropertyRef Name="FriendshipID" />
           </Key>
           <Property Name="FriendshipID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+<<<<<<<< HEAD:Database/DuoDatabaseModel.edmx
           <Property Name="SenderID" Type="int" />
           <Property Name="ReceiverID" Type="int" />
+========
+          <Property Name="User1" Type="int" />
+          <Property Name="User2" Type="int" />
+>>>>>>>> FinalBranchXavi(Don't-Touch):Database/DuoContext.edmx
         </EntityType>
         <EntityType Name="UserBlocks">
           <Key>
@@ -28,6 +37,10 @@
           <Property Name="UserBlockID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BlockerID" Type="int" />
           <Property Name="BlockedID" Type="int" />
+<<<<<<<< HEAD:Database/DuoDatabaseModel.edmx
+========
+          <Property Name="Reason" Type="varchar" MaxLength="30" />
+>>>>>>>> FinalBranchXavi(Don't-Touch):Database/DuoContext.edmx
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -36,6 +49,10 @@
           <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Username" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
+<<<<<<<< HEAD:Database/DuoDatabaseModel.edmx
+========
+          <Property Name="Password" Type="varchar" MaxLength="64" Nullable="false" />
+>>>>>>>> FinalBranchXavi(Don't-Touch):Database/DuoContext.edmx
           <Property Name="TotalWins" Type="int" />
           <Property Name="Password" Type="varchar" MaxLength="64" Nullable="false" />
         </EntityType>
@@ -83,7 +100,11 @@
               <PropertyRef Name="UserID" />
             </Principal>
             <Dependent Role="Friendships">
+<<<<<<<< HEAD:Database/DuoDatabaseModel.edmx
               <PropertyRef Name="ReceiverID" />
+========
+              <PropertyRef Name="User2" />
+>>>>>>>> FinalBranchXavi(Don't-Touch):Database/DuoContext.edmx
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -145,7 +166,11 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="duoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<<<<<<<< HEAD:Database/DuoDatabaseModel.edmx
         <EntityType Name="FriendRequest">
+========
+        <EntityType Name="FriendRequests">
+>>>>>>>> FinalBranchXavi(Don't-Touch):Database/DuoContext.edmx
           <Key>
             <PropertyRef Name="RequestID" />
           </Key>
@@ -165,15 +190,25 @@
           <NavigationProperty Name="User" Relationship="Self.FK_Friendships_Users1" FromRole="Friendships" ToRole="Users" />
           <NavigationProperty Name="User1" Relationship="Self.FK_Friendships_Users2" FromRole="Friendships" ToRole="Users" />
         </EntityType>
+<<<<<<<< HEAD:Database/DuoDatabaseModel.edmx
         <EntityType Name="UserBlock">
+========
+        <EntityType Name="UserBlocks">
+>>>>>>>> FinalBranchXavi(Don't-Touch):Database/DuoContext.edmx
           <Key>
             <PropertyRef Name="UserBlockID" />
           </Key>
           <Property Name="UserBlockID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="BlockerID" Type="Int32" />
           <Property Name="BlockedID" Type="Int32" />
+<<<<<<<< HEAD:Database/DuoDatabaseModel.edmx
           <NavigationProperty Name="User" Relationship="Self.FK_UserBlocks_Users1" FromRole="UserBlocks" ToRole="Users" />
           <NavigationProperty Name="User1" Relationship="Self.FK_UserBlocks_Users2" FromRole="UserBlocks" ToRole="Users" />
+========
+          <Property Name="Reason" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_UserBlocks_Users1" FromRole="UserBlocks" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK_UserBlocks_Users2" FromRole="UserBlocks" ToRole="Users" />
+>>>>>>>> FinalBranchXavi(Don't-Touch):Database/DuoContext.edmx
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -184,6 +219,7 @@
           <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TotalWins" Type="Int32" />
           <Property Name="Password" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TotalWins" Type="Int32" />
           <NavigationProperty Name="FriendRequests" Relationship="Self.FK_FriendRequests_UsernameReceiver" FromRole="Users" ToRole="FriendRequests" />
           <NavigationProperty Name="FriendRequests1" Relationship="Self.FK_FriendRequests_UsernameSender" FromRole="Users" ToRole="FriendRequests" />
           <NavigationProperty Name="Friendships" Relationship="Self.FK_Friendships_Users1" FromRole="Users" ToRole="Friendships" />
@@ -235,7 +271,11 @@
               <PropertyRef Name="UserID" />
             </Principal>
             <Dependent Role="Friendships">
+<<<<<<<< HEAD:Database/DuoDatabaseModel.edmx
               <PropertyRef Name="ReceiverID" />
+========
+              <PropertyRef Name="User2" />
+>>>>>>>> FinalBranchXavi(Don't-Touch):Database/DuoContext.edmx
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -264,10 +304,17 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DuoContext" annotation:LazyLoadingEnabled="true">
+<<<<<<<< HEAD:Database/DuoDatabaseModel.edmx
           <EntitySet Name="FriendRequests" EntityType="Self.FriendRequest" />
           <EntitySet Name="Friendships" EntityType="Self.Friendship" />
           <EntitySet Name="UserBlocks" EntityType="Self.UserBlock" />
           <EntitySet Name="Users" EntityType="Self.User" />
+========
+          <EntitySet Name="FriendRequests" EntityType="Self.FriendRequests" />
+          <EntitySet Name="Friendships" EntityType="Self.Friendships" />
+          <EntitySet Name="UserBlocks" EntityType="Self.UserBlocks" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+>>>>>>>> FinalBranchXavi(Don't-Touch):Database/DuoContext.edmx
           <AssociationSet Name="FK_FriendRequests_UsernameReceiver" Association="Self.FK_FriendRequests_UsernameReceiver">
             <End Role="Users" EntitySet="Users" />
             <End Role="FriendRequests" EntitySet="FriendRequests" />
@@ -300,7 +347,11 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="duoModelStoreContainer" CdmEntityContainer="DuoContext">
           <EntitySetMapping Name="FriendRequests">
+<<<<<<<< HEAD:Database/DuoDatabaseModel.edmx
             <EntityTypeMapping TypeName="duoModel.FriendRequest">
+========
+            <EntityTypeMapping TypeName="duoModel.FriendRequests">
+>>>>>>>> FinalBranchXavi(Don't-Touch):Database/DuoContext.edmx
               <MappingFragment StoreEntitySet="FriendRequests">
                 <ScalarProperty Name="RequestID" ColumnName="RequestID" />
                 <ScalarProperty Name="SenderID" ColumnName="SenderID" />
@@ -309,29 +360,53 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Friendships">
+<<<<<<<< HEAD:Database/DuoDatabaseModel.edmx
             <EntityTypeMapping TypeName="duoModel.Friendship">
               <MappingFragment StoreEntitySet="Friendships">
                 <ScalarProperty Name="FriendshipID" ColumnName="FriendshipID" />
                 <ScalarProperty Name="SenderID" ColumnName="SenderID" />
                 <ScalarProperty Name="ReceiverID" ColumnName="ReceiverID" />
+========
+            <EntityTypeMapping TypeName="duoModel.Friendships">
+              <MappingFragment StoreEntitySet="Friendships">
+                <ScalarProperty Name="FriendshipID" ColumnName="FriendshipID" />
+                <ScalarProperty Name="User1" ColumnName="User1" />
+                <ScalarProperty Name="User2" ColumnName="User2" />
+>>>>>>>> FinalBranchXavi(Don't-Touch):Database/DuoContext.edmx
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserBlocks">
+<<<<<<<< HEAD:Database/DuoDatabaseModel.edmx
             <EntityTypeMapping TypeName="duoModel.UserBlock">
+========
+            <EntityTypeMapping TypeName="duoModel.UserBlocks">
+>>>>>>>> FinalBranchXavi(Don't-Touch):Database/DuoContext.edmx
               <MappingFragment StoreEntitySet="UserBlocks">
                 <ScalarProperty Name="UserBlockID" ColumnName="UserBlockID" />
                 <ScalarProperty Name="BlockerID" ColumnName="BlockerID" />
                 <ScalarProperty Name="BlockedID" ColumnName="BlockedID" />
+<<<<<<<< HEAD:Database/DuoDatabaseModel.edmx
+========
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+>>>>>>>> FinalBranchXavi(Don't-Touch):Database/DuoContext.edmx
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
+<<<<<<<< HEAD:Database/DuoDatabaseModel.edmx
             <EntityTypeMapping TypeName="duoModel.User">
+========
+            <EntityTypeMapping TypeName="duoModel.Users">
+>>>>>>>> FinalBranchXavi(Don't-Touch):Database/DuoContext.edmx
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+<<<<<<<< HEAD:Database/DuoDatabaseModel.edmx
+========
+                <ScalarProperty Name="Password" ColumnName="Password" />
+>>>>>>>> FinalBranchXavi(Don't-Touch):Database/DuoContext.edmx
                 <ScalarProperty Name="TotalWins" ColumnName="TotalWins" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
