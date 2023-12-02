@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="34a5688321c940a7b6b9933f1793f6e2" Name="Diagram1">
+      <Diagram DiagramId="4e6be9dbe0ad42b7a6f6439b280493af" Name="Diagram1">
         <EntityTypeShape EntityType="duoModel.FriendRequest" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="duoModel.Friendship" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="duoModel.UserBlock" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />

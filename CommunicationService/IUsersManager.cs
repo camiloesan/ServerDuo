@@ -54,7 +54,7 @@ namespace CommunicationService
         bool IsUserAlreadyLoggedIn(int userId);
 
         [OperationContract]
-        int SendConfirmationCode(string email);
+        int SendConfirmationCode(string email, string lang);
 
         [OperationContract]
         bool ModifyPasswordByEmail(string email, string newPassword);

@@ -2,11 +2,7 @@
 <#@ include file="EF6.Utility.CS.ttinclude"#><#@
  output extension=".cs"#><#
 
-<<<<<<<< HEAD:Database/DuoDatabaseModel.Context.tt
 const string inputFile = @"DuoDatabaseModel.edmx";
-========
-const string inputFile = @"DuoContext.edmx";
->>>>>>>> FinalBranchXavi(Don't-Touch):Database/DuoContext.Context.tt
 var textTransform = DynamicTextTransformation.Create(this);
 var code = new CodeGenerationTools(this);
 var ef = new MetadataTools(this);

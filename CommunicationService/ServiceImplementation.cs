@@ -312,25 +312,39 @@ namespace CommunicationService
             return _onlineUsers.ContainsKey(userId);
         }
 
-        public int SendConfirmationCode(string email)
+        public int SendConfirmationCode(string email, string lang)
         {
-            var randomCode = new Random();
-            var confirmationCode = randomCode.Next(1000, 10000);
-
+            Random randomCode = new Random();
+            int confirmationCode = randomCode.Next(1000, 10000);
             string to = email;
-            string subject = "Password reset request"; //internationalize
-            string body = "We have received a request to change your password, if you did it, here's the code you need to enter: \n\n" + confirmationCode;
+            string subject;
+            string body;
+
+            switch (lang)
+            {
+                case "es":
+                    subject = "Petición de reestablecimiento de contraseña";
+                    body = "Hemos recivido una petición para cambiar la contraseña, si lo hiciste, aquí está el código que necesitas ingresar: \n\n" + confirmationCode;
+                    break;
+                case "en":
+                    subject = "Password reset request";
+                    body = "We have received a request to change your password, if you did it, here's the code you need to enter: \n\n" + confirmationCode;
+                    break;
+                case "fr":
+                    subject = "Demande de réinitialisation du mot de passe";
+                    body = "Nous avons reçu une demande de changement de mot de passe, si vous l'avez fait, voici le code que vous devez saisir: \n\n" + confirmationCode;
+                    break;
+                default:
+                    subject = "Password reset request";
+                    body = "We have received a request to change your password, if you did it, here's the code you need to enter: \n\n" + confirmationCode;
+                    break;
+            }
 
             string from = "duogamefei@gmail.com";
             string smtpServer = "smtp.gmail.com";
             int smtpPort = 587;
-            string username = ConfigurationManager.AppSettings.Get("email");
-            NameValueCollection secretSection = ConfigurationManager.GetSection("localSecrets") as NameValueCollection;
-            string password = "";
-            if (secretSection != null)
-            {
-                password = secretSection["password"]?.ToString();
-            }
+            string username = "duogamefei@gmail.com";
+            string password = "rfis qkfp zmub hcft";
 
             try
             {
@@ -795,7 +809,7 @@ namespace CommunicationService
                 {
                     try
                     {
-                        Users user = databaseContext.Users.Where(u => u.UserID == winnerUserId).FirstOrDefault();
+                        User user = databaseContext.Users.Where(u => u.UserID == winnerUserId).FirstOrDefault();
 
                         if (user != null)
                         {
