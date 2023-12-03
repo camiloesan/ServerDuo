@@ -36,13 +36,13 @@ namespace CommunicationService
         void NotifyLeaveParty(int partyCode, string username);
 
         [OperationContract(IsOneWay = true)]
-        void NotifyCloseParty(int partyCode);
+        void NotifyCloseParty(int partyCode, string reason);
 
         [OperationContract(IsOneWay = true)]
         void NotifyStartGame(int partyCode);
 
         [OperationContract(IsOneWay = true)]
-        void NotifyKickPlayer(int partyCode, string username);
+        void NotifyKickPlayer(int partyCode, string username, string reason);
     }
 
     [ServiceContract]
@@ -61,7 +61,7 @@ namespace CommunicationService
         void PlayerLeft(ConcurrentDictionary<string, IPartyManagerCallback> playersInLobby);
 
         [OperationContract]
-        void PlayerKicked();
+        void PlayerKicked(string reason);
 
         [OperationContract]
         void GameStarted();
