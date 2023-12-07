@@ -895,7 +895,7 @@ namespace CommunicationService
 
     public partial class ServiceImplementation : ICardManager
     {
-        //Lists are stored for random card generation
+        //Lists are for random card generation using weights
         private static readonly List<string> _cardColors = new List<string>()
         {
             CardColors.BLUE,
