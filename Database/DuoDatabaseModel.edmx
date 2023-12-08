@@ -37,6 +37,7 @@
           <Property Name="Username" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="TotalWins" Type="int" />
+          <Property Name="PictureID" Type="int" />
           <Property Name="Password" Type="varchar" MaxLength="64" Nullable="false" />
         </EntityType>
         <Association Name="FK_FriendRequests_UsernameReceiver">
@@ -190,6 +191,7 @@
           <NavigationProperty Name="Friendships1" Relationship="Self.FK_Friendships_Users2" FromRole="Users" ToRole="Friendships" />
           <NavigationProperty Name="UserBlocks" Relationship="Self.FK_UserBlocks_Users1" FromRole="Users" ToRole="UserBlocks" />
           <NavigationProperty Name="UserBlocks1" Relationship="Self.FK_UserBlocks_Users2" FromRole="Users" ToRole="UserBlocks" />
+          <Property Name="PictureID" Type="Int32" />
         </EntityType>
         <Association Name="FK_FriendRequests_UsernameReceiver">
           <End Role="Users" Type="Self.User" Multiplicity="0..1" />
@@ -329,6 +331,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="duoModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="PictureID" ColumnName="PictureID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Email" ColumnName="Email" />

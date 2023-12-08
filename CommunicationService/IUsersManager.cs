@@ -9,6 +9,9 @@ namespace CommunicationService
     public interface IUsersManager
     {
         [OperationContract]
+        UserDTO GetUserInfoByUsername(string username);
+
+        [OperationContract]
         bool AddUserToDatabase(UserDTO user);
 
         [OperationContract]
@@ -110,7 +113,11 @@ namespace CommunicationService
         [DataMember]
         public string Email { get; set; }
 
-        [DataMember] public string Password { get; set; }
+        [DataMember]
+        public int PictureID { get; set; }
+
+        [DataMember] 
+        public string Password { get; set; }
     }
 
     [DataContract]

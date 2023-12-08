@@ -30,6 +30,7 @@ namespace Database
         public string Email { get; set; }
         public Nullable<int> TotalWins { get; set; }
         public string Password { get; set; }
+        public Nullable<int> PictureID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FriendRequest> FriendRequests { get; set; }

@@ -23,6 +23,7 @@ namespace CommunicationService
                     Username = user.UserName,
                     Email = user.Email,
                     TotalWins = 0,
+                    PictureID = 0,
                     Password = user.Password
                 };
 
@@ -107,7 +108,8 @@ namespace CommunicationService
                     ID = databaseUser.UserID,
                     UserName = databaseUser.Username,
                     TotalWins = (int)databaseUser.TotalWins,
-                    Email = databaseUser.Email
+                    Email = databaseUser.Email,
+                    PictureID = (int)databaseUser.PictureID
                 };
                 return resultUser;
             }
@@ -161,6 +163,7 @@ namespace CommunicationService
         {
             using (var databaseContext = new DuoContext())
             {
+                bool result = true;
                 Friendship friendship = new Friendship
                 {
                     SenderID = friendRequest.SenderID,
@@ -175,12 +178,12 @@ namespace CommunicationService
                     databaseContext.FriendRequests.Remove(friendRequestToDelete);
                     databaseContext.SaveChanges();
                 }
-                catch (DbUpdateException ex)
+                catch (Exception ex)
                 {
                     log.Error(ex);
-                    return false;
+                    result = false;
                 }
-                return true;
+                return result;
             }
         }
 
@@ -188,18 +191,19 @@ namespace CommunicationService
         {
             using (var databaseContext = new DuoContext())
             {
+                bool result = true;
                 try
                 {
                     FriendRequest requestToDelete = databaseContext.FriendRequests.Find(friendRequestId);
                     databaseContext.FriendRequests.Remove(requestToDelete);
                     databaseContext.SaveChanges();
                 }
-                catch (DbUpdateException ex)
+                catch (Exception ex)
                 {
                     log.Error(ex);
-                    return false;
+                    result = false;
                 }
-                return true;
+                return result;
             }
         }
 
@@ -285,8 +289,9 @@ namespace CommunicationService
         {
             using (var databaseContext = new DuoContext())
             {
-                int senderId;
-                int receiverId;
+                bool result = true;
+                int senderId = 0;
+                int receiverId = 0;
                 try
                 {
                     senderId = databaseContext.Users.First(user => user.Username == usernameSender).UserID;
@@ -294,15 +299,22 @@ namespace CommunicationService
                 }
                 catch
                 {
-                    return false;
+                    result = false;
                 }
 
-                FriendRequest friendRequestEntity = databaseContext.FriendRequests
-                    .FirstOrDefault(friendRequest =>
-                    (friendRequest.SenderID == senderId && friendRequest.ReceiverID == receiverId)
-                    || (friendRequest.SenderID == receiverId && friendRequest.ReceiverID == senderId));
+                try
+                {
+                    FriendRequest friendRequestEntity = databaseContext.FriendRequests
+                        .First(friendRequest =>
+                        (friendRequest.SenderID == senderId && friendRequest.ReceiverID == receiverId)
+                        || (friendRequest.SenderID == receiverId && friendRequest.ReceiverID == senderId));
+                } 
+                catch
+                {
+                    result = false;
+                }
 
-                return friendRequestEntity.RequestID != 0;
+                return result;
             }
         }
 
@@ -310,8 +322,11 @@ namespace CommunicationService
         {
             using (var databaseContext = new DuoContext())
             {
-                User userSender;
-                User userReceiver;
+                bool result = true;
+                User userSender = new User();
+                userSender.UserID = 0;
+                User userReceiver = new User();
+                userReceiver.UserID = 0;
                 try
                 {
                     userSender = databaseContext.Users
@@ -321,15 +336,22 @@ namespace CommunicationService
                 }
                 catch
                 {
-                    return false;
+                    result = false;
                 }
 
-                var friendshipEntity = databaseContext.Friendships
-                    .FirstOrDefault(friendship =>
-                    (friendship.SenderID == userSender.UserID && friendship.ReceiverID == userReceiver.UserID)
-                    || (friendship.SenderID == userReceiver.UserID && friendship.ReceiverID == userSender.UserID));
+                try
+                {
+                    Friendship friendshipEntity = databaseContext.Friendships
+                            .First(friendship =>
+                            (friendship.SenderID == userSender.UserID && friendship.ReceiverID == userReceiver.UserID)
+                            || (friendship.SenderID == userReceiver.UserID && friendship.ReceiverID == userSender.UserID));
+                }
+                catch
+                {
+                    result = false;
+                }
 
-                return friendshipEntity.FriendshipID != 0;
+                return false;
             }
         }
 
@@ -396,6 +418,7 @@ namespace CommunicationService
         {
             using (var databaseContext = new DuoContext())
             {
+                bool result = true;
                 try
                 {
                     UserBlock userBlocks = new UserBlock
@@ -408,13 +431,13 @@ namespace CommunicationService
                         .First(block => block.BlockerID == userBlocks.BlockerID 
                         && block.BlockedID == userBlocks.BlockedID);
                 }
-                catch (DbUpdateException ex)
+                catch
                 {
-                    log.Error(ex);
-                    return false;
+                    result = false;
                 }
+
+                return result;
             }
-            return true;
         }
 
         public bool ModifyPasswordByEmail(string email, string newPassword) 
@@ -539,6 +562,32 @@ namespace CommunicationService
                 }
 
                 return resultList;
+            }
+        }
+
+        public UserDTO GetUserInfoByUsername(string username)
+        {
+            using (var databaseContext = new DuoContext())
+            {
+                User databaseUser = new User();
+                try
+                {
+                    databaseUser = databaseContext.Users
+                        .First(user => user.Username == username);
+                }
+                catch
+                {
+                    return null;
+                }
+
+                var resultUser = new UserDTO
+                {
+                    ID = databaseUser.UserID,
+                    UserName = databaseUser.Username,
+                    TotalWins = (int)databaseUser.TotalWins,
+                    PictureID = (int)databaseUser.PictureID
+                };
+                return resultUser;
             }
         }
     }
