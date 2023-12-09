@@ -74,12 +74,6 @@ namespace CommunicationService
             }
         }
 
-        public List<string> GetOnlineFriends(string username)
-        {
-            //TODO
-            return null;
-        }
-
         public bool IsEmailTaken(string email)
         {
             using (var databaseContext = new DuoContext())
@@ -232,6 +226,25 @@ namespace CommunicationService
             }
         }
 
+        public List<FriendshipDTO> GetOnlineFriends(int userId)
+        {
+            List<FriendshipDTO> friendList = GetFriendsList(userId);
+            List<FriendshipDTO> onlineFriends = new List<FriendshipDTO>();
+
+            foreach (var friend in friendList)
+            {
+                if (friend.Friend1ID != userId && _onlineUsers.ContainsKey(friend.Friend1ID))
+                {
+                    onlineFriends.Add(friend);
+                }
+                else if (friend.Friend2ID != userId && _onlineUsers.ContainsKey(friend.Friend2ID))
+                {
+                    onlineFriends.Add(friend);
+                }
+            }
+            return onlineFriends;
+        }
+
         public bool DeleteUserFromDatabaseByUsername(string username)
         {
             using (var databaseContext = new DuoContext())
@@ -351,7 +364,7 @@ namespace CommunicationService
                     result = false;
                 }
 
-                return false;
+                return result;
             }
         }
 

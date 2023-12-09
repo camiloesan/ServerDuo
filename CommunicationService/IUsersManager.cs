@@ -48,7 +48,7 @@ namespace CommunicationService
         List<FriendshipDTO> GetFriendsList(int userId);
 
         [OperationContract]
-        List<string> GetOnlineFriends(string username);
+        List<FriendshipDTO> GetOnlineFriends(int userId);
 
         [OperationContract]
         bool DeleteFriendshipById(int friendshipId);
