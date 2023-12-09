@@ -444,6 +444,7 @@ namespace CommunicationService
         {
             using (var databaseContext = new DuoContext())
             {
+                bool result = true;
                 try
                 {
                     User userToModify = databaseContext.Users
@@ -454,10 +455,10 @@ namespace CommunicationService
                 catch (DbUpdateException ex)
                 {
                     log.Error(ex);
-                    return false;
+                    result = false;
                 }
+                return result;
             }
-            return true;
         }
 
         public bool BlockUserByUsername(string blockerUsername, string blockedUsername)
@@ -588,6 +589,27 @@ namespace CommunicationService
                     PictureID = (int)databaseUser.PictureID
                 };
                 return resultUser;
+            }
+        }
+
+        public bool UpdateProfilePictureByUserId(int userId, int pictureId)
+        {
+            using (var databaseContext = new DuoContext())
+            {
+                bool result = true;
+                try
+                {
+                    User userToModify = databaseContext.Users
+                        .First(user => user.UserID == userId);
+                    userToModify.PictureID = pictureId;
+                    databaseContext.SaveChanges();
+                }
+                catch (DbUpdateException ex)
+                {
+                    log.Error(ex);
+                    result = false;
+                }
+                return result;
             }
         }
     }
@@ -944,7 +966,7 @@ namespace CommunicationService
 
     public partial class ServiceImplementation : ICardManager
     {
-        //Lists are for random card generation using weights
+        //Lists are stored for random card generation
         private static readonly List<string> _cardColors = new List<string>()
         {
             CardColors.BLUE,

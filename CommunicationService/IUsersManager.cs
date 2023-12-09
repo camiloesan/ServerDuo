@@ -9,6 +9,9 @@ namespace CommunicationService
     public interface IUsersManager
     {
         [OperationContract]
+        bool UpdateProfilePictureByUserId(int userId, int pictureId);
+
+        [OperationContract]
         UserDTO GetUserInfoByUsername(string username);
 
         [OperationContract]
