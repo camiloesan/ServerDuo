@@ -9,6 +9,7 @@ using System.Net.Mail;
 using System.ServiceModel;
 using System.Data.Entity;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace CommunicationService
 {
@@ -249,25 +250,28 @@ namespace CommunicationService
         {
             using (var databaseContext = new DuoContext())
             {
+                bool result = true;
                 User userEntity = databaseContext.Users.First(user => user.Username == username);
 
                 if (userEntity == null)
                 {
-                    return false;
+                    result = false;
                 }
-                
-                try
+                else
                 {
-                    databaseContext.Users.Remove(userEntity);
-                    databaseContext.SaveChanges();
-                }
-                catch (DbUpdateException ex)
-                {
-                    log.Error(ex);
-                    return false;
+                    try
+                    {
+                        databaseContext.Users.Remove(userEntity);
+                        databaseContext.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        log.Error(ex);
+                        result = false;
+                    }
                 }
 
-                return true;
+                return result;
             }
         }
 
@@ -405,7 +409,9 @@ namespace CommunicationService
             string smtpServer = "smtp.gmail.com";
             int smtpPort = 587;
             string username = "duogamefei@gmail.com";
-            string password = "rfis qkfp zmub hcft";
+            string encryptedPassword = ConfigurationManager.AppSettings["EncryptedPassword"];
+            string key = ConfigurationManager.AppSettings["Key"];
+            string password = CryptoService.DecryptString(key, encryptedPassword);
 
             try
             {
@@ -617,7 +623,7 @@ namespace CommunicationService
                     userToModify.PictureID = pictureId;
                     databaseContext.SaveChanges();
                 }
-                catch (DbUpdateException ex)
+                catch (Exception ex)
                 {
                     log.Error(ex);
                     result = false;

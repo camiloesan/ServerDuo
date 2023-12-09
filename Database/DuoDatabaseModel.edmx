@@ -89,7 +89,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserBlocks_Users1">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="UserBlocks" Type="Self.UserBlocks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">

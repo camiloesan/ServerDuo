@@ -96,9 +96,6 @@ namespace CommunicationService
     {
         [OperationContract]
         void UserLogged(string username);
-
-        [OperationContract]
-        void UserLoggedOut(string username);
     }
 
     [DataContract]
