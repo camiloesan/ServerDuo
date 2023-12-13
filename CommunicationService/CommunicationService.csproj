@@ -117,6 +117,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CryptoService.cs" />
     <Compile Include="IMatchManager.cs" />
     <Compile Include="IPartyManager.cs" />
     <Compile Include="IUsersManager.cs" />
