@@ -15,7 +15,7 @@ namespace CommunicationService
         UserDTO GetUserInfoByUsername(string username);
 
         [OperationContract]
-        bool AddUserToDatabase(UserDTO user);
+        int AddUserToDatabase(UserDTO user);
 
         [OperationContract]
         bool DeleteUserFromDatabaseByUsername(String username);

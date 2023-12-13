@@ -15,7 +15,7 @@ namespace CommunicationService
 {
     public partial class ServiceImplementation : IUsersManager
     {
-        public bool AddUserToDatabase(UserDTO user)
+        public int AddUserToDatabase(UserDTO user)
         {
             using (var databaseContext = new DuoContext())
             {
@@ -28,17 +28,17 @@ namespace CommunicationService
                     Password = user.Password
                 };
 
+                int result = 0;
                 try
                 {
                     databaseContext.Users.Add(databaseUser);
-                    databaseContext.SaveChanges();
+                    result = databaseContext.SaveChanges();
                 }
                 catch (DbUpdateException ex)
                 {
                     log.Error(ex);
-                    return false;
                 }
-                return true;
+                return result;
             }
         }
 
@@ -646,7 +646,6 @@ namespace CommunicationService
 
             partyContextsDictionary.TryAdd(hostUsername, callback);
             _activePartiesDictionary.TryAdd(partyCode, partyContextsDictionary);
-
             callback.PartyCreated(partyContextsDictionary);
         }
 
