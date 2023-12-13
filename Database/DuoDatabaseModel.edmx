@@ -53,7 +53,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_FriendRequests_UsernameSender">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="FriendRequests" Type="Self.FriendRequests" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -65,7 +67,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Friendships_Users1">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Friendships" Type="Self.Friendships" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">

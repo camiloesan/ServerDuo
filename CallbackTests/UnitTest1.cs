@@ -1,4 +1,4 @@
-namespace CommunicationServiceTests
+namespace CallbackTests
 {
     [TestClass]
     public class UnitTest1
@@ -6,7 +6,6 @@ namespace CommunicationServiceTests
         [TestMethod]
         public void TestMethod1()
         {
-
         }
     }
 }
