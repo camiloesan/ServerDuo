@@ -52,7 +52,7 @@ namespace CommunicationService
                         .Where(friendRequest => friendRequest.ReceiverID == userId)
                         .ToList();
                 } 
-                catch (Exception ex)
+                catch (DbUpdateException ex)
                 {
                     log.Error(ex);
                 }
