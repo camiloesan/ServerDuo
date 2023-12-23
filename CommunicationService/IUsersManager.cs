@@ -88,7 +88,7 @@ namespace CommunicationService
         void NotifyLogIn(UserDTO user);
 
         [OperationContract]
-        void NotifyLogOut(UserDTO user);
+        void NotifyLogOut(UserDTO user, bool isHost);
     }
 
     [ServiceContract]
@@ -118,6 +118,9 @@ namespace CommunicationService
 
         [DataMember] 
         public string Password { get; set; }
+
+        [DataMember]
+        public int PartyCode { get; set; }
     }
 
     [DataContract]

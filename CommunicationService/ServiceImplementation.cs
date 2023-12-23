@@ -719,8 +719,9 @@ namespace CommunicationService
             }
         }
 
-        public void NotifyCloseParty(int partyCode, string reason)
+        public void NotifyCloseParty(int partyCode, string hostName, string reason)
         {
+            _activePartiesDictionary[partyCode].TryRemove(hostName, out _);
             foreach (var player in _activePartiesDictionary[partyCode])
             {
                 player.Value.PlayerKicked(reason);
@@ -739,7 +740,6 @@ namespace CommunicationService
         public void NotifyKickPlayer(int partyCode, string username, string reason)
         {
             _activePartiesDictionary[partyCode][username].PlayerKicked(reason);
-
             _activePartiesDictionary[partyCode].TryRemove(username, out _);
 
             foreach (var player in _activePartiesDictionary[partyCode])
@@ -804,8 +804,16 @@ namespace CommunicationService
             }
         }
 
-        public void NotifyLogOut(UserDTO user)
+        public void NotifyLogOut(UserDTO user, bool isHost)
         {
+            if (isHost)
+            {
+                NotifyCloseParty(user.PartyCode, user.UserName, "");
+            }
+            else if (user.PartyCode != 0)
+            {
+                NotifyLeaveParty(user.PartyCode, user.UserName);
+            }
             _onlineUsers.TryRemove(user.ID, out _);
         }
     }
