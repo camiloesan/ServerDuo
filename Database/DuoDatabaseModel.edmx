@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="duoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BannedUsers">
+          <Key>
+            <PropertyRef Name="BanID" />
+          </Key>
+          <Property Name="BanID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserBannedID" Type="int" />
+        </EntityType>
         <EntityType Name="FriendRequests">
           <Key>
             <PropertyRef Name="RequestID" />
@@ -28,6 +35,7 @@
           <Property Name="UserBlockID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BlockerID" Type="int" />
           <Property Name="BlockedID" Type="int" />
+          <Property Name="Reason" Type="varchar" MaxLength="70" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -40,6 +48,20 @@
           <Property Name="PictureID" Type="int" />
           <Property Name="Password" Type="varchar" MaxLength="64" Nullable="false" />
         </EntityType>
+        <Association Name="FK_BannedUsers_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BannedUsers" Type="Self.BannedUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="BannedUsers">
+              <PropertyRef Name="UserBannedID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_FriendRequests_UsernameReceiver">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="FriendRequests" Type="Self.FriendRequests" Multiplicity="*" />
@@ -119,10 +141,15 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="duoModelStoreContainer">
+          <EntitySet Name="BannedUsers" EntityType="Self.BannedUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FriendRequests" EntityType="Self.FriendRequests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Friendships" EntityType="Self.Friendships" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserBlocks" EntityType="Self.UserBlocks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BannedUsers_Users" Association="Self.FK_BannedUsers_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="BannedUsers" EntitySet="BannedUsers" />
+          </AssociationSet>
           <AssociationSet Name="FK_FriendRequests_UsernameReceiver" Association="Self.FK_FriendRequests_UsernameReceiver">
             <End Role="Users" EntitySet="Users" />
             <End Role="FriendRequests" EntitySet="FriendRequests" />
@@ -181,6 +208,7 @@
           <Property Name="BlockedID" Type="Int32" />
           <NavigationProperty Name="User" Relationship="Self.FK_UserBlocks_Users1" FromRole="UserBlocks" ToRole="Users" />
           <NavigationProperty Name="User1" Relationship="Self.FK_UserBlocks_Users2" FromRole="UserBlocks" ToRole="Users" />
+          <Property Name="Reason" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -198,6 +226,7 @@
           <NavigationProperty Name="UserBlocks" Relationship="Self.FK_UserBlocks_Users1" FromRole="Users" ToRole="UserBlocks" />
           <NavigationProperty Name="UserBlocks1" Relationship="Self.FK_UserBlocks_Users2" FromRole="Users" ToRole="UserBlocks" />
           <Property Name="PictureID" Type="Int32" />
+          <NavigationProperty Name="BannedUsers" Relationship="duoModel.FK_BannedUsers_Users" FromRole="User" ToRole="BannedUser" />
         </EntityType>
         <Association Name="FK_FriendRequests_UsernameReceiver">
           <End Role="Users" Type="Self.User" Multiplicity="0..1" />
@@ -300,7 +329,34 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="UserBlocks" EntitySet="UserBlocks" />
           </AssociationSet>
+          <EntitySet Name="BannedUsers" EntityType="duoModel.BannedUser" />
+          <AssociationSet Name="FK_BannedUsers_Users" Association="duoModel.FK_BannedUsers_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="BannedUser" EntitySet="BannedUsers" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="BannedUser">
+          <Key>
+            <PropertyRef Name="BanID" />
+          </Key>
+          <Property Name="BanID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserBannedID" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="duoModel.FK_BannedUsers_Users" FromRole="BannedUser" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_BannedUsers_Users">
+          <End Type="duoModel.User" Role="User" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="duoModel.BannedUser" Role="BannedUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="BannedUser">
+              <PropertyRef Name="UserBannedID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -328,6 +384,7 @@
           <EntitySetMapping Name="UserBlocks">
             <EntityTypeMapping TypeName="duoModel.UserBlock">
               <MappingFragment StoreEntitySet="UserBlocks">
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
                 <ScalarProperty Name="UserBlockID" ColumnName="UserBlockID" />
                 <ScalarProperty Name="BlockerID" ColumnName="BlockerID" />
                 <ScalarProperty Name="BlockedID" ColumnName="BlockedID" />
@@ -343,6 +400,14 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="TotalWins" ColumnName="TotalWins" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BannedUsers">
+            <EntityTypeMapping TypeName="duoModel.BannedUser">
+              <MappingFragment StoreEntitySet="BannedUsers">
+                <ScalarProperty Name="UserBannedID" ColumnName="UserBannedID" />
+                <ScalarProperty Name="BanID" ColumnName="BanID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

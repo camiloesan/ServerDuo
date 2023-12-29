@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BannedUser.cs">
+      <DependentUpon>DuoDatabaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DuoDatabaseModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

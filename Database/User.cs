@@ -23,6 +23,7 @@ namespace Database
             this.Friendships1 = new HashSet<Friendship>();
             this.UserBlocks = new HashSet<UserBlock>();
             this.UserBlocks1 = new HashSet<UserBlock>();
+            this.BannedUsers = new HashSet<BannedUser>();
         }
     
         public int UserID { get; set; }
@@ -44,5 +45,7 @@ namespace Database
         public virtual ICollection<UserBlock> UserBlocks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserBlock> UserBlocks1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BannedUser> BannedUsers { get; set; }
     }
 }
