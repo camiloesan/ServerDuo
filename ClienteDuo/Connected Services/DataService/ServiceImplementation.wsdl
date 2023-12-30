@@ -224,6 +224,12 @@
   <wsdl:message name="IUsersManager_GetTopTenWinners_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTopTenWinnersResponse" />
   </wsdl:message>
+  <wsdl:message name="IUsersManager_IsUserBanned_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsUserBanned" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_IsUserBanned_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsUserBannedResponse" />
+  </wsdl:message>
   <wsdl:message name="IUserConnectionHandler_NotifyLogIn_InputMessage">
     <wsdl:part name="parameters" element="tns:NotifyLogIn" />
   </wsdl:message>
@@ -236,11 +242,17 @@
   <wsdl:message name="IUserConnectionHandler_NotifyLogOut_OutputMessage">
     <wsdl:part name="parameters" element="tns:NotifyLogOutResponse" />
   </wsdl:message>
-  <wsdl:message name="IUserConnectionHandler_UserLogged_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:UserLogged" />
+  <wsdl:message name="IUserConnectionHandler_NotifyGuestLeft_InputMessage">
+    <wsdl:part name="parameters" element="tns:NotifyGuestLeft" />
   </wsdl:message>
-  <wsdl:message name="IUserConnectionHandler_UserLogged_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:UserLoggedResponse" />
+  <wsdl:message name="IUserConnectionHandler_NotifyGuestLeft_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NotifyGuestLeftResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserConnectionHandler_LogOut_InputMessage">
+    <wsdl:part name="parameters" element="tns:LogOut" />
+  </wsdl:message>
+  <wsdl:message name="IUserConnectionHandler_LogOut_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogOutResponse" />
   </wsdl:message>
   <wsdl:message name="IPartyManager_NotifyCreateParty_InputMessage">
     <wsdl:part name="parameters" element="tns:NotifyCreateParty" />
@@ -504,6 +516,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/GetTopTenWinners" message="tns:IUsersManager_GetTopTenWinners_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/GetTopTenWinnersResponse" message="tns:IUsersManager_GetTopTenWinners_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="IsUserBanned">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/IsUserBanned" message="tns:IUsersManager_IsUserBanned_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/IsUserBannedResponse" message="tns:IUsersManager_IsUserBanned_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IUserConnectionHandler">
     <wsdl:operation name="NotifyLogIn">
@@ -514,9 +530,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IUserConnectionHandler/NotifyLogOut" message="tns:IUserConnectionHandler_NotifyLogOut_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserConnectionHandler/NotifyLogOutResponse" message="tns:IUserConnectionHandler_NotifyLogOut_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="UserLogged">
-      <wsdl:output wsaw:Action="http://tempuri.org/IUserConnectionHandler/UserLogged" message="tns:IUserConnectionHandler_UserLogged_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IUserConnectionHandler/UserLoggedResponse" message="tns:IUserConnectionHandler_UserLogged_InputCallbackMessage" />
+    <wsdl:operation name="NotifyGuestLeft">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserConnectionHandler/NotifyGuestLeft" message="tns:IUserConnectionHandler_NotifyGuestLeft_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserConnectionHandler/NotifyGuestLeftResponse" message="tns:IUserConnectionHandler_NotifyGuestLeft_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LogOut">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserConnectionHandler/LogOut" message="tns:IUserConnectionHandler_LogOut_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserConnectionHandler/LogOutResponse" message="tns:IUserConnectionHandler_LogOut_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IPartyManager">
@@ -869,6 +889,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="IsUserBanned">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/IsUserBanned" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="NetTcpBinding_IUserConnectionHandler" type="tns:IUserConnectionHandler">
     <wsp:PolicyReference URI="#NetTcpBinding_IUserConnectionHandler_policy" />
@@ -891,8 +920,17 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UserLogged">
-      <soap12:operation soapAction="http://tempuri.org/IUserConnectionHandler/UserLogged" style="document" />
+    <wsdl:operation name="NotifyGuestLeft">
+      <soap12:operation soapAction="http://tempuri.org/IUserConnectionHandler/NotifyGuestLeft" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogOut">
+      <soap12:operation soapAction="http://tempuri.org/IUserConnectionHandler/LogOut" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

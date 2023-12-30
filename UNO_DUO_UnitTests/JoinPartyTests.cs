@@ -19,7 +19,7 @@ namespace ClienteDuo.Tests
         [TestInitialize]
         public void Init()
         {
-            _lobby = new Lobby();
+            _lobby = new Lobby(hostUsername);
             partyCode = _lobby.CreateNewParty(hostUsername);
         }
 

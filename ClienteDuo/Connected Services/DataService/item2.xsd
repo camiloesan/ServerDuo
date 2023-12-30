@@ -4,6 +4,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="PartyCode" type="xs:int" />
       <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PictureID" type="xs:int" />
       <xs:element minOccurs="0" name="TotalWins" type="xs:int" />
@@ -55,6 +56,7 @@
       <xs:element minOccurs="0" name="BlockID" type="xs:int" />
       <xs:element minOccurs="0" name="BlockedID" type="xs:int" />
       <xs:element minOccurs="0" name="BlockedUsername" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Reason" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="UserBlockedDTO" nillable="true" type="tns:UserBlockedDTO" />
