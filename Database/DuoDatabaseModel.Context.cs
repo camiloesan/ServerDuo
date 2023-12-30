@@ -29,5 +29,6 @@ namespace Database
         public virtual DbSet<Friendship> Friendships { get; set; }
         public virtual DbSet<UserBlock> UserBlocks { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<BannedUser> BannedUsers { get; set; }
     }
 }

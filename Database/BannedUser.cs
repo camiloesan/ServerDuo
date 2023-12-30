@@ -12,14 +12,11 @@ namespace Database
     using System;
     using System.Collections.Generic;
     
-    public partial class UserBlock
+    public partial class BannedUser
     {
-        public int UserBlockID { get; set; }
-        public Nullable<int> BlockerID { get; set; }
-        public Nullable<int> BlockedID { get; set; }
-        public string Reason { get; set; }
+        public int BanID { get; set; }
+        public Nullable<int> UserBannedID { get; set; }
     
         public virtual User User { get; set; }
-        public virtual User User1 { get; set; }
     }
 }

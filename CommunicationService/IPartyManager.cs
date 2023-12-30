@@ -36,7 +36,7 @@ namespace CommunicationService
         void NotifyLeaveParty(int partyCode, string username);
 
         [OperationContract(IsOneWay = true)]
-        void NotifyCloseParty(int partyCode, string reason);
+        void NotifyCloseParty(int partyCode, string hostName, string reason);
 
         [OperationContract(IsOneWay = true)]
         void NotifyStartGame(int partyCode);
