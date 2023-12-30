@@ -1,24 +1,13 @@
-﻿using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace ClienteDuo.Pages
 {
-    public partial class Card: UserControl
+    public partial class Card : UserControl
     {
         bool _isSelected;
-        string _number; 
+        string _number;
         string _color;
 
         public Card()
@@ -31,10 +20,10 @@ namespace ClienteDuo.Pages
 
         public string Color
         {
-            set 
-            { 
-                _color = value; 
-                _colorRectangle.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom(_color)); 
+            set
+            {
+                _color = value;
+                _colorRectangle.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom(_color));
             }
             get => _color;
         }

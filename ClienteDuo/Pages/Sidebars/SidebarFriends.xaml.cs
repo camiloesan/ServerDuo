@@ -14,12 +14,12 @@ namespace ClienteDuo.Pages.Sidebars
         private SidebarAddFriend _sidebarAddFriend;
         private SidebarFriendRequests _sidebarFriendRequests;
         private SidebarBlockedUsers _sidebarBlockedUsers;
-        private IEnumerable<FriendshipDTO> _onlineFriends;
+        private readonly IEnumerable<FriendshipDTO> _onlineFriends;
 
         public SidebarFriends()
         {
             InitializeComponent();
-            _onlineFriends = GetOnlineFriends(SessionDetails.UserId);
+            _onlineFriends = UsersManager.GetOnlineFriends(SessionDetails.UserId);
             InitializeBars();
             FillFriendsPanel();
         }
@@ -51,13 +51,17 @@ namespace ClienteDuo.Pages.Sidebars
             IEnumerable<FriendshipDTO> friendsList = new List<FriendshipDTO>();
             try
             {
-                friendsList = GetFriendsListByUserId(SessionDetails.UserId);
+                friendsList = UsersManager.GetFriendsListByUserId(SessionDetails.UserId);
             }
             catch (CommunicationException)
             {
-                MainWindow.ShowMessageBox(Properties.Resources.DlgServiceException, MessageBoxImage.Error);
+                SessionDetails.AbortOperation();
             }
-            
+            catch (TimeoutException)
+            {
+                SessionDetails.AbortOperation();
+            }
+
             foreach (FriendshipDTO friend in friendsList)
             {
                 if (friend.Friend1ID != SessionDetails.UserId)
@@ -135,7 +139,7 @@ namespace ClienteDuo.Pages.Sidebars
                 Foreground = new SolidColorBrush(Colors.White),
                 Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#FF6B472B"),
                 BorderBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#FF452308"),
-                Margin = new Thickness(0,0,5,0),
+                Margin = new Thickness(0, 0, 5, 0),
                 DataContext = friendshipUsernameTuple
             };
             btnViewProfile.Click += ViewProfileEvent;
@@ -149,7 +153,7 @@ namespace ClienteDuo.Pages.Sidebars
                 Foreground = new SolidColorBrush(Colors.White),
                 Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#FF6B472B"),
                 BorderBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#FF452308"),
-                Margin = new Thickness(5,0,0,0),
+                Margin = new Thickness(5, 0, 0, 0),
                 DataContext = friendshipId
             };
             btnUnfriend.Click += UnfriendEvent;
@@ -173,13 +177,17 @@ namespace ClienteDuo.Pages.Sidebars
                 bool result = false;
                 try
                 {
-                    result = DeleteFriendshipById(friendshipId);
+                    result = UsersManager.DeleteFriendshipById(friendshipId);
                 }
                 catch (CommunicationException)
                 {
-                    MainWindow.ShowMessageBox(Properties.Resources.DlgServiceException, MessageBoxImage.Error);
+                    SessionDetails.AbortOperation();
                 }
-               
+                catch (TimeoutException)
+                {
+                    SessionDetails.AbortOperation();
+                }
+
                 if (result)
                 {
                     MainWindow.ShowMessageBox(Properties.Resources.DlgUnfriend, MessageBoxImage.Information);
@@ -201,25 +209,6 @@ namespace ClienteDuo.Pages.Sidebars
         private void BtnAddFriendEvent(object sender, RoutedEventArgs e)
         {
             _sidebarAddFriend.Visibility = Visibility.Visible;
-        }
-
-        private IEnumerable<FriendshipDTO> GetOnlineFriends(int userId)
-        {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            return usersManagerClient.GetOnlineFriends(userId);
-        }
-
-        
-        private IEnumerable<FriendshipDTO> GetFriendsListByUserId(int userId)
-        {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            return usersManagerClient.GetFriendsList(userId);
-        }
-
-        private bool DeleteFriendshipById(int friendshipId)
-        {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            return usersManagerClient.DeleteFriendshipById(friendshipId);
         }
 
         private void BtnBlockedUsersEvent(object sender, RoutedEventArgs e)

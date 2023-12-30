@@ -26,8 +26,7 @@ namespace ClienteDuo.TestClasses
 
         public void UpdateTableCards()
         {
-            //Get cards from CardManagerClient and show them into the GUI
-            //Unimplemented since it's not relevant to current testing scope
+            //Get cards from CardManagerClient
         }
 
         public static bool IsGameActive { get; set; } = true;

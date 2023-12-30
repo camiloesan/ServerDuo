@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ClienteDuo.Pages"
         mc:Ignorable="d"
         Title="Duo" Height="600" Width="1000">
-    <Grid Background="{DynamicResource Background}">
+    <Grid x:Name="MainGrid" Background="{DynamicResource Background}">
         
     </Grid>
 </Window>

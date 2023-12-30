@@ -2,13 +2,10 @@
 using ClienteDuo.Pages.Sidebars;
 using ClienteDuo.Utilities;
 using System;
-using System.Security.Cryptography;
 using System.ServiceModel;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace ClienteDuo.Pages
 {
@@ -18,7 +15,6 @@ namespace ClienteDuo.Pages
         {
             InitializeComponent();
         }
-
         private void BtnLoginEvent(object sender, RoutedEventArgs e)
         {
             CreateSession();
@@ -34,59 +30,76 @@ namespace ClienteDuo.Pages
 
         private void CreateSession()
         {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
             string username = TBoxUsername.Text;
             string password = TBoxPassword.Password;
-            
+
             UserDTO loggedUser = null;
+            bool result = true;
+            bool isUserBanned = false;
             try
             {
-                loggedUser = AreCredentialsValid(username, password);
+                loggedUser = UsersManager.AreCredentialsValid(username, password);
+                if (loggedUser != null)
+                {
+                    isUserBanned = UsersManager.IsUserBanned(loggedUser.ID);
+                }
             }
             catch (CommunicationException)
             {
-                MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
+                result = false;
+                SessionDetails.AbortOperation();
+            }
+            catch (TimeoutException)
+            {
+                result = false;
+                SessionDetails.AbortOperation();
             }
 
-            if (loggedUser == null)
+            if (result)
             {
-                MainWindow.ShowMessageBox(Properties.Resources.DlgFailedLogin, MessageBoxImage.Warning);
-            }
-            else if (IsUserLoggedIn(loggedUser.ID))
-            {
-                MainWindow.ShowMessageBox(Properties.Resources.DlgUserAlreadyLoggedIn, MessageBoxImage.Warning);
-            }
-            else
-            {
-                SessionDetails.UserId = loggedUser.ID;
-                SessionDetails.Username = loggedUser.UserName;
-                SessionDetails.Email = loggedUser.Email;
-                SessionDetails.TotalWins = loggedUser.TotalWins;
-                SessionDetails.PictureID = loggedUser.PictureID;
-                SessionDetails.IsGuest = false;
-
-                UserDTO user = new UserDTO
+                if (loggedUser == null)
                 {
-                    UserName = SessionDetails.Username,
-                    ID = SessionDetails.UserId
-                };
+                    MainWindow.ShowMessageBox(Properties.Resources.DlgFailedLogin, MessageBoxImage.Warning);
+                }
+                else if (isUserBanned)
+                {
+                    MainWindow.ShowMessageBox(Properties.Resources.DlgLoginBanned, MessageBoxImage.Warning);
+                }
+                else if (UsersManager.IsUserLoggedIn(loggedUser.UserName))
+                {
+                    MainWindow.ShowMessageBox(Properties.Resources.DlgUserAlreadyLoggedIn, MessageBoxImage.Warning);
+                }
+                else
+                {
+                    SessionDetails.UserId = loggedUser.ID;
+                    SessionDetails.Username = loggedUser.UserName;
+                    SessionDetails.Email = loggedUser.Email;
+                    SessionDetails.TotalWins = loggedUser.TotalWins;
+                    SessionDetails.PictureID = loggedUser.PictureID;
+                    SessionDetails.IsGuest = false;
 
-                MainMenu mainMenu = new MainMenu();
-                Application.Current.MainWindow.Content = mainMenu;
-                MainWindow.NotifyLogin(user);
+                    UserDTO user = new UserDTO
+                    {
+                        UserName = SessionDetails.Username,
+                        ID = SessionDetails.UserId
+                    };
+                    Application.Current.MainWindow.Content = new MainMenu();
+
+                    var userConnectionHandler = new UserConnectionHandlerClient();
+                    try
+                    {
+                        userConnectionHandler.NotifyLogIn(user);
+                    }
+                    catch (CommunicationException)
+                    {
+                        SessionDetails.AbortOperation();
+                    }
+                    catch (TimeoutException)
+                    {
+                        SessionDetails.AbortOperation();
+                    }
+                }
             }
-        }
-
-        private bool IsUserLoggedIn(int userId)
-        {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            return usersManagerClient.IsUserAlreadyLoggedIn(userId);
-        }
-
-        public UserDTO AreCredentialsValid(string username, string password)
-        {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            return usersManagerClient.IsLoginValid(username, Sha256Encryptor.SHA256_hash(password));
         }
 
         private void BtnCancelEvent(object sender, RoutedEventArgs e)

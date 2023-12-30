@@ -196,7 +196,7 @@
     <value>La partida ya está llena, inténtalo de nuevo más tarde</value>
   </data>
   <data name="DlgInsecurePassword" xml:space="preserve">
-    <value>La contraseña debe contener al menos: 8 caracteres, un símbolo especial, una letra mayúscula y minúscula, y un máximo de 16 caracteres</value>
+    <value>La contraseña debe contener al menos: 8 caracteres, un símbolo especial(!@?#$&amp;$°¬|/%*), una letra mayúscula y minúscula, y un máximo de 16 caracteres</value>
   </data>
   <data name="DlgInvalidPartyCodeFormat" xml:space="preserve">
     <value>El código de partida debe ser un numero con máximo 4 dígitos</value>
@@ -340,7 +340,7 @@
     <value>No se pudo expulsar este usuario, por favor defina una razón de expulsión</value>
   </data>
   <data name="DlgFriendRequestError" xml:space="preserve">
-    <value>Hubo un error al enviar la solicitud de amistar a este usuario</value>
+    <value>Hubo un error al enviar la solicitud de amistad a este usuario</value>
   </data>
   <data name="TitlePasswordReset" xml:space="preserve">
     <value>Reestablecer Contraseña</value>
@@ -396,10 +396,40 @@
   <data name="DlgHostHasClosedTheParty" xml:space="preserve">
     <value>El host a abandonado la partida</value>
   </data>
+  <data name="LblInfoResetPassword" xml:space="preserve">
+    <value>Te enviaremos un correo para restablecer tu contraseña</value>
+  </data>
+  <data name="DlgWrongCode" xml:space="preserve">
+    <value>Código incorrecto</value>
+  </data>
+  <data name="DlgProfilePictureUpdated" xml:space="preserve">
+    <value>Tu foto de perfil se ha actualizado</value>
+  </data>
+  <data name="DlgInvalidFormat" xml:space="preserve">
+    <value>Formato inválido</value>
+  </data>
+  <data name="DlgFriendYourself" xml:space="preserve">
+    <value>No puedes mandar una solicitud a ti mismo</value>
+  </data>
+  <data name="BtnModifyProfile" xml:space="preserve">
+    <value>Modificar Perfil</value>
+  </data>
+  <data name="BtnChangePassword" xml:space="preserve">
+    <value>Cambiar Contraseña</value>
+  </data>
   <data name="DlgNotEnoughPlayers" xml:space="preserve">
     <value>No se pudo iniciar la partida, el lobby debe tener al menos 2 jugadores</value>
   </data>
-  <data name="DlgTooManyCards" xml:space="preserve">
-    <value>No puede tomar más cartas, ¡ya tiene demasiadas!</value>
+  <data name="BtnLogOut" xml:space="preserve">
+    <value>Cerrar Sesión</value>
+  </data>
+  <data name="DlgLogOutConfirmation" xml:space="preserve">
+    <value>¿Estás seguro de que deseas cerrar esta sesión?</value>
+  </data>
+  <data name="DlgCouldntBlockUser" xml:space="preserve">
+    <value>No se puedo bloquear al usuario en este momento, inténtelo de nuevo mas tarde.</value>
+  </data>
+  <data name="DlgLoginBanned" xml:space="preserve">
+    <value>Estás baneado, ya no podrás iniciar sesión en tu cuenta</value>
   </data>
 </root>

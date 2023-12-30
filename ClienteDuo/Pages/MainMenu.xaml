@@ -30,7 +30,7 @@
                 </Grid.RowDefinitions>
                 <Button Content="{x:Static p:Resources.BtnNewParty}" Margin="0,0,7,0" Click="BtnNewPartyEvent" VerticalAlignment="Center" FontSize="14" Height="36" Background="{DynamicResource BtnBackground}" BorderBrush="{DynamicResource BtnBorder}" Foreground="White" Cursor="Hand" BorderThickness="3,3,3,3"/>
                 <Button Content="{x:Static p:Resources.BtnJoinParty}" Margin="7,0,0,0" VerticalAlignment="Center" Click="BtnJoinPartyEvent" FontSize="14" Height="36" Background="{DynamicResource BtnBackground}" BorderBrush="{DynamicResource BtnBorder}" Foreground="White" Cursor="Hand" Grid.Column="1" BorderThickness="3,3,3,3"/>
-                <Button Content="{x:Static p:Resources.BtnQuitGame}" VerticalAlignment="Center" Click="BtnQuitGameEvent" Grid.Row="1" FontSize="14" Height="36" Background="{DynamicResource BtnBackground}" BorderBrush="{DynamicResource BtnBorder}" Foreground="White" Cursor="Hand" Grid.ColumnSpan="2" BorderThickness="3,3,3,3"/>
+                <Button Content="{x:Static p:Resources.BtnLogOut}" VerticalAlignment="Center" Click="BtnLogOutEvent" Grid.Row="1" FontSize="14" Height="36" Background="{DynamicResource BtnBackground}" BorderBrush="{DynamicResource BtnBorder}" Foreground="White" Cursor="Hand" Grid.ColumnSpan="2" BorderThickness="3,3,3,3"/>
             </Grid>
             <Button VerticalAlignment="Center" Cursor="Hand" HorizontalAlignment="Left" Margin="16,0,0,0" Height="52" Width="52" Grid.Row="0" Click="BtnMyProfileSidebarEvent" Background="{DynamicResource Background}" BorderBrush="{DynamicResource Background}">
                 <Image Source="/Images/profile-user.png"/>

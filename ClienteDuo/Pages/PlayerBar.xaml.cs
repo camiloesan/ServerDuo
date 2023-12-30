@@ -1,20 +1,12 @@
 ﻿using ClienteDuo.DataService;
 using ClienteDuo.Pages.Sidebars;
 using ClienteDuo.Utilities;
+using System.ServiceModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ClienteDuo.Pages
 {
@@ -28,7 +20,8 @@ namespace ClienteDuo.Pages
             InitializeComponent();
         }
 
-        public string Username {
+        public string Username
+        {
             get
             {
                 return _username;
@@ -47,29 +40,46 @@ namespace ClienteDuo.Pages
 
         public void SetProfilePicture(int pictureId)
         {
-            ImageBrush imageBrush = new ImageBrush();
-            imageBrush.ImageSource = new BitmapImage(new System.Uri("pack://application:,,,/ClienteDuo;component/Images/pfp" + pictureId + ".png"));
+            ImageBrush imageBrush = new ImageBrush
+            {
+                ImageSource = new BitmapImage(new System.Uri("pack://application:,,,/ClienteDuo;component/Images/pfp" + pictureId + ".png"))
+            };
 
             ProfilePicture.Background = imageBrush;
         }
 
         private void BtnAddFriendEvent(object sender, RoutedEventArgs e)
         {
-            UsersManagerClient client = new UsersManagerClient();
-            if (client.SendFriendRequest(SessionDetails.Username, _username))
+            bool result = false;
+            try
+            {
+                result = UsersManager.SendFriendRequest(SessionDetails.Username, _username) == 1;
+            }
+            catch (CommunicationException)
+            {
+                SessionDetails.AbortOperation();
+            }
+            catch (TimeoutException)
+            {
+                SessionDetails.AbortOperation();
+            }
+
+            if (result)
             {
                 BtnAddFriend.Visibility = Visibility.Collapsed;
             }
             else
             {
-                MainWindow.ShowMessageBox("There was an error sending friend request to this user", MessageBoxImage.Error);
+                MainWindow.ShowMessageBox(Properties.Resources.DlgFriendRequestError, MessageBoxImage.Error);
             }
         }
 
         private void BtnKickEvent(object sender, RoutedEventArgs e)
         {
-            PopUpKickPlayer popUpKickPlayer = new PopUpKickPlayer();
-            popUpKickPlayer.KickedUsername = _username;
+            PopUpKickPlayer popUpKickPlayer = new PopUpKickPlayer
+            {
+                KickedUsername = _username
+            };
             popUpKickPlayer.SetClient(_client);
             popUpKickPlayer.Show();
         }

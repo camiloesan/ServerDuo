@@ -2,20 +2,11 @@
 using ClienteDuo.Pages.Sidebars;
 using ClienteDuo.Utilities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ClienteDuo.Pages
 {
@@ -38,7 +29,7 @@ namespace ClienteDuo.Pages
         private void SetCurrentProfilePicturePreview(int pictureId)
         {
             _selectedPictureId = pictureId;
-            BitmapImage bitmapImage = bitmapImage = new BitmapImage(new System.Uri("pack://application:,,,/ClienteDuo;component/Images/pfp" + pictureId + ".png"));
+            BitmapImage bitmapImage = new BitmapImage(new System.Uri("pack://application:,,,/ClienteDuo;component/Images/pfp" + pictureId + ".png"));
             ImageCurrentProfilePicture.Source = bitmapImage;
             ImageCurrentProfilePicture.Stretch = Stretch.UniformToFill;
         }
@@ -56,26 +47,34 @@ namespace ClienteDuo.Pages
             bool result = false;
             try
             {
-                result = UpdateProfilePicture(_selectedPictureId);
-            } 
+                result = UsersManager.UpdateProfilePicture(SessionDetails.UserId, _selectedPictureId) == 1;
+            }
             catch (CommunicationException)
             {
-                MainWindow.ShowMessageBox(Properties.Resources.DlgServiceException, MessageBoxImage.Error);
+                AbortOperation();
+            }
+            catch (TimeoutException)
+            {
+                AbortOperation();
             }
 
             if (result)
             {
                 SessionDetails.PictureID = _selectedPictureId;
                 MainWindow.ShowMessageBox(Properties.Resources.DlgProfilePictureUpdated, MessageBoxImage.Information);
-                MainMenu mainMenu = new MainMenu();
-                Application.Current.MainWindow.Content = mainMenu;
+                Application.Current.MainWindow.Content = new MainMenu();
+            }
+            else
+            {
+                MainWindow.ShowMessageBox(Properties.Resources.DlgProfilePictureNotUpdated, MessageBoxImage.Information);
             }
         }
 
-        private bool UpdateProfilePicture(int pictureId)
+        private void AbortOperation()
         {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            return usersManagerClient.UpdateProfilePictureByUserId(SessionDetails.UserId, pictureId);
+            SessionDetails.CleanSessionDetails();
+            Application.Current.MainWindow.Content = new Launcher();
+            MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
         }
 
         private void BtnCancelEvent(object sender, RoutedEventArgs e)
@@ -94,6 +93,7 @@ namespace ClienteDuo.Pages
         {
             SetCurrentProfilePicturePreview(0);
         }
+
         private void BtnPfp1Event(object sender, RoutedEventArgs e)
         {
             SetCurrentProfilePicturePreview(1);

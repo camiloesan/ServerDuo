@@ -1,10 +1,10 @@
-﻿using ClienteDuo.Utilities;
+﻿using ClienteDuo.DataService;
+using ClienteDuo.Utilities;
+using System;
+using System.ServiceModel;
 using System.Windows;
 using System.Windows.Controls;
-using ClienteDuo.DataService;
-using System.Diagnostics.Eventing.Reader;
 using System.Windows.Input;
-using System.ServiceModel;
 
 namespace ClienteDuo.Pages.Sidebars
 {
@@ -20,7 +20,7 @@ namespace ClienteDuo.Pages.Sidebars
         {
             Visibility = Visibility.Collapsed;
         }
-        
+
         private void EnterKeyEvent(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
@@ -33,7 +33,11 @@ namespace ClienteDuo.Pages.Sidebars
                 }
                 catch (CommunicationException)
                 {
-                    MainWindow.ShowMessageBox(Properties.Resources.DlgServiceException, MessageBoxImage.Error);
+                    SessionDetails.AbortOperation();
+                }
+                catch (TimeoutException)
+                {
+                    SessionDetails.AbortOperation();
                 }
             }
         }
@@ -48,81 +52,71 @@ namespace ClienteDuo.Pages.Sidebars
             }
             catch (CommunicationException)
             {
-                MainWindow.ShowMessageBox(Properties.Resources.DlgServiceException, MessageBoxImage.Error);
+                SessionDetails.AbortOperation();
+            }
+            catch (TimeoutException)
+            {
+                SessionDetails.AbortOperation();
             }
         }
 
-        private bool SendRequest(string usernameSender, string usernameReceiver)
+        private void SendRequest(string usernameSender, string usernameReceiver)
         {
             bool result = false;
             if (usernameReceiver == SessionDetails.Username)
             {
                 MainWindow.ShowMessageBox(Properties.Resources.DlgFriendYourself,
                     MessageBoxImage.Information);
-            } 
-            else if (!IsUsernameTaken(usernameReceiver))
+            }
+            else if (!UsersManager.IsUsernameTaken(usernameReceiver))
             {
-                MainWindow.ShowMessageBox(Properties.Resources.DlgUsernameDoesNotExist, 
+                MainWindow.ShowMessageBox(Properties.Resources.DlgUsernameDoesNotExist,
                     MessageBoxImage.Information);
             }
-            else if (IsAlreadyFriend(usernameSender, usernameReceiver))
+            else if (UsersManager.IsAlreadyFriend(usernameSender, usernameReceiver))
             {
-                MainWindow.ShowMessageBox(Properties.Resources.DlgAlreadyFriends, 
+                MainWindow.ShowMessageBox(Properties.Resources.DlgAlreadyFriends,
                     MessageBoxImage.Information);
             }
-            else if (IsFriendRequestAlreadySent(usernameSender, usernameReceiver))
+            else if (UsersManager.IsFriendRequestAlreadySent(usernameSender, usernameReceiver))
             {
-                MainWindow.ShowMessageBox(Properties.Resources.DlgFriendRequestAlreadySent, 
+                MainWindow.ShowMessageBox(Properties.Resources.DlgFriendRequestAlreadySent,
                     MessageBoxImage.Information);
             }
-            else if (IsUserBlocked(SessionDetails.Username, usernameReceiver) 
-                     || IsUserBlocked(usernameReceiver, SessionDetails.Username))
+            else if (UsersManager.IsUserBlocked(SessionDetails.Username, usernameReceiver)
+                     || UsersManager.IsUserBlocked(usernameReceiver, SessionDetails.Username))
             {
                 MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError,
                     MessageBoxImage.Information);
             }
             else
             {
-                result = SendFriendRequest(usernameSender, usernameReceiver);
+                try
+                {
+                    result = UsersManager.SendFriendRequest(usernameSender, usernameReceiver) == 1;
+                }
+                catch (CommunicationException)
+                {
+                    SessionDetails.AbortOperation();
+                }
+                catch (TimeoutException)
+                {
+                    SessionDetails.AbortOperation();
+                }
+
                 if (result)
                 {
-                    MainWindow.ShowMessageBox(Properties.Resources.DlgFriendRequestSent, 
+                    MainWindow.ShowMessageBox(Properties.Resources.DlgFriendRequestSent,
                         MessageBoxImage.Information);
                     Visibility = Visibility.Collapsed;
+                } 
+                else
+                {
+                    MainWindow.ShowMessageBox(Properties.Resources.DlgFriendRequestError,
+                        MessageBoxImage.Information);
                 }
                 TBoxUserReceiver.Clear();
             }
-            return result;
-        }
-
-        private bool IsUsernameTaken(string username)
-        {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            return usersManagerClient.IsUsernameTaken(username);
-        }
-
-        private bool IsUserBlocked(string usernameBlocker, string usernameBlocked)
-        {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            return usersManagerClient.IsUserBlockedByUsername(usernameBlocker, usernameBlocked);
-        }
-
-        private bool SendFriendRequest(string usernameSender, string usernameReceiver)
-        {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            return usersManagerClient.SendFriendRequest(usernameSender, usernameReceiver);
-        }
-
-        private bool IsAlreadyFriend(string usernameSender, string usernameReceiver)
-        {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            return usersManagerClient.IsAlreadyFriend(usernameSender, usernameReceiver);
-        }
-
-        private bool IsFriendRequestAlreadySent(string usernameSender, string usernameReceiver)
-        {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            return usersManagerClient.IsFriendRequestAlreadyExistent(usernameSender, usernameReceiver);
         }
     }
 }

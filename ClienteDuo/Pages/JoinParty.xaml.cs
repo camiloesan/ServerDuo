@@ -1,12 +1,10 @@
-﻿using ClienteDuo.Utilities;
+﻿using ClienteDuo.DataService;
+using ClienteDuo.Utilities;
 using System;
-using System.Runtime.InteropServices.WindowsRuntime;
+using System.ServiceModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using ClienteDuo.DataService;
-using System.Collections;
-using System.ServiceModel;
 
 namespace ClienteDuo.Pages
 {
@@ -16,7 +14,7 @@ namespace ClienteDuo.Pages
         {
             InitializeComponent();
         }
-        
+
         private void EnterKeyEvent(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
@@ -41,7 +39,11 @@ namespace ClienteDuo.Pages
             }
             catch (CommunicationException)
             {
-                MainWindow.ShowMessageBox(Properties.Resources.DlgServiceException, MessageBoxImage.Error);
+                SessionDetails.AbortOperation();
+            }
+            catch (TimeoutException)
+            {
+                SessionDetails.AbortOperation();
             }
 
             if (isPartyValid)
@@ -50,7 +52,7 @@ namespace ClienteDuo.Pages
                 {
                     GenerateGuestName(partyCodeString);
                 }
-                
+
                 SessionDetails.PartyCode = int.Parse(partyCodeString);
                 Lobby lobby = new Lobby(SessionDetails.Username, SessionDetails.PartyCode);
                 Application.Current.MainWindow.Content = lobby;
@@ -59,6 +61,7 @@ namespace ClienteDuo.Pages
 
         private bool ArePartyConditionsValid(string partyCode)
         {
+            bool result = false;
             if (!IsInputInteger(partyCode))
             {
                 MainWindow.ShowMessageBox(Properties.Resources.DlgInvalidPartyCodeFormat, MessageBoxImage.Information);
@@ -71,23 +74,23 @@ namespace ClienteDuo.Pages
             {
                 MainWindow.ShowMessageBox(Properties.Resources.DlgFullParty, MessageBoxImage.Information);
             }
-            else if (SessionDetails.IsGuest == false && IsUserInPartyBlocked(int.Parse(partyCode)))
+            else if (SessionDetails.IsGuest == false && IsUserBlockedByPlayerInParty(SessionDetails.Username, int.Parse(partyCode)))
             {
                 MainWindow.ShowMessageBox(Properties.Resources.DlgUserBlockedInParty, MessageBoxImage.Information);
             }
             else
             {
-                return true;
+                result = true;
             }
 
-            return false;
+            return result;
         }
 
         private void GenerateGuestName(string partyCodeString)
         {
             PartyValidatorClient partyValidatorClient = new PartyValidatorClient();
             Random randomId = new Random();
-            int id = randomId.Next(0,1000);
+            int id = randomId.Next(0, 1000);
             string randomUsername = "guest" + id;
             if (partyValidatorClient.IsUsernameInParty(int.Parse(partyCodeString), randomUsername))
             {
@@ -113,20 +116,22 @@ namespace ClienteDuo.Pages
             return partyValidatorClient.IsSpaceAvailable(partyCode);
         }
 
-        public bool IsUserInPartyBlocked(int partyCode)
+        public bool IsUserBlockedByPlayerInParty(string usernameBlocker, int partyCode)
         {
             UsersManagerClient usersManagerClient = new UsersManagerClient();
             PartyValidatorClient partyValidatorClient = new PartyValidatorClient();
             var playersInPartyList = partyValidatorClient.GetPlayersInParty(partyCode);
+
+            bool result = false;
             foreach (var player in playersInPartyList)
             {
-                if (usersManagerClient.IsUserBlockedByUsername(SessionDetails.Username ,player)
-                    || usersManagerClient.IsUserBlockedByUsername(player, SessionDetails.Username))
+                if (usersManagerClient.IsUserBlockedByUsername(usernameBlocker, player)
+                    || usersManagerClient.IsUserBlockedByUsername(player, usernameBlocker))
                 {
-                    return true;
+                    result = true;
                 }
             }
-            return false;
+            return result;
         }
 
         private void BtnCancelEvent(object sender, RoutedEventArgs e)

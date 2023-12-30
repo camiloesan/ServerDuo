@@ -1,65 +1,60 @@
 ﻿using ClienteDuo.DataService;
+using ClienteDuo.Pages.Sidebars;
 using ClienteDuo.Utilities;
 using System;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.ServiceModel;
 using System.Windows;
 
 namespace ClienteDuo.Pages
 {
-    public partial class MainWindow : Window, IUserConnectionHandlerCallback
+    public partial class MainWindow : Window
     {
-        private static UserConnectionHandlerClient _userConnectionHandlerClient;
-        private static InstanceContext _instanceContext;
-
         public MainWindow()
         {
             InitializeComponent();
             ResizeMode = ResizeMode.NoResize;
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             Closing += OnWindowClosing;
-
-            _instanceContext = new InstanceContext(this);
             var launcher = new Launcher();
             Content = launcher;
         }
 
-        public static void NotifyLogin(UserDTO user)
-        {
-            _userConnectionHandlerClient = new UserConnectionHandlerClient(_instanceContext);
-            _userConnectionHandlerClient.NotifyLogIn(user);
-        }
-
         public static void ShowMessageBox(string message, MessageBoxImage messageBoxImage)
         {
-            string caption = Properties.Resources.TitleAlert;
-
-            const MessageBoxButton okButton = MessageBoxButton.OK;
-            MessageBox.Show(message, caption, okButton, messageBoxImage);
+            Application.Current.MainWindow.IsEnabled = false;
+            PopUpMessage popUpMessage = new PopUpMessage
+            {
+                Height = 220,
+                Width = 370,
+                Message = message,
+                Topmost = true
+            };
+            popUpMessage.Show();
         }
 
-        public void UserLogged(string username)
+        public static void NotifyLogOut(int userId, bool isGuest)
         {
-            MainMenu.ShowPopUpFriendLogged(username);
-        }
-
-        public void UserLoggedOut(string username)
-        {
-            throw new NotImplementedException(); //TODO
+            var userConnectionHandlerClient = new UserConnectionHandlerClient();
+            if (!isGuest)
+            {
+                var user = new UserDTO
+                {
+                    ID = userId,
+                    UserName = SessionDetails.Username,
+                    PartyCode = SessionDetails.PartyCode
+                };
+                userConnectionHandlerClient.NotifyLogOut(user, SessionDetails.IsHost);
+            } 
+            else
+            {
+                userConnectionHandlerClient.NotifyGuestLeft(SessionDetails.PartyCode, SessionDetails.Username);
+            }
         }
 
         private void OnWindowClosing(object sender, CancelEventArgs e)
         {
-            if (SessionDetails.IsGuest) return;
-
-            var userConnectionHandlerClient = new UserConnectionHandlerClient(_instanceContext);
-            var user = new UserDTO
-            {
-                ID = SessionDetails.UserId
-            };
-            userConnectionHandlerClient.NotifyLogOut(user);
+            NotifyLogOut(SessionDetails.UserId, SessionDetails.IsGuest);
         }
 
         public static bool ShowConfirmationBox(string message)

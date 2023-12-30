@@ -172,7 +172,7 @@
     <value>Le groupe est rempli, réessayer à plus tard</value>
   </data>
   <data name="DlgInsecurePassword" xml:space="preserve">
-    <value>La mot de passe dois contenir au moins: 8 caractères, un caractèr spéciaux, et des lettres majuscules et minuscules</value>
+    <value>La mot de passe dois contenir au moins: 8 caractères, un caractèr spéciaux(!@?#$&amp;$°¬|/%*), et des lettres majuscules et minuscules</value>
   </data>
   <data name="DlgInvalidPartyCodeFormat" xml:space="preserve">
     <value>Le code de groupe doit être un numéro de 4 chiffres comme maximum</value>
@@ -288,7 +288,133 @@
   <data name="DlgNotEnoughPlayers" xml:space="preserve">
     <value>Échec en commençant, il faut que le Lobby a au moins 2 jeueurs</value>
   </data>
-  <data name="DlgTooManyCards" xml:space="preserve">
-    <value>Vouz ne pouvez pas recevoir autre carte, ¡vous avez en trop!</value>
+  <data name="BtnAccept" xml:space="preserve">
+    <value>Accepter</value>
+  </data>
+  <data name="BtnAddFriend" xml:space="preserve">
+    <value>Ajouter l'ami</value>
+  </data>
+  <data name="BtnBlockedUsers" xml:space="preserve">
+    <value>Utilisateurs bloquées</value>
+  </data>
+  <data name="BtnBlockUser" xml:space="preserve">
+    <value>Bloquer</value>
+  </data>
+  <data name="BtnChangePassword" xml:space="preserve">
+    <value>Changer mot de passe</value>
+  </data>
+  <data name="BtnFriendRequests" xml:space="preserve">
+    <value>Demandes d'ami</value>
+  </data>
+  <data name="BtnKick" xml:space="preserve">
+    <value>Expulser</value>
+  </data>
+  <data name="BtnModifyProfile" xml:space="preserve">
+    <value>Modifier le profil</value>
+  </data>
+  <data name="BtnProfile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="BtnReject" xml:space="preserve">
+    <value>Refuser</value>
+  </data>
+  <data name="BtnUnblockUser" xml:space="preserve">
+    <value>Debloquer</value>
+  </data>
+  <data name="BtnUnfriend" xml:space="preserve">
+    <value>Suprimer l'amitié</value>
+  </data>
+  <data name="DlgAlreadyFriends" xml:space="preserve">
+    <value>Vous etes déjà ami de ce joueur</value>
+  </data>
+  <data name="DlgBlockConfirmation" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir bloquer cet utilisateur ? Vous ne pourrez rejoindre aucun groupe auquel participe ce joueur, il ne pourra pas vous ajouter en tant qu'ami et il ne pourra pas rejoindre votre partie. à l'avenir</value>
+  </data>
+  <data name="DlgBlockedUser" xml:space="preserve">
+    <value>L'utilisateur a eté bloqué</value>
+  </data>
+  <data name="DlgEmailInvalid" xml:space="preserve">
+    <value>L'e-mail doit contenir moins de 30 caractères et un format valide (----@domain.com)</value>
+  </data>
+  <data name="DlgEmailNonExistent" xml:space="preserve">
+    <value>L'e-mail fourni n'est associé à aucun compte</value>
+  </data>
+  <data name="DlgFriendRequestAlreadySent" xml:space="preserve">
+    <value>Une demande d'amitié est déjà envoyée</value>
+  </data>
+  <data name="DlgFriendRequestDeleted" xml:space="preserve">
+    <value>Vous avez refusée cette demande d'amitié</value>
+  </data>
+  <data name="DlgFriendRequestSent" xml:space="preserve">
+    <value>Demande d'amitié envoyée</value>
+  </data>
+  <data name="DlgFriendYourself" xml:space="preserve">
+    <value>Vous ne pouvez pas envoyer un demande d'amitié a vous même</value>
+  </data>
+  <data name="DlgHostHasClosedTheParty" xml:space="preserve">
+    <value>Le host a abandonnée le jeu</value>
+  </data>
+  <data name="DlgInvalidFormat" xml:space="preserve">
+    <value>Format invalide</value>
+  </data>
+  <data name="DlgIsNowActive" xml:space="preserve">
+    <value>Il est désormais actif</value>
+  </data>
+  <data name="DlgNowFriends" xml:space="preserve">
+    <value>Vous êtes maintenant amis</value>
+  </data>
+  <data name="DlgPasswordDoesNotMatch" xml:space="preserve">
+    <value>Le mot de passe et le mot de passe de confirmation doivent correspondre</value>
+  </data>
+  <data name="DlgProfilePictureUpdated" xml:space="preserve">
+    <value>L'image du profil a eté mis à jour</value>
+  </data>
+  <data name="DlgUnblockSuccess" xml:space="preserve">
+    <value>Utilisateur debloquée avec succès</value>
+  </data>
+  <data name="DlgUnfriend" xml:space="preserve">
+    <value>Vous n'êtes plus amis</value>
+  </data>
+  <data name="DlgUnfriendConfirmation" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir supprimer cet utilisateur de vos amis ?</value>
+  </data>
+  <data name="DlgUserAlreadyLoggedIn" xml:space="preserve">
+    <value>Une session est déjà active</value>
+  </data>
+  <data name="DlgUserBlockedInParty" xml:space="preserve">
+    <value>Vous ne pouvez pas rejoindre ce groupe, un utilisateur que vous avez bloqué ou que vous avez bloqué est dans le groupe</value>
+  </data>
+  <data name="DlgUsernameDoesNotExist" xml:space="preserve">
+    <value>Le nom d'utilisateur n'existe pas</value>
+  </data>
+  <data name="DlgUsernameInvalid" xml:space="preserve">
+    <value>Le nom d'utilisateur doit contenir des valeurs alphanumériques, au moins 3 caractères, un maximum de 14 et ne pas contenir de mot "guest"</value>
+  </data>
+  <data name="DlgWrongCode" xml:space="preserve">
+    <value>Code erroné</value>
+  </data>
+  <data name="LblConfirmNewPassword" xml:space="preserve">
+    <value>Confirmer nouvelle mot de passe</value>
+  </data>
+  <data name="LblFriends" xml:space="preserve">
+    <value>Amis</value>
+  </data>
+  <data name="LblInfoResetPassword" xml:space="preserve">
+    <value>Nous vous enverrons un email pour réinitialiser votre mot de passe</value>
+  </data>
+  <data name="LblNewPassword" xml:space="preserve">
+    <value>Nouvelle mot de passe</value>
+  </data>
+  <data name="LblPasswordForgotten" xml:space="preserve">
+    <value>J'ai oubliée ma mot de passe</value>
+  </data>
+  <data name="LblTotalWins" xml:space="preserve">
+    <value>Victoires totales</value>
+  </data>
+  <data name="LblTrophies" xml:space="preserve">
+    <value>Prix</value>
+  </data>
+  <data name="TitlePasswordReset" xml:space="preserve">
+    <value>Réinitialisation du mot de passe</value>
   </data>
 </root>

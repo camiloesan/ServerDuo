@@ -1,5 +1,6 @@
 ﻿using ClienteDuo.DataService;
 using ClienteDuo.Utilities;
+using System;
 using System.Collections.Generic;
 using System.ServiceModel;
 using System.Windows;
@@ -23,11 +24,15 @@ namespace ClienteDuo.Pages.Sidebars
             IEnumerable<UserBlockedDTO> blockedUsersList = new List<UserBlockedDTO>();
             try
             {
-                blockedUsersList = GetBlockedUsersListByUserId(SessionDetails.UserId);
+                blockedUsersList = UsersManager.GetBlockedUsersListByUserId(SessionDetails.UserId);
             }
             catch (CommunicationException)
             {
-                MainWindow.ShowMessageBox(Properties.Resources.DlgServiceException, MessageBoxImage.Error);
+                SessionDetails.AbortOperation();
+            }
+            catch (TimeoutException)
+            {
+                SessionDetails.AbortOperation();
             }
 
             foreach (UserBlockedDTO blockedUser in blockedUsersList)
@@ -67,11 +72,15 @@ namespace ClienteDuo.Pages.Sidebars
             bool result = false;
             try
             {
-                result = UnblockUserByBlockId(blockedUser.BlockID);
+                result = UsersManager.UnblockUserByBlockId(blockedUser.BlockID) == 1;
             }
             catch (CommunicationException)
             {
-                MainWindow.ShowMessageBox(Properties.Resources.DlgServiceException, MessageBoxImage.Error);
+                SessionDetails.AbortOperation();
+            }
+            catch (TimeoutException)
+            {
+                SessionDetails.AbortOperation();
             }
 
             if (result)
@@ -80,18 +89,6 @@ namespace ClienteDuo.Pages.Sidebars
                 MainMenu mainMenu = new MainMenu();
                 Application.Current.MainWindow.Content = mainMenu;
             }
-        }
-
-        private bool UnblockUserByBlockId(int blockId)
-        {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            return usersManagerClient.UnblockUserByBlockId(blockId);
-        }
-
-        private IEnumerable<UserBlockedDTO> GetBlockedUsersListByUserId(int userId)
-        {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            return usersManagerClient.GetBlockedUsersListByUserId(userId);
         }
 
         private void BtnCancelEvent(object sender, RoutedEventArgs e)

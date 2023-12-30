@@ -38,20 +38,24 @@ namespace ClienteDuo.Pages.Sidebars
 
         private void ValidateCode()
         {
+            bool isCodeNumber = true;
             if (!int.TryParse(TBoxConfirmationCode.Text, out int inputCode))
             {
-                MainWindow.ShowMessageBox("invalid format", MessageBoxImage.Warning);
-                return;
+                MainWindow.ShowMessageBox(Properties.Resources.DlgInvalidFormat , MessageBoxImage.Warning);
+                isCodeNumber = false;
             }
 
-            if (inputCode == (int)DataContext) 
+            if (isCodeNumber) 
             {
-                PasswordReset passwordReset = new PasswordReset();
-                Application.Current.MainWindow.Content = passwordReset;
-            } 
-            else
-            {
-                MainWindow.ShowMessageBox("wrong code", MessageBoxImage.Warning);
+                if (inputCode == (int)DataContext)
+                {
+                    PasswordReset passwordReset = new PasswordReset();
+                    Application.Current.MainWindow.Content = passwordReset;
+                }
+                else
+                {
+                    MainWindow.ShowMessageBox(Properties.Resources.DlgWrongCode, MessageBoxImage.Warning);
+                }
             }
         }
     }

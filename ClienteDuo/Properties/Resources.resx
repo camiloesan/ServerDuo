@@ -148,7 +148,7 @@
     <value>Kick</value>
   </data>
   <data name="BtnLogin" xml:space="preserve">
-    <value>Login</value>
+    <value>Log In</value>
   </data>
   <data name="BtnNewAccount" xml:space="preserve">
     <value>New Account</value>
@@ -199,7 +199,7 @@
     <value>The party is already full, try again later</value>
   </data>
   <data name="DlgInsecurePassword" xml:space="preserve">
-    <value>Password needs to contain at least: 8 characters, one special symbol, one uppercase and lowercase letter, and a maximum of 16 characters</value>
+    <value>Password needs to contain at least: 8 characters, one special symbol(!@?#$&amp;$°¬|/%*), one uppercase and lowercase letter, and a maximum of 16 characters</value>
   </data>
   <data name="DlgInvalidPartyCodeFormat" xml:space="preserve">
     <value>Party code needs to be a number with a max of 4 digits</value>
@@ -412,10 +412,31 @@
   <data name="DlgProfilePictureUpdated" xml:space="preserve">
     <value>Profile picture has been updated</value>
   </data>
+  <data name="DlgInvalidFormat" xml:space="preserve">
+    <value>Invalid format</value>
+  </data>
+  <data name="DlgWrongCode" xml:space="preserve">
+    <value>Wrong code</value>
+  </data>
   <data name="DlgNotEnoughPlayers" xml:space="preserve">
     <value>Cannot start the game, lobby must have at least 2 players</value>
   </data>
-  <data name="DlgTooManyCards" xml:space="preserve">
-    <value>You can't take another card, you have too many!</value>
+  <data name="BtnLogOut" xml:space="preserve">
+    <value>Log Out</value>
+  </data>
+  <data name="DlgLogOutConfirmation" xml:space="preserve">
+    <value>Are you sure you want to close this session?</value>
+  </data>
+  <data name="DlgProfilePictureNotUpdated" xml:space="preserve">
+    <value>Your profile picture could't be updated, try again later</value>
+  </data>
+  <data name="DlgCouldntBlockUser" xml:space="preserve">
+    <value>We couldn't block this user, try again later</value>
+  </data>
+  <data name="DlgLoginBanned" xml:space="preserve">
+    <value>You are banned, and you can no longer log into your account</value>
+  </data>
+  <data name="DlgUserBanned" xml:space="preserve">
+    <value>Due to multiple reports this user has been banned</value>
   </data>
 </root>

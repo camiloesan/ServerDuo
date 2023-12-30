@@ -1,5 +1,7 @@
 ﻿using ClienteDuo.DataService;
 using ClienteDuo.Utilities;
+using System;
+using System.ServiceModel;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,44 +20,49 @@ namespace ClienteDuo.Pages.Sidebars
 
         private bool IsInputValid()
         {
+            bool result = false;
             if (!TBoxNewPassword.Password.Equals(TBoxConfirmNewPassword.Password))
             {
                 MainWindow.ShowMessageBox(Properties.Resources.DlgPasswordDoesNotMatch, MessageBoxImage.Information);
-                return false;
             }
             else if (!IsPasswordSecure(TBoxNewPassword.Password))
             {
                 MainWindow.ShowMessageBox(Properties.Resources.DlgInsecurePassword, MessageBoxImage.Information);
-                return false;
+            } 
+            else
+            {
+                result = true;
             }
 
-            return true;
+            return result;
         }
 
         private bool IsPasswordSecure(string newPassword)
         {
-            Regex regex = new Regex("^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z]).{8,16}$");
+            Regex regex = new Regex("^(?=.*[A-Z])(?=.*[!@?#$&$°¬|/%*])(?=.*[0-9].*[0-9])(?=.*[a-z]).{8,16}$");
             return regex.IsMatch(newPassword);
         }
 
         private void ModifyPassword(string email, string newPassword)
         {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
             bool result = false;
             try
             {
-                result = usersManagerClient.ModifyPasswordByEmail(email, newPassword);
+                result = UsersManager.ModifyPasswordByEmail(email, newPassword) == 1;
             }
-            catch
+            catch (CommunicationException)
             {
-                MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
+                SessionDetails.AbortOperation();
             }
-            
+            catch (TimeoutException)
+            {
+                SessionDetails.AbortOperation();
+            }
 
             if (result)
             {
-                MainWindow.ShowMessageBox("password modified succesfully", MessageBoxImage.Information);
                 ReturnToPage();
+                MainWindow.ShowMessageBox("password modified succesfully", MessageBoxImage.Information);
             }
         }
 
