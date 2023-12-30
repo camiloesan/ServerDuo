@@ -1,0 +1,52 @@
+﻿<Page x:Class="ClienteDuo.Pages.MainMenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ClienteDuo.Pages"
+      xmlns:p="clr-namespace:ClienteDuo.Properties"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1000"
+      Title="MainMenu">
+
+    <Grid x:Name="MainGrid">
+        <Grid Background="{DynamicResource Background}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90*"/>
+                <RowDefinition Height="428*"/>
+                <RowDefinition Height="90*"/>
+            </Grid.RowDefinitions>
+
+            <Rectangle HorizontalAlignment="Center" Height="160" Grid.Row="1" Stroke="{DynamicResource HighlightFill}" VerticalAlignment="Center" Width="550" RadiusX="19.5" RadiusY="19.5" Fill="#FFA4A4A4" StrokeThickness="6"/>
+
+            <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Width="450" Height="110" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="167*"/>
+                    <ColumnDefinition Width="167*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="33*"/>
+                    <RowDefinition Height="32*"/>
+                </Grid.RowDefinitions>
+                <Button Content="{x:Static p:Resources.BtnNewParty}" Margin="0,0,7,0" Click="BtnNewPartyEvent" VerticalAlignment="Center" FontSize="14" Height="36" Background="{DynamicResource BtnBackground}" BorderBrush="{DynamicResource BtnBorder}" Foreground="White" Cursor="Hand" BorderThickness="3,3,3,3"/>
+                <Button Content="{x:Static p:Resources.BtnJoinParty}" Margin="7,0,0,0" VerticalAlignment="Center" Click="BtnJoinPartyEvent" FontSize="14" Height="36" Background="{DynamicResource BtnBackground}" BorderBrush="{DynamicResource BtnBorder}" Foreground="White" Cursor="Hand" Grid.Column="1" BorderThickness="3,3,3,3"/>
+                <Button Content="{x:Static p:Resources.BtnQuitGame}" VerticalAlignment="Center" Click="BtnQuitGameEvent" Grid.Row="1" FontSize="14" Height="36" Background="{DynamicResource BtnBackground}" BorderBrush="{DynamicResource BtnBorder}" Foreground="White" Cursor="Hand" Grid.ColumnSpan="2" BorderThickness="3,3,3,3"/>
+            </Grid>
+            <Button VerticalAlignment="Center" Cursor="Hand" HorizontalAlignment="Left" Margin="16,0,0,0" Height="52" Width="52" Grid.Row="0" Click="BtnMyProfileSidebarEvent" Background="{DynamicResource Background}" BorderBrush="{DynamicResource Background}">
+                <Image Source="/Images/profile-user.png"/>
+            </Button>
+
+            <Button Width="52" Height="52" Cursor="Hand" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,16,0" Click="BtnFriendsSidebarEvent" Background="{DynamicResource Background}" BorderBrush="{DynamicResource Background}">
+                <Image Source="/Images/friends.png" OpacityMask="Black"/>
+            </Button>
+
+            <Button Margin="0,0,16,0" Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Right" Width="52" Height="52" Grid.Row="2" Background="{DynamicResource Background}" Click="BtnLeaderboardEvent" BorderBrush="{DynamicResource Background}">
+                <Image Source="/Images/trophy.png"/>
+            </Button>
+
+            <Label Content="{x:Static p:Resources.LblMyProfile}" HorizontalAlignment="Left" Margin="100,0,0,0" VerticalAlignment="Center" Width="118" FontSize="14" Foreground="White" Grid.Row="0" FontWeight="Bold"/>
+            <Label Content="{x:Static p:Resources.LblFriends}" HorizontalAlignment="Right" Margin="0,28,100,0" VerticalAlignment="Top" Width="118" FontSize="14" Foreground="White" HorizontalContentAlignment="Right" Grid.Row="0" FontWeight="Bold"/>
+            <Label Content="{x:Static p:Resources.LblLeaderboard}" Margin="782,27,100,28" FontSize="14" Foreground="White" HorizontalContentAlignment="Right" Grid.Row="2" FontWeight="Bold"/>
+        </Grid>
+    </Grid>
+</Page>

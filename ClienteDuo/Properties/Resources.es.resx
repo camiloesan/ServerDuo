@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BtnAccept" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="BtnAddFriend" xml:space="preserve">
+    <value>Añadir Amigo</value>
+  </data>
+  <data name="BtnCancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="BtnContinue" xml:space="preserve">
+    <value>Continuar</value>
+  </data>
+  <data name="BtnExitLobby" xml:space="preserve">
+    <value>Salir de la Sala</value>
+  </data>
+  <data name="BtnJoin" xml:space="preserve">
+    <value>Unirse</value>
+  </data>
+  <data name="BtnJoinAsGuest" xml:space="preserve">
+    <value>Ingresar Como Invitado</value>
+  </data>
+  <data name="BtnJoinParty" xml:space="preserve">
+    <value>Entrar a una Partida</value>
+  </data>
+  <data name="BtnKick" xml:space="preserve">
+    <value>Expulsar</value>
+  </data>
+  <data name="BtnLogin" xml:space="preserve">
+    <value>Iniciar Sesión</value>
+  </data>
+  <data name="BtnNewAccount" xml:space="preserve">
+    <value>Crear Cuenta</value>
+  </data>
+  <data name="BtnNewParty" xml:space="preserve">
+    <value>Nueva Partida</value>
+  </data>
+  <data name="BtnProfile" xml:space="preserve">
+    <value>Perfil</value>
+  </data>
+  <data name="BtnQuitGame" xml:space="preserve">
+    <value>Salir del juego</value>
+  </data>
+  <data name="BtnReject" xml:space="preserve">
+    <value>Rechazar</value>
+  </data>
+  <data name="BtnStartGame" xml:space="preserve">
+    <value>Iniciar Partida</value>
+  </data>
+  <data name="BtnUnfriend" xml:space="preserve">
+    <value>Eliminar Amigo</value>
+  </data>
+  <data name="DlgConnectionError" xml:space="preserve">
+    <value>Hubo un error al conectarse con el servicio, inténtelo de nuevo más tarde</value>
+  </data>
+  <data name="DlgEmailInvalid" xml:space="preserve">
+    <value>El correo electrónico debe tener menos de 30 caracteres y un formato valido (----@dominio.com)</value>
+  </data>
+  <data name="DlgEmailTaken" xml:space="preserve">
+    <value>Una cuenta con ese correo electrónico ya se encuentra registrada</value>
+  </data>
+  <data name="DlgEmptyFields" xml:space="preserve">
+    <value>Todos los campos deben estar llenos antes de continuar</value>
+  </data>
+  <data name="DlgExitConfirmation" xml:space="preserve">
+    <value>¿Está seguro de que desea abandonar la partida? No podrá unirse hasta que esta termine</value>
+  </data>
+  <data name="DlgExitMatchConfirmation" xml:space="preserve">
+    <value>¿Está seguro de que desea abandonar la partida? No podrá volver a unirse</value>
+  </data>
+  <data name="DlgFailedLogin" xml:space="preserve">
+    <value>Nombre de usuario o contraseña incorrectos</value>
+  </data>
+  <data name="DlgFriendRequestSent" xml:space="preserve">
+    <value>Solicitud de amistad enviada</value>
+  </data>
+  <data name="DlgFullParty" xml:space="preserve">
+    <value>La partida ya está llena, inténtalo de nuevo más tarde</value>
+  </data>
+  <data name="DlgInsecurePassword" xml:space="preserve">
+    <value>La contraseña debe contener al menos: 8 caracteres, un símbolo especial, una letra mayúscula y minúscula, y un máximo de 16 caracteres</value>
+  </data>
+  <data name="DlgInvalidPartyCodeFormat" xml:space="preserve">
+    <value>El código de partida debe ser un numero con máximo 4 dígitos</value>
+  </data>
+  <data name="DlgIsNowActive" xml:space="preserve">
+    <value>está en línea</value>
+  </data>
+  <data name="DlgMessageMaxCharacters" xml:space="preserve">
+    <value>Un mensaje solo puede contener 250 caracteres</value>
+  </data>
+  <data name="DlgNewAccountSuccess" xml:space="preserve">
+    <value>Se ha registrado el usuario correctamente</value>
+  </data>
+  <data name="DlgPartyNotFound" xml:space="preserve">
+    <value>El código de partida no es correcto</value>
+  </data>
+  <data name="DlgServiceException" xml:space="preserve">
+    <value>Hubo un error con el servicio, inténtelo de nuevo más tarde</value>
+  </data>
+  <data name="DlgUnfriend" xml:space="preserve">
+    <value>Ya no son amigos</value>
+  </data>
+  <data name="DlgUsernameMaxCharacters" xml:space="preserve">
+    <value>El máximo de caracteres para el nombre de usuario es de 30</value>
+  </data>
+  <data name="DlgUsernameTaken" xml:space="preserve">
+    <value>Ya existe ese nombre de usuario</value>
+  </data>
+  <data name="LblCalculatingResults" xml:space="preserve">
+    <value>Calculando resultados...</value>
+  </data>
+  <data name="LblCardsLeft" xml:space="preserve">
+    <value>Cartas restantes</value>
+  </data>
+  <data name="LblChat" xml:space="preserve">
+    <value>Chat</value>
+  </data>
+  <data name="LblConfirmPassword" xml:space="preserve">
+    <value>Confirmar Contraseña</value>
+  </data>
+  <data name="LblEmail" xml:space="preserve">
+    <value>Correo Electrónico</value>
+  </data>
+  <data name="LblGameSettings" xml:space="preserve">
+    <value>Configuración del Juego</value>
+  </data>
+  <data name="LblInGameUsername" xml:space="preserve">
+    <value>Nombre de Usuario Temporal</value>
+  </data>
+  <data name="LblMatchEnd" xml:space="preserve">
+    <value>Fin de partida</value>
+  </data>
+  <data name="LblPartyCode" xml:space="preserve">
+    <value>Código de Partida</value>
+  </data>
+  <data name="LblPassword" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="LblPlayers" xml:space="preserve">
+    <value>Jugadores</value>
+  </data>
+  <data name="LblUsername" xml:space="preserve">
+    <value>Nombre de Usuario</value>
+  </data>
+  <data name="LblWinner" xml:space="preserve">
+    <value>Ganador</value>
+  </data>
+  <data name="TitleAlert" xml:space="preserve">
+    <value>Alerta</value>
+  </data>
+  <data name="TitleLauncher" xml:space="preserve">
+    <value>Launcher</value>
+  </data>
+  <data name="TitleLogin" xml:space="preserve">
+    <value>Iniciar Sesión</value>
+  </data>
+  <data name="TitleNewAccount" xml:space="preserve">
+    <value>Crear Cuenta</value>
+  </data>
+  <data name="LblPasswordForgotten" xml:space="preserve">
+    <value>Olvidé mi contraseña</value>
+  </data>
+  <data name="DlgUserAlreadyLoggedIn" xml:space="preserve">
+    <value>Una sesión ya está activa</value>
+  </data>
+  <data name="LblAddNewFriend" xml:space="preserve">
+    <value>Añadir amigo</value>
+  </data>
+  <data name="LblReady" xml:space="preserve">
+    <value>Listo</value>
+  </data>
+  <data name="LblTrophies" xml:space="preserve">
+    <value>Trofeos</value>
+  </data>
+  <data name="DlgFriendRequestAlreadySent" xml:space="preserve">
+    <value>Una solicitud de amistad ya se ha enviado anteriormente</value>
+  </data>
+  <data name="DlgAlreadyFriends" xml:space="preserve">
+    <value>Ya eres amigo del este usuario</value>
+  </data>
+  <data name="DlgUsernameDoesNotExist" xml:space="preserve">
+    <value>El nombre de usuario no existe</value>
+  </data>
+  <data name="DlgNowFriends" xml:space="preserve">
+    <value>¡Ahora son amigos!</value>
+  </data>
+  <data name="DlgFriendRequestDeleted" xml:space="preserve">
+    <value>Haz eliminado la solicitud</value>
+  </data>
+  <data name="DlgPasswordDoesNotMatch" xml:space="preserve">
+    <value>La contraseña y confirmación de contraseña deben coincidir</value>
+  </data>
+  <data name="DlgUsernameInvalid" xml:space="preserve">
+    <value>El nombre de usuario debe contener solo caracteres alfanuméricos, al menos 3 caracteres, un máximo de 14 y no contener la palabra "guest"</value>
+  </data>
+  <data name="BtnBlockedUsers" xml:space="preserve">
+    <value>Usuarios Bloqueados</value>
+  </data>
+  <data name="LblSelectReason" xml:space="preserve">
+    <value>Elija un motivo (Opcional)</value>
+  </data>
+  <data name="RsnCheating" xml:space="preserve">
+    <value>Trampa</value>
+  </data>
+  <data name="RsnInappropriateBehaviour" xml:space="preserve">
+    <value>Comportamiento inadecuado</value>
+  </data>
+  <data name="RsnSpam" xml:space="preserve">
+    <value>Spam</value>
+  </data>
+  <data name="TitleKickPlayer" xml:space="preserve">
+    <value>Expulsar jugador</value>
+  </data>
+  <data name="DlgKickedPlayer" xml:space="preserve">
+    <value>Ha sido expulsado de la partida. </value>
+  </data>
+  <data name="DlgKickingReason" xml:space="preserve">
+    <value>El motivo de su expulsión es: </value>
+  </data>
+  <data name="DlgEmptyKickingReason" xml:space="preserve">
+    <value>No se pudo expulsar este usuario, por favor defina una razón de expulsión</value>
+  </data>
+  <data name="DlgFriendRequestError" xml:space="preserve">
+    <value>Hubo un error al enviar la solicitud de amistar a este usuario</value>
+  </data>
+  <data name="TitlePasswordReset" xml:space="preserve">
+    <value>Reestablecer Contraseña</value>
+  </data>
+  <data name="LblNewPassword" xml:space="preserve">
+    <value>Nueva Contraseña</value>
+  </data>
+  <data name="LblMyProfile" xml:space="preserve">
+    <value>Mi Perfil</value>
+  </data>
+  <data name="LblLeaderboard" xml:space="preserve">
+    <value>Puntuaciones</value>
+  </data>
+  <data name="LblCode" xml:space="preserve">
+    <value>Código</value>
+  </data>
+  <data name="LblConfirmNewPassword" xml:space="preserve">
+    <value>Confirmar Nueva Contraseña</value>
+  </data>
+  <data name="DlgUserBlockedInParty" xml:space="preserve">
+    <value>No puedes entrar a esta partida, un usuario que has bloqueado o te tiene bloqueado esta en la partida</value>
+  </data>
+  <data name="DlgUnfriendConfirmation" xml:space="preserve">
+    <value>¿Estás seguro que deseas eliminar a este usuario de tus amigos?</value>
+  </data>
+  <data name="DlgUnblockSuccess" xml:space="preserve">
+    <value>Usuario desbloqueado satisfactoriamente</value>
+  </data>
+  <data name="DlgEmailNonExistent" xml:space="preserve">
+    <value>El email ingresado no está asociado a ninguna cuenta</value>
+  </data>
+  <data name="DlgBlockedUser" xml:space="preserve">
+    <value>El usuario ha sido bloqueado</value>
+  </data>
+  <data name="DlgBlockConfirmation" xml:space="preserve">
+    <value>¿Estás seguro de que deseas bloqueas a este usuario? No podrás ingresar a ninguna partida donde este este jugador ni el podrá ingresar a la tuya, tampoco lo podrás agregar como amigo, ni el a ti.</value>
+  </data>
+  <data name="BtnUnblockUser" xml:space="preserve">
+    <value>Desbloquear</value>
+  </data>
+  <data name="BtnFriendRequests" xml:space="preserve">
+    <value>Solicitudes de Amistad</value>
+  </data>
+  <data name="BtnBlockUser" xml:space="preserve">
+    <value>Bloquear</value>
+  </data>
+  <data name="LblFriends" xml:space="preserve">
+    <value>Amigos</value>
+  </data>
+  <data name="LblTotalWins" xml:space="preserve">
+    <value>Juegos Ganados</value>
+  </data>
+  <data name="DlgHostHasClosedTheParty" xml:space="preserve">
+    <value>El host a abandonado la partida</value>
+  </data>
+  <data name="DlgNotEnoughPlayers" xml:space="preserve">
+    <value>No se pudo iniciar la partida, el lobby debe tener al menos 2 jugadores</value>
+  </data>
+  <data name="DlgTooManyCards" xml:space="preserve">
+    <value>No puede tomar más cartas, ¡ya tiene demasiadas!</value>
+  </data>
+</root>

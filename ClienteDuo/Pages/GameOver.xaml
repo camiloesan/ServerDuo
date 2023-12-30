@@ -1,0 +1,44 @@
+﻿<UserControl x:Name="GameOverPanel" x:Class="ClienteDuo.Pages.GameOver"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClienteDuo.Pages"
+             xmlns:p="clr-namespace:ClienteDuo.Properties"
+             
+             mc:Ignorable="d" d:DesignWidth="500" Height="377" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFAD5A05" Offset="0"/>
+                <GradientStop Color="#FF582B00" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="37*"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="resultLabel" Content="{x:Static p:Resources.LblMatchEnd}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="50" Width="450" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Mario Party Hudson"/>
+        <ScrollViewer Margin="0,68,0,0" Width="450" VerticalAlignment="Top" HorizontalAlignment="Center" Height="230" Grid.RowSpan="2" VerticalScrollBarVisibility="Auto">
+            <StackPanel x:Name="resultStackPanel" Background="White" Height="230" Width="450" RenderTransformOrigin="0.5,0.5">
+                <StackPanel.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="0.237"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="0.476"/>
+                    </TransformGroup>
+                </StackPanel.RenderTransform>
+            </StackPanel>
+        </ScrollViewer>
+        <Button x:Name="goToLobbyButton" Content="{x:Static p:Resources.BtnExitLobby}" HorizontalAlignment="Center" Margin="0,243,0,0" Grid.Row="1" VerticalAlignment="Top" Width="358" Height="50" FontSize="30" Click="BtnExitLobbyEvent">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFFF2300" Offset="0.004"/>
+                    <GradientStop Color="#FFFF5B5B" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+
+    </Grid>
+</UserControl>

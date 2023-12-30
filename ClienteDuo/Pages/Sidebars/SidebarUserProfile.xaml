@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="ClienteDuo.Pages.Sidebars.SidebarUserProfile"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClienteDuo.Pages"
+             xmlns:p="clr-namespace:ClienteDuo.Properties"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="250">
+    <Grid x:Name="UserProfileBar" Background="{DynamicResource BtnBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64*"/>
+            <RowDefinition Height="491*"/>
+            <RowDefinition Height="45*"/>
+        </Grid.RowDefinitions>
+        <Label Content="{x:Static p:Resources.LblMyProfile}" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" FontSize="18" Grid.Row="1" FontWeight="Bold" Height="34" Width="98"/>
+        <StackPanel HorizontalAlignment="Center" Orientation="Vertical" VerticalAlignment="Center" Grid.Row="1" Width="175">
+            <Grid Width="100" Height="100" Margin="0,50,0,0">
+                <Image x:Name="ImageProfilePicture" Stretch="Uniform"/>
+            </Grid>
+            <Label Content="PlayerID" Foreground="White" FontSize="14"/>
+            <Label x:Name="LblPlayerId" Foreground="White" FontSize="14"/>
+            <Label Content="{x:Static p:Resources.LblUsername}" Foreground="White" FontSize="14"/>
+            <Label x:Name="LblUsername" Foreground="White" FontSize="14"/>
+            <Label Content="{x:Static p:Resources.LblEmail}" Foreground="White" FontSize="14"/>
+            <Label x:Name="LblEmail" Foreground="White" FontSize="14"/>
+            <Label Content="{x:Static p:Resources.LblTotalWins}" Foreground="White" FontSize="14"/>
+            <Label x:Name="LblTotalWins" Foreground="White" FontSize="14"/>
+            <Button Click="BtnModifyProfileEvent" Height="30" Content="{x:Static p:Resources.BtnModifyProfile}" Margin="0,15,0,0" Cursor="Hand" Background="#FF97785F" Foreground="White" BorderBrush="#FF6B552B"/>
+        </StackPanel>
+        <Button Content="{x:Static p:Resources.BtnCancel}" Cursor="Hand" Background="#FF97785F" Foreground="White" Height="28" BorderBrush="#FF6B552B" Width="70" HorizontalAlignment="Left" Margin="170,0,0,0" VerticalAlignment="Center" Click="BtnCancelEvent"/>
+    </Grid>
+</UserControl>

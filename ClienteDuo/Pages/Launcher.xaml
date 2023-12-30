@@ -1,0 +1,48 @@
+﻿<Page x:Class="ClienteDuo.Pages.Launcher"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ClienteDuo.Pages"
+      xmlns:p="clr-namespace:ClienteDuo.Properties"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1000"
+      Title="Launcher">
+
+    <Grid Background="{DynamicResource Background}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="17*"/>
+            <RowDefinition Height="103*"/>
+            <RowDefinition Height="17*"/>
+        </Grid.RowDefinitions>
+        <Rectangle HorizontalAlignment="Center" Height="160" Grid.Row="1" Stroke="{DynamicResource HighlightFill}" VerticalAlignment="Center" Width="550" RadiusX="19.5" RadiusY="19.5" StrokeThickness="6"/>
+
+        <Border HorizontalAlignment="Center" Height="68" VerticalAlignment="Center" Width="260" Grid.Row="1">
+            <Grid Margin="-92,-14,-92,-14">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="34*"/>
+                    <RowDefinition Height="35*"/>
+                </Grid.RowDefinitions>
+                <Button Content="{x:Static p:Resources.BtnNewAccount}" Margin="33,0,227,0" VerticalAlignment="Center" Cursor="Hand" Height="33" Click="BtnNewAccountEvent" FontSize="14" Background="{DynamicResource BtnBackground}" BorderBrush="{DynamicResource BtnBorder}" Foreground="White"/>
+                <Button Content="{x:Static p:Resources.BtnLogin}" Margin="227,0,33,0" VerticalAlignment="Center" Height="33" Click="BtnLoginEvent" FontSize="14" Cursor="Hand" Background="{DynamicResource BtnBackground}" BorderBrush="{DynamicResource BtnBorder}" Foreground="White"/>
+                <Button Content="{x:Static p:Resources.BtnJoinAsGuest}" Cursor="Hand" Margin="0,7,0,0" VerticalAlignment="Top" Height="33" HorizontalAlignment="Center" Width="378" Click="BtnJoinAsGuestEvent" FontSize="14" Grid.Row="1" Background="{DynamicResource BtnBackground}" BorderBrush="{DynamicResource BtnBorder}" Foreground="White" />
+            </Grid>
+        </Border>
+        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Center">
+            <Button Cursor="Hand" Click="BtnLocalizationEnUSEvent" Width="60" Margin="25,0,0,0" Background="#00DDDDDD" BorderBrush="#00707070">
+                <Image Source="/Images/united-states-of-america.png"/>
+            </Button>
+            <Button Cursor="Hand" Click="BtnLocalizationEsMXEvent" Width="60" Margin="25,0,0,0" Background="#00DDDDDD" BorderBrush="#00707070">
+                <Image Source="/Images/mexico.png"/>
+            </Button>
+            <Button Cursor="Hand" Click="BtnLocalizationFrFREvent" Width="60" Margin="25,0,0,0" Background="#00DDDDDD" BorderBrush="#00707070">
+                <Image Source="/Images/france.png"/>
+            </Button>
+        </StackPanel>
+        <Label HorizontalAlignment="Center" Height="147" Grid.RowSpan="2" VerticalAlignment="Top" Width="340" Margin="0,37,0,0">
+            <Label.Background>
+                <ImageBrush ImageSource="../Images/DUOLogo.png"/>
+            </Label.Background>
+        </Label>
+    </Grid>
+</Page>

@@ -1,0 +1,48 @@
+﻿<Page x:Class="ClienteDuo.Pages.ModifyProfile"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ClienteDuo.Pages"
+      xmlns:p="clr-namespace:ClienteDuo.Properties"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1000"
+      Title="ModifyProfile">
+
+    <Grid Background="{DynamicResource Background}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="177*"/>
+            <RowDefinition Height="23*"/>
+        </Grid.RowDefinitions>
+
+        <Rectangle HorizontalAlignment="Center" Height="196" Stroke="{DynamicResource HighlightFill}" VerticalAlignment="Top" Width="744" RadiusX="19.5" RadiusY="19.5" Fill="#FFA4A4A4" StrokeThickness="6" Margin="0,272,0,0"/>
+
+        <StackPanel VerticalAlignment="Center" Margin="0,0,0,0" Height="410" Grid.Row="0">
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="50">
+                <Image x:Name="ImageCurrentProfilePicture" Width="140" Height="140" Stretch="Uniform"/>
+            </Grid>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button Cursor="Hand" Click="BtnPfp0Event" Margin="0,0,0,0" Background="#00DDDDDD" BorderBrush="#00707070">
+                    <Image x:Name="ImagePfp0" Stretch="Uniform" Width="140" Height="140" Margin="15"/>
+                </Button>
+                <Button Cursor="Hand" Click="BtnPfp1Event" Margin="0,0,0,0" Background="#00DDDDDD" BorderBrush="#00707070">
+                    <Image x:Name="ImagePfp1" Stretch="Uniform" Width="140" Height="140" Margin="15"/>
+                </Button>
+                <Button Cursor="Hand" Click="BtnPfp2Event" Margin="0,0,0,0" Background="#00DDDDDD" BorderBrush="#00707070">
+                    <Image x:Name="ImagePfp2" Stretch="Uniform" Width="140" Height="140" Margin="15"/>
+                </Button>
+                <Button Cursor="Hand" Click="BtnPfp3Event" Margin="0,0,0,0" Background="#00DDDDDD" BorderBrush="#00707070">
+                    <Image x:Name="ImagePfp3" Stretch="Uniform" Width="140" Height="140" Margin="15"/>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Content="{x:Static p:Resources.BtnContinue}" Click="BtnContinueEvent" Height="30" Width="85" Margin="0,0,15,0" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Background="{DynamicResource BtnBackground}" BorderBrush="{DynamicResource BtnBorder}" Foreground="White"/>
+            <Button Content="{x:Static p:Resources.BtnCancel}" Click="BtnCancelEvent" Height="30" Width="85" Margin="15,0,15,0" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Background="{DynamicResource BtnBackground}" BorderBrush="{DynamicResource BtnBorder}" Foreground="White"/>
+            <Button Content="{x:Static p:Resources.BtnChangePassword}" Click="BtnChangePasswordEvent" Height="30" Width="115" Margin="15,0,0,0" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Background="{DynamicResource BtnBackground}" Foreground="White" BorderBrush="#FF650D0D" BorderThickness="3,3,3,3"/>
+        </StackPanel>
+        <Label Content="{x:Static p:Resources.BtnModifyProfile}" HorizontalAlignment="Center" Margin="0,60,0,0" VerticalAlignment="Top" Foreground="White" FontSize="18" FontWeight="Bold"/>
+
+    </Grid>
+</Page>

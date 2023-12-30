@@ -1,0 +1,12 @@
+﻿<Application x:Class="ClienteDuo.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="/Pages/MainWindow.xaml">
+    <Application.Resources>
+        <SolidColorBrush x:Key="BtnBackground" Color="#FF6B472B"/>
+        <SolidColorBrush x:Key="BtnBorder" Color="#FF452308"/>
+        <SolidColorBrush x:Key="Background" Color="#FF212D47"/>
+        <SolidColorBrush x:Key="HighlightFill" Color="#576B552B"/>
+        <SolidColorBrush x:Key="HighlightStroke" Color="#FF453008"/>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,31 @@
+﻿<Page x:Class="ClienteDuo.Pages.Sidebars.EmailCodeVerification"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ClienteDuo.Pages.Sidebars"
+      xmlns:p="clr-namespace:ClienteDuo.Properties"
+
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1000"
+      Title="EmailCodeVerification">
+
+    <Grid Background="{DynamicResource Background}">
+        <Label Content="{x:Static p:Resources.TitlePasswordReset}" HorizontalAlignment="Center" Margin="0,60,0,0" VerticalAlignment="Top" Foreground="White" FontSize="18" FontWeight="Bold"/>
+
+        <Rectangle HorizontalAlignment="Center" Height="200" Stroke="{DynamicResource HighlightFill}" VerticalAlignment="Center" Width="280" RadiusX="19.5" RadiusY="19.5" Fill="#FFA4A4A4" StrokeThickness="6"/>
+
+        <StackPanel HorizontalAlignment="Center" Orientation="Vertical" VerticalAlignment="Center">
+            <Label Content="{x:Static p:Resources.LblCode}" FontSize="14" Width="200"/>
+            <TextBox x:Name="TBoxConfirmationCode" MaxLength="4" Height="26" TextWrapping="Wrap" Width="100" Margin="0,5,0,5" FontSize="14" HorizontalContentAlignment="Center" BorderBrush="{DynamicResource BtnBorder}"/>
+            <Grid VerticalAlignment="Center" Margin="0,25,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Content="{x:Static p:Resources.BtnContinue}" Cursor="Hand" Margin="0,0,5,0" Height="30" VerticalAlignment="Center" FontSize="14" Background="{DynamicResource BtnBackground}" BorderBrush="{DynamicResource BtnBorder}" Foreground="White" Grid.Column="0" Click="BtnContinueEvent"/>
+                <Button Content="{x:Static p:Resources.BtnCancel}" Click="BtnCancelEvent" Cursor="Hand" Margin="5,0,0,0" Height="30" VerticalAlignment="Center" FontSize="14" Background="{DynamicResource BtnBackground}" BorderBrush="{DynamicResource BtnBorder}" Foreground="White" Grid.Column="1"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>

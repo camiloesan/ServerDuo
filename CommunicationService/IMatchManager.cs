@@ -2,6 +2,7 @@
 using System.ServiceModel;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System;
 
 namespace CommunicationService
 {
@@ -77,11 +78,31 @@ namespace CommunicationService
             Color = "#000000";
         }
 
+        public Card(string number, string color)
+        {
+            Number = number;
+            Color = color;
+        }
+
         [DataMember]
         public string Number { get; set; }
 
         [DataMember]
         public string Color { get; set; }
+
+        [OperationContract]
+        public override bool Equals(object obj)
+        {
+            bool result = false;
+            var card = obj as Card;
+
+            if (card != null)
+            {
+                result = card.Number.Equals(Number) && card.Color.Equals(Color);
+            }
+
+            return result;
+        }
     }
 
     [DataContract]

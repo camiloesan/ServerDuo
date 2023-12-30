@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BtnCancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="BtnContinue" xml:space="preserve">
+    <value>Continuer</value>
+  </data>
+  <data name="BtnExitLobby" xml:space="preserve">
+    <value>Sortir</value>
+  </data>
+  <data name="BtnJoin" xml:space="preserve">
+    <value>Rejoindre</value>
+  </data>
+  <data name="BtnJoinAsGuest" xml:space="preserve">
+    <value>Rejoindre comme invité</value>
+  </data>
+  <data name="BtnJoinParty" xml:space="preserve">
+    <value>Rejoindre groupe</value>
+  </data>
+  <data name="BtnLogin" xml:space="preserve">
+    <value>Rejoindre</value>
+  </data>
+  <data name="BtnNewAccount" xml:space="preserve">
+    <value>Nouvelle compte</value>
+  </data>
+  <data name="BtnNewParty" xml:space="preserve">
+    <value>Nouvel groupe</value>
+  </data>
+  <data name="BtnQuitGame" xml:space="preserve">
+    <value>Sortir</value>
+  </data>
+  <data name="BtnStartGame" xml:space="preserve">
+    <value>Commencer partie</value>
+  </data>
+  <data name="DlgConnectionError" xml:space="preserve">
+    <value>Il y avait un échec de connection avec le service, essayer autre fois à plus tard</value>
+  </data>
+  <data name="DlgEmailTaken" xml:space="preserve">
+    <value>An account with that email is already registered</value>
+  </data>
+  <data name="DlgEmptyFields" xml:space="preserve">
+    <value>Tous les champes doivent être remplis</value>
+  </data>
+  <data name="DlgExitConfirmation" xml:space="preserve">
+    <value>Étes vous sur de sortir du jeu? Vous ne pourrez rentrer jusqu'a il est fini</value>
+  </data>
+  <data name="DlgExitMatchConfirmation" xml:space="preserve">
+    <value>¿Etes vous sur de sortir du jeu? Vous ne pourrez rentrer autres fois</value>
+  </data>
+  <data name="DlgFailedLogin" xml:space="preserve">
+    <value>Nom d'utilisateur ou courriel incorrectes</value>
+  </data>
+  <data name="DlgFullParty" xml:space="preserve">
+    <value>Le groupe est rempli, réessayer à plus tard</value>
+  </data>
+  <data name="DlgInsecurePassword" xml:space="preserve">
+    <value>La mot de passe dois contenir au moins: 8 caractères, un caractèr spéciaux, et des lettres majuscules et minuscules</value>
+  </data>
+  <data name="DlgInvalidPartyCodeFormat" xml:space="preserve">
+    <value>Le code de groupe doit être un numéro de 4 chiffres comme maximum</value>
+  </data>
+  <data name="DlgMessageMaxCharacters" xml:space="preserve">
+    <value>Des messages peuvent contenir seulement 250 caractères</value>
+  </data>
+  <data name="DlgNewAccountSuccess" xml:space="preserve">
+    <value>Le nom d'utilisater est enregistré avec succès</value>
+  </data>
+  <data name="DlgPartyNotFound" xml:space="preserve">
+    <value>Le code de groupe est incorrecte</value>
+  </data>
+  <data name="DlgServiceException" xml:space="preserve">
+    <value>Il y avait un échec de connection avec le service, réessayer à plus tard</value>
+  </data>
+  <data name="DlgUsernameMaxCharacters" xml:space="preserve">
+    <value>Les nombre de caractéres dans un nom d'utilisateur est 30 comme maximum</value>
+  </data>
+  <data name="DlgUsernameTaken" xml:space="preserve">
+    <value>Le nom d'utilisater est déjà enregistré</value>
+  </data>
+  <data name="LblAddNewFriend" xml:space="preserve">
+    <value>Ajouter nouvel ami</value>
+  </data>
+  <data name="LblCalculatingResults" xml:space="preserve">
+    <value>En calculant des resultats...</value>
+  </data>
+  <data name="LblCardsLeft" xml:space="preserve">
+    <value>Cartes restantes</value>
+  </data>
+  <data name="LblChat" xml:space="preserve">
+    <value>Chat</value>
+  </data>
+  <data name="LblConfirmPassword" xml:space="preserve">
+    <value>Confirmer mot de passe</value>
+  </data>
+  <data name="LblEmail" xml:space="preserve">
+    <value>Courriel</value>
+  </data>
+  <data name="LblGameSettings" xml:space="preserve">
+    <value>Configuration de jeu</value>
+  </data>
+  <data name="LblLeaderboard" xml:space="preserve">
+    <value>Leaderboard</value>
+  </data>
+  <data name="LblMatchEnd" xml:space="preserve">
+    <value>Jeu fini</value>
+  </data>
+  <data name="LblMyProfile" xml:space="preserve">
+    <value>My Profile</value>
+  </data>
+  <data name="LblPartyCode" xml:space="preserve">
+    <value>Code de groupe</value>
+  </data>
+  <data name="LblPassword" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
+  <data name="LblPlayers" xml:space="preserve">
+    <value>Joueurs</value>
+  </data>
+  <data name="LblReady" xml:space="preserve">
+    <value>Prêt</value>
+  </data>
+  <data name="LblUsername" xml:space="preserve">
+    <value>Nom d'utilisateur</value>
+  </data>
+  <data name="LblWinner" xml:space="preserve">
+    <value>Vainqueur</value>
+  </data>
+  <data name="TitleAlert" xml:space="preserve">
+    <value>Alerte</value>
+  </data>
+  <data name="TitleLauncher" xml:space="preserve">
+    <value>Launcher</value>
+  </data>
+  <data name="TitleLogin" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="TitleNewAccount" xml:space="preserve">
+    <value>Nouvelle compte</value>
+  </data>
+  <data name="LblInGameUsername" xml:space="preserve">
+    <value>Nom temporel</value>
+  </data>
+  <data name="LblSelectReason" xml:space="preserve">
+    <value>Choisissez une raison (Optional)</value>
+  </data>
+  <data name="RsnCheating" xml:space="preserve">
+    <value>Tricherie</value>
+  </data>
+  <data name="RsnInappropriateBehaviour" xml:space="preserve">
+    <value>Comportment inapproprié</value>
+  </data>
+  <data name="RsnSpam" xml:space="preserve">
+    <value>Spam</value>
+  </data>
+  <data name="TitleKickPlayer" xml:space="preserve">
+    <value>Expulser joueur</value>
+  </data>
+  <data name="DlgKickedPlayer" xml:space="preserve">
+    <value>Vous avez été expulsé du jeu. </value>
+  </data>
+  <data name="DlgKickingReason" xml:space="preserve">
+    <value>La raison de votre expulsion est: </value>
+  </data>
+  <data name="DlgEmptyKickingReason" xml:space="preserve">
+    <value>L'expulsion du joueur n'était pas possible, definez une raison d'expulsion s'il vous plait</value>
+  </data>
+  <data name="DlgFriendRequestError" xml:space="preserve">
+    <value>Il y avait un echec en envoyant de la demande d'ami</value>
+  </data>
+  <data name="DlgNotEnoughPlayers" xml:space="preserve">
+    <value>Échec en commençant, il faut que le Lobby a au moins 2 jeueurs</value>
+  </data>
+  <data name="DlgTooManyCards" xml:space="preserve">
+    <value>Vouz ne pouvez pas recevoir autre carte, ¡vous avez en trop!</value>
+  </data>
+</root>

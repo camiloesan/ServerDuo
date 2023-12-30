@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="ClienteDuo.Pages.PlayerBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClienteDuo.Pages"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="300" Background="White">
+
+    <Grid>
+        <Button x:Name="BtnKick" Content="" HorizontalAlignment="Right" Margin="0,0,50,0" VerticalAlignment="Center" Width="40" Height="40" Visibility="Collapsed" Click="BtnKickEvent">
+            <Button.Background>
+                <ImageBrush ImageSource="../Images/XIcon.png"/>
+            </Button.Background>
+        </Button>
+
+        <Button x:Name="BtnAddFriend" Content="" HorizontalAlignment="Right" Margin="0,0,5,0" VerticalAlignment="Center" Width="40" Height="40" Click="BtnAddFriendEvent" >
+            <Button.Background>
+                <ImageBrush ImageSource="../Images/AddFriendIcon.png"/>
+            </Button.Background>
+        </Button>
+
+        <Label x:Name="ProfilePicture" Content="" Width="40" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,10,0">
+            <Label.Background>
+                <ImageBrush ImageSource="../Images/profile-user.png"/>
+            </Label.Background>
+        </Label>
+        <Label x:Name="LblUsername" Content="Username" HorizontalAlignment="Left" Margin="62,0,0,0" VerticalAlignment="Center" Width="143"/>
+    </Grid>
+
+</UserControl>
