@@ -12,7 +12,7 @@ namespace ClienteDuo.TestClasses
     {
         private readonly PartyManagerClient _partyManagerClient;
         private int _partyCode = 0;
-        private string _username;
+        private string _hostUsername;
 
         public TestPartyManager()
         {
@@ -23,7 +23,7 @@ namespace ClienteDuo.TestClasses
         public void NotifyCreateParty(int partyCode, string hostUseraname)
         {
             _partyCode = partyCode;
-            _username = hostUseraname;
+            _hostUsername = hostUseraname;
             _partyManagerClient.NotifyCreateParty(partyCode, hostUseraname);
         }
 

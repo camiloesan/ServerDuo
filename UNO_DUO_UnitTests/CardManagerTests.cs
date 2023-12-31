@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ServiceModel;
 
-namespace ClienteDuo.Tests
+namespace ClienteDuo.Pages.Tests
 {
     [TestClass()]
     public class CardManagerTests
@@ -43,7 +43,7 @@ namespace ClienteDuo.Tests
         [TestMethod]
         public void ValidCardNumberTest()
         {
-            Card card = _cardClient.DrawCard();
+            DataService.Card card = _cardClient.DrawCard();
 
             while (card.Number.Equals("#"))
             {
@@ -56,7 +56,7 @@ namespace ClienteDuo.Tests
         [TestMethod]
         public void DrawWildcardTest()
         {
-            Card card = _cardClient.DrawCard();
+            DataService.Card card = _cardClient.DrawCard();
 
             while (!card.Number.Equals("#"))
             {
@@ -69,20 +69,20 @@ namespace ClienteDuo.Tests
         [TestMethod]
         public void GetCards()
         {
-            List<Card> cardList = new List<Card>(_cardClient.GetCards(_partyCode));
+            List<DataService.Card> cardList = new List<DataService.Card>(_cardClient.GetCards(_partyCode));
 
             Assert.IsTrue(cardList.Count == 3); // The table must always have 3 cards
         }
 
         public void PlayCard()
         {
-            Card oldCard = _cardClient.GetCards(_partyCode)[0]; // Can also be the card in position '1' of the array
-            Card playingCard = new Card();
+            DataService.Card oldCard = _cardClient.GetCards(_partyCode)[0]; // Can also be the card in position '1' of the array
+            DataService.Card playingCard = new DataService.Card();
 
             playingCard.Color = oldCard.Color;
             playingCard.Number = oldCard.Number;
             _cardClient.PlayCard(_partyCode, 0, playingCard);
-            Card newCard = _cardClient.GetCards(_partyCode)[0];
+            DataService.Card newCard = _cardClient.GetCards(_partyCode)[0];
 
             Assert.AreNotEqual(oldCard, newCard); //Cards played are reshuffled to allow other numbers to be played
         }

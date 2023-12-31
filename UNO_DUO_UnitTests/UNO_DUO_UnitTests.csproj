@@ -78,7 +78,8 @@
     <Compile Include="CardManagerTests.cs" />
     <Compile Include="TestClasses\TestGameTable.cs" />
     <Compile Include="TestClasses\TestPartyManager.cs" />
-    <Compile Include="TestClasses\TestPartyManagerTests.cs" />
+    <Compile Include="TestPartyManagerTests.cs" />
+    <Compile Include="UsersManagerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

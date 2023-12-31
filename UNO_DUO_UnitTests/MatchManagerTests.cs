@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 
-namespace ClienteDuo.Tests
+namespace ClienteDuo.Pages.Tests
 {
     [TestClass()]
     public class MatchManagerTests

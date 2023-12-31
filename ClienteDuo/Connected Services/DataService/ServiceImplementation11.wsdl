@@ -1,0 +1,1225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="ServiceImplementation" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_IUsersManager_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IUserConnectionHandler_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IPartyManager_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IPartyValidator_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_ICardManager_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IMatchManager_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://192.168.1.64:8082/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://192.168.1.64:8082/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://192.168.1.64:8082/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CommunicationService" />
+      <xsd:import schemaLocation="http://192.168.1.64:8082/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IUsersManager_UpdateProfilePictureByUserId_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateProfilePictureByUserId" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_UpdateProfilePictureByUserId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateProfilePictureByUserIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_GetUserInfoByUsername_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserInfoByUsername" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_GetUserInfoByUsername_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserInfoByUsernameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_AddUserToDatabase_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserToDatabase" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_AddUserToDatabase_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserToDatabaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_DeleteUserFromDatabaseByUsername_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserFromDatabaseByUsername" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_DeleteUserFromDatabaseByUsername_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserFromDatabaseByUsernameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_IsLoginValid_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsLoginValid" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_IsLoginValid_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsLoginValidResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_IsUsernameTaken_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsUsernameTaken" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_IsUsernameTaken_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsUsernameTakenResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_IsEmailTaken_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsEmailTaken" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_IsEmailTaken_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsEmailTakenResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_SendFriendRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendFriendRequest" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_SendFriendRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendFriendRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_IsFriendRequestAlreadyExistent_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsFriendRequestAlreadyExistent" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_IsFriendRequestAlreadyExistent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsFriendRequestAlreadyExistentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_AcceptFriendRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:AcceptFriendRequest" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_AcceptFriendRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AcceptFriendRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_RejectFriendRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:RejectFriendRequest" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_RejectFriendRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RejectFriendRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_GetFriendRequestsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFriendRequestsList" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_GetFriendRequestsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFriendRequestsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_GetFriendsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFriendsList" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_GetFriendsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFriendsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_GetOnlineFriends_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOnlineFriends" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_GetOnlineFriends_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOnlineFriendsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_DeleteFriendshipById_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFriendshipById" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_DeleteFriendshipById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFriendshipByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_IsAlreadyFriend_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsAlreadyFriend" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_IsAlreadyFriend_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsAlreadyFriendResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_IsUserAlreadyLoggedIn_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsUserAlreadyLoggedIn" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_IsUserAlreadyLoggedIn_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsUserAlreadyLoggedInResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_SendConfirmationCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendConfirmationCode" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_SendConfirmationCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendConfirmationCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_ModifyPasswordByEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyPasswordByEmail" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_ModifyPasswordByEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyPasswordByEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_BlockUserByUsername_InputMessage">
+    <wsdl:part name="parameters" element="tns:BlockUserByUsername" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_BlockUserByUsername_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BlockUserByUsernameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_UnblockUserByBlockId_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnblockUserByBlockId" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_UnblockUserByBlockId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnblockUserByBlockIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_IsUserBlockedByUsername_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsUserBlockedByUsername" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_IsUserBlockedByUsername_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsUserBlockedByUsernameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_GetBlockedUsersListByUserId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBlockedUsersListByUserId" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_GetBlockedUsersListByUserId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBlockedUsersListByUserIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_GetTopTenWinners_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopTenWinners" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_GetTopTenWinners_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopTenWinnersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserConnectionHandler_NotifyLogIn_InputMessage">
+    <wsdl:part name="parameters" element="tns:NotifyLogIn" />
+  </wsdl:message>
+  <wsdl:message name="IUserConnectionHandler_NotifyLogIn_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NotifyLogInResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserConnectionHandler_NotifyLogOut_InputMessage">
+    <wsdl:part name="parameters" element="tns:NotifyLogOut" />
+  </wsdl:message>
+  <wsdl:message name="IUserConnectionHandler_NotifyLogOut_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NotifyLogOutResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserConnectionHandler_UserLogged_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UserLogged" />
+  </wsdl:message>
+  <wsdl:message name="IUserConnectionHandler_UserLogged_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UserLoggedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPartyManager_NotifyCreateParty_InputMessage">
+    <wsdl:part name="parameters" element="tns:NotifyCreateParty" />
+  </wsdl:message>
+  <wsdl:message name="IPartyManager_NotifyJoinParty_InputMessage">
+    <wsdl:part name="parameters" element="tns:NotifyJoinParty" />
+  </wsdl:message>
+  <wsdl:message name="IPartyManager_NotifySendMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:NotifySendMessage" />
+  </wsdl:message>
+  <wsdl:message name="IPartyManager_NotifyLeaveParty_InputMessage">
+    <wsdl:part name="parameters" element="tns:NotifyLeaveParty" />
+  </wsdl:message>
+  <wsdl:message name="IPartyManager_NotifyCloseParty_InputMessage">
+    <wsdl:part name="parameters" element="tns:NotifyCloseParty" />
+  </wsdl:message>
+  <wsdl:message name="IPartyManager_NotifyStartGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:NotifyStartGame" />
+  </wsdl:message>
+  <wsdl:message name="IPartyManager_NotifyKickPlayer_InputMessage">
+    <wsdl:part name="parameters" element="tns:NotifyKickPlayer" />
+  </wsdl:message>
+  <wsdl:message name="IPartyManager_PartyCreated_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:PartyCreated" />
+  </wsdl:message>
+  <wsdl:message name="IPartyManager_PartyCreated_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:PartyCreatedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPartyManager_PlayerJoined_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:PlayerJoined" />
+  </wsdl:message>
+  <wsdl:message name="IPartyManager_PlayerJoined_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:PlayerJoinedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPartyManager_MessageReceived_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:MessageReceived" />
+  </wsdl:message>
+  <wsdl:message name="IPartyManager_MessageReceived_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:MessageReceivedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPartyManager_PlayerLeft_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:PlayerLeft" />
+  </wsdl:message>
+  <wsdl:message name="IPartyManager_PlayerLeft_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:PlayerLeftResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPartyManager_PlayerKicked_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:PlayerKicked" />
+  </wsdl:message>
+  <wsdl:message name="IPartyManager_PlayerKicked_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:PlayerKickedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPartyManager_GameStarted_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:GameStarted" />
+  </wsdl:message>
+  <wsdl:message name="IPartyManager_GameStarted_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:GameStartedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPartyValidator_IsPartyExistent_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsPartyExistent" />
+  </wsdl:message>
+  <wsdl:message name="IPartyValidator_IsPartyExistent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsPartyExistentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPartyValidator_IsSpaceAvailable_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsSpaceAvailable" />
+  </wsdl:message>
+  <wsdl:message name="IPartyValidator_IsSpaceAvailable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsSpaceAvailableResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPartyValidator_IsUsernameInParty_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsUsernameInParty" />
+  </wsdl:message>
+  <wsdl:message name="IPartyValidator_IsUsernameInParty_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsUsernameInPartyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPartyValidator_GetPlayersInParty_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayersInParty" />
+  </wsdl:message>
+  <wsdl:message name="IPartyValidator_GetPlayersInParty_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayersInPartyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICardManager_DrawCard_InputMessage">
+    <wsdl:part name="parameters" element="tns:DrawCard" />
+  </wsdl:message>
+  <wsdl:message name="ICardManager_DrawCard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DrawCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICardManager_GetCards_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCards" />
+  </wsdl:message>
+  <wsdl:message name="ICardManager_GetCards_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCardsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICardManager_DealCards_InputMessage">
+    <wsdl:part name="parameters" element="tns:DealCards" />
+  </wsdl:message>
+  <wsdl:message name="ICardManager_DealCards_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DealCardsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICardManager_PlayCard_InputMessage">
+    <wsdl:part name="parameters" element="tns:PlayCard" />
+  </wsdl:message>
+  <wsdl:message name="ICardManager_PlayCard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PlayCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManager_Subscribe_InputMessage">
+    <wsdl:part name="parameters" element="tns:Subscribe" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManager_SetGameScore_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetGameScore" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManager_ExitMatch_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExitMatch" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManager_KickPlayerFromGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:KickPlayerFromGame" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManager_EndGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:EndGame" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManager_EndTurn_InputMessage">
+    <wsdl:part name="parameters" element="tns:EndTurn" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManager_GetCurrentTurn_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentTurn" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManager_GetCurrentTurn_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentTurnResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManager_GetPlayerList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerList" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManager_GetPlayerList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManager_GetMatchResults_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMatchResults" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManager_GetMatchResults_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMatchResultsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManager_UpdateTableCards_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTableCards" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManager_UpdateTableCards_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTableCardsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManager_PlayerLeftGame_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:PlayerLeftGame" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManager_PlayerLeftGame_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:PlayerLeftGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManager_TurnFinished_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:TurnFinished" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManager_TurnFinished_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:TurnFinishedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManager_GameOver_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:GameOver" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManager_GameOver_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:GameOverResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IUsersManager">
+    <wsdl:operation name="UpdateProfilePictureByUserId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/UpdateProfilePictureByUserId" message="tns:IUsersManager_UpdateProfilePictureByUserId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/UpdateProfilePictureByUserIdResponse" message="tns:IUsersManager_UpdateProfilePictureByUserId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfoByUsername">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/GetUserInfoByUsername" message="tns:IUsersManager_GetUserInfoByUsername_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/GetUserInfoByUsernameResponse" message="tns:IUsersManager_GetUserInfoByUsername_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUserToDatabase">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/AddUserToDatabase" message="tns:IUsersManager_AddUserToDatabase_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/AddUserToDatabaseResponse" message="tns:IUsersManager_AddUserToDatabase_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserFromDatabaseByUsername">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/DeleteUserFromDatabaseByUsername" message="tns:IUsersManager_DeleteUserFromDatabaseByUsername_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/DeleteUserFromDatabaseByUsernameResponse" message="tns:IUsersManager_DeleteUserFromDatabaseByUsername_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsLoginValid">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/IsLoginValid" message="tns:IUsersManager_IsLoginValid_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/IsLoginValidResponse" message="tns:IUsersManager_IsLoginValid_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsUsernameTaken">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/IsUsernameTaken" message="tns:IUsersManager_IsUsernameTaken_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/IsUsernameTakenResponse" message="tns:IUsersManager_IsUsernameTaken_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsEmailTaken">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/IsEmailTaken" message="tns:IUsersManager_IsEmailTaken_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/IsEmailTakenResponse" message="tns:IUsersManager_IsEmailTaken_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendFriendRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/SendFriendRequest" message="tns:IUsersManager_SendFriendRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/SendFriendRequestResponse" message="tns:IUsersManager_SendFriendRequest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsFriendRequestAlreadyExistent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/IsFriendRequestAlreadyExistent" message="tns:IUsersManager_IsFriendRequestAlreadyExistent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/IsFriendRequestAlreadyExistentResponse" message="tns:IUsersManager_IsFriendRequestAlreadyExistent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AcceptFriendRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/AcceptFriendRequest" message="tns:IUsersManager_AcceptFriendRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/AcceptFriendRequestResponse" message="tns:IUsersManager_AcceptFriendRequest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RejectFriendRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/RejectFriendRequest" message="tns:IUsersManager_RejectFriendRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/RejectFriendRequestResponse" message="tns:IUsersManager_RejectFriendRequest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFriendRequestsList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/GetFriendRequestsList" message="tns:IUsersManager_GetFriendRequestsList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/GetFriendRequestsListResponse" message="tns:IUsersManager_GetFriendRequestsList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFriendsList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/GetFriendsList" message="tns:IUsersManager_GetFriendsList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/GetFriendsListResponse" message="tns:IUsersManager_GetFriendsList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOnlineFriends">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/GetOnlineFriends" message="tns:IUsersManager_GetOnlineFriends_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/GetOnlineFriendsResponse" message="tns:IUsersManager_GetOnlineFriends_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFriendshipById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/DeleteFriendshipById" message="tns:IUsersManager_DeleteFriendshipById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/DeleteFriendshipByIdResponse" message="tns:IUsersManager_DeleteFriendshipById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsAlreadyFriend">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/IsAlreadyFriend" message="tns:IUsersManager_IsAlreadyFriend_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/IsAlreadyFriendResponse" message="tns:IUsersManager_IsAlreadyFriend_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsUserAlreadyLoggedIn">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/IsUserAlreadyLoggedIn" message="tns:IUsersManager_IsUserAlreadyLoggedIn_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/IsUserAlreadyLoggedInResponse" message="tns:IUsersManager_IsUserAlreadyLoggedIn_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendConfirmationCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/SendConfirmationCode" message="tns:IUsersManager_SendConfirmationCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/SendConfirmationCodeResponse" message="tns:IUsersManager_SendConfirmationCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifyPasswordByEmail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/ModifyPasswordByEmail" message="tns:IUsersManager_ModifyPasswordByEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/ModifyPasswordByEmailResponse" message="tns:IUsersManager_ModifyPasswordByEmail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BlockUserByUsername">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/BlockUserByUsername" message="tns:IUsersManager_BlockUserByUsername_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/BlockUserByUsernameResponse" message="tns:IUsersManager_BlockUserByUsername_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnblockUserByBlockId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/UnblockUserByBlockId" message="tns:IUsersManager_UnblockUserByBlockId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/UnblockUserByBlockIdResponse" message="tns:IUsersManager_UnblockUserByBlockId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsUserBlockedByUsername">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/IsUserBlockedByUsername" message="tns:IUsersManager_IsUserBlockedByUsername_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/IsUserBlockedByUsernameResponse" message="tns:IUsersManager_IsUserBlockedByUsername_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBlockedUsersListByUserId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/GetBlockedUsersListByUserId" message="tns:IUsersManager_GetBlockedUsersListByUserId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/GetBlockedUsersListByUserIdResponse" message="tns:IUsersManager_GetBlockedUsersListByUserId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopTenWinners">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/GetTopTenWinners" message="tns:IUsersManager_GetTopTenWinners_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/GetTopTenWinnersResponse" message="tns:IUsersManager_GetTopTenWinners_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IUserConnectionHandler">
+    <wsdl:operation name="NotifyLogIn">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserConnectionHandler/NotifyLogIn" message="tns:IUserConnectionHandler_NotifyLogIn_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserConnectionHandler/NotifyLogInResponse" message="tns:IUserConnectionHandler_NotifyLogIn_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NotifyLogOut">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserConnectionHandler/NotifyLogOut" message="tns:IUserConnectionHandler_NotifyLogOut_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserConnectionHandler/NotifyLogOutResponse" message="tns:IUserConnectionHandler_NotifyLogOut_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserLogged">
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserConnectionHandler/UserLogged" message="tns:IUserConnectionHandler_UserLogged_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserConnectionHandler/UserLoggedResponse" message="tns:IUserConnectionHandler_UserLogged_InputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IPartyManager">
+    <wsdl:operation name="NotifyCreateParty">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPartyManager/NotifyCreateParty" message="tns:IPartyManager_NotifyCreateParty_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NotifyJoinParty">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPartyManager/NotifyJoinParty" message="tns:IPartyManager_NotifyJoinParty_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NotifySendMessage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPartyManager/NotifySendMessage" message="tns:IPartyManager_NotifySendMessage_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NotifyLeaveParty">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPartyManager/NotifyLeaveParty" message="tns:IPartyManager_NotifyLeaveParty_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NotifyCloseParty">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPartyManager/NotifyCloseParty" message="tns:IPartyManager_NotifyCloseParty_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NotifyStartGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPartyManager/NotifyStartGame" message="tns:IPartyManager_NotifyStartGame_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NotifyKickPlayer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPartyManager/NotifyKickPlayer" message="tns:IPartyManager_NotifyKickPlayer_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PartyCreated">
+      <wsdl:output wsaw:Action="http://tempuri.org/IPartyManager/PartyCreated" message="tns:IPartyManager_PartyCreated_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IPartyManager/PartyCreatedResponse" message="tns:IPartyManager_PartyCreated_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PlayerJoined">
+      <wsdl:output wsaw:Action="http://tempuri.org/IPartyManager/PlayerJoined" message="tns:IPartyManager_PlayerJoined_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IPartyManager/PlayerJoinedResponse" message="tns:IPartyManager_PlayerJoined_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MessageReceived">
+      <wsdl:output wsaw:Action="http://tempuri.org/IPartyManager/MessageReceived" message="tns:IPartyManager_MessageReceived_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IPartyManager/MessageReceivedResponse" message="tns:IPartyManager_MessageReceived_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PlayerLeft">
+      <wsdl:output wsaw:Action="http://tempuri.org/IPartyManager/PlayerLeft" message="tns:IPartyManager_PlayerLeft_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IPartyManager/PlayerLeftResponse" message="tns:IPartyManager_PlayerLeft_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PlayerKicked">
+      <wsdl:output wsaw:Action="http://tempuri.org/IPartyManager/PlayerKicked" message="tns:IPartyManager_PlayerKicked_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IPartyManager/PlayerKickedResponse" message="tns:IPartyManager_PlayerKicked_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GameStarted">
+      <wsdl:output wsaw:Action="http://tempuri.org/IPartyManager/GameStarted" message="tns:IPartyManager_GameStarted_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IPartyManager/GameStartedResponse" message="tns:IPartyManager_GameStarted_InputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IPartyValidator">
+    <wsdl:operation name="IsPartyExistent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPartyValidator/IsPartyExistent" message="tns:IPartyValidator_IsPartyExistent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPartyValidator/IsPartyExistentResponse" message="tns:IPartyValidator_IsPartyExistent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsSpaceAvailable">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPartyValidator/IsSpaceAvailable" message="tns:IPartyValidator_IsSpaceAvailable_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPartyValidator/IsSpaceAvailableResponse" message="tns:IPartyValidator_IsSpaceAvailable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsUsernameInParty">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPartyValidator/IsUsernameInParty" message="tns:IPartyValidator_IsUsernameInParty_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPartyValidator/IsUsernameInPartyResponse" message="tns:IPartyValidator_IsUsernameInParty_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayersInParty">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPartyValidator/GetPlayersInParty" message="tns:IPartyValidator_GetPlayersInParty_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPartyValidator/GetPlayersInPartyResponse" message="tns:IPartyValidator_GetPlayersInParty_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ICardManager">
+    <wsdl:operation name="DrawCard">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICardManager/DrawCard" message="tns:ICardManager_DrawCard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICardManager/DrawCardResponse" message="tns:ICardManager_DrawCard_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCards">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICardManager/GetCards" message="tns:ICardManager_GetCards_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICardManager/GetCardsResponse" message="tns:ICardManager_GetCards_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DealCards">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICardManager/DealCards" message="tns:ICardManager_DealCards_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICardManager/DealCardsResponse" message="tns:ICardManager_DealCards_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PlayCard">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICardManager/PlayCard" message="tns:ICardManager_PlayCard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICardManager/PlayCardResponse" message="tns:ICardManager_PlayCard_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IMatchManager">
+    <wsdl:operation name="Subscribe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/Subscribe" message="tns:IMatchManager_Subscribe_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetGameScore">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/SetGameScore" message="tns:IMatchManager_SetGameScore_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExitMatch">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/ExitMatch" message="tns:IMatchManager_ExitMatch_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="KickPlayerFromGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/KickPlayerFromGame" message="tns:IMatchManager_KickPlayerFromGame_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EndGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/EndGame" message="tns:IMatchManager_EndGame_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EndTurn">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/EndTurn" message="tns:IMatchManager_EndTurn_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentTurn">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/GetCurrentTurn" message="tns:IMatchManager_GetCurrentTurn_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManager/GetCurrentTurnResponse" message="tns:IMatchManager_GetCurrentTurn_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayerList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/GetPlayerList" message="tns:IMatchManager_GetPlayerList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManager/GetPlayerListResponse" message="tns:IMatchManager_GetPlayerList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchResults">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/GetMatchResults" message="tns:IMatchManager_GetMatchResults_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManager/GetMatchResultsResponse" message="tns:IMatchManager_GetMatchResults_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTableCards">
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManager/UpdateTableCards" message="tns:IMatchManager_UpdateTableCards_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/UpdateTableCardsResponse" message="tns:IMatchManager_UpdateTableCards_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PlayerLeftGame">
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManager/PlayerLeftGame" message="tns:IMatchManager_PlayerLeftGame_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/PlayerLeftGameResponse" message="tns:IMatchManager_PlayerLeftGame_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TurnFinished">
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManager/TurnFinished" message="tns:IMatchManager_TurnFinished_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/TurnFinishedResponse" message="tns:IMatchManager_TurnFinished_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GameOver">
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManager/GameOver" message="tns:IMatchManager_GameOver_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/GameOverResponse" message="tns:IMatchManager_GameOver_InputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_IUsersManager" type="tns:IUsersManager">
+    <wsp:PolicyReference URI="#NetTcpBinding_IUsersManager_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="UpdateProfilePictureByUserId">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/UpdateProfilePictureByUserId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfoByUsername">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/GetUserInfoByUsername" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserToDatabase">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/AddUserToDatabase" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserFromDatabaseByUsername">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/DeleteUserFromDatabaseByUsername" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsLoginValid">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/IsLoginValid" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUsernameTaken">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/IsUsernameTaken" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsEmailTaken">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/IsEmailTaken" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendFriendRequest">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/SendFriendRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsFriendRequestAlreadyExistent">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/IsFriendRequestAlreadyExistent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcceptFriendRequest">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/AcceptFriendRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RejectFriendRequest">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/RejectFriendRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFriendRequestsList">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/GetFriendRequestsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFriendsList">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/GetFriendsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOnlineFriends">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/GetOnlineFriends" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFriendshipById">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/DeleteFriendshipById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsAlreadyFriend">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/IsAlreadyFriend" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUserAlreadyLoggedIn">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/IsUserAlreadyLoggedIn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendConfirmationCode">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/SendConfirmationCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyPasswordByEmail">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/ModifyPasswordByEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BlockUserByUsername">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/BlockUserByUsername" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnblockUserByBlockId">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/UnblockUserByBlockId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUserBlockedByUsername">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/IsUserBlockedByUsername" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBlockedUsersListByUserId">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/GetBlockedUsersListByUserId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopTenWinners">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/GetTopTenWinners" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IUserConnectionHandler" type="tns:IUserConnectionHandler">
+    <wsp:PolicyReference URI="#NetTcpBinding_IUserConnectionHandler_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="NotifyLogIn">
+      <soap12:operation soapAction="http://tempuri.org/IUserConnectionHandler/NotifyLogIn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyLogOut">
+      <soap12:operation soapAction="http://tempuri.org/IUserConnectionHandler/NotifyLogOut" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserLogged">
+      <soap12:operation soapAction="http://tempuri.org/IUserConnectionHandler/UserLogged" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IPartyManager" type="tns:IPartyManager">
+    <wsp:PolicyReference URI="#NetTcpBinding_IPartyManager_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="NotifyCreateParty">
+      <soap12:operation soapAction="http://tempuri.org/IPartyManager/NotifyCreateParty" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyJoinParty">
+      <soap12:operation soapAction="http://tempuri.org/IPartyManager/NotifyJoinParty" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="NotifySendMessage">
+      <soap12:operation soapAction="http://tempuri.org/IPartyManager/NotifySendMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyLeaveParty">
+      <soap12:operation soapAction="http://tempuri.org/IPartyManager/NotifyLeaveParty" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyCloseParty">
+      <soap12:operation soapAction="http://tempuri.org/IPartyManager/NotifyCloseParty" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyStartGame">
+      <soap12:operation soapAction="http://tempuri.org/IPartyManager/NotifyStartGame" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyKickPlayer">
+      <soap12:operation soapAction="http://tempuri.org/IPartyManager/NotifyKickPlayer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="PartyCreated">
+      <soap12:operation soapAction="http://tempuri.org/IPartyManager/PartyCreated" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PlayerJoined">
+      <soap12:operation soapAction="http://tempuri.org/IPartyManager/PlayerJoined" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MessageReceived">
+      <soap12:operation soapAction="http://tempuri.org/IPartyManager/MessageReceived" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PlayerLeft">
+      <soap12:operation soapAction="http://tempuri.org/IPartyManager/PlayerLeft" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PlayerKicked">
+      <soap12:operation soapAction="http://tempuri.org/IPartyManager/PlayerKicked" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GameStarted">
+      <soap12:operation soapAction="http://tempuri.org/IPartyManager/GameStarted" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IPartyValidator" type="tns:IPartyValidator">
+    <wsp:PolicyReference URI="#NetTcpBinding_IPartyValidator_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="IsPartyExistent">
+      <soap12:operation soapAction="http://tempuri.org/IPartyValidator/IsPartyExistent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsSpaceAvailable">
+      <soap12:operation soapAction="http://tempuri.org/IPartyValidator/IsSpaceAvailable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUsernameInParty">
+      <soap12:operation soapAction="http://tempuri.org/IPartyValidator/IsUsernameInParty" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayersInParty">
+      <soap12:operation soapAction="http://tempuri.org/IPartyValidator/GetPlayersInParty" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_ICardManager" type="tns:ICardManager">
+    <wsp:PolicyReference URI="#NetTcpBinding_ICardManager_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="DrawCard">
+      <soap12:operation soapAction="http://tempuri.org/ICardManager/DrawCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCards">
+      <soap12:operation soapAction="http://tempuri.org/ICardManager/GetCards" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DealCards">
+      <soap12:operation soapAction="http://tempuri.org/ICardManager/DealCards" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PlayCard">
+      <soap12:operation soapAction="http://tempuri.org/ICardManager/PlayCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IMatchManager" type="tns:IMatchManager">
+    <wsp:PolicyReference URI="#NetTcpBinding_IMatchManager_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="Subscribe">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManager/Subscribe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SetGameScore">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManager/SetGameScore" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="ExitMatch">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManager/ExitMatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="KickPlayerFromGame">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManager/KickPlayerFromGame" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="EndGame">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManager/EndGame" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="EndTurn">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManager/EndTurn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentTurn">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManager/GetCurrentTurn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayerList">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManager/GetPlayerList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchResults">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManager/GetMatchResults" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTableCards">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManager/UpdateTableCards" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PlayerLeftGame">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManager/PlayerLeftGame" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TurnFinished">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManager/TurnFinished" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GameOver">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManager/GameOver" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceImplementation">
+    <wsdl:port name="NetTcpBinding_IUsersManager" binding="tns:NetTcpBinding_IUsersManager">
+      <soap12:address location="net.tcp://192.168.1.64:8080/Service" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://192.168.1.64:8080/Service</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IUserConnectionHandler" binding="tns:NetTcpBinding_IUserConnectionHandler">
+      <soap12:address location="net.tcp://192.168.1.64:8080/Service" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://192.168.1.64:8080/Service</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IPartyManager" binding="tns:NetTcpBinding_IPartyManager">
+      <soap12:address location="net.tcp://192.168.1.64:8080/Service" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://192.168.1.64:8080/Service</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IPartyValidator" binding="tns:NetTcpBinding_IPartyValidator">
+      <soap12:address location="net.tcp://192.168.1.64:8080/Service" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://192.168.1.64:8080/Service</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_ICardManager" binding="tns:NetTcpBinding_ICardManager">
+      <soap12:address location="net.tcp://192.168.1.64:8080/Service" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://192.168.1.64:8080/Service</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IMatchManager" binding="tns:NetTcpBinding_IMatchManager">
+      <soap12:address location="net.tcp://192.168.1.64:8080/Service" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://192.168.1.64:8080/Service</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

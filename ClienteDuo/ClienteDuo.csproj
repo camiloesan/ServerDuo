@@ -151,9 +151,6 @@
     <Compile Include="Pages\Sidebars\PopUpUserDetails.xaml.cs">
       <DependentUpon>PopUpUserDetails.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Sidebars\PopUpUserLogged.xaml.cs">
-      <DependentUpon>PopUpUserLogged.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Sidebars\SidebarAddFriend.xaml.cs">
       <DependentUpon>SidebarAddFriend.xaml</DependentUpon>
     </Compile>
@@ -181,6 +178,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.fr.resx</DependentUpon>
     </Compile>
+    <Compile Include="TestClasses\TestPartyManager.cs" />
     <Compile Include="Utilities\MusicManager.cs" />
     <Compile Include="Utilities\SessionDetails.cs" />
     <Compile Include="Utilities\Sha256Encryptor.cs" />
@@ -257,10 +255,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Sidebars\PopUpUserDetails.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Sidebars\PopUpUserLogged.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -374,19 +368,19 @@
     <None Include="Connected Services\DataService\ClienteDuo.DataService.UserDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\DataService\item.xsd">
+    <None Include="Connected Services\DataService\item412.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\DataService\item1.xsd">
+    <None Include="Connected Services\DataService\item413.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\DataService\item2.xsd">
+    <None Include="Connected Services\DataService\item414.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\DataService\item3.xsd">
+    <None Include="Connected Services\DataService\item415.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\DataService\ServiceImplementation.wsdl" />
+    <None Include="Connected Services\DataService\ServiceImplementation13.wsdl" />
     <None Include="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -460,7 +454,7 @@
     <Resource Include="Images\pfp1.png" />
     <Resource Include="Images\pfp2.png" />
     <Resource Include="Images\pfp3.png" />
-    <None Include="Connected Services\DataService\item.disco" />
+    <None Include="Connected Services\DataService\item13.disco" />
     <Content Include="SFX\cardFlippedSound.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

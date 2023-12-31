@@ -22,12 +22,12 @@
     <MetadataSource Address="http://localhost:8082/" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="94ba0bc8-a6e0-4df0-aceb-bab149bb0875" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd0" />
-    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="b234b8fb-28e5-4c7b-a1c4-103e76f2fcba" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd1" />
-    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="90fe41d1-930b-456d-85eb-2f0a2d84bf60" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd2" />
-    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="5b5d5cef-5c2e-4610-ab2d-7cbe85a62b8b" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd3" />
-    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="966f3dd1-52cb-43f8-afa0-62c1b2ec014f" SourceId="1" SourceUrl="http://localhost:8082/?disco" />
-    <MetadataFile FileName="ServiceImplementation.wsdl" MetadataType="Wsdl" ID="a40a7a49-2d64-4659-8667-1b2f6c1ce994" SourceId="1" SourceUrl="http://localhost:8082/?wsdl" />
+    <MetadataFile FileName="item412.xsd" MetadataType="Schema" ID="e506f652-9d40-4e94-ac8e-6dcc7055d0fd" SourceId="1" SourceUrl="http://192.168.1.64:8082/?xsd=xsd1" />
+    <MetadataFile FileName="ServiceImplementation13.wsdl" MetadataType="Wsdl" ID="9040ad7f-b5f2-47db-9bd5-b90709600d29" SourceId="1" SourceUrl="http://192.168.1.64:8082/?wsdl" />
+    <MetadataFile FileName="item13.disco" MetadataType="Disco" ID="50f84e57-aae0-40e1-8f9c-e08e7e57f9e6" SourceId="1" SourceUrl="http://192.168.1.64:8082/?disco" />
+    <MetadataFile FileName="item413.xsd" MetadataType="Schema" ID="8220f2f3-ca15-4cc8-8310-0469f09fca2c" SourceId="1" SourceUrl="http://192.168.1.64:8082/?xsd=xsd3" />
+    <MetadataFile FileName="item414.xsd" MetadataType="Schema" ID="74bcacf8-6d47-4ece-84be-bb73cbbd7592" SourceId="1" SourceUrl="http://192.168.1.64:8082/?xsd=xsd2" />
+    <MetadataFile FileName="item415.xsd" MetadataType="Schema" ID="3b1b9d49-0608-4b96-92ff-d43c24d58da9" SourceId="1" SourceUrl="http://192.168.1.64:8082/?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

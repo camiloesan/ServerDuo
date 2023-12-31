@@ -1,32 +1,31 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ClienteDuo.Pages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Security.Cryptography.X509Certificates;
+using ClienteDuo.DataService;
+using ClienteDuo.Utilities;
+using ClienteDuo.TestClasses;
+using System.Threading;
 
-namespace ClienteDuo.Tests
+namespace ClienteDuo.Pages.Tests
 {
     [TestClass()]
     public class JoinPartyTests
     {
-        int partyCode;
-        readonly string hostUsername = "camilo";
-        private Lobby _lobby;
+        readonly int _partyCode = 1234;
+        readonly string _hostUsername = "camilo";
 
         [TestInitialize]
         public void Init()
         {
-            _lobby = new Lobby(hostUsername);
-            partyCode = _lobby.CreateNewParty(hostUsername);
+            TestPartyManager testPartyManager = new TestPartyManager();
+            testPartyManager.NotifyCreateParty(_partyCode, _hostUsername);
+            Thread.Sleep(2000);
         }
 
         [TestCleanup]
         public void Cleanup()
         {
-            _lobby.CloseParty(partyCode);
+            TestPartyManager testPartyManager = new TestPartyManager();
+            testPartyManager.NotifyCloseParty(_partyCode, _hostUsername, "");
+            Thread.Sleep(2000);
         }
 
         [TestMethod()]
@@ -47,14 +46,14 @@ namespace ClienteDuo.Tests
         public void IsPartyCodeExistentTest()
         {
             JoinParty joinParty = new JoinParty();
-            Assert.IsTrue(joinParty.IsPartyCodeExistent(partyCode));
+            Assert.IsTrue(joinParty.IsPartyCodeExistent(_partyCode));
         }
 
         [TestMethod()]
         public void IsPartyCodeNotExistentTest()
         {
             JoinParty joinParty = new JoinParty();
-            int nonExistentPartyCode = partyCode - 1;
+            int nonExistentPartyCode = _partyCode - 1;
             Assert.IsFalse(joinParty.IsPartyCodeExistent(nonExistentPartyCode));
         }
 
@@ -62,7 +61,7 @@ namespace ClienteDuo.Tests
         public void IsPartySpaceAvailableTest()
         {
             JoinParty joinParty = new JoinParty();
-            Assert.IsTrue(joinParty.IsSpaceAvailable(partyCode));
+            Assert.IsTrue(joinParty.IsSpaceAvailable(_partyCode));
         }
 
         [TestMethod()]
@@ -73,16 +72,44 @@ namespace ClienteDuo.Tests
             string player2 = "jorgejuan22";
             string player3 = "towngameplay";
 
-            var inviteeLobby = new Lobby(player1, partyCode);
-            inviteeLobby.JoinGame(partyCode, player1);
+            TestPartyManager testPartyManager = new TestPartyManager();
+            testPartyManager.NotifyJoinParty(_partyCode, player1);
+            testPartyManager.NotifyJoinParty(_partyCode, player2);
+            testPartyManager.NotifyJoinParty(_partyCode, player3);
 
-            var inviteeLobby2 = new Lobby(player2, partyCode);
-            inviteeLobby2.JoinGame(partyCode, player2);
+            Assert.IsFalse(joinParty.IsSpaceAvailable(_partyCode));
+        }
 
-            var inviteeLobby3 = new Lobby(player3, partyCode);
-            inviteeLobby3.JoinGame(partyCode, player3);
+        [TestMethod()]
+        public void IsUserBlockedByPlayerInLobbyTrueTest()
+        {
+            UsersManagerClient usersManagerClient = new UsersManagerClient();
+            string player0Username = "pepe0142";
+            string player1Username = "pepe1109";
+            UsersManager.AddUserToDatabase(player0Username, "host@gmail.com", "Tokyo11!23");
+            UsersManager.AddUserToDatabase(player1Username, "player1mail@gmail.com", "Tokyo11!23");
 
-            Assert.IsFalse(joinParty.IsSpaceAvailable(partyCode));
+            TestPartyManager testPartyManager = new TestPartyManager();
+            testPartyManager.NotifyJoinParty(_partyCode, player0Username);
+            Thread.Sleep(2000);
+
+            usersManagerClient.BlockUserByUsername(player0Username, player1Username);
+            JoinParty joinParty = new JoinParty();
+            bool result = joinParty.IsUserBlockedByPlayerInParty(player1Username, _partyCode);
+
+            usersManagerClient.DeleteUserFromDatabaseByUsername(player0Username);
+            usersManagerClient.DeleteUserFromDatabaseByUsername(player1Username);
+
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod()]
+        public void IsUserBlockedByPlayerInLobbyFalseTest()
+        {
+            JoinParty joinParty = new JoinParty();
+            bool result = joinParty.IsUserBlockedByPlayerInParty("cardone", _partyCode);
+
+            Assert.IsFalse(result);
         }
     }
 }

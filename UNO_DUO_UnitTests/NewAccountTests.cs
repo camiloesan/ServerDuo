@@ -1,109 +1,155 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ClienteDuo.DataService;
+using ClienteDuo.Utilities;
 
-namespace ClienteDuo.Tests
+namespace ClienteDuo.Pages.Tests
 {
     [TestClass()]
     public class NewAccountTests
     {
-        string initializedUsername = "demonslayer77";
-        string initializedEmail = "dprk@gmail.com";
-        string initializedPassword = "Tokyo2023!";
+        readonly string _initializedUsername = "demonslayer77";
+        readonly string _initializedEmail = "dprk@gmail.com";
+        readonly string _initializedPassword = "Tokyo2023!";
 
         [TestInitialize]
         public void Init()
         {
-            NewAccount newAccount = new NewAccount();
-            newAccount.AddUserToDatabase(initializedUsername, initializedEmail, initializedPassword);
+            UsersManager.AddUserToDatabase(_initializedUsername, _initializedEmail, _initializedPassword);
         }
 
         [TestCleanup]
         public void Cleanup()
         {
             UsersManagerClient usersManagerClient = new UsersManagerClient();
-            usersManagerClient.DeleteUserFromDatabaseByUsername(initializedUsername);
+            usersManagerClient.DeleteUserFromDatabaseByUsername(_initializedUsername);
+        }
+
+        [TestMethod()]
+        public void IsUsernameValidCorrectTest()
+        {
+            NewAccount newAccount = new NewAccount();
+            string username = "sofia";
+            bool result = newAccount.IsUsernameValid(username);
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod()]
+        public void IsUsernameValidMinLengthTest()
+        {
+            NewAccount newAccount = new NewAccount();
+            string username = "ab";
+            bool result = newAccount.IsUsernameValid(username);
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod()]
+        public void IsUsernameValidMaxLengthTest()
+        {
+            NewAccount newAccount = new NewAccount();
+            string username = "Uunumpentium12232maxpro";
+            bool result = newAccount.IsUsernameValid(username);
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod()]
+        public void IsUsernameValidNonAlphanumericCharactersTest()
+        {
+            NewAccount newAccount = new NewAccount();
+            string username = "jesusSol!s";
+            bool result = newAccount.IsUsernameValid(username);
+            Assert.IsFalse(result);
         }
 
         [TestMethod()]
         public void UsernameIsNotBeAvailableTest()
         {
-            NewAccount newAccount = new NewAccount();
-            Assert.IsFalse(newAccount.IsUsernameTaken(initializedUsername));
+            Assert.IsTrue(UsersManager.IsUsernameTaken(_initializedUsername));
         }
 
         [TestMethod()]
         public void UsernameIsAvailableTest()
         {
-            NewAccount newAccount = new NewAccount();
-            Assert.IsTrue(newAccount.IsUsernameTaken("jorgeAntonio23"));
+            Assert.IsFalse(UsersManager.IsUsernameTaken("jorgeAntonio23"));
         }
 
         [TestMethod()]
         public void EmailIsNotAvailableTest()
         {
-            NewAccount newAccount = new NewAccount();
-            Assert.IsFalse(newAccount.IsEmailTaken(initializedEmail));
+            Assert.IsTrue(UsersManager.IsEmailTaken(_initializedEmail));
         }
 
         [TestMethod()]
         public void EmailIsAvailableTest()
         {
-            NewAccount newAccount = new NewAccount();
-            Assert.IsTrue(newAccount.IsEmailTaken("roland@gmail.com"));
+            Assert.IsFalse(UsersManager.IsEmailTaken("roland@gmail.com"));
         }
 
         [TestMethod()]
         public void PasswordIsNotMatchTest()
         {
             NewAccount newAccount = new NewAccount();
-            Assert.IsFalse(newAccount.IsPasswordMatch(initializedPassword, "p455w0rd"));
+            Assert.IsFalse(newAccount.IsPasswordMatch(_initializedPassword, "p455w0rd"));
         }
 
         [TestMethod()]
         public void PasswordIsMatchTest()
         {
             NewAccount newAccount = new NewAccount();
-            Assert.IsTrue(newAccount.IsPasswordMatch(initializedPassword, initializedPassword));
+            Assert.IsTrue(newAccount.IsPasswordMatch(_initializedPassword, _initializedPassword));
         }
 
         [TestMethod()]
-        public void UsernameFieldTooLargeTest()
+        public void IsEmailValidTooLargeTest()
         {
-            string username = "demonslayer77groyperchuddiewojakbasedadonislaptophuaweisamsung8889";
-            string email = "taylorswift55@gmail.com";
+            string email = "demonslayer77groyperchuddie@gmail.com";
             NewAccount newAccount = new NewAccount();
-            //Assert.IsFalse(newAccount.AreFieldsLengthValid(username, email));
+            Assert.IsFalse(newAccount.IsEmailValid(email));
         }
 
         [TestMethod()]
-        public void EmailFieldTooLargeTest()
+        public void IsEmailValidCorrectTest()
         {
-            string username = "taylorswift";
-            string email = "demonslayer77groyperchuddiewojakbasedadonislaptophuaweisamsung8889@gmail.com";
-            NewAccount newAccount = new NewAccount();
-            //Assert.IsFalse(newAccount.AreFieldsLengthValid(username, email));
-        }
-
-        [TestMethod()]
-        public void CorrectFieldLengthTest()
-        {
-            string username = "taylorswift";
             string email = "taylosft@gmail.com";
             NewAccount newAccount = new NewAccount();
-            //Assert.IsTrue(newAccount.AreFieldsLengthValid(username, email));
+            Assert.IsTrue(newAccount.IsEmailValid(email));
         }
 
         [TestMethod()]
-        public void InsecurePasswordTest()
+        public void IsPasswordSecureIncorrectTooSmallTest()
         {
             string password = "smoke";
             NewAccount newAccount = new NewAccount();
             Assert.IsFalse(newAccount.IsPasswordSecure(password));
         }
 
-        public void SecurePasswordTest()
+        [TestMethod()]
+        public void IsPasswordSecureIncorrectWithoutNumberTest()
         {
-            string password = "SmokeKing122!";
+            string password = "Xalapadosmil";
+            NewAccount newAccount = new NewAccount();
+            Assert.IsFalse(newAccount.IsPasswordSecure(password));
+        }
+
+        [TestMethod()]
+        public void IsPasswordSecureIncorrectWithoutSpecialCharsTest()
+        {
+            string password = "Xalapa20000";
+            NewAccount newAccount = new NewAccount();
+            Assert.IsFalse(newAccount.IsPasswordSecure(password));
+        }
+
+        [TestMethod()]
+        public void IsPasswordSecureIncorrectTooLargeTest()
+        {
+            string password = "Xalapa!!1234567891011123";
+            NewAccount newAccount = new NewAccount();
+            Assert.IsFalse(newAccount.IsPasswordSecure(password));
+        }
+
+        [TestMethod()]
+        public void IsPasswordSecureCorrectStructureTest()
+        {
+            string password = "xalapA200!??";
             NewAccount newAccount = new NewAccount();
             Assert.IsTrue(newAccount.IsPasswordSecure(password));
         }
@@ -113,21 +159,13 @@ namespace ClienteDuo.Tests
         {
             string username = "guestTaylor";
             NewAccount newAccount = new NewAccount();
-            //Assert.IsTrue(newAccount.UsernameContainsGuestKeyword(username));
+            Assert.IsFalse(newAccount.IsUsernameValid(username));
         }
 
         [TestMethod()]
-        public void UsernameDoesNotContainGuestKeywordTest()
+        public void EmailInvalidLengthTest()
         {
-            string username = "jesusSolis";
-            NewAccount newAccount = new NewAccount();
-            //Assert.IsFalse(newAccount.UsernameContainsGuestKeyword(username));
-        }
-
-        [TestMethod()]
-        public void EmailContainsUnsupportedCharactersTest()
-        {
-            string email = "....@aol.es.com.mx";
+            string email = "....1231231123123123@aol.es.com.mx";
             NewAccount newAccount = new NewAccount();
             Assert.IsFalse(newAccount.IsEmailValid(email));
         }
@@ -154,6 +192,14 @@ namespace ClienteDuo.Tests
             string email = "camiloesan@gmail.com";
             NewAccount newAccount = new NewAccount();
             Assert.IsTrue(newAccount.IsEmailValid(email));
+        }
+
+        [TestMethod()]
+        public void AddUserAlreadyExistsTest()
+        {
+            int result = UsersManager.AddUserToDatabase(_initializedUsername, _initializedEmail, _initializedPassword);
+            int expected = 0;
+            Assert.AreEqual(expected, result);
         }
     }
 }

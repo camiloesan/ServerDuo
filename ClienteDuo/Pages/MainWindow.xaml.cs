@@ -48,7 +48,14 @@ namespace ClienteDuo.Pages
             } 
             else
             {
-                userConnectionHandlerClient.NotifyGuestLeft(SessionDetails.PartyCode, SessionDetails.Username);
+                try
+                {
+                    userConnectionHandlerClient.NotifyGuestLeft(SessionDetails.PartyCode, SessionDetails.Username);
+                }
+                catch(CommunicationException)
+                {
+                    MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
+                }
             }
         }
 
