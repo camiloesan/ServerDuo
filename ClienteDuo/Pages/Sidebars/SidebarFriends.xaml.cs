@@ -15,13 +15,37 @@ namespace ClienteDuo.Pages.Sidebars
         private SidebarFriendRequests _sidebarFriendRequests;
         private SidebarBlockedUsers _sidebarBlockedUsers;
         private readonly IEnumerable<FriendshipDTO> _onlineFriends;
+        private readonly IEnumerable<FriendshipDTO> _friendsList;
 
         public SidebarFriends()
         {
             InitializeComponent();
-            _onlineFriends = UsersManager.GetOnlineFriends(SessionDetails.UserId);
-            InitializeBars();
+            _onlineFriends = new List<FriendshipDTO>();
+            _friendsList = new List<FriendshipDTO>();
+            try
+            {
+                _onlineFriends = UsersManager.GetOnlineFriends(SessionDetails.UserId);
+                _friendsList = UsersManager.GetFriendsListByUserId(SessionDetails.UserId);
+                InitializeBars();
+            }
+            catch (TimeoutException) 
+            {
+                HideButtons();
+                MessageBox.Show(Properties.Resources.DlgConnectionError);
+            }
+            catch (CommunicationException)
+            {
+                HideButtons();
+                MessageBox.Show(Properties.Resources.DlgConnectionError);
+            }
             FillFriendsPanel();
+        }
+
+        private void HideButtons()
+        {
+            BtnAddFriend.Visibility = Visibility.Collapsed;
+            BtnBlockedUsers.Visibility = Visibility.Collapsed;
+            BtnFriendRequests.Visibility = Visibility.Collapsed;
         }
 
         private void InitializeBars()
@@ -48,21 +72,8 @@ namespace ClienteDuo.Pages.Sidebars
         private void FillFriendsPanel()
         {
             PanelFriends.Children.Clear();
-            IEnumerable<FriendshipDTO> friendsList = new List<FriendshipDTO>();
-            try
-            {
-                friendsList = UsersManager.GetFriendsListByUserId(SessionDetails.UserId);
-            }
-            catch (CommunicationException)
-            {
-                SessionDetails.AbortOperation();
-            }
-            catch (TimeoutException)
-            {
-                SessionDetails.AbortOperation();
-            }
 
-            foreach (FriendshipDTO friend in friendsList)
+            foreach (FriendshipDTO friend in _friendsList)
             {
                 if (friend.Friend1ID != SessionDetails.UserId)
                 {
@@ -181,11 +192,11 @@ namespace ClienteDuo.Pages.Sidebars
                 }
                 catch (CommunicationException)
                 {
-                    SessionDetails.AbortOperation();
+                    MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
                 }
                 catch (TimeoutException)
                 {
-                    SessionDetails.AbortOperation();
+                    MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
                 }
 
                 if (result)

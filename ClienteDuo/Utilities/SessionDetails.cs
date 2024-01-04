@@ -18,6 +18,7 @@ namespace ClienteDuo.Utilities
         public static int PartyCode { get; set; }
         public static int TotalWins { get; set; }
         public static int PictureID { get; set; }
+        public static bool IsLogged { get; set; }
 
         public static void CleanSessionDetails()
         {

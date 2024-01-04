@@ -32,11 +32,11 @@ namespace ClienteDuo.Pages.Sidebars
             }
             catch (CommunicationException)
             {
-                SessionDetails.AbortOperation();
+                MessageBox.Show(Properties.Resources.DlgConnectionError);
             }
             catch (TimeoutException)
             {
-                SessionDetails.AbortOperation();
+                MessageBox.Show(Properties.Resources.DlgConnectionError);
             }
 
             foreach (UserDTO user in userList)

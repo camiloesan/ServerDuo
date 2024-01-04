@@ -20,9 +20,9 @@
             </ScrollViewer>
             <Button Content="{x:Static p:Resources.BtnCancel}" Cursor="Hand" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Click="BtnCancelEvent" Background="#FF97785F" Foreground="White" Height="28" BorderBrush="#FF6B552B" Width="70"/>
             <StackPanel HorizontalAlignment="Center" Orientation="Vertical" VerticalAlignment="Center" Grid.Row="3" Width="174" Height="110">
-                <Button Content="{x:Static p:Resources.BtnAddFriend}" Cursor="Hand" FontSize="14" Click="BtnAddFriendEvent" Background="#FF97785F" Foreground="White" Height="32" BorderBrush="#FF6B552B"/>
-                <Button Content="{x:Static p:Resources.BtnFriendRequests}" Cursor="Hand" FontSize="14" Click="BtnFriendRequestsEvent" Background="#FF97785F" Foreground="White" Height="32" BorderBrush="#FF6B552B" Margin="0,7,0,0"/>
-                <Button Content="{x:Static p:Resources.BtnBlockedUsers}" Cursor="Hand" FontSize="14" Click="BtnBlockedUsersEvent" Background="#FF97785F" Foreground="White" Height="32" BorderBrush="#FF6B552B" Margin="0,7,0,0"/>
+                <Button x:Name="BtnAddFriend" Content="{x:Static p:Resources.BtnAddFriend}" Cursor="Hand" FontSize="14" Click="BtnAddFriendEvent" Background="#FF97785F" Foreground="White" Height="32" BorderBrush="#FF6B552B"/>
+                <Button x:Name="BtnFriendRequests" Content="{x:Static p:Resources.BtnFriendRequests}" Cursor="Hand" FontSize="14" Click="BtnFriendRequestsEvent" Background="#FF97785F" Foreground="White" Height="32" BorderBrush="#FF6B552B" Margin="0,7,0,0"/>
+                <Button x:Name="BtnBlockedUsers" Content="{x:Static p:Resources.BtnBlockedUsers}" Cursor="Hand" FontSize="14" Click="BtnBlockedUsersEvent" Background="#FF97785F" Foreground="White" Height="32" BorderBrush="#FF6B552B" Margin="0,7,0,0"/>
             </StackPanel>
         </Grid>
     </Grid>

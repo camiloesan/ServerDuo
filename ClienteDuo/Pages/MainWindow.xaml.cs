@@ -44,7 +44,22 @@ namespace ClienteDuo.Pages
                     UserName = SessionDetails.Username,
                     PartyCode = SessionDetails.PartyCode
                 };
-                userConnectionHandlerClient.NotifyLogOut(user, SessionDetails.IsHost);
+                try
+                {
+                    userConnectionHandlerClient.NotifyLogOut(user, SessionDetails.IsHost);
+                }
+                catch (TimeoutException)
+                {
+                    MessageBox.Show(Properties.Resources.DlgConnectionError);
+                }
+                catch (CommunicationException)
+                {
+                    MessageBox.Show(Properties.Resources.DlgConnectionError);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(Properties.Resources.DlgConnectionError);
+                }
             } 
             else
             {
@@ -52,16 +67,28 @@ namespace ClienteDuo.Pages
                 {
                     userConnectionHandlerClient.NotifyGuestLeft(SessionDetails.PartyCode, SessionDetails.Username);
                 }
-                catch(CommunicationException)
+                catch (TimeoutException)
                 {
-                    MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
+                    MessageBox.Show(Properties.Resources.DlgConnectionError);
+                }
+                catch (CommunicationException)
+                {
+                    MessageBox.Show(Properties.Resources.DlgConnectionError);
+                }
+                catch
+                {
+                    MessageBox.Show(Properties.Resources.DlgConnectionError);
                 }
             }
+
         }
 
         private void OnWindowClosing(object sender, CancelEventArgs e)
         {
-            NotifyLogOut(SessionDetails.UserId, SessionDetails.IsGuest);
+            if (SessionDetails.IsLogged)
+            {
+                NotifyLogOut(SessionDetails.UserId, SessionDetails.IsGuest);
+            }
         }
 
         public static bool ShowConfirmationBox(string message)

@@ -47,12 +47,12 @@ namespace ClienteDuo.Pages
             catch (CommunicationException)
             {
                 result = false;
-                SessionDetails.AbortOperation();
+                MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
             }
             catch (TimeoutException)
             {
                 result = false;
-                SessionDetails.AbortOperation();
+                MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
             }
 
             if (result)
@@ -77,6 +77,7 @@ namespace ClienteDuo.Pages
                     SessionDetails.TotalWins = loggedUser.TotalWins;
                     SessionDetails.PictureID = loggedUser.PictureID;
                     SessionDetails.IsGuest = false;
+                    SessionDetails.IsLogged = true;
 
                     UserDTO user = new UserDTO
                     {
@@ -92,11 +93,11 @@ namespace ClienteDuo.Pages
                     }
                     catch (CommunicationException)
                     {
-                        SessionDetails.AbortOperation();
+                        MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
                     }
                     catch (TimeoutException)
                     {
-                        SessionDetails.AbortOperation();
+                        MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
                     }
                 }
             }

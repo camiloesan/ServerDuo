@@ -30,11 +30,11 @@ namespace ClienteDuo.Pages.Sidebars
             }
             catch (CommunicationException)
             {
-                SessionDetails.AbortOperation();
+                MessageBox.Show(Properties.Resources.DlgConnectionError);
             }
             catch (TimeoutException)
             {
-                SessionDetails.AbortOperation();
+                MessageBox.Show(Properties.Resources.DlgConnectionError);
             }
 
             _userSelectedName = username;
@@ -59,7 +59,7 @@ namespace ClienteDuo.Pages.Sidebars
 
         public void InitializeUserInfo(int friendshipId, string username)
         {
-            UserDTO userInfo = UsersManager.GetUserInfoByUsername(username);
+            UserDTO userInfo = UsersManager.GetUserInfoByUsername(username); // thus
             DataContext = friendshipId;
             _userSelectedName = username;
 
