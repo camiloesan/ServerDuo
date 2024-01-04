@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.ServiceModel;
+using System.Threading.Tasks;
 
 namespace ClienteDuo.Pages.Tests
 {
@@ -11,30 +12,27 @@ namespace ClienteDuo.Pages.Tests
     public class CardManagerTests
     {
         int _partyCode;
-        string[] _players = { "Xavi", "Juan", "Alejandro" };
+        string player = "Xavi";
         Random _numberGenerator = new Random();
         TestGameTable _gameTable = new TestGameTable();
         InstanceContext _context;
         MatchManagerClient _matchClient;
-        CardManagerClient _cardClient = new CardManagerClient();
+        CardManagerClient _cardClient;
 
-        [ClassInitialize]
+        [TestInitialize]
         public void Init()
         {
             _context = new InstanceContext(_gameTable);
             _matchClient = new MatchManagerClient(_context);
             _partyCode = _numberGenerator.Next(0, 10000);
+            _matchClient.Subscribe(_partyCode, player);
             TestGameTable.PartyCode = _partyCode;
-            
-            foreach (string player in _players)
-            {
-                _matchClient.Subscribe(_partyCode, player);
-            }
 
+            _cardClient = new CardManagerClient();
             _cardClient.DealCards(_partyCode);
         }
 
-        [ClassCleanup]
+        [TestCleanup]
         public void Cleanup()
         {
             _matchClient.EndGame(_partyCode);
@@ -74,6 +72,7 @@ namespace ClienteDuo.Pages.Tests
             Assert.IsTrue(cardList.Count == 3); // The table must always have 3 cards
         }
 
+        [TestMethod]
         public void PlayCard()
         {
             DataService.Card oldCard = _cardClient.GetCards(_partyCode)[0]; // Can also be the card in position '1' of the array

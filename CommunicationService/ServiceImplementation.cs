@@ -1149,6 +1149,7 @@ namespace CommunicationService
             if (_playerCallbacks.ContainsKey(partyCode))
             {
                 _playerCallbacks[partyCode].TryAdd(username, playerCallback);
+
             }
             else
             {
@@ -1156,10 +1157,6 @@ namespace CommunicationService
                 player.TryAdd(username, playerCallback);
 
                 _playerCallbacks.TryAdd(partyCode, player);
-            }
-
-            if (!_currentTurn.ContainsKey(partyCode))
-            {
                 _currentTurn.TryAdd(partyCode, 0);
             }
         }
@@ -1181,14 +1178,6 @@ namespace CommunicationService
 
         public void ExitMatch(int partyCode, string username)
         {
-            List<string> playerList = GetPlayerList(partyCode);
-            string currentPlayerTurn = playerList[_currentTurn[partyCode]];
-
-            if (currentPlayerTurn.Equals(username))
-            {
-                EndTurn(partyCode);
-            }
-
             _playerCallbacks[partyCode].TryRemove(username, out _);
 
             NotifyPlayerQuit(partyCode, username, "User clicked exit button");
@@ -1234,60 +1223,70 @@ namespace CommunicationService
             List<string> playerList = new List<string>(_playerCallbacks[partyCode].Keys);
             string currentCallback = "";
 
-            try
+
+            foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[partyCode])
             {
-                foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[partyCode])
+                try
                 {
                     currentCallback = player.Key;
                     player.Value.TurnFinished(playerList[_currentTurn[partyCode]]);
                 }
+                catch (CommunicationException)
+                {
+                    NotifyPlayerQuit(partyCode, currentCallback, "Error when trying to communicate with the server");
+                }
+                catch (TimeoutException)
+                {
+                    NotifyPlayerQuit(partyCode, currentCallback, "Timeout");
+                }
             }
-            catch 
-            {
-                NotifyPlayerQuit(partyCode, currentCallback, "Timeout");
-            }
-            
         }
 
         private async Task NotifyEndGame(int partyCode)
         {
             string currentCallback = "";
 
-            try
+            foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[partyCode])
             {
-                foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[partyCode])
+                try
                 {
                     currentCallback = player.Key;
                     player.Value.GameOver();
-                }    
-            }
-            catch
-            {
-                NotifyPlayerQuit(partyCode, currentCallback, "Timeout");
-            }
-
-            
-            using (DuoContext databaseContext = new DuoContext())
-            {
-                string winner = _matchResults[partyCode].OrderBy(x => x.Value).First().Key;
-                int winnerUserId = databaseContext.Users.Where(u => u.Username == winner).Select(u => u.UserID).FirstOrDefault();
-
-                if (winnerUserId > 0)
+                }
+                catch (CommunicationException)
                 {
-                    try
-                    {
-                        User user = databaseContext.Users.Where(u => u.UserID == winnerUserId).FirstOrDefault();
+                    NotifyPlayerQuit(partyCode, currentCallback, "Error when trying to communicate with the server");
+                }
+                catch (TimeoutException)
+                {
+                    NotifyPlayerQuit(partyCode, currentCallback, "Timeout");
+                }
+            }
 
-                        if (user != null)
+            if (_matchResults.ContainsKey(partyCode))
+            {
+                using (DuoContext databaseContext = new DuoContext())
+                {
+                    string winner = _matchResults[partyCode].OrderBy(x => x.Value).First().Key;
+                    int winnerUserId = databaseContext.Users.Where(u => u.Username == winner).Select(u => u.UserID).FirstOrDefault();
+
+                    if (winnerUserId > 0)
+                    {
+                        try
                         {
-                            user.TotalWins++;
+                            User user = databaseContext.Users.Where(u => u.UserID == winnerUserId).FirstOrDefault();
 
-                            databaseContext.SaveChanges();
+                            if (user != null)
+                            {
+                                user.TotalWins++;
+
+                                databaseContext.SaveChanges();
+                            }
                         }
-                    }
-                    catch (DbUpdateException exception)
-                    {
-                        log.Error("An error happened while trying to save a match into the DB", exception);
+                        catch (DbUpdateException exception)
+                        {
+                            log.Error("An error happened while trying to save a match into the DB", exception);
+                        }
                     }
                 }
             }
@@ -1302,10 +1301,7 @@ namespace CommunicationService
 
         private async void NotifyPlayerQuit(int partyCode, string username, string reason)
         {
-            List<string> playerList = GetPlayerList(partyCode);
-            string currentPlayerTurn = playerList[_currentTurn[partyCode]];
-
-            if (currentPlayerTurn.Equals(username))
+            if (GetCurrentTurn(partyCode).Equals(username))
             {
                 EndTurn(partyCode);
             }
@@ -1315,6 +1311,10 @@ namespace CommunicationService
                 try
                 {
                     player.Value.PlayerLeftGame(username, reason);
+                }
+                catch (CommunicationException ex)
+                {
+                    log.Error("Timeout error while kicking a player from a match", ex);
                 }
                 catch(TimeoutException ex)
                 {
@@ -1361,18 +1361,29 @@ namespace CommunicationService
         private static ConcurrentDictionary<int, Card[]> _gameCards = new ConcurrentDictionary<int, Card[]>();
         private static Random _numberGenerator = new Random();
 
-        public void DealCards(int gameId)
+        public void DealCards(int partyCode)
         {
-            for (int i = 0; i < _gameCards[gameId].Length - 1; i++)
+            if (!_gameCards.ContainsKey(partyCode))
             {
-                if (_gameCards[gameId][i].Number.Equals(""))
+                _gameCards.TryAdd(partyCode, new Card[3]);
+
+                for (int i = 0; i < _gameCards[partyCode].Length; i++)
+                {
+                    _gameCards[partyCode][i] = new Card();
+                    _gameCards[partyCode][i].Number = "";
+                }
+            }
+
+            for (int i = 0; i < _gameCards[partyCode].Length - 1; i++)
+            {
+                if (_gameCards[partyCode][i].Number.Equals(""))
                 {
                     do
                     {
-                        _gameCards[gameId][i].Number = _numberGenerator.Next(1, 11).ToString();
-                    } while (_gameCards[gameId][i].Number.Equals("2"));
+                        _gameCards[partyCode][i].Number = _numberGenerator.Next(1, 11).ToString();
+                    } while (_gameCards[partyCode][i].Number.Equals("2"));
 
-                    _gameCards[gameId][i].Color = _cardColors[_numberGenerator.Next(0, 4)];
+                    _gameCards[partyCode][i].Color = _cardColors[_numberGenerator.Next(0, 4)];
                 }
             }
         }

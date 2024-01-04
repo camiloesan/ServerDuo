@@ -214,24 +214,33 @@ namespace ClienteDuo.Pages
             _gameMenu.Visibility = Visibility.Collapsed;
             BtnShowGameMenu.Visibility = Visibility.Collapsed;
 
-            GameOver gameOverScreen = new GameOver();
-            InstanceContext instanceContext = new InstanceContext(this);
-            MatchManagerClient client = new MatchManagerClient(instanceContext);
-            client.SetGameScore(SessionDetails.PartyCode, SessionDetails.Username, PlayerDeck.Children.Count);
+            try
+            {
+                GameOver gameOverScreen = new GameOver();
+                InstanceContext instanceContext = new InstanceContext(this);
+                MatchManagerClient client = new MatchManagerClient(instanceContext);
+                client.SetGameScore(SessionDetails.PartyCode, SessionDetails.Username, PlayerDeck.Children.Count);
 
-            MatchOverLabel matchOverLabel = new MatchOverLabel();
-            matchOverLabel.Visibility = Visibility.Visible;
+                MatchOverLabel matchOverLabel = new MatchOverLabel();
+                matchOverLabel.Visibility = Visibility.Visible;
 
-            TableBackground.Children.Add(matchOverLabel);
-            MusicManager.PlayMatchFinishedSound();
+                TableBackground.Children.Add(matchOverLabel);
+                MusicManager.PlayMatchFinishedSound();
 
-            await Task.Delay(5000);
+                await Task.Delay(5000);
 
-            Dictionary<string, int> playerScores = client.GetMatchResults(SessionDetails.PartyCode);
-            gameOverScreen.LoadPlayers(playerScores);
+                Dictionary<string, int> playerScores = client.GetMatchResults(SessionDetails.PartyCode);
+                gameOverScreen.LoadPlayers(playerScores);
 
-            gameOverScreen.Visibility = Visibility.Visible;
-            TableBackground.Children.Add(gameOverScreen);
+                gameOverScreen.Visibility = Visibility.Visible;
+                TableBackground.Children.Add(gameOverScreen);
+            }
+            catch (CommunicationException)
+            {
+                Launcher launcher = new Launcher();
+                Application.Current.MainWindow.Content = launcher;
+                MainWindow.ShowMessageBox(Properties.Resources.DlgServiceException, MessageBoxImage.Exclamation);
+            }
         }
 
         private void DealPlayerCard()

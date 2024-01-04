@@ -18,13 +18,13 @@ namespace CommunicationService
         [OperationContract(IsOneWay = true)]
         void ExitMatch(int partyCode, string username);
 
-        [OperationContract(IsOneWay = true)]
+        [OperationContract]
         void KickPlayerFromGame(int partyCode, string username, string reason);
 
-        [OperationContract(IsOneWay = true)]
+        [OperationContract]
         void EndGame(int partyCode);
 
-        [OperationContract(IsOneWay = true)]
+        [OperationContract]
         void EndTurn(int partyCode);
 
         [OperationContract]
