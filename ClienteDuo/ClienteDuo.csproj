@@ -178,7 +178,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.fr.resx</DependentUpon>
     </Compile>
-    <Compile Include="TestClasses\TestPartyManager.cs" />
     <Compile Include="Utilities\MusicManager.cs" />
     <Compile Include="Utilities\SessionDetails.cs" />
     <Compile Include="Utilities\Sha256Encryptor.cs" />
@@ -368,19 +367,19 @@
     <None Include="Connected Services\DataService\ClienteDuo.DataService.UserDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\DataService\item412.xsd">
+    <None Include="Connected Services\DataService\item5.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\DataService\item413.xsd">
+    <None Include="Connected Services\DataService\item6.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\DataService\item414.xsd">
+    <None Include="Connected Services\DataService\item7.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\DataService\item415.xsd">
+    <None Include="Connected Services\DataService\item8.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\DataService\ServiceImplementation13.wsdl" />
+    <None Include="Connected Services\DataService\ServiceImplementation2.wsdl" />
     <None Include="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -454,7 +453,7 @@
     <Resource Include="Images\pfp1.png" />
     <Resource Include="Images\pfp2.png" />
     <Resource Include="Images\pfp3.png" />
-    <None Include="Connected Services\DataService\item13.disco" />
+    <None Include="Connected Services\DataService\item2.disco" />
     <Content Include="SFX\cardFlippedSound.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
