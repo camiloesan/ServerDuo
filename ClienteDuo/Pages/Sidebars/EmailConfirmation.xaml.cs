@@ -36,8 +36,12 @@ namespace ClienteDuo.Pages.Sidebars
         }
 
         private void RequestCode(string email, string lang)
-        {
-            if (!UsersManager.IsEmailTaken(email))
+        {   
+            if (SessionDetails.IsLogged && SessionDetails.Email != email) 
+            {
+                MainWindow.ShowMessageBox(Properties.Resources.DlgEmailDoesNotMatch, MessageBoxImage.Information);
+            }
+            else if (!UsersManager.IsEmailTaken(email))
             {
                 MainWindow.ShowMessageBox(Properties.Resources.DlgEmailNonExistent, MessageBoxImage.Information);
             }

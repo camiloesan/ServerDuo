@@ -439,4 +439,7 @@
   <data name="DlgUserBanned" xml:space="preserve">
     <value>Due to multiple reports this user has been banned</value>
   </data>
+  <data name="DlgEmailDoesNotMatch" xml:space="preserve">
+    <value>Email does not match this account´s registered email</value>
+  </data>
 </root>

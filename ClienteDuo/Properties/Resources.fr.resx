@@ -417,4 +417,7 @@
   <data name="TitlePasswordReset" xml:space="preserve">
     <value>Réinitialisation du mot de passe</value>
   </data>
+  <data name="DlgEmailDoesNotMatch" xml:space="preserve">
+    <value>l'e-mail ne correspond pas à l'e-mail enregistré de ce compte</value>
+  </data>
 </root>
