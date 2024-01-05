@@ -432,4 +432,7 @@
   <data name="DlgLoginBanned" xml:space="preserve">
     <value>Estás baneado, ya no podrás iniciar sesión en tu cuenta</value>
   </data>
+  <data name="DlgEmailDoesNotMatch" xml:space="preserve">
+    <value>El correo no coincide con el correo registrado para esta cuenta</value>
+  </data>
 </root>

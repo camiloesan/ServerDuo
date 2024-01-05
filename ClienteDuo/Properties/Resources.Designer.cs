@@ -322,6 +322,15 @@ namespace ClienteDuo.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email does not match this account´s registered email.
+        /// </summary>
+        public static string DlgEmailDoesNotMatch {
+            get {
+                return ResourceManager.GetString("DlgEmailDoesNotMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email must have less than 30 characters and a valid format (----@domain.com).
         /// </summary>
         public static string DlgEmailInvalid {

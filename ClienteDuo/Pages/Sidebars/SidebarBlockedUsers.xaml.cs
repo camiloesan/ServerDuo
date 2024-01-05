@@ -28,11 +28,11 @@ namespace ClienteDuo.Pages.Sidebars
             }
             catch (CommunicationException)
             {
-                SessionDetails.AbortOperation();
+                MessageBox.Show(Properties.Resources.DlgConnectionError);
             }
             catch (TimeoutException)
             {
-                SessionDetails.AbortOperation();
+                MessageBox.Show(Properties.Resources.DlgConnectionError);
             }
 
             foreach (UserBlockedDTO blockedUser in blockedUsersList)
@@ -76,11 +76,11 @@ namespace ClienteDuo.Pages.Sidebars
             }
             catch (CommunicationException)
             {
-                SessionDetails.AbortOperation();
+                MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
             }
             catch (TimeoutException)
             {
-                SessionDetails.AbortOperation();
+                MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
             }
 
             if (result)

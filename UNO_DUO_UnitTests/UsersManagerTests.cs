@@ -35,7 +35,14 @@ namespace ClienteDuo.Utilities.Tests
             UserDTO user2Object = UsersManager.GetUserInfoByUsername(_user2);
             var requestList = UsersManager.GetFriendRequestsByUserId(user2Object.ID);
 
+
             bool result = UsersManager.AcceptFriendRequest(requestList.First());
+
+            var friends = UsersManager.GetFriendsListByUserId(user2Object.ID);
+            foreach (var item in friends)
+            {
+                UsersManager.DeleteFriendshipById(item.FriendshipID);
+            }
 
             Assert.IsTrue(result);
         }
@@ -81,17 +88,23 @@ namespace ClienteDuo.Utilities.Tests
             string email3 = "roberto@gmail.com";
             string password3 = "panda!78990";
             UsersManager.AddUserToDatabase(user3, email3, password3);
-
             UsersManager.SendFriendRequest(_user1, _user2);
             UsersManager.SendFriendRequest(user3, _user2);
+
             UserDTO user2Object = UsersManager.GetUserInfoByUsername(_user2);
             var requestList = UsersManager.GetFriendRequestsByUserId(user2Object.ID);
+            int actualSize = requestList.Count();
+
+            foreach (var item in requestList)
+            {
+                UsersManager.DeclineFriendRequest(item);
+            }
 
             UsersManager.DeleteUserFromDatabase(user3);
 
             int expected = 2;
 
-            Assert.AreEqual(expected, requestList.Count());
+            Assert.AreEqual(expected, actualSize);
         }
 
         [TestMethod()]
@@ -130,6 +143,11 @@ namespace ClienteDuo.Utilities.Tests
             UsersManager.BlockUserByUsername(_user1, _user2);
             UserDTO user1Object = UsersManager.GetUserInfoByUsername(_user1);
             var result = UsersManager.GetBlockedUsersListByUserId(user1Object.ID);
+
+            foreach (var item in result)
+            {
+                UsersManager.UnblockUserByBlockId(item.BlockID);
+            }
 
             int expected = 1;
             Assert.AreEqual(expected, result.Count());
@@ -342,6 +360,9 @@ namespace ClienteDuo.Utilities.Tests
             UsersManager.BlockUserByUsername(user2, _user1);
             int result = UsersManager.BlockUserByUsername(user3, _user1);
             Assert.AreEqual(2, result);
+            UsersManager.DeleteUserFromDatabase(user1);
+            UsersManager.DeleteUserFromDatabase(user2);
+            UsersManager.DeleteUserFromDatabase(user3);
         }
 
         [TestMethod()]
@@ -358,6 +379,9 @@ namespace ClienteDuo.Utilities.Tests
             UsersManager.BlockUserByUsername(user3, _user1);
             var userInfo = UsersManager.GetUserInfoByUsername(_user1);
             Assert.IsTrue(UsersManager.IsUserBanned(userInfo.ID));
+            UsersManager.DeleteUserFromDatabase(user1);
+            UsersManager.DeleteUserFromDatabase(user2);
+            UsersManager.DeleteUserFromDatabase(user3);
         }
     }
 }
