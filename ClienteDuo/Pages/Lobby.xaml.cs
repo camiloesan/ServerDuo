@@ -378,7 +378,7 @@ namespace ClienteDuo.Pages
             try
             {
                 tableClient.Subscribe(SessionDetails.PartyCode, SessionDetails.Username);
-                await Task.Delay(5000);
+                await Task.Delay(3000);
                 cardTable.LoadPlayers();
                 cardTable.UpdateTableCards();
             }

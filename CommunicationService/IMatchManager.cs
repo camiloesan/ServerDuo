@@ -9,13 +9,13 @@ namespace CommunicationService
     [ServiceContract(CallbackContract = typeof(IMatchManagerCallback))]
     public interface IMatchManager
     {
-        [OperationContract(IsOneWay = true)]
+        [OperationContract]
         void Subscribe(int partyCode, string username);
 
-        [OperationContract(IsOneWay = true)]
+        [OperationContract]
         void SetGameScore(int partyCode, string username, int cardCount);
 
-        [OperationContract(IsOneWay = true)]
+        [OperationContract]
         void ExitMatch(int partyCode, string username);
 
         [OperationContract]

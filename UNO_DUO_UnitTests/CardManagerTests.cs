@@ -48,7 +48,63 @@ namespace ClienteDuo.Pages.Tests
                 card = _cardClient.DrawCard();
             }
 
-            Assert.IsTrue(int.Parse(card.Number) > 0);
+            Assert.IsTrue(int.Parse(card.Number) > 0 && int.Parse(card.Number) <= 9);
+        }
+
+        [TestMethod]
+        public void DrawRedCardTest()
+        {
+            DataService.Card card = _cardClient.DrawCard();
+            string redHex = "#FF0000";
+
+            while (!card.Color.Equals(redHex))
+            {
+                card = _cardClient.DrawCard();
+            }
+
+            Assert.AreEqual(card.Color, redHex);
+        }
+
+        [TestMethod]
+        public void DrawBlueCardTest()
+        {
+            DataService.Card card = _cardClient.DrawCard();
+            string blueHex = "#0000FF";
+
+            while (!card.Color.Equals(blueHex))
+            {
+                card = _cardClient.DrawCard();
+            }
+
+            Assert.AreEqual(card.Color, blueHex);
+        }
+
+        [TestMethod]
+        public void DrawGreenCardTest()
+        {
+            DataService.Card card = _cardClient.DrawCard();
+            string greenHex = "#008000";
+
+            while (!card.Color.Equals(greenHex))
+            {
+                card = _cardClient.DrawCard();
+            }
+
+            Assert.AreEqual(card.Color, greenHex);
+        }
+
+        [TestMethod]
+        public void DrawYellowCardTest()
+        {
+            DataService.Card card = _cardClient.DrawCard();
+            string yellowHex = "#FFFF00";
+
+            while (!card.Color.Equals(yellowHex))
+            {
+                card = _cardClient.DrawCard();
+            }
+
+            Assert.AreEqual(card.Color, yellowHex);
         }
 
         [TestMethod]
@@ -65,7 +121,7 @@ namespace ClienteDuo.Pages.Tests
         }
 
         [TestMethod]
-        public void GetCards()
+        public void GetCardsTest()
         {
             List<DataService.Card> cardList = new List<DataService.Card>(_cardClient.GetCards(_partyCode));
 
@@ -73,7 +129,21 @@ namespace ClienteDuo.Pages.Tests
         }
 
         [TestMethod]
-        public void PlayCard()
+        public void PlayCardTest()
+        {
+            DataService.Card oldCard = _cardClient.GetCards(_partyCode)[0]; // Can also be the card in position '1' of the array
+            DataService.Card playingCard = new DataService.Card();
+
+            playingCard.Color = oldCard.Color;
+            playingCard.Number = oldCard.Number;
+            _cardClient.PlayCard(_partyCode, 0, playingCard);
+            DataService.Card newCard = _cardClient.GetCards(_partyCode)[0];
+
+            Assert.AreNotEqual(oldCard, newCard); //Cards played are reshuffled to allow other numbers to be played
+        }
+
+        [TestMethod]
+        public void PlayCard_ColorMatchTest()
         {
             DataService.Card oldCard = _cardClient.GetCards(_partyCode)[0]; // Can also be the card in position '1' of the array
             DataService.Card playingCard = new DataService.Card();

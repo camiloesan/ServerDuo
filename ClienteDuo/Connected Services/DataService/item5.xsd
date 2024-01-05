@@ -653,6 +653,11 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SubscribeResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="SetGameScore">
     <xs:complexType>
       <xs:sequence>
@@ -662,12 +667,22 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SetGameScoreResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="ExitMatch">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="partyCode" type="xs:int" />
         <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExitMatchResponse">
+    <xs:complexType>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="KickPlayerFromGame">

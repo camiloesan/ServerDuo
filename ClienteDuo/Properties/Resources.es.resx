@@ -304,7 +304,7 @@
     <value>¡Ahora son amigos!</value>
   </data>
   <data name="DlgFriendRequestDeleted" xml:space="preserve">
-    <value>Haz eliminado la solicitud</value>
+    <value>Has eliminado la solicitud</value>
   </data>
   <data name="DlgPasswordDoesNotMatch" xml:space="preserve">
     <value>La contraseña y confirmación de contraseña deben coincidir</value>

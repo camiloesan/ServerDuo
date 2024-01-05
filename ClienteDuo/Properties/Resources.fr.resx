@@ -154,7 +154,7 @@
     <value>Il y avait un échec de connection avec le service, essayer autre fois à plus tard</value>
   </data>
   <data name="DlgEmailTaken" xml:space="preserve">
-    <value>An account with that email is already registered</value>
+    <value>Cette e-mail est déjà enregistré</value>
   </data>
   <data name="DlgEmptyFields" xml:space="preserve">
     <value>Tous les champes doivent être remplis</value>
@@ -172,10 +172,10 @@
     <value>Le groupe est rempli, réessayer à plus tard</value>
   </data>
   <data name="DlgInsecurePassword" xml:space="preserve">
-    <value>La mot de passe dois contenir au moins: 8 caractères, un caractèr spéciaux(!@?#$&amp;$°¬|/%*), et des lettres majuscules et minuscules</value>
+    <value>La mot de passe dois contenir au moins: 8 caractères, un caractèr spéciaux(!@?#$&amp;$°¬|/%*), et des lettres majuscules et minuscules avec un maximale de 16 caractères</value>
   </data>
   <data name="DlgInvalidPartyCodeFormat" xml:space="preserve">
-    <value>Le code de groupe doit être un numéro de 4 chiffres comme maximum</value>
+    <value>Le code de groupe doit être un numéro de 4 chiffres comme maximale</value>
   </data>
   <data name="DlgMessageMaxCharacters" xml:space="preserve">
     <value>Des messages peuvent contenir seulement 250 caractères</value>
@@ -223,7 +223,7 @@
     <value>Jeu fini</value>
   </data>
   <data name="LblMyProfile" xml:space="preserve">
-    <value>My Profile</value>
+    <value>Mon Profil</value>
   </data>
   <data name="LblPartyCode" xml:space="preserve">
     <value>Code de groupe</value>
@@ -253,7 +253,7 @@
     <value>Login</value>
   </data>
   <data name="TitleNewAccount" xml:space="preserve">
-    <value>Nouvelle compte</value>
+    <value>Nouvel compte</value>
   </data>
   <data name="LblInGameUsername" xml:space="preserve">
     <value>Nom temporel</value>
@@ -358,7 +358,7 @@
     <value>Format invalide</value>
   </data>
   <data name="DlgIsNowActive" xml:space="preserve">
-    <value>Il est désormais actif</value>
+    <value>est désormais actif</value>
   </data>
   <data name="DlgNowFriends" xml:space="preserve">
     <value>Vous êtes maintenant amis</value>
@@ -394,7 +394,7 @@
     <value>Code erroné</value>
   </data>
   <data name="LblConfirmNewPassword" xml:space="preserve">
-    <value>Confirmer nouvelle mot de passe</value>
+    <value>Confirmer nouvel mot de passe</value>
   </data>
   <data name="LblFriends" xml:space="preserve">
     <value>Amis</value>
@@ -416,5 +416,20 @@
   </data>
   <data name="TitlePasswordReset" xml:space="preserve">
     <value>Réinitialisation du mot de passe</value>
+  </data>
+  <data name="DlgCouldntBlockUser" xml:space="preserve">
+    <value>Bloquer cet utilisateur n'était pas possible. Reessayez autre fois à plus tard</value>
+  </data>
+  <data name="DlgLoginBanned" xml:space="preserve">
+    <value>Vous étes banni, et vous ne pouvez pas plus rentrer a votre compte</value>
+  </data>
+  <data name="DlgLogOutConfirmation" xml:space="preserve">
+    <value>Étes vous sûr que vous voulez fermer cet session?</value>
+  </data>
+  <data name="DlgUserBanned" xml:space="preserve">
+    <value>Á cause de reportes multiples, cet utilisateur a été banni</value>
+  </data>
+  <data name="LblCode" xml:space="preserve">
+    <value>Code</value>
   </data>
 </root>

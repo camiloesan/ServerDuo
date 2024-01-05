@@ -1350,22 +1350,22 @@ namespace ClienteDuo.DataService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DataService.IMatchManager", CallbackContract=typeof(ClienteDuo.DataService.IMatchManagerCallback))]
     public interface IMatchManager {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManager/Subscribe")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/Subscribe", ReplyAction="http://tempuri.org/IMatchManager/SubscribeResponse")]
         void Subscribe(int partyCode, string username);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManager/Subscribe")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/Subscribe", ReplyAction="http://tempuri.org/IMatchManager/SubscribeResponse")]
         System.Threading.Tasks.Task SubscribeAsync(int partyCode, string username);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManager/SetGameScore")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/SetGameScore", ReplyAction="http://tempuri.org/IMatchManager/SetGameScoreResponse")]
         void SetGameScore(int partyCode, string username, int cardCount);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManager/SetGameScore")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/SetGameScore", ReplyAction="http://tempuri.org/IMatchManager/SetGameScoreResponse")]
         System.Threading.Tasks.Task SetGameScoreAsync(int partyCode, string username, int cardCount);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManager/ExitMatch")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/ExitMatch", ReplyAction="http://tempuri.org/IMatchManager/ExitMatchResponse")]
         void ExitMatch(int partyCode, string username);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManager/ExitMatch")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/ExitMatch", ReplyAction="http://tempuri.org/IMatchManager/ExitMatchResponse")]
         System.Threading.Tasks.Task ExitMatchAsync(int partyCode, string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/KickPlayerFromGame", ReplyAction="http://tempuri.org/IMatchManager/KickPlayerFromGameResponse")]
