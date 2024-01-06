@@ -21,10 +21,10 @@ namespace CommunicationService
         [OperationContract]
         void KickPlayerFromGame(int partyCode, string username, string reason);
 
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void EndGame(int partyCode);
 
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void EndTurn(int partyCode);
 
         [OperationContract]

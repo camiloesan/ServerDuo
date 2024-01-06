@@ -383,14 +383,8 @@
   <wsdl:message name="IMatchManager_EndGame_InputMessage">
     <wsdl:part name="parameters" element="tns:EndGame" />
   </wsdl:message>
-  <wsdl:message name="IMatchManager_EndGame_OutputMessage">
-    <wsdl:part name="parameters" element="tns:EndGameResponse" />
-  </wsdl:message>
   <wsdl:message name="IMatchManager_EndTurn_InputMessage">
     <wsdl:part name="parameters" element="tns:EndTurn" />
-  </wsdl:message>
-  <wsdl:message name="IMatchManager_EndTurn_OutputMessage">
-    <wsdl:part name="parameters" element="tns:EndTurnResponse" />
   </wsdl:message>
   <wsdl:message name="IMatchManager_GetCurrentTurn_InputMessage">
     <wsdl:part name="parameters" element="tns:GetCurrentTurn" />
@@ -655,11 +649,9 @@
     </wsdl:operation>
     <wsdl:operation name="EndGame">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/EndGame" message="tns:IMatchManager_EndGame_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManager/EndGameResponse" message="tns:IMatchManager_EndGame_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="EndTurn">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/EndTurn" message="tns:IMatchManager_EndTurn_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManager/EndTurnResponse" message="tns:IMatchManager_EndTurn_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetCurrentTurn">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/GetCurrentTurn" message="tns:IMatchManager_GetCurrentTurn_InputMessage" />
@@ -1180,18 +1172,12 @@
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="EndTurn">
       <soap12:operation soapAction="http://tempuri.org/IMatchManager/EndTurn" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetCurrentTurn">
       <soap12:operation soapAction="http://tempuri.org/IMatchManager/GetCurrentTurn" style="document" />

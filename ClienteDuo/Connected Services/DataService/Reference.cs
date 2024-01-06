@@ -1374,16 +1374,16 @@ namespace ClienteDuo.DataService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/KickPlayerFromGame", ReplyAction="http://tempuri.org/IMatchManager/KickPlayerFromGameResponse")]
         System.Threading.Tasks.Task KickPlayerFromGameAsync(int partyCode, string username, string reason);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/EndGame", ReplyAction="http://tempuri.org/IMatchManager/EndGameResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManager/EndGame")]
         void EndGame(int partyCode);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/EndGame", ReplyAction="http://tempuri.org/IMatchManager/EndGameResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManager/EndGame")]
         System.Threading.Tasks.Task EndGameAsync(int partyCode);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/EndTurn", ReplyAction="http://tempuri.org/IMatchManager/EndTurnResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManager/EndTurn")]
         void EndTurn(int partyCode);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/EndTurn", ReplyAction="http://tempuri.org/IMatchManager/EndTurnResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManager/EndTurn")]
         System.Threading.Tasks.Task EndTurnAsync(int partyCode);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/GetCurrentTurn", ReplyAction="http://tempuri.org/IMatchManager/GetCurrentTurnResponse")]
