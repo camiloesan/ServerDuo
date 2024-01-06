@@ -106,5 +106,17 @@ namespace ClienteDuo.TestClasses.Tests
             bool result = TestPartyManager.IsGameStarted;
             Assert.IsTrue(result);
         }
+
+        [TestMethod()]
+        public void GameStartedPartyDoesNotExistTest()
+        {
+            TestPartyManager testPartyManager = new TestPartyManager();
+            int partyCode = 1112;
+            testPartyManager.NotifyStartGame(partyCode);
+
+            Thread.Sleep(2000);
+            bool result = TestPartyManager.IsGameStarted;
+            Assert.IsFalse(result);
+        }
     }
 }
