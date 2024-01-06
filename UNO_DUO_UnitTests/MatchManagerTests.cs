@@ -15,6 +15,7 @@ namespace ClienteDuo.Pages.Tests
         int _partyCode;
         string _player1 = "Xavi";
         string _player2 = "Jorge";
+
         Random _numberGenerator = new Random();
         TestGameTable _gameTable = new TestGameTable();
         InstanceContext _context;
@@ -27,7 +28,7 @@ namespace ClienteDuo.Pages.Tests
             _client = new MatchManagerClient(_context);
             _partyCode = _numberGenerator.Next(0, 10000);
             _client.Subscribe(_partyCode, _player1);
-            TestGameTable.PartyCode = _partyCode;            
+            _gameTable.PartyCode = _partyCode;            
         }
 
         [TestCleanup]
@@ -52,7 +53,7 @@ namespace ClienteDuo.Pages.Tests
             InstanceContext context = new InstanceContext(_gameTable);
             MatchManagerClient client = new MatchManagerClient(_context);
             client.Subscribe(_partyCode, _player2);
-            TestGameTable.PlayerList = new List<string>(_client.GetPlayerList(_partyCode));
+            table.PlayerList = new List<string>(_client.GetPlayerList(_partyCode));
 
             _client.KickPlayerFromGame(_partyCode, _player2, "Testing Kick player Method");
 
@@ -67,10 +68,10 @@ namespace ClienteDuo.Pages.Tests
             InstanceContext context = new InstanceContext(_gameTable);
             MatchManagerClient client = new MatchManagerClient(_context);
             client.Subscribe(_partyCode, _player2);
-            TestGameTable.PlayerList = new List<string>(_client.GetPlayerList(_partyCode));
-            TestGameTable.CurrentTurn = _client.GetCurrentTurn(_partyCode);
+            table.PlayerList = new List<string>(_client.GetPlayerList(_partyCode));
+            table.CurrentTurn = _client.GetCurrentTurn(_partyCode);
 
-            while (TestGameTable.CurrentTurn.Equals(_player2))
+            while (!table.CurrentTurn.Equals(_player1))
             {
                 client.EndTurn(_partyCode);
             }
@@ -88,7 +89,7 @@ namespace ClienteDuo.Pages.Tests
             InstanceContext context = new InstanceContext(_gameTable);
             MatchManagerClient client = new MatchManagerClient(_context);
             client.Subscribe(_partyCode, _player2);
-            TestGameTable.PlayerList = new List<string>(_client.GetPlayerList(_partyCode));
+            table.PlayerList = new List<string>(_client.GetPlayerList(_partyCode));
 
             _client.ExitMatch(_partyCode, _player1);
 
@@ -104,7 +105,7 @@ namespace ClienteDuo.Pages.Tests
             MatchManagerClient client = new MatchManagerClient(_context);
             
             client.Subscribe(_partyCode, _player2);
-            TestGameTable.PlayerList = new List<string>(_client.GetPlayerList(_partyCode));
+            table.PlayerList = new List<string>(_client.GetPlayerList(_partyCode));
 
             while (!client.GetCurrentTurn(_partyCode).Equals(_player2))
             {
@@ -117,8 +118,6 @@ namespace ClienteDuo.Pages.Tests
             Assert.IsFalse(playerList.Contains<string>(_player2));
         }
 
-
-
         [TestMethod()]
         public void EndTurnTest()
         {
@@ -130,7 +129,7 @@ namespace ClienteDuo.Pages.Tests
 
             _client.EndTurn(_partyCode);
 
-            Assert.AreNotEqual(currentTurn, TestGameTable.CurrentTurn);
+            Assert.AreNotEqual(currentTurn, table.CurrentTurn);
         }
 
         [TestMethod()]

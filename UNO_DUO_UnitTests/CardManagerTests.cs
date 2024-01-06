@@ -26,7 +26,7 @@ namespace ClienteDuo.Pages.Tests
             _matchClient = new MatchManagerClient(_context);
             _partyCode = _numberGenerator.Next(0, 10000);
             _matchClient.Subscribe(_partyCode, player);
-            TestGameTable.PartyCode = _partyCode;
+            _gameTable.PartyCode = _partyCode;
 
             _cardClient = new CardManagerClient();
             _cardClient.DealCards(_partyCode);

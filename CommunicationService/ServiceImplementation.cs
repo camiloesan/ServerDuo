@@ -1220,46 +1220,42 @@ namespace CommunicationService
 
         private void NotifyEndTurn(int partyCode)
         {
-            List<string> playerList = new List<string>(_playerCallbacks[partyCode].Keys);
-            string currentCallback = "";
-
-
             foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[partyCode])
             {
                 try
                 {
-                    currentCallback = player.Key;
-                    player.Value.TurnFinished(playerList[_currentTurn[partyCode]]);
+                    player.Value.TurnFinished(GetCurrentTurn(partyCode));
                 }
                 catch (CommunicationException)
                 {
-                    NotifyPlayerQuit(partyCode, currentCallback, "Error when trying to communicate with the server");
+                    NotifyPlayerQuit(partyCode, player.Key, "Error when trying to communicate with the server");
+                    player.Value.TurnFinished(GetCurrentTurn(partyCode));
                 }
                 catch (TimeoutException)
                 {
-                    NotifyPlayerQuit(partyCode, currentCallback, "Timeout");
+                    _playerCallbacks[partyCode].TryRemove(player.Key, out _);
+                    NotifyPlayerQuit(partyCode, player.Key, "Timeout");
                 }
             }
         }
 
         private async Task NotifyEndGame(int partyCode)
         {
-            string currentCallback = "";
-
             foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[partyCode])
             {
                 try
                 {
-                    currentCallback = player.Key;
                     player.Value.GameOver();
                 }
                 catch (CommunicationException)
                 {
-                    NotifyPlayerQuit(partyCode, currentCallback, "Error when trying to communicate with the server");
+                    NotifyPlayerQuit(partyCode, player.Key, "Error when trying to communicate with the server");
+                    player.Value.TurnFinished(GetCurrentTurn(partyCode));
                 }
                 catch (TimeoutException)
                 {
-                    NotifyPlayerQuit(partyCode, currentCallback, "Timeout");
+                    _playerCallbacks[partyCode].TryRemove(player.Key, out _);
+                    NotifyPlayerQuit(partyCode, player.Key, "Timeout");
                 }
             }
 
@@ -1307,13 +1303,15 @@ namespace CommunicationService
                 {
                     player.Value.PlayerLeftGame(username, reason);
                 }
-                catch (CommunicationException ex)
+                catch (CommunicationException)
                 {
-                    log.Error("Timeout error while kicking a player from a match", ex);
+                    NotifyPlayerQuit(partyCode, player.Key, "Error when trying to communicate with the server");
+                    player.Value.TurnFinished(GetCurrentTurn(partyCode));
                 }
-                catch(TimeoutException ex)
+                catch (TimeoutException)
                 {
-                    log.Error("Timeout error while kicking a player from a match", ex);
+                    _playerCallbacks[partyCode].TryRemove(player.Key, out _);
+                    NotifyPlayerQuit(partyCode, player.Key, "Timeout");
                 }
             }
 
@@ -1322,12 +1320,14 @@ namespace CommunicationService
                 _playerCallbacks[partyCode].TryRemove(username, out _);
             }
 
-            if (GetCurrentTurn(partyCode).Equals(username))
+            if (_playerCallbacks[partyCode].Count > 1)
             {
-                EndTurn(partyCode);
+                if (GetCurrentTurn(partyCode).Equals(username))
+                {
+                    EndTurn(partyCode);
+                }
             }
-
-            if (_playerCallbacks[partyCode].Count <= 1)
+            else
             {
                 EndGame(partyCode);
             }

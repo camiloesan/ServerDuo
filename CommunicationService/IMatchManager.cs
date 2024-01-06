@@ -15,7 +15,7 @@ namespace CommunicationService
         [OperationContract]
         void SetGameScore(int partyCode, string username, int cardCount);
 
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void ExitMatch(int partyCode, string username);
 
         [OperationContract]
