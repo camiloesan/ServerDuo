@@ -1059,23 +1059,26 @@ namespace CommunicationService
 
         public async void NotifyStartGame(int partyCode)
         {
-            _gameCards.TryAdd(partyCode, new Card[3]);
-
-            for (int i = 0; i < _gameCards[partyCode].Length; i++)
+            if (_activePartiesDictionary.ContainsKey(partyCode))
             {
-                _gameCards[partyCode][i] = new Card();
-                _gameCards[partyCode][i].Number = "";
+                _gameCards.TryAdd(partyCode, new Card[3]);
+
+                for (int i = 0; i < _gameCards[partyCode].Length; i++)
+                {
+                    _gameCards[partyCode][i] = new Card();
+                    _gameCards[partyCode][i].Number = "";
+                }
+
+                DealCards(partyCode);
+
+                foreach (var player in _activePartiesDictionary[partyCode])
+                {
+                    player.Value.GameStarted();
+                }
+
+                await Task.Delay(5000);
+                _activePartiesDictionary.TryRemove(partyCode, out _);
             }
-
-            DealCards(partyCode);
-
-            foreach (var player in _activePartiesDictionary[partyCode])
-            {
-                player.Value.GameStarted();
-            }
-
-            await Task.Delay(5000);
-            _activePartiesDictionary.TryRemove(partyCode, out _);
         }
     }
 

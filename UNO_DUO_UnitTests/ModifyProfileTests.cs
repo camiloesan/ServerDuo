@@ -43,5 +43,14 @@ namespace ClienteDuo.Pages.Tests
             bool result = UsersManager.UpdateProfilePicture(0, pictureId) == 1;
             Assert.IsFalse(result);
         }
+
+        [TestMethod()]
+        public void UpdateProfilePictureSamePictureTest()
+        {
+            int pictureId = 1;
+            int result = UsersManager.UpdateProfilePicture(SessionDetails.UserId, pictureId);
+            int expectedRows = 1;
+            Assert.AreEqual(expectedRows, result);
+        }
     }
 }

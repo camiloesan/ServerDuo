@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ClienteDuo.DataService;
 using ClienteDuo.Utilities;
+using ClienteDuo.TestClasses;
 
 namespace ClienteDuo.Pages.Tests
 {
@@ -17,6 +18,47 @@ namespace ClienteDuo.Pages.Tests
         public void IsUserNotLoggedInTest()
         {
             bool result = UsersManager.IsUserLoggedIn("non-existant");
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod()]
+        public void IsUserLoggedInTest()
+        {
+            UserConnectionHandlerClient userConnectionHandlerClient = new UserConnectionHandlerClient();
+            UserDTO userDTO = new UserDTO();
+            userDTO.UserName = "joseSalazar";
+            userConnectionHandlerClient.NotifyLogIn(userDTO);
+            
+            bool result = UsersManager.IsUserLoggedIn(userDTO.UserName);
+            userConnectionHandlerClient.LogOut(userDTO.UserName);
+
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod()]
+        public void NotifyLogOutTest()
+        {
+            UserConnectionHandlerClient userConnectionHandlerClient = new UserConnectionHandlerClient();
+            UserDTO userDTO = new UserDTO();
+            userDTO.UserName = "joseSalazar";
+            userConnectionHandlerClient.NotifyLogIn(userDTO);
+            userConnectionHandlerClient.LogOut(userDTO.UserName);
+
+            bool result = UsersManager.IsUserLoggedIn(userDTO.UserName);
+
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod()]
+        public void NotifyLogOutUserNotLoggedTest()
+        {
+            UserConnectionHandlerClient userConnectionHandlerClient = new UserConnectionHandlerClient();
+            UserDTO userDTO = new UserDTO();
+            userDTO.UserName = "joseSalazar";
+            userConnectionHandlerClient.LogOut(userDTO.UserName);
+
+            bool result = UsersManager.IsUserLoggedIn(userDTO.UserName);
+
             Assert.IsFalse(result);
         }
 
@@ -42,6 +84,17 @@ namespace ClienteDuo.Pages.Tests
         {
             string username = "demonslayer77";
             string password = "Tokyo2023!";
+
+            UserDTO result = UsersManager.AreCredentialsValid(username, password);
+
+            Assert.IsNull(result);
+        }
+
+        [TestMethod()]
+        public void AreCredentialsValidBlankTest()
+        {
+            string username = "";
+            string password = "";
 
             UserDTO result = UsersManager.AreCredentialsValid(username, password);
 

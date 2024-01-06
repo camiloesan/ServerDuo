@@ -43,6 +43,20 @@ namespace ClienteDuo.Pages.Tests
         }
 
         [TestMethod()]
+        public void InputIsIntegerEmptyTest()
+        {
+            JoinParty joinParty = new JoinParty();
+            Assert.IsFalse(joinParty.IsInputInteger(""));
+        }
+
+        [TestMethod()]
+        public void InputIsIntegerSymbolsTest()
+        {
+            JoinParty joinParty = new JoinParty();
+            Assert.IsFalse(joinParty.IsInputInteger("-!·2"));
+        }
+
+        [TestMethod()]
         public void IsPartyCodeExistentTest()
         {
             JoinParty joinParty = new JoinParty();
@@ -108,6 +122,15 @@ namespace ClienteDuo.Pages.Tests
         {
             JoinParty joinParty = new JoinParty();
             bool result = joinParty.IsUserBlockedByPlayerInParty("cardone", _partyCode);
+
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod()]
+        public void IsUserBlockedByPlayerInLobbyNotExistsTest()
+        {
+            JoinParty joinParty = new JoinParty();
+            bool result = joinParty.IsUserBlockedByPlayerInParty("johnappleseed", _partyCode);
 
             Assert.IsFalse(result);
         }
