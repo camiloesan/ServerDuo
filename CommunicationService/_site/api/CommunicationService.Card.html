@@ -105,7 +105,7 @@
   <h6><strong>Assembly</strong>: CommunicationService.dll</h6>
   <h5 id="CommunicationService_Card_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DataContract]
+    <pre><code class="lang-csharp hljs">[ServiceContract]
 public class Card</code></pre>
   </div>
   <h3 id="constructors">Constructors
@@ -114,7 +114,8 @@ public class Card</code></pre>
   
   <a id="CommunicationService_Card__ctor_" data-uid="CommunicationService.Card.#ctor*"></a>
   <h4 id="CommunicationService_Card__ctor" data-uid="CommunicationService.Card.#ctor">Card()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Constructor with default values for a DOS card with color black</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -124,7 +125,8 @@ public class Card</code></pre>
   
   <a id="CommunicationService_Card__ctor_" data-uid="CommunicationService.Card.#ctor*"></a>
   <h4 id="CommunicationService_Card__ctor_System_String_System_String_" data-uid="CommunicationService.Card.#ctor(System.String,System.String)">Card(String, String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Auxiliary constructor with set data</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -143,12 +145,14 @@ public class Card</code></pre>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">number</span></td>
-        <td></td>
+        <td><p>Value for the Number property</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">color</span></td>
-        <td></td>
+        <td><p>Value for the Color property</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -158,7 +162,8 @@ public class Card</code></pre>
   
   <a id="CommunicationService_Card_Color_" data-uid="CommunicationService.Card.Color*"></a>
   <h4 id="CommunicationService_Card_Color" data-uid="CommunicationService.Card.Color">Color</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Color of the card, must be a CardColors string (Black must only be used when the card is a Number 2)</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -184,7 +189,8 @@ public string Color { get; set; }</code></pre>
   
   <a id="CommunicationService_Card_Number_" data-uid="CommunicationService.Card.Number*"></a>
   <h4 id="CommunicationService_Card_Number" data-uid="CommunicationService.Card.Number">Number</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Number of the card with ranges [0-9] and a Wildcard &apos;#&apos;</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -212,7 +218,8 @@ public string Number { get; set; }</code></pre>
   
   <a id="CommunicationService_Card_Equals_" data-uid="CommunicationService.Card.Equals*"></a>
   <h4 id="CommunicationService_Card_Equals_System_Object_" data-uid="CommunicationService.Card.Equals(System.Object)">Equals(Object)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Compares color and number of a Card to check if they are equal</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -232,7 +239,8 @@ public override bool Equals(object obj)</code></pre>
       <tr>
         <td><span class="xref">System.Object</span></td>
         <td><span class="parametername">obj</span></td>
-        <td></td>
+        <td><p>Card object to be compared</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -247,7 +255,8 @@ public override bool Equals(object obj)</code></pre>
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>Result of number and color comparison</p>
+</td>
       </tr>
     </tbody>
   </table>

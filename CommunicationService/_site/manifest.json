@@ -57,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.Card.html",
-          "hash": "AZ+Jfd43L9Ce+t8HPET6CM1XvuEsBG5JcacEudA9C4s="
+          "hash": "iqWQe9EAUjKzPIpGU1XHVN6rL0VwjETh3ZmtgthS9v8="
         }
       },
       "is_incremental": false,
@@ -69,7 +69,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.CardColors.html",
-          "hash": "DZwnitiWGCfy8Yh+ErKRFWFKUzSS7Rc8eCa01ZQulRk="
+          "hash": "oFiYU+H0ZESpdYHEDQQOWoMUR6NUdkngPBa4iXZRxg4="
         }
       },
       "is_incremental": false,
@@ -105,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.ICardManager.html",
-          "hash": "WMMt6+AqMjpj/T3a1BIFq6ftDq2RGj5f0Xp25MLx8w8="
+          "hash": "KdnkTnBSzEGyvnHwbXs3+oIhnm99DdCKlebAwifchdU="
         }
       },
       "is_incremental": false,
@@ -117,7 +117,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.IMatchManager.html",
-          "hash": "aWZUhBdsjLkFPfdsiqKZz5AkEVRNdNdI0coVGcy0L+U="
+          "hash": "2L7pYuiZFvTgFFnj/pZuJ7iJuovLiyMujPCYF2EVWlQ="
         }
       },
       "is_incremental": false,
@@ -129,7 +129,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.IMatchManagerCallback.html",
-          "hash": "UwJaVZCrhjoKtIMehP/2u9Z+yUeFJpPTOWyPK0KJo/g="
+          "hash": "ZLy/taC+EhE8uq1vMdV3kK7mqkw7Jxmg1d1vuY1nyfo="
         }
       },
       "is_incremental": false,
@@ -201,7 +201,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.ServiceImplementation.html",
-          "hash": "biSa7XvSiFMYW70rjSf/V2cNu32PQPWMvFE1A+JtYiQ="
+          "hash": "5VlHho2smTLE+fzkKTirRTtQWZUeM1eqz0YapdxBLi0="
         }
       },
       "is_incremental": false,
@@ -237,7 +237,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.html",
-          "hash": "ghMxK9uyLgWYoj6LmEdyP/f0jrth7bMgqIqHqb4A63Q="
+          "hash": "d0sChaCXyVnHRFwJcFDA8SwUJyLSzy8TaRDWNjsZ5Rk="
         }
       },
       "is_incremental": false,

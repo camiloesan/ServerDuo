@@ -1420,9 +1420,9 @@ namespace CommunicationService
             return card;
         }
 
-        public Card[] GetCards(int gameId)
+        public Card[] GetCards(int partyCode)
         {
-            return _gameCards[gameId];
+            return _gameCards[partyCode];
         }
 
         public void PlayCard(int partyCode, int position, Card card)
