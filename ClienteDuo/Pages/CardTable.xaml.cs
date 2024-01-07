@@ -287,7 +287,14 @@ namespace ClienteDuo.Pages
         {
             if (LblCurrentTurn.Content.Equals(SessionDetails.Username))
             {
-                DealPlayerCard();
+                if (PlayerDeck.Children.Count < 30)
+                {
+                    DealPlayerCard();
+                }
+                else
+                {
+                    MainWindow.ShowMessageBox(Properties.Resources.DlgTooManyCards, MessageBoxImage.Question);
+                }
             }
         }
 

@@ -619,6 +619,15 @@ namespace ClienteDuo.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can&apos;t draw any more cards!.
+        /// </summary>
+        public static string DlgTooManyCards {
+            get {
+                return ResourceManager.GetString("DlgTooManyCards", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User succesfully unblocked.
         /// </summary>
         public static string DlgUnblockSuccess {
