@@ -3,6 +3,7 @@ using ClienteDuo.DataService;
 using ClienteDuo.Utilities;
 using ClienteDuo.TestClasses;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace ClienteDuo.Pages.Tests
 {
@@ -13,19 +14,19 @@ namespace ClienteDuo.Pages.Tests
         readonly string _hostUsername = "camilo";
 
         [TestInitialize]
-        public void Init()
+        public async Task Init()
         {
             TestPartyManager testPartyManager = new TestPartyManager();
             testPartyManager.NotifyCreateParty(_partyCode, _hostUsername);
-            Thread.Sleep(2000);
+            await Task.Delay(1500);
         }
 
         [TestCleanup]
-        public void Cleanup()
+        public async Task Cleanup()
         {
             TestPartyManager testPartyManager = new TestPartyManager();
             testPartyManager.NotifyCloseParty(_partyCode, _hostUsername, "");
-            Thread.Sleep(2000);
+            await Task.Delay(1500);
         }
 
         [TestMethod()]
@@ -95,8 +96,9 @@ namespace ClienteDuo.Pages.Tests
         }
 
         [TestMethod()]
-        public void IsUserBlockedByPlayerInLobbyTrueTest()
+        public async Task IsUserBlockedByPlayerInLobbyTrueTest()
         {
+            JoinParty joinParty = new JoinParty();
             UsersManagerClient usersManagerClient = new UsersManagerClient();
             string player0Username = "pepe0142";
             string player1Username = "pepe1109";
@@ -105,10 +107,9 @@ namespace ClienteDuo.Pages.Tests
 
             TestPartyManager testPartyManager = new TestPartyManager();
             testPartyManager.NotifyJoinParty(_partyCode, player0Username);
-            Thread.Sleep(2000);
+            await Task.Delay(1500);
 
             usersManagerClient.BlockUserByUsername(player0Username, player1Username);
-            JoinParty joinParty = new JoinParty();
             bool result = joinParty.IsUserBlockedByPlayerInParty(player1Username, _partyCode);
 
             usersManagerClient.DeleteUserFromDatabaseByUsername(player0Username);

@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace ClienteDuo.TestClasses.Tests
 {
@@ -9,21 +10,21 @@ namespace ClienteDuo.TestClasses.Tests
         readonly string _hostUsername = "camilo";
 
         [TestMethod()]
-        public void PartyCreatedTest()
+        public async Task PartyCreatedTest()
         {
             TestPartyManager testPartyManager = new TestPartyManager();
             int partyCode = 1110;
 
             testPartyManager.NotifyCreateParty(partyCode, _hostUsername);
             int expected = 1;
-            Thread.Sleep(2000);
+            await Task.Delay(1500);
             int result = TestPartyManager.PlayersInParty.Count;
             testPartyManager.NotifyCloseParty(partyCode, _hostUsername, "kick");
             Assert.AreEqual(expected, result);
         }
 
         [TestMethod()]
-        public void MessageReceivedTest()
+        public async Task MessageReceivedTest()
         {
             TestPartyManager testPartyManager = new TestPartyManager();
             int partyCode = 1113;
@@ -31,7 +32,7 @@ namespace ClienteDuo.TestClasses.Tests
             testPartyManager.NotifyCreateParty(partyCode, "camilo");
             testPartyManager.NotifySendMessage("helloWorld");
 
-            Thread.Sleep(2000);
+            await Task.Delay(1500);
             string result = TestPartyManager.ReceivedMessage;
 
             testPartyManager.NotifyCloseParty(partyCode, _hostUsername, "kick");
@@ -40,14 +41,14 @@ namespace ClienteDuo.TestClasses.Tests
         }
 
         [TestMethod()]
-        public void PlayerJoinedTest()
+        public async Task PlayerJoinedTest()
         {
             TestPartyManager testPartyManager = new TestPartyManager();
             int partyCode = 1114;
             testPartyManager.NotifyCreateParty(partyCode, "camilo");
             testPartyManager.NotifyJoinParty(partyCode, "christian");
 
-            Thread.Sleep(2000);
+            await Task.Delay(1500);
             int result = TestPartyManager.PlayersInParty.Count;
 
             testPartyManager.NotifyCloseParty(partyCode, _hostUsername, "kick");
@@ -57,7 +58,7 @@ namespace ClienteDuo.TestClasses.Tests
         }
 
         [TestMethod()]
-        public void PlayerKickedTest()
+        public async Task PlayerKickedTest()
         {
             TestPartyManager testPartyManager = new TestPartyManager();
             int partyCode = 1115;
@@ -66,7 +67,7 @@ namespace ClienteDuo.TestClasses.Tests
             testPartyManager.NotifyJoinParty(partyCode, playerToKick);
             testPartyManager.NotifyKickPlayer(partyCode, playerToKick, "spam");
 
-            Thread.Sleep(2000);
+            await Task.Delay(1500);
             string result = TestPartyManager.PlayerKickedReason;
             testPartyManager.NotifyCloseParty(partyCode, _hostUsername, "kick");
 
@@ -75,7 +76,7 @@ namespace ClienteDuo.TestClasses.Tests
         }
 
         [TestMethod()]
-        public void PlayerLeftTest()
+        public async Task PlayerLeftTest()
         {
             TestPartyManager testPartyManager = new TestPartyManager();
             int partyCode = 1116;
@@ -84,7 +85,7 @@ namespace ClienteDuo.TestClasses.Tests
             testPartyManager.NotifyJoinParty(partyCode, playerToKick);
             testPartyManager.NotifyKickPlayer(partyCode, playerToKick, "spam");
 
-            Thread.Sleep(2000);
+            await Task.Delay(1500);
             int result = TestPartyManager.PlayersInParty.Count;
             testPartyManager.NotifyCloseParty(partyCode, _hostUsername, "kick");
 
@@ -93,7 +94,7 @@ namespace ClienteDuo.TestClasses.Tests
         }
 
         [TestMethod()]
-        public void GameStartedTest()
+        public async Task GameStartedTest()
         {
             TestPartyManager testPartyManager = new TestPartyManager();
             int partyCode = 1112;
@@ -102,19 +103,19 @@ namespace ClienteDuo.TestClasses.Tests
             testPartyManager.NotifyJoinParty(partyCode, playerToKick);
             testPartyManager.NotifyStartGame(partyCode);
 
-            Thread.Sleep(2000);
+            await Task.Delay(1500);
             bool result = TestPartyManager.IsGameStarted;
             Assert.IsTrue(result);
         }
 
         [TestMethod()]
-        public void GameStartedPartyDoesNotExistTest()
+        public async Task GameStartedPartyDoesNotExistTest()
         {
             TestPartyManager testPartyManager = new TestPartyManager();
             int partyCode = 1112;
             testPartyManager.NotifyStartGame(partyCode);
 
-            Thread.Sleep(2000);
+            await Task.Delay(1500);
             bool result = TestPartyManager.IsGameStarted;
             Assert.IsFalse(result);
         }
