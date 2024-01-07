@@ -117,7 +117,7 @@ namespace ClienteDuo.Pages.Tests
                 card = _cardClient.DrawCard();
             }
 
-            Assert.AreEqual(card.Number, "#");
+            Assert.AreEqual("#", card.Number);
         }
 
         [TestMethod]

@@ -73,7 +73,8 @@
   
   <h1 id="CommunicationService_IMatchManagerCallback" data-uid="CommunicationService.IMatchManagerCallback" class="text-break">Interface IMatchManagerCallback
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Callback interface for Match Manager</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <h6><strong>Namespace</strong>: <a class="xref" href="CommunicationService.html">CommunicationService</a></h6>
   <h6><strong>Assembly</strong>: CommunicationService.dll</h6>
@@ -88,7 +89,8 @@ public interface IMatchManagerCallback</code></pre>
   
   <a id="CommunicationService_IMatchManagerCallback_GameOver_" data-uid="CommunicationService.IMatchManagerCallback.GameOver*"></a>
   <h4 id="CommunicationService_IMatchManagerCallback_GameOver" data-uid="CommunicationService.IMatchManagerCallback.GameOver">GameOver()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Called when a player plays all their cards or all other players left</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -99,7 +101,8 @@ void GameOver()</code></pre>
   
   <a id="CommunicationService_IMatchManagerCallback_PlayerLeftGame_" data-uid="CommunicationService.IMatchManagerCallback.PlayerLeftGame*"></a>
   <h4 id="CommunicationService_IMatchManagerCallback_PlayerLeftGame_System_String_System_String_" data-uid="CommunicationService.IMatchManagerCallback.PlayerLeftGame(System.String,System.String)">PlayerLeftGame(String, String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Called when a player is expelled from a game to delete in each client list (It also notifies the kicked player)</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -124,7 +127,8 @@ void PlayerLeftGame(string username, string reason)</code></pre>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">reason</span></td>
-        <td></td>
+        <td><p>Reason the player was kicked for (i.e. Cheating)</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -132,7 +136,8 @@ void PlayerLeftGame(string username, string reason)</code></pre>
   
   <a id="CommunicationService_IMatchManagerCallback_TurnFinished_" data-uid="CommunicationService.IMatchManagerCallback.TurnFinished*"></a>
   <h4 id="CommunicationService_IMatchManagerCallback_TurnFinished_System_String_" data-uid="CommunicationService.IMatchManagerCallback.TurnFinished(System.String)">TurnFinished(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Called when a player finishes their turn</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -152,7 +157,8 @@ void TurnFinished(string currentTurn)</code></pre>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">currentTurn</span></td>
-        <td></td>
+        <td><p>Current player turn</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -160,7 +166,8 @@ void TurnFinished(string currentTurn)</code></pre>
   
   <a id="CommunicationService_IMatchManagerCallback_UpdateTableCards_" data-uid="CommunicationService.IMatchManagerCallback.UpdateTableCards*"></a>
   <h4 id="CommunicationService_IMatchManagerCallback_UpdateTableCards" data-uid="CommunicationService.IMatchManagerCallback.UpdateTableCards">UpdateTableCards()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Called automatically to retrieve current cards in the table after a turn is over</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
