@@ -257,6 +257,9 @@ namespace CommunicationService
         void LogOut(string username);
     }
 
+    /// <summary>
+    /// Maps a user object with given properties
+    /// </summary>
     [DataContract]
     public class UserDTO
     {
@@ -282,6 +285,9 @@ namespace CommunicationService
         public int PartyCode { get; set; }
     }
 
+    /// <summary>
+    /// Maps a friendship object with given properties
+    /// </summary>
     [DataContract]
     public class FriendshipDTO
     {
@@ -301,6 +307,9 @@ namespace CommunicationService
         public string Friend2Username { get; set; }
     }
 
+    /// <summary>
+    /// Maps a friend request object with given properties
+    /// </summary>
     [DataContract]
     public class FriendRequestDTO
     {
@@ -323,6 +332,9 @@ namespace CommunicationService
         public int Status { get; set; }
     }
 
+    /// <summary>
+    /// Maps a User blocked object with given properties
+    /// </summary>
     [DataContract]
     public class UserBlockedDTO
     {

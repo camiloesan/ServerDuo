@@ -16,10 +16,10 @@ namespace CommunicationService
         bool IsPartyExistent(int partyCode);
 
         /// <summary>
-        /// Checks if there´s a space available to join (<4)
+        /// Checks if there is a space available to join
         /// </summary>
         /// <param name="partyCode"></param>
-        /// <returns>Availability</returns>
+        /// <returns>True if space available, false if not</returns>
         [OperationContract]
         bool IsSpaceAvailable(int partyCode);
 
