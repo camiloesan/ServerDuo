@@ -82,7 +82,7 @@
     <Compile Include="UsersManagerTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\ClienteDuo.DataService.Card.datasource" />
     <None Include="Properties\DataSources\ClienteDuo.DataService.FriendRequest.datasource" />
