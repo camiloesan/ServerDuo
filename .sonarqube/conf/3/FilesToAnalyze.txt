@@ -1,0 +1,58 @@
+﻿C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\App.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\GameOver.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\MatchOverLabel.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\ModifyProfile.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\PlayerBar.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\PlayerIcon.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\Sidebars\PopUpKickPlayer.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\Sidebars\EmailCodeVerification.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\Sidebars\EmailConfirmation.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\Sidebars\PasswordReset.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\Sidebars\PopUpMessage.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\Sidebars\PopUpUserDetails.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\Sidebars\SidebarAddFriend.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\Sidebars\SidebarBlockedUsers.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\Sidebars\SidebarFriendRequests.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\Sidebars\SidebarFriends.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\Sidebars\SidebarLeaderboard.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\Sidebars\SidebarUserProfile.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Utilities\MusicManager.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Utilities\SessionDetails.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Utilities\Sha256Encryptor.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Utilities\UsersManager.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\Card.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\CardTable.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\GameMenu.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\JoinParty.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\Launcher.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\Lobby.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\Login.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\MainMenu.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\MainWindow.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Pages\NewAccount.xaml.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Properties\AssemblyInfo.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\SFX\cardFlippedSound.wav
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\SFX\matchFinishedSound.wav
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\SFX\playerLeftSound.wav
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\SFX\playerJoinedSound.wav
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Properties\Resources.es.resx
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Properties\Resources.fr.resx
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Properties\Resources.resx
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Connected Services\DataService\ClienteDuo.DataService.Card1.datasource
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Connected Services\DataService\ClienteDuo.DataService.FriendRequestDTO.datasource
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Connected Services\DataService\ClienteDuo.DataService.FriendshipDTO.datasource
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Connected Services\DataService\ClienteDuo.DataService.UserBlockedDTO.datasource
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Connected Services\DataService\ClienteDuo.DataService.UserDTO.datasource
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Connected Services\DataService\item5.xsd
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Connected Services\DataService\item6.xsd
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Connected Services\DataService\item7.xsd
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Connected Services\DataService\item8.xsd
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Connected Services\DataService\ServiceImplementation2.wsdl
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\log4net.config
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\packages.config
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Properties\Settings.settings
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\App.config
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Connected Services\DataService\configuration91.svcinfo
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Connected Services\DataService\configuration.svcinfo
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Connected Services\DataService\Reference.svcmap
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ClienteDuo\Connected Services\DataService\item2.disco

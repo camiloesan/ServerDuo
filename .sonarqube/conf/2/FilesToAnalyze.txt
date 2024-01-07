@@ -1,0 +1,4 @@
+﻿C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ServerDuo\Program.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ServerDuo\Properties\AssemblyInfo.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ServerDuo\DuoServerIcon.ico
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\ServerDuo\App.config

@@ -1,0 +1,11 @@
+﻿C:\Users\Camilo\source\repos\camiloesan\ServerDuo\CommunicationService\CryptoService.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\CommunicationService\IMatchManager.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\CommunicationService\IPartyManager.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\CommunicationService\IUsersManager.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\CommunicationService\Properties\AssemblyInfo.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\CommunicationService\ServiceImplementation.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\CommunicationService\DuoServerIcon.ico
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\CommunicationService\Icon\DuoServerIcon.ico
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\CommunicationService\App.config
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\CommunicationService\log4net.config
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\CommunicationService\packages.config

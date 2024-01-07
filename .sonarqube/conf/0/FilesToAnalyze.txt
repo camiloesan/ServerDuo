@@ -1,0 +1,13 @@
+﻿C:\Users\Camilo\source\repos\camiloesan\ServerDuo\Database\BannedUser.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\Database\FriendRequest.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\Database\Friendship.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\Database\Program.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\Database\Properties\AssemblyInfo.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\Database\User.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\Database\UserBlock.cs
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\Database\DuoDatabaseModel.Context.tt
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\Database\DuoDatabaseModel.tt
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\Database\DuoDatabaseModel.edmx
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\Database\App.config
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\Database\DuoDatabaseModel.edmx.diagram
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\Database\packages.config
