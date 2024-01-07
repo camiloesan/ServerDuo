@@ -73,7 +73,8 @@
   
   <h1 id="CommunicationService_IPartyValidator" data-uid="CommunicationService.IPartyValidator" class="text-break">Interface IPartyValidator
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Validates conditions required to enter a party (lobby)</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <h6><strong>Namespace</strong>: <a class="xref" href="CommunicationService.html">CommunicationService</a></h6>
   <h6><strong>Assembly</strong>: CommunicationService.dll</h6>
@@ -84,11 +85,17 @@ public interface IPartyValidator</code></pre>
   </div>
   <h3 id="methods">Methods
   </h3>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_IPartyValidator_GetPlayersInParty_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.IPartyValidator.GetPlayersInParty(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/IPartyManager.cs/#L43">View Source</a>
+  </span>
   <a id="CommunicationService_IPartyValidator_GetPlayersInParty_" data-uid="CommunicationService.IPartyValidator.GetPlayersInParty*"></a>
   <h4 id="CommunicationService_IPartyValidator_GetPlayersInParty_System_Int32_" data-uid="CommunicationService.IPartyValidator.GetPlayersInParty(System.Int32)">GetPlayersInParty(Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Counts every player on party hashmap</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -123,15 +130,22 @@ List&lt;string&gt; GetPlayersInParty(int partyCode)</code></pre>
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td></td>
+        <td><p>Total players in party</p>
+</td>
       </tr>
     </tbody>
   </table>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_IPartyValidator_IsPartyExistent_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.IPartyValidator.IsPartyExistent(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/IPartyManager.cs/#L18">View Source</a>
+  </span>
   <a id="CommunicationService_IPartyValidator_IsPartyExistent_" data-uid="CommunicationService.IPartyValidator.IsPartyExistent*"></a>
   <h4 id="CommunicationService_IPartyValidator_IsPartyExistent_System_Int32_" data-uid="CommunicationService.IPartyValidator.IsPartyExistent(System.Int32)">IsPartyExistent(Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Checks if a party with the partyCode provided is active</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -166,15 +180,22 @@ bool IsPartyExistent(int partyCode)</code></pre>
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>Success status</p>
+</td>
       </tr>
     </tbody>
   </table>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_IPartyValidator_IsSpaceAvailable_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.IPartyValidator.IsSpaceAvailable(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/IPartyManager.cs/#L26">View Source</a>
+  </span>
   <a id="CommunicationService_IPartyValidator_IsSpaceAvailable_" data-uid="CommunicationService.IPartyValidator.IsSpaceAvailable*"></a>
   <h4 id="CommunicationService_IPartyValidator_IsSpaceAvailable_System_Int32_" data-uid="CommunicationService.IPartyValidator.IsSpaceAvailable(System.Int32)">IsSpaceAvailable(Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Checks if there is a space available to join</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -209,15 +230,22 @@ bool IsSpaceAvailable(int partyCode)</code></pre>
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>True if space available, false if not</p>
+</td>
       </tr>
     </tbody>
   </table>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_IPartyValidator_IsUsernameInParty_System_Int32_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.IPartyValidator.IsUsernameInParty(System.Int32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/IPartyManager.cs/#L35">View Source</a>
+  </span>
   <a id="CommunicationService_IPartyValidator_IsUsernameInParty_" data-uid="CommunicationService.IPartyValidator.IsUsernameInParty*"></a>
   <h4 id="CommunicationService_IPartyValidator_IsUsernameInParty_System_Int32_System_String_" data-uid="CommunicationService.IPartyValidator.IsUsernameInParty(System.Int32,System.String)">IsUsernameInParty(Int32, String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>If an user with the provided username is inside the lobby with provided partyCode</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -257,7 +285,8 @@ bool IsUsernameInParty(int partyCode, string username)</code></pre>
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>Status</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -268,6 +297,12 @@ bool IsUsernameInParty(int partyCode, string username)</code></pre>
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_IPartyValidator.md&amp;value=---%0Auid%3A%20CommunicationService.IPartyValidator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/IPartyManager.cs/#L10" class="contribution-link">View Source</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

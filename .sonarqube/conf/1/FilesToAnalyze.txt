@@ -6,6 +6,12 @@ C:\Users\Camilo\source\repos\camiloesan\ServerDuo\CommunicationService\Propertie
 C:\Users\Camilo\source\repos\camiloesan\ServerDuo\CommunicationService\ServiceImplementation.cs
 C:\Users\Camilo\source\repos\camiloesan\ServerDuo\CommunicationService\DuoServerIcon.ico
 C:\Users\Camilo\source\repos\camiloesan\ServerDuo\CommunicationService\Icon\DuoServerIcon.ico
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\CommunicationService\api\index.md
 C:\Users\Camilo\source\repos\camiloesan\ServerDuo\CommunicationService\App.config
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\CommunicationService\articles\intro.md
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\CommunicationService\articles\toc.md
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\CommunicationService\docfx.json
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\CommunicationService\index.md
 C:\Users\Camilo\source\repos\camiloesan\ServerDuo\CommunicationService\log4net.config
 C:\Users\Camilo\source\repos\camiloesan\ServerDuo\CommunicationService\packages.config
+C:\Users\Camilo\source\repos\camiloesan\ServerDuo\CommunicationService\toc.yml

@@ -73,7 +73,8 @@
   
   <h1 id="CommunicationService_IPartyManager" data-uid="CommunicationService.IPartyManager" class="text-break">Interface IPartyManager
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Manages party interactions between useres</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <h6><strong>Namespace</strong>: <a class="xref" href="CommunicationService.html">CommunicationService</a></h6>
   <h6><strong>Assembly</strong>: CommunicationService.dll</h6>
@@ -84,11 +85,17 @@ public interface IPartyManager</code></pre>
   </div>
   <h3 id="methods">Methods
   </h3>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_IPartyManager_NotifyCloseParty_System_Int32_System_String_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.IPartyManager.NotifyCloseParty(System.Int32%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/IPartyManager.cs/#L91">View Source</a>
+  </span>
   <a id="CommunicationService_IPartyManager_NotifyCloseParty_" data-uid="CommunicationService.IPartyManager.NotifyCloseParty*"></a>
   <h4 id="CommunicationService_IPartyManager_NotifyCloseParty_System_Int32_System_String_System_String_" data-uid="CommunicationService.IPartyManager.NotifyCloseParty(System.Int32,System.String,System.String)">NotifyCloseParty(Int32, String, String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Notifies every player in party if host has left lobby</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -122,11 +129,17 @@ void NotifyCloseParty(int partyCode, string hostName, string reason)</code></pre
       </tr>
     </tbody>
   </table>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_IPartyManager_NotifyCreateParty_System_Int32_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.IPartyManager.NotifyCreateParty(System.Int32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/IPartyManager.cs/#L58">View Source</a>
+  </span>
   <a id="CommunicationService_IPartyManager_NotifyCreateParty_" data-uid="CommunicationService.IPartyManager.NotifyCreateParty*"></a>
   <h4 id="CommunicationService_IPartyManager_NotifyCreateParty_System_Int32_System_String_" data-uid="CommunicationService.IPartyManager.NotifyCreateParty(System.Int32,System.String)">NotifyCreateParty(Int32, String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Notifies host that party has been created</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -155,11 +168,17 @@ void NotifyCreateParty(int partyCode, string hostUsername)</code></pre>
       </tr>
     </tbody>
   </table>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_IPartyManager_NotifyJoinParty_System_Int32_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.IPartyManager.NotifyJoinParty(System.Int32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/IPartyManager.cs/#L66">View Source</a>
+  </span>
   <a id="CommunicationService_IPartyManager_NotifyJoinParty_" data-uid="CommunicationService.IPartyManager.NotifyJoinParty*"></a>
   <h4 id="CommunicationService_IPartyManager_NotifyJoinParty_System_Int32_System_String_" data-uid="CommunicationService.IPartyManager.NotifyJoinParty(System.Int32,System.String)">NotifyJoinParty(Int32, String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Notifies new player joining to every player</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -188,11 +207,17 @@ void NotifyJoinParty(int partyCode, string username)</code></pre>
       </tr>
     </tbody>
   </table>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_IPartyManager_NotifyKickPlayer_System_Int32_System_String_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.IPartyManager.NotifyKickPlayer(System.Int32%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/IPartyManager.cs/#L107">View Source</a>
+  </span>
   <a id="CommunicationService_IPartyManager_NotifyKickPlayer_" data-uid="CommunicationService.IPartyManager.NotifyKickPlayer*"></a>
   <h4 id="CommunicationService_IPartyManager_NotifyKickPlayer_System_Int32_System_String_System_String_" data-uid="CommunicationService.IPartyManager.NotifyKickPlayer(System.Int32,System.String,System.String)">NotifyKickPlayer(Int32, String, String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Notifies every player in party if host has kicked a player (including kicked player)</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -226,11 +251,17 @@ void NotifyKickPlayer(int partyCode, string username, string reason)</code></pre
       </tr>
     </tbody>
   </table>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_IPartyManager_NotifyLeaveParty_System_Int32_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.IPartyManager.NotifyLeaveParty(System.Int32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/IPartyManager.cs/#L82">View Source</a>
+  </span>
   <a id="CommunicationService_IPartyManager_NotifyLeaveParty_" data-uid="CommunicationService.IPartyManager.NotifyLeaveParty*"></a>
   <h4 id="CommunicationService_IPartyManager_NotifyLeaveParty_System_Int32_System_String_" data-uid="CommunicationService.IPartyManager.NotifyLeaveParty(System.Int32,System.String)">NotifyLeaveParty(Int32, String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Notifies every player in party if someone leaves lobby</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -259,11 +290,17 @@ void NotifyLeaveParty(int partyCode, string username)</code></pre>
       </tr>
     </tbody>
   </table>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_IPartyManager_NotifySendMessage_System_Int32_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.IPartyManager.NotifySendMessage(System.Int32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/IPartyManager.cs/#L74">View Source</a>
+  </span>
   <a id="CommunicationService_IPartyManager_NotifySendMessage_" data-uid="CommunicationService.IPartyManager.NotifySendMessage*"></a>
   <h4 id="CommunicationService_IPartyManager_NotifySendMessage_System_Int32_System_String_" data-uid="CommunicationService.IPartyManager.NotifySendMessage(System.Int32,System.String)">NotifySendMessage(Int32, String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Notifies every player in party a message (to chat)</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -292,11 +329,17 @@ void NotifySendMessage(int partyCode, string message)</code></pre>
       </tr>
     </tbody>
   </table>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_IPartyManager_NotifyStartGame_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.IPartyManager.NotifyStartGame(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/IPartyManager.cs/#L98">View Source</a>
+  </span>
   <a id="CommunicationService_IPartyManager_NotifyStartGame_" data-uid="CommunicationService.IPartyManager.NotifyStartGame*"></a>
   <h4 id="CommunicationService_IPartyManager_NotifyStartGame_System_Int32_" data-uid="CommunicationService.IPartyManager.NotifyStartGame(System.Int32)">NotifyStartGame(Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Notifies game start to every player in party</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -327,6 +370,12 @@ void NotifyStartGame(int partyCode)</code></pre>
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_IPartyManager.md&amp;value=---%0Auid%3A%20CommunicationService.IPartyManager%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/IPartyManager.cs/#L50" class="contribution-link">View Source</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
