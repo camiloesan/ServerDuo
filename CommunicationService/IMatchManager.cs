@@ -9,30 +9,74 @@ namespace CommunicationService
     [ServiceContract(CallbackContract = typeof(IMatchManagerCallback))]
     public interface IMatchManager
     {
+        /// <summary>
+        /// Subscribes the user to the service
+        /// </summary>
+        /// <param name="partyCode">Code of the match the user is subscribing</param>
+        /// <param name="username">Name of the user that subscribes</param>
         [OperationContract]
         void Subscribe(int partyCode, string username);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="partyCode"></param>
+        /// <param name="username"></param>
+        /// <param name="cardCount"></param>
         [OperationContract]
         void SetGameScore(int partyCode, string username, int cardCount);
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="partyCode"></param>
+        /// <param name="username"></param>
         [OperationContract(IsOneWay = true)]
         void ExitMatch(int partyCode, string username);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="partyCode"></param>
+        /// <param name="username"></param>
+        /// <param name="reason"></param>
         [OperationContract]
         void KickPlayerFromGame(int partyCode, string username, string reason);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="partyCode"></param>
         [OperationContract(IsOneWay = true)]
         void EndGame(int partyCode);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="partyCode"></param>
         [OperationContract(IsOneWay = true)]
         void EndTurn(int partyCode);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="partyCode"></param>
+        /// <returns></returns>
         [OperationContract]
         string GetCurrentTurn(int partyCode);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="partyCode"></param>
+        /// <returns></returns>
         [OperationContract]
         List<string> GetPlayerList(int partyCode);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="partyCode"></param>
+        /// <returns></returns>
         [OperationContract]
         ConcurrentDictionary<string, int> GetMatchResults(int partyCode);
     }

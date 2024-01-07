@@ -1145,6 +1145,11 @@ namespace CommunicationService
         private static ConcurrentDictionary<int, int> _currentTurn = new ConcurrentDictionary<int, int>();
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        /// <summary>
+        /// Add user callback to the service so they can be called back
+        /// </summary>
+        /// <param name="partyCode">Code of the match</param>
+        /// <param name="username">Name of the user subscribing to the service</param>
         public void Subscribe(int partyCode, string username)
         {
             IMatchManagerCallback playerCallback = OperationContext.Current.GetCallbackChannel<IMatchManagerCallback>();
