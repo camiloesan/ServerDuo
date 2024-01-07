@@ -680,11 +680,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ExitMatchResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
   <xs:element name="KickPlayerFromGame">
     <xs:complexType>
       <xs:sequence>
@@ -706,21 +701,11 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="EndGameResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
   <xs:element name="EndTurn">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="partyCode" type="xs:int" />
       </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="EndTurnResponse">
-    <xs:complexType>
-      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="GetCurrentTurn">

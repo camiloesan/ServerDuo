@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClienteDuo.Pages"
         mc:Ignorable="d"
-        Title="CardTable" Height="600" Width="1000">
-    <Grid x:Name="TableBackground" Background="#FF2CAB00">
-        <ScrollViewer Margin="15,455,0,0" Height="130" Width="840" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Background="#FF003E01" HorizontalAlignment="Left" VerticalAlignment="Top" >
+        Title="CardTable" Height="600" Width="1000" ScrollViewer.HorizontalScrollBarVisibility="Visible">
+    <Grid x:Name="TableBackground" Background="#FF2CAB00" ScrollViewer.HorizontalScrollBarVisibility="Visible">
+        <ScrollViewer Margin="15,405,0,0" Height="130" Width="840" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Background="#FF003E01" HorizontalAlignment="Left" VerticalAlignment="Top" >
             <StackPanel x:Name="PlayerDeck" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Visible" CanHorizontallyScroll="True" ScrollViewer.CanContentScroll="True">
                 <StackPanel.RenderTransform>
                     <TransformGroup>
@@ -20,7 +20,7 @@
             </StackPanel>
         </ScrollViewer>
 
-        <Button x:Name="BtnLeftCard" Click="PlayCardLeft" Margin="250,0,0,0" Background="White" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Center" Height="135" Width="90" BorderBrush="Black">
+        <Button x:Name="BtnLeftCard" Click="PlayCardLeft" Margin="250,0,0,100" Background="White" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Center" Height="135" Width="90" BorderBrush="Black">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -32,7 +32,7 @@
             </Grid>
         </Button>
 
-        <Button x:Name="BtnMiddleCard" Click="PlayCardMiddle" Margin="400,0,0,0" Background="White" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Center" Height="135" Width="90" BorderBrush="Black">
+        <Button x:Name="BtnMiddleCard" Click="PlayCardMiddle" Margin="400,0,0,100" Background="White" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Center" Height="135" Width="90" BorderBrush="Black">
             <Grid>
                 <Rectangle x:Name="MiddleCardColor" HorizontalAlignment="Center" Height="90" Margin="0,0,0,0" VerticalAlignment="Center" Width="66" Fill="Gray"/>
                 <Ellipse Grid.Column="1" HorizontalAlignment="Center" Height="65" VerticalAlignment="Center" Width="65" Fill="White"/>
@@ -40,7 +40,7 @@
             </Grid>
         </Button>
 
-        <Button x:Name="BtnRightCard" Click="PlayCardRight" Margin="550,0,0,0" Background="White" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Center" Height="135" Width="90" BorderBrush="Black">
+        <Button x:Name="BtnRightCard" Click="PlayCardRight" Margin="550,0,0,100" Background="White" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Center" Height="135" Width="90" BorderBrush="Black">
             <Grid>
                 <Rectangle x:Name="RightCardColor" HorizontalAlignment="Center" Height="90" Margin="0,0,0,0" VerticalAlignment="Center" Width="66" Fill="Gray"/>
                 <Ellipse Grid.Column="1" HorizontalAlignment="Center" Height="65" VerticalAlignment="Center" Width="65" Fill="White"/>
@@ -48,7 +48,7 @@
             </Grid>
         </Button>
 
-        <Button x:Name="BtnDeck" Click="BtnDeckEvent" Margin="700,0,0,0" Background="White" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Center" Height="135" Width="90" ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderBrush="Black">
+        <Button x:Name="BtnDeck" Click="BtnDeckEvent" Margin="700,0,0,100" Background="White" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Center" Height="135" Width="90" ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderBrush="Black">
             <Grid>
                 <Rectangle HorizontalAlignment="Center" Height="90" VerticalAlignment="Center" Width="66" Fill="Red"/>
                 <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="DUO" FontSize="25" Background="White" Height="38"/>
@@ -61,7 +61,7 @@
             </Button.Background>
         </Button>
 
-        <Label x:Name="LblCurrentTurn" Content="Current Turn: [Username]" HorizontalAlignment="Center" Margin="0,395,0,0" VerticalAlignment="Top" Width="702" FontSize="36" FontWeight="Bold" FontFamily="Ink Free" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label x:Name="LblCurrentTurn" Content="Current Turn: [Username]" HorizontalAlignment="Center" Margin="0,345,0,0" VerticalAlignment="Top" Width="702" FontSize="36" FontWeight="Bold" FontFamily="Ink Free" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Button x:Name="BtnEndTurn" Content="GO!" HorizontalAlignment="Left" Margin="890,490,0,35" VerticalAlignment="Top" FontSize="50" RenderTransformOrigin="0.5,0.5" Click="BtnEndTurnEvent" Visibility="Collapsed">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

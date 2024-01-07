@@ -435,4 +435,7 @@
   <data name="DlgEmailDoesNotMatch" xml:space="preserve">
     <value>El correo no coincide con el correo registrado para esta cuenta</value>
   </data>
+  <data name="DlgTooManyCards" xml:space="preserve">
+    <value>¡No puedes tomar más cartas!</value>
+  </data>
 </root>

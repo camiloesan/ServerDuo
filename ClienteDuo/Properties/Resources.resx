@@ -442,4 +442,7 @@
   <data name="DlgEmailDoesNotMatch" xml:space="preserve">
     <value>Email does not match this account´s registered email</value>
   </data>
+  <data name="DlgTooManyCards" xml:space="preserve">
+    <value>You can't draw any more cards!</value>
+  </data>
 </root>

@@ -1,5 +1,6 @@
 ﻿using ClienteDuo.DataService;
 using ClienteDuo.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Runtime.Remoting;
 using System.ServiceModel;
@@ -74,9 +75,11 @@ namespace ClienteDuo.Pages
             }
             catch (CommunicationException)
             {
-                Launcher launcher = new Launcher();
-                Application.Current.MainWindow.Content = launcher;
-                MainWindow.ShowMessageBox(Properties.Resources.DlgServiceException, MessageBoxImage.Exclamation);
+                SessionDetails.AbortOperation();
+            }
+            catch (TimeoutException)
+            {
+                SessionDetails.AbortOperation();
             }
         }
 
@@ -114,9 +117,11 @@ namespace ClienteDuo.Pages
             }
             catch (CommunicationException)
             {
-                Launcher launcher = new Launcher();
-                Application.Current.MainWindow.Content = launcher;
-                MainWindow.ShowMessageBox(Properties.Resources.DlgServiceException, MessageBoxImage.Exclamation);
+                SessionDetails.AbortOperation();
+            }
+            catch (TimeoutException)
+            {
+                SessionDetails.AbortOperation();
             }
         }
 
@@ -195,9 +200,11 @@ namespace ClienteDuo.Pages
             }
             catch (CommunicationException)
             {
-                Launcher launcher = new Launcher();
-                Application.Current.MainWindow.Content = launcher;
-                MainWindow.ShowMessageBox(Properties.Resources.DlgServiceException, MessageBoxImage.Exclamation);
+                SessionDetails.AbortOperation();
+            }
+            catch (TimeoutException)
+            {
+                SessionDetails.AbortOperation();
             }
         }
 
@@ -237,9 +244,11 @@ namespace ClienteDuo.Pages
             }
             catch (CommunicationException)
             {
-                Launcher launcher = new Launcher();
-                Application.Current.MainWindow.Content = launcher;
-                MainWindow.ShowMessageBox(Properties.Resources.DlgServiceException, MessageBoxImage.Exclamation);
+                SessionDetails.AbortOperation();
+            }
+            catch (TimeoutException)
+            {
+                SessionDetails.AbortOperation();
             }
         }
 
@@ -261,9 +270,11 @@ namespace ClienteDuo.Pages
             }
             catch (CommunicationException)
             {
-                Launcher launcher = new Launcher();
-                Application.Current.MainWindow.Content = launcher;
-                MainWindow.ShowMessageBox(Properties.Resources.DlgServiceException, MessageBoxImage.Exclamation);
+                SessionDetails.AbortOperation();
+            }
+            catch (TimeoutException)
+            {
+                SessionDetails.AbortOperation();
             }
         }
 
@@ -276,7 +287,14 @@ namespace ClienteDuo.Pages
         {
             if (LblCurrentTurn.Content.Equals(SessionDetails.Username))
             {
-                DealPlayerCard();
+                if (PlayerDeck.Children.Count < 30)
+                {
+                    DealPlayerCard();
+                }
+                else
+                {
+                    MainWindow.ShowMessageBox(Properties.Resources.DlgTooManyCards, MessageBoxImage.Question);
+                }
             }
         }
 
@@ -354,9 +372,11 @@ namespace ClienteDuo.Pages
             }
             catch (CommunicationException)
             {
-                Launcher launcher = new Launcher();
-                Application.Current.MainWindow.Content = launcher;
-                MainWindow.ShowMessageBox(Properties.Resources.DlgServiceException, MessageBoxImage.Exclamation);
+                SessionDetails.AbortOperation();
+            }
+            catch (TimeoutException)
+            {
+                SessionDetails.AbortOperation();
             }
         }
 
@@ -410,9 +430,11 @@ namespace ClienteDuo.Pages
             }
             catch (CommunicationException)
             {
-                Launcher launcher = new Launcher();
-                Application.Current.MainWindow.Content = launcher;
-                MainWindow.ShowMessageBox(Properties.Resources.DlgServiceException, MessageBoxImage.Exclamation);
+                SessionDetails.AbortOperation();
+            }
+            catch (TimeoutException)
+            {
+                SessionDetails.AbortOperation();
             }
         }
     }

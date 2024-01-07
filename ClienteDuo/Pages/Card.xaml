@@ -3,16 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"             
              Height="120" Width="90" HorizontalAlignment="Center" VerticalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Visible">
 
-    <Button Name="_cardButton" Click="SelectCard" Margin="0,0,0,0" Background="White" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Center" Height="120" Width="90" BorderBrush="Black">
-        <Grid  HorizontalAlignment="Center" VerticalAlignment="Center">
+    <Button Name="_cardButton" Click="SelectCard" Margin="0,0,0,0" Background="White" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Center" Height="120" Width="90" BorderBrush="Black" ScrollViewer.HorizontalScrollBarVisibility="Visible">
+        <Grid  HorizontalAlignment="Center" VerticalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="10.909"/>
             </Grid.ColumnDefinitions>
 
-            <Rectangle x:Name="_colorRectangle" Height="90" Width="65" Fill="Black" Grid.ColumnSpan="2" Stroke="Black"/>
-            <Ellipse Height="66" Width="65" Fill="White" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
-            <Label x:Name="_numberLabel" Content="2" FontSize="45" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,0,0,0"/>
+            <Rectangle x:Name="_colorRectangle" Height="90" Width="65" Fill="Black" Grid.ColumnSpan="2" Stroke="Black" ScrollViewer.HorizontalScrollBarVisibility="Visible"/>
+            <Ellipse Height="66" Width="65" Fill="White" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Visible"/>
+            <Label x:Name="_numberLabel" Content="2" FontSize="45" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,0,0,0" ScrollViewer.HorizontalScrollBarVisibility="Visible"/>
         </Grid>
     </Button>
 </UserControl>

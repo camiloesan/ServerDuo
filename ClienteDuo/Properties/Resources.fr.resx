@@ -432,4 +432,7 @@
   <data name="LblCode" xml:space="preserve">
     <value>Code</value>
   </data>
+  <data name="DlgTooManyCards" xml:space="preserve">
+    <value>Vous ne pouvez pas saisir plus des cartes!</value>
+  </data>
 </root>
