@@ -4,6 +4,9 @@ using System.ServiceModel;
 
 namespace CommunicationService
 {
+    /// <summary>
+    /// Validates conditions required to enter a party (lobby)
+    /// </summary>
     [ServiceContract]
     public interface IPartyValidator
     {
@@ -41,6 +44,9 @@ namespace CommunicationService
         List<string> GetPlayersInParty(int partyCode);
     }
 
+    /// <summary>
+    /// Manages party interactions between useres
+    /// </summary>
     [ServiceContract(CallbackContract = typeof(IPartyManagerCallback))]
     public interface IPartyManager
     {
@@ -102,6 +108,9 @@ namespace CommunicationService
         void NotifyKickPlayer(int partyCode, string username, string reason);
     }
 
+    /// <summary>
+    /// Manages party manager callbacks
+    /// </summary>
     [ServiceContract]
     public interface IPartyManagerCallback
     {
