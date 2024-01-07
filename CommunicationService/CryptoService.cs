@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CommunicationService
 {
-    internal class CryptoService
+    internal static class CryptoService
     {
         public static string DecryptString(string key, string cipherText)
         {
