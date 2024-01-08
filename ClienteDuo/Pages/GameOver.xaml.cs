@@ -29,7 +29,7 @@ namespace ClienteDuo.Pages
 
                 if (playerScore.Key.Equals(winner))
                 {
-                    playerBar.Username = playerScore.Key + "( " + Properties.Resources.LblWinner + ")";
+                    playerBar.Username = playerScore.Key + "(" + Properties.Resources.LblWinner + ")";
                 }
                 else
                 {

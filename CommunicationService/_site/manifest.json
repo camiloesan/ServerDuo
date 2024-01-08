@@ -1,6 +1,6 @@
 {
   "homepages": [],
-  "source_base_path": "C:/Users/Camilo/Source/Repos/camiloesan/ServerDuo/CommunicationService",
+  "source_base_path": "C:/Users/lisre/Documents/GitHub/ServerDuo/CommunicationService",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -9,7 +9,7 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "2sF8fMc/MHc8aqJgJaCeld3BUL+fpV96iRQEoashcnU="
+          "hash": "ZcRFJgNhvhM6kAH28Vkb5TxxGPe7FlftmernEpHWKBw="
         }
       },
       "is_incremental": false,
@@ -21,7 +21,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/intro.html",
-          "hash": "xUgfl4JKw9O9lgIpG0568RwAAqTV13XvcHVHDVNgRVs="
+          "hash": "yF4cM99miGSsrT64oV0kgkl56YkQylthgw5Gl1aJqzo="
         }
       },
       "is_incremental": false,
@@ -45,7 +45,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "mOpiKRULOP29hX7n0Z6KLSrJ33YAN6Mz4Z8gtpMfGEY="
+          "hash": "GGOovSab6ZFxRkwbTiKX/AxcXz9WU1qSZOSIhjRqq74="
         }
       },
       "is_incremental": false,
@@ -57,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.Card.html",
-          "hash": "H36TUqmgWIY2q36XeEZcG3vtTyHdWWuMPfUni8DiHNI="
+          "hash": "iqWQe9EAUjKzPIpGU1XHVN6rL0VwjETh3ZmtgthS9v8="
         }
       },
       "is_incremental": false,
@@ -69,7 +69,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.CardColors.html",
-          "hash": "4sO8wmY/5kpBdW4fjEaJcIIjnSGXqXSYOqvZXEc1BOQ="
+          "hash": "oFiYU+H0ZESpdYHEDQQOWoMUR6NUdkngPBa4iXZRxg4="
         }
       },
       "is_incremental": false,
@@ -81,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.FriendRequestDTO.html",
-          "hash": "diV//EHmsOVaO3qpKGNdrQOBvdW9SXqA6bhVAb+hw7M="
+          "hash": "j9XQbhYN0ppeA1FTreBF1ubPpOc6HKEMPv1qcp+7bpk="
         }
       },
       "is_incremental": false,
@@ -93,7 +93,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.FriendshipDTO.html",
-          "hash": "NaeJu352Vr89/IcGmhmrl8HybVlnOxKErp53Evoi44o="
+          "hash": "8CIOwsl+pZ/kl4ryGZ81xLms+G7ojisWtSSg7djUsGk="
         }
       },
       "is_incremental": false,
@@ -105,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.ICardManager.html",
-          "hash": "2EHO6RbjKMN17wkK1CoVbmgYkreHqgvix+9ScDkktck="
+          "hash": "KdnkTnBSzEGyvnHwbXs3+oIhnm99DdCKlebAwifchdU="
         }
       },
       "is_incremental": false,
@@ -117,7 +117,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.IMatchManager.html",
-          "hash": "v7Uu62uzWdz9C4vxVZN6Y4RW33HgVQ8ikUS+2w+KmsY="
+          "hash": "2L7pYuiZFvTgFFnj/pZuJ7iJuovLiyMujPCYF2EVWlQ="
         }
       },
       "is_incremental": false,
@@ -129,7 +129,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.IMatchManagerCallback.html",
-          "hash": "EPOU8/+zHk+94RfQvRDAJPliTySijHhBgYriQeA8KmE="
+          "hash": "ZLy/taC+EhE8uq1vMdV3kK7mqkw7Jxmg1d1vuY1nyfo="
         }
       },
       "is_incremental": false,
@@ -141,7 +141,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.IPartyManager.html",
-          "hash": "NmTsCQ6gTQGWMw9mJs/cTRlrbQnfZPc5jZw4tmlen+4="
+          "hash": "KcTROi7EHh0nI6icqZ/ib107ra7X7OsST0hkYFjQu/g="
         }
       },
       "is_incremental": false,
@@ -153,7 +153,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.IPartyManagerCallback.html",
-          "hash": "we0zj0prfUogLULUzemT1XGCaOvFEfINnpY0L+mVHao="
+          "hash": "y2Z7tg5s3EJjF2UNVJGwPH27F/O74nPOnzRVCUX8dPI="
         }
       },
       "is_incremental": false,
@@ -165,7 +165,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.IPartyValidator.html",
-          "hash": "wiCMIKGfcfGMon1tVWIkqXF/yPyMchC1V2WKSbvRR5A="
+          "hash": "X2HJT5k0U7fbNQCoeos+iUwO6HrInmvUuNO3d2ZqeXA="
         }
       },
       "is_incremental": false,
@@ -177,7 +177,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.IUserConnectionHandler.html",
-          "hash": "qHkP5vMdFW5FJMiioyK2yzqFyspwZLrNAUnmqHh6jGY="
+          "hash": "11Xb5JsOXAe99sVhyEpysI35+gT+arF8w9YguqOCF3c="
         }
       },
       "is_incremental": false,
@@ -189,7 +189,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.IUsersManager.html",
-          "hash": "6uLupYYMyzjq18tUABMkIPTh23rMxnRlAmGgdnsIuUQ="
+          "hash": "1cDt33Pa95X79t0y31Mgd9Ab/g7qej/NsbZCaZb0MP0="
         }
       },
       "is_incremental": false,
@@ -201,7 +201,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.ServiceImplementation.html",
-          "hash": "DxpWBFPoC/2VgkLxaUUCwEHGudryOcLn9okoazk4TPU="
+          "hash": "5VlHho2smTLE+fzkKTirRTtQWZUeM1eqz0YapdxBLi0="
         }
       },
       "is_incremental": false,
@@ -213,7 +213,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.UserBlockedDTO.html",
-          "hash": "osifOHI2evXYznaKS+unNY2sdEFJ1K5KO0IaKTDalD4="
+          "hash": "EIm6N3OrLAUkL9GV1pG1hKVGAEd1qeB6SIcdqFB1sJY="
         }
       },
       "is_incremental": false,
@@ -225,7 +225,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.UserDTO.html",
-          "hash": "wLw99qQo5FH+x+8b9xX3Y/9C8mDpGOylTJRFLeoJ/Ik="
+          "hash": "qxqRZzB2KzDoYeUumCt0bjGZ6snGSoPpomc7/0L4O70="
         }
       },
       "is_incremental": false,
