@@ -479,6 +479,8 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\DataService\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Pages\PopUps\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

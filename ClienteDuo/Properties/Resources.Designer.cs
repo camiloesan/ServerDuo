@@ -655,6 +655,15 @@ namespace ClienteDuo.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This user has already been blocked by you.
+        /// </summary>
+        public static string DlgUserAlreadyBlocked {
+            get {
+                return ResourceManager.GetString("DlgUserAlreadyBlocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A session is already active.
         /// </summary>
         public static string DlgUserAlreadyLoggedIn {

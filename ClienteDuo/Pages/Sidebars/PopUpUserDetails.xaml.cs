@@ -9,9 +9,6 @@ using System.Windows.Media.Imaging;
 
 namespace ClienteDuo.Pages.Sidebars
 {
-    /// <summary>
-    /// Interaction logic for PopUpUserDetails.xaml
-    /// </summary>
     public partial class PopUpUserDetails : UserControl
     {
         private string _userSelectedName;
@@ -48,6 +45,7 @@ namespace ClienteDuo.Pages.Sidebars
                 if (isFriend)
                 {
                     BtnAddFriend.Visibility = Visibility.Collapsed;
+                    BtnBlock.Visibility = Visibility.Collapsed;
                 }
                 if (SessionDetails.IsGuest)
                 {
@@ -59,7 +57,7 @@ namespace ClienteDuo.Pages.Sidebars
 
         public void InitializeUserInfo(int friendshipId, string username)
         {
-            UserDTO userInfo = UsersManager.GetUserInfoByUsername(username); // thus
+            UserDTO userInfo = UsersManager.GetUserInfoByUsername(username);
             DataContext = friendshipId;
             _userSelectedName = username;
 
@@ -151,30 +149,38 @@ namespace ClienteDuo.Pages.Sidebars
                     UsersManager.DeleteFriendshipById(friendshipId);
                 }
 
-                int result = 0;
-                try
+                if (!UsersManager.IsUserBlocked(SessionDetails.Username, _userSelectedName))
                 {
-                    result = BlockUser(SessionDetails.Username, _userSelectedName);
-                }
-                catch (CommunicationException)
-                {
-                    MainWindow.ShowMessageBox(Properties.Resources.DlgServiceException, MessageBoxImage.Error);
-                }
-                catch (TimeoutException)
-                {
-                    SessionDetails.AbortOperation();
-                }
+                    int result = 0;
+                    try
+                    {
+                        result = BlockUser(SessionDetails.Username, _userSelectedName);
+                    }
+                    catch (CommunicationException)
+                    {
+                        MainWindow.ShowMessageBox(Properties.Resources.DlgServiceException, MessageBoxImage.Error);
+                    }
+                    catch (TimeoutException)
+                    {
+                        SessionDetails.AbortOperation();
+                    }
 
-                switch (result) {
-                    case 1:
-                        MainWindow.ShowMessageBox(Properties.Resources.DlgBlockedUser, MessageBoxImage.Exclamation);
-                        break;
-                    case 2:
-                        MainWindow.ShowMessageBox(Properties.Resources.DlgUserBanned, MessageBoxImage.Exclamation);
-                        break;
-                    default:
-                        MainWindow.ShowMessageBox(Properties.Resources.DlgCouldntBlockUser, MessageBoxImage.Exclamation);
-                        break;
+                    //if it was blocked 1, if it was blocked and therefore banned 2, else 0.
+                    switch (result) { 
+                        case 1:
+                            MainWindow.ShowMessageBox(Properties.Resources.DlgBlockedUser, MessageBoxImage.Exclamation);
+                            break;
+                        case 2:
+                            MainWindow.ShowMessageBox(Properties.Resources.DlgUserBanned, MessageBoxImage.Exclamation);
+                            break;
+                        default:
+                            MainWindow.ShowMessageBox(Properties.Resources.DlgCouldntBlockUser, MessageBoxImage.Exclamation);
+                            break;
+                    }
+                }
+                else
+                {
+                    MainWindow.ShowMessageBox(Properties.Resources.DlgUserAlreadyBlocked, MessageBoxImage.Exclamation);
                 }
             }
         }
@@ -208,7 +214,5 @@ namespace ClienteDuo.Pages.Sidebars
         {
             Visibility = Visibility.Collapsed;
         }
-        
-        
     }
 }

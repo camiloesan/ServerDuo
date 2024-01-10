@@ -438,4 +438,7 @@
   <data name="DlgTooManyCards" xml:space="preserve">
     <value>¡No puedes tomar más cartas!</value>
   </data>
+  <data name="DlgUserAlreadyBlocked" xml:space="preserve">
+    <value>Ya haz bloqueado al usuario</value>
+  </data>
 </root>
