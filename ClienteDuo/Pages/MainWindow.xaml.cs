@@ -42,7 +42,7 @@ namespace ClienteDuo.Pages
                 {
                     ID = userId,
                     UserName = SessionDetails.Username,
-                    PartyCode = SessionDetails.PartyCode
+                    PartyCode = SessionDetails.LobbyCode
                 };
                 try
                 {
@@ -65,7 +65,7 @@ namespace ClienteDuo.Pages
             {
                 try
                 {
-                    userConnectionHandlerClient.NotifyGuestLeft(SessionDetails.PartyCode, SessionDetails.Username);
+                    userConnectionHandlerClient.NotifyGuestLeft(SessionDetails.LobbyCode, SessionDetails.Username);
                 }
                 catch (TimeoutException)
                 {

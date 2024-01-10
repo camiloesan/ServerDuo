@@ -61,7 +61,7 @@ namespace ClienteDuo.Pages.Tests
         public void IsPartyCodeExistentTest()
         {
             JoinParty joinParty = new JoinParty();
-            Assert.IsTrue(joinParty.IsPartyCodeExistent(_partyCode));
+            Assert.IsTrue(joinParty.IsLobbyCodeExistent(_partyCode));
         }
 
         [TestMethod()]
@@ -69,7 +69,7 @@ namespace ClienteDuo.Pages.Tests
         {
             JoinParty joinParty = new JoinParty();
             int nonExistentPartyCode = _partyCode - 1;
-            Assert.IsFalse(joinParty.IsPartyCodeExistent(nonExistentPartyCode));
+            Assert.IsFalse(joinParty.IsLobbyCodeExistent(nonExistentPartyCode));
         }
 
         [TestMethod()]
@@ -109,8 +109,8 @@ namespace ClienteDuo.Pages.Tests
             testPartyManager.NotifyJoinParty(_partyCode, player0Username);
             await Task.Delay(1500);
 
-            usersManagerClient.BlockUserByUsername(player0Username, player1Username);
-            bool result = joinParty.IsUserBlockedByPlayerInParty(player1Username, _partyCode);
+            BlockManager.BlockUserByUsername(player0Username, player1Username);
+            bool result = joinParty.IsUserBlockedByPlayerInLobby(player1Username, _partyCode);
 
             usersManagerClient.DeleteUserFromDatabaseByUsername(player0Username);
             usersManagerClient.DeleteUserFromDatabaseByUsername(player1Username);
@@ -122,7 +122,7 @@ namespace ClienteDuo.Pages.Tests
         public void IsUserBlockedByPlayerInLobbyFalseTest()
         {
             JoinParty joinParty = new JoinParty();
-            bool result = joinParty.IsUserBlockedByPlayerInParty("cardone", _partyCode);
+            bool result = joinParty.IsUserBlockedByPlayerInLobby("cardone", _partyCode);
 
             Assert.IsFalse(result);
         }
@@ -131,7 +131,7 @@ namespace ClienteDuo.Pages.Tests
         public void IsUserBlockedByPlayerInLobbyNotExistsTest()
         {
             JoinParty joinParty = new JoinParty();
-            bool result = joinParty.IsUserBlockedByPlayerInParty("johnappleseed", _partyCode);
+            bool result = joinParty.IsUserBlockedByPlayerInLobby("johnappleseed", _partyCode);
 
             Assert.IsFalse(result);
         }

@@ -54,88 +54,10 @@ namespace ClienteDuo.Utilities
             return usersManagerClient.GetTopTenWinners();
         }
 
-        public static bool AcceptFriendRequest(FriendRequestDTO friendRequest)
-        {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            return usersManagerClient.AcceptFriendRequest(friendRequest);
-        }
-
-        public static bool DeclineFriendRequest(FriendRequestDTO friendRequest)
-        {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            return usersManagerClient.RejectFriendRequest(friendRequest.FriendRequestID);
-        }
-
-        public static IEnumerable<FriendRequestDTO> GetFriendRequestsByUserId(int userId)
-        {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            return usersManagerClient.GetFriendRequestsList(userId);
-        }
-
-        public static int UnblockUserByBlockId(int blockId)
-        {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            return usersManagerClient.UnblockUserByBlockId(blockId);
-        }
-
-        public static IEnumerable<UserBlockedDTO> GetBlockedUsersListByUserId(int userId)
-        {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            return usersManagerClient.GetBlockedUsersListByUserId(userId);
-        }
-
-        public static bool IsUserBlocked(string usernameBlocker, string usernameBlocked)
-        {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            return usersManagerClient.IsUserBlockedByUsername(usernameBlocker, usernameBlocked);
-        }
-
-        public static int SendFriendRequest(string usernameSender, string usernameReceiver)
-        {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            return usersManagerClient.SendFriendRequest(usernameSender, usernameReceiver);
-        }
-
-        public static bool IsAlreadyFriend(string usernameSender, string usernameReceiver)
-        {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            return usersManagerClient.IsAlreadyFriend(usernameSender, usernameReceiver);
-        }
-
-        public static bool IsFriendRequestAlreadySent(string usernameSender, string usernameReceiver)
-        {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            return usersManagerClient.IsFriendRequestAlreadyExistent(usernameSender, usernameReceiver);
-        }
-
-        public static int BlockUserByUsername(string blockerUsername, string blockedUsername)
-        {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            return usersManagerClient.BlockUserByUsername(blockerUsername, blockedUsername);
-        }
-
         public static UserDTO GetUserInfoByUsername(string username)
         {
             UsersManagerClient usersManagerClient = new UsersManagerClient();
             return usersManagerClient.GetUserInfoByUsername(username);
-        }
-
-        public static IEnumerable<FriendshipDTO> GetOnlineFriends(int userId)
-        {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            return usersManagerClient.GetOnlineFriends(userId);
-        }
-
-        public static IEnumerable<FriendshipDTO> GetFriendsListByUserId(int userId)
-        {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            return usersManagerClient.GetFriendsList(userId);
-        }
-
-        public static bool DeleteFriendshipById(int friendshipId)
-        {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            return usersManagerClient.DeleteFriendshipById(friendshipId);
         }
 
         public static int ModifyPasswordByEmail(string email, string newPassword)

@@ -7,9 +7,6 @@ using System.Windows.Controls;
 
 namespace ClienteDuo.Pages.Sidebars
 {
-    /// <summary>
-    /// Interaction logic for EmailConfirmation.xaml
-    /// </summary>
     public partial class EmailConfirmation : Page
     {
         public EmailConfirmation()

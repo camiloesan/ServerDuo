@@ -133,22 +133,22 @@
     </Compile>
     <Compile Include="Pages\PlayerBar.xaml.cs" />
     <Compile Include="Pages\PlayerIcon.xaml.cs" />
-    <Compile Include="Pages\Sidebars\PopUpKickPlayer.xaml.cs">
+    <Compile Include="Pages\PopUps\PopUpKickPlayer.xaml.cs">
       <DependentUpon>PopUpKickPlayer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Sidebars\EmailCodeVerification.xaml.cs">
+    <Compile Include="Pages\EmailCodeVerification.xaml.cs">
       <DependentUpon>EmailCodeVerification.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Sidebars\EmailConfirmation.xaml.cs">
+    <Compile Include="Pages\EmailConfirmation.xaml.cs">
       <DependentUpon>EmailConfirmation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Sidebars\PasswordReset.xaml.cs">
+    <Compile Include="Pages\PasswordReset.xaml.cs">
       <DependentUpon>PasswordReset.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Sidebars\PopUpMessage.xaml.cs">
+    <Compile Include="Pages\PopUps\PopUpMessage.xaml.cs">
       <DependentUpon>PopUpMessage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Sidebars\PopUpUserDetails.xaml.cs">
+    <Compile Include="Pages\PopUps\PopUpUserDetails.xaml.cs">
       <DependentUpon>PopUpUserDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Sidebars\SidebarAddFriend.xaml.cs">
@@ -178,6 +178,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.fr.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\BlockManager.cs" />
+    <Compile Include="Utilities\FriendsManager.cs" />
     <Compile Include="Utilities\MusicManager.cs" />
     <Compile Include="Utilities\SessionDetails.cs" />
     <Compile Include="Utilities\Sha256Encryptor.cs" />
@@ -233,27 +235,27 @@
     </Page>
     <Page Include="Pages\PlayerBar.xaml" />
     <Page Include="Pages\PlayerIcon.xaml" />
-    <Page Include="Pages\Sidebars\EmailCodeVerification.xaml">
+    <Page Include="Pages\EmailCodeVerification.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Sidebars\EmailConfirmation.xaml">
+    <Page Include="Pages\EmailConfirmation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Sidebars\PasswordReset.xaml">
+    <Page Include="Pages\PasswordReset.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Sidebars\PopUpKickPlayer.xaml">
+    <Page Include="Pages\PopUps\PopUpKickPlayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Sidebars\PopUpMessage.xaml">
+    <Page Include="Pages\PopUps\PopUpMessage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Sidebars\PopUpUserDetails.xaml">
+    <Page Include="Pages\PopUps\PopUpUserDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -479,8 +481,6 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\DataService\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\PopUps\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

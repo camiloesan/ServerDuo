@@ -12,6 +12,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="UserDTO" nillable="true" type="tns:UserDTO" />
+  <xs:complexType name="ArrayOfUserDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserDTO" nillable="true" type="tns:UserDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserDTO" nillable="true" type="tns:ArrayOfUserDTO" />
   <xs:complexType name="FriendRequestDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="FriendRequestID" type="xs:int" />
@@ -60,12 +66,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="UserBlockedDTO" nillable="true" type="tns:UserBlockedDTO" />
-  <xs:complexType name="ArrayOfUserDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserDTO" nillable="true" type="tns:UserDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfUserDTO" nillable="true" type="tns:ArrayOfUserDTO" />
   <xs:complexType name="Card">
     <xs:sequence>
       <xs:element minOccurs="0" name="Color" nillable="true" type="xs:string" />

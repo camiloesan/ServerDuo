@@ -24,8 +24,8 @@ namespace ClienteDuo.Pages.Sidebars
             _friendsList = new List<FriendshipDTO>();
             try
             {
-                _onlineFriends = UsersManager.GetOnlineFriends(SessionDetails.UserId);
-                _friendsList = UsersManager.GetFriendsListByUserId(SessionDetails.UserId);
+                _onlineFriends = FriendsManager.GetOnlineFriends(SessionDetails.UserId);
+                _friendsList = FriendsManager.GetFriendsListByUserId(SessionDetails.UserId);
                 InitializeBars();
             }
             catch (TimeoutException) 
@@ -188,7 +188,7 @@ namespace ClienteDuo.Pages.Sidebars
                 bool result = false;
                 try
                 {
-                    result = UsersManager.DeleteFriendshipById(friendshipId);
+                    result = FriendsManager.DeleteFriendshipById(friendshipId);
                 }
                 catch (CommunicationException)
                 {

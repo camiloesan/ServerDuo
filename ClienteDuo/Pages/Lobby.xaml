@@ -35,7 +35,7 @@
             </ScrollViewer>
 
             <StackPanel x:Name="PanelPlayers" Grid.Column="1" Grid.Row="1" Margin="40,40,40,40" HorizontalAlignment="Center" Width="268"/>
-            <Label x:Name="LblPartyCode" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" Foreground="White" FontSize="14"/>
+            <Label x:Name="LblLobbyCode" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" Foreground="White" FontSize="14"/>
             <Label x:Name="LblLoading" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="100,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="40" Height="40" Visibility="Collapsed">
                 <Label.Background>
                     <ImageBrush ImageSource="/Images/loadingGIF.gif"/>

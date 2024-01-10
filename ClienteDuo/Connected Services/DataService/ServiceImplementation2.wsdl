@@ -12,6 +12,30 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IFriendsManager_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IBlockManager_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsp:Policy wsu:Id="NetTcpBinding_IUserConnectionHandler_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -24,7 +48,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IPartyManager_policy">
+  <wsp:Policy wsu:Id="NetTcpBinding_ILobbyManager_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
@@ -36,7 +60,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IPartyValidator_policy">
+  <wsp:Policy wsu:Id="NetTcpBinding_ILobbyValidator_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
@@ -122,60 +146,6 @@
   <wsdl:message name="IUsersManager_IsEmailTaken_OutputMessage">
     <wsdl:part name="parameters" element="tns:IsEmailTakenResponse" />
   </wsdl:message>
-  <wsdl:message name="IUsersManager_SendFriendRequest_InputMessage">
-    <wsdl:part name="parameters" element="tns:SendFriendRequest" />
-  </wsdl:message>
-  <wsdl:message name="IUsersManager_SendFriendRequest_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SendFriendRequestResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUsersManager_IsFriendRequestAlreadyExistent_InputMessage">
-    <wsdl:part name="parameters" element="tns:IsFriendRequestAlreadyExistent" />
-  </wsdl:message>
-  <wsdl:message name="IUsersManager_IsFriendRequestAlreadyExistent_OutputMessage">
-    <wsdl:part name="parameters" element="tns:IsFriendRequestAlreadyExistentResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUsersManager_AcceptFriendRequest_InputMessage">
-    <wsdl:part name="parameters" element="tns:AcceptFriendRequest" />
-  </wsdl:message>
-  <wsdl:message name="IUsersManager_AcceptFriendRequest_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AcceptFriendRequestResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUsersManager_RejectFriendRequest_InputMessage">
-    <wsdl:part name="parameters" element="tns:RejectFriendRequest" />
-  </wsdl:message>
-  <wsdl:message name="IUsersManager_RejectFriendRequest_OutputMessage">
-    <wsdl:part name="parameters" element="tns:RejectFriendRequestResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUsersManager_GetFriendRequestsList_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetFriendRequestsList" />
-  </wsdl:message>
-  <wsdl:message name="IUsersManager_GetFriendRequestsList_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetFriendRequestsListResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUsersManager_GetFriendsList_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetFriendsList" />
-  </wsdl:message>
-  <wsdl:message name="IUsersManager_GetFriendsList_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetFriendsListResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUsersManager_GetOnlineFriends_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetOnlineFriends" />
-  </wsdl:message>
-  <wsdl:message name="IUsersManager_GetOnlineFriends_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetOnlineFriendsResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUsersManager_DeleteFriendshipById_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteFriendshipById" />
-  </wsdl:message>
-  <wsdl:message name="IUsersManager_DeleteFriendshipById_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteFriendshipByIdResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUsersManager_IsAlreadyFriend_InputMessage">
-    <wsdl:part name="parameters" element="tns:IsAlreadyFriend" />
-  </wsdl:message>
-  <wsdl:message name="IUsersManager_IsAlreadyFriend_OutputMessage">
-    <wsdl:part name="parameters" element="tns:IsAlreadyFriendResponse" />
-  </wsdl:message>
   <wsdl:message name="IUsersManager_IsUserAlreadyLoggedIn_InputMessage">
     <wsdl:part name="parameters" element="tns:IsUserAlreadyLoggedIn" />
   </wsdl:message>
@@ -194,30 +164,6 @@
   <wsdl:message name="IUsersManager_ModifyPasswordByEmail_OutputMessage">
     <wsdl:part name="parameters" element="tns:ModifyPasswordByEmailResponse" />
   </wsdl:message>
-  <wsdl:message name="IUsersManager_BlockUserByUsername_InputMessage">
-    <wsdl:part name="parameters" element="tns:BlockUserByUsername" />
-  </wsdl:message>
-  <wsdl:message name="IUsersManager_BlockUserByUsername_OutputMessage">
-    <wsdl:part name="parameters" element="tns:BlockUserByUsernameResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUsersManager_UnblockUserByBlockId_InputMessage">
-    <wsdl:part name="parameters" element="tns:UnblockUserByBlockId" />
-  </wsdl:message>
-  <wsdl:message name="IUsersManager_UnblockUserByBlockId_OutputMessage">
-    <wsdl:part name="parameters" element="tns:UnblockUserByBlockIdResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUsersManager_IsUserBlockedByUsername_InputMessage">
-    <wsdl:part name="parameters" element="tns:IsUserBlockedByUsername" />
-  </wsdl:message>
-  <wsdl:message name="IUsersManager_IsUserBlockedByUsername_OutputMessage">
-    <wsdl:part name="parameters" element="tns:IsUserBlockedByUsernameResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUsersManager_GetBlockedUsersListByUserId_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetBlockedUsersListByUserId" />
-  </wsdl:message>
-  <wsdl:message name="IUsersManager_GetBlockedUsersListByUserId_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetBlockedUsersListByUserIdResponse" />
-  </wsdl:message>
   <wsdl:message name="IUsersManager_GetTopTenWinners_InputMessage">
     <wsdl:part name="parameters" element="tns:GetTopTenWinners" />
   </wsdl:message>
@@ -229,6 +175,84 @@
   </wsdl:message>
   <wsdl:message name="IUsersManager_IsUserBanned_OutputMessage">
     <wsdl:part name="parameters" element="tns:IsUserBannedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFriendsManager_SendFriendRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendFriendRequest" />
+  </wsdl:message>
+  <wsdl:message name="IFriendsManager_SendFriendRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendFriendRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFriendsManager_IsFriendRequestAlreadyExistent_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsFriendRequestAlreadyExistent" />
+  </wsdl:message>
+  <wsdl:message name="IFriendsManager_IsFriendRequestAlreadyExistent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsFriendRequestAlreadyExistentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFriendsManager_AcceptFriendRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:AcceptFriendRequest" />
+  </wsdl:message>
+  <wsdl:message name="IFriendsManager_AcceptFriendRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AcceptFriendRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFriendsManager_RejectFriendRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:RejectFriendRequest" />
+  </wsdl:message>
+  <wsdl:message name="IFriendsManager_RejectFriendRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RejectFriendRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFriendsManager_GetFriendRequestsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFriendRequestsList" />
+  </wsdl:message>
+  <wsdl:message name="IFriendsManager_GetFriendRequestsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFriendRequestsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFriendsManager_GetFriendsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFriendsList" />
+  </wsdl:message>
+  <wsdl:message name="IFriendsManager_GetFriendsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFriendsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFriendsManager_GetOnlineFriends_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOnlineFriends" />
+  </wsdl:message>
+  <wsdl:message name="IFriendsManager_GetOnlineFriends_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOnlineFriendsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFriendsManager_DeleteFriendshipById_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFriendshipById" />
+  </wsdl:message>
+  <wsdl:message name="IFriendsManager_DeleteFriendshipById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFriendshipByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFriendsManager_IsAlreadyFriend_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsAlreadyFriend" />
+  </wsdl:message>
+  <wsdl:message name="IFriendsManager_IsAlreadyFriend_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsAlreadyFriendResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBlockManager_BlockUserByUsername_InputMessage">
+    <wsdl:part name="parameters" element="tns:BlockUserByUsername" />
+  </wsdl:message>
+  <wsdl:message name="IBlockManager_BlockUserByUsername_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BlockUserByUsernameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBlockManager_UnblockUserByBlockId_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnblockUserByBlockId" />
+  </wsdl:message>
+  <wsdl:message name="IBlockManager_UnblockUserByBlockId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnblockUserByBlockIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBlockManager_IsUserBlockedByUsername_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsUserBlockedByUsername" />
+  </wsdl:message>
+  <wsdl:message name="IBlockManager_IsUserBlockedByUsername_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsUserBlockedByUsernameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBlockManager_GetBlockedUsersListByUserId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBlockedUsersListByUserId" />
+  </wsdl:message>
+  <wsdl:message name="IBlockManager_GetBlockedUsersListByUserId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBlockedUsersListByUserIdResponse" />
   </wsdl:message>
   <wsdl:message name="IUserConnectionHandler_NotifyLogIn_InputMessage">
     <wsdl:part name="parameters" element="tns:NotifyLogIn" />
@@ -254,86 +278,86 @@
   <wsdl:message name="IUserConnectionHandler_LogOut_OutputMessage">
     <wsdl:part name="parameters" element="tns:LogOutResponse" />
   </wsdl:message>
-  <wsdl:message name="IPartyManager_NotifyCreateParty_InputMessage">
-    <wsdl:part name="parameters" element="tns:NotifyCreateParty" />
+  <wsdl:message name="ILobbyManager_NotifyCreateLobby_InputMessage">
+    <wsdl:part name="parameters" element="tns:NotifyCreateLobby" />
   </wsdl:message>
-  <wsdl:message name="IPartyManager_NotifyJoinParty_InputMessage">
-    <wsdl:part name="parameters" element="tns:NotifyJoinParty" />
+  <wsdl:message name="ILobbyManager_NotifyJoinLobby_InputMessage">
+    <wsdl:part name="parameters" element="tns:NotifyJoinLobby" />
   </wsdl:message>
-  <wsdl:message name="IPartyManager_NotifySendMessage_InputMessage">
+  <wsdl:message name="ILobbyManager_NotifySendMessage_InputMessage">
     <wsdl:part name="parameters" element="tns:NotifySendMessage" />
   </wsdl:message>
-  <wsdl:message name="IPartyManager_NotifyLeaveParty_InputMessage">
-    <wsdl:part name="parameters" element="tns:NotifyLeaveParty" />
+  <wsdl:message name="ILobbyManager_NotifyLeaveLobby_InputMessage">
+    <wsdl:part name="parameters" element="tns:NotifyLeaveLobby" />
   </wsdl:message>
-  <wsdl:message name="IPartyManager_NotifyCloseParty_InputMessage">
-    <wsdl:part name="parameters" element="tns:NotifyCloseParty" />
+  <wsdl:message name="ILobbyManager_NotifyCloseLobby_InputMessage">
+    <wsdl:part name="parameters" element="tns:NotifyCloseLobby" />
   </wsdl:message>
-  <wsdl:message name="IPartyManager_NotifyStartGame_InputMessage">
+  <wsdl:message name="ILobbyManager_NotifyStartGame_InputMessage">
     <wsdl:part name="parameters" element="tns:NotifyStartGame" />
   </wsdl:message>
-  <wsdl:message name="IPartyManager_NotifyKickPlayer_InputMessage">
+  <wsdl:message name="ILobbyManager_NotifyKickPlayer_InputMessage">
     <wsdl:part name="parameters" element="tns:NotifyKickPlayer" />
   </wsdl:message>
-  <wsdl:message name="IPartyManager_PartyCreated_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:PartyCreated" />
+  <wsdl:message name="ILobbyManager_LobbyCreated_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:LobbyCreated" />
   </wsdl:message>
-  <wsdl:message name="IPartyManager_PartyCreated_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:PartyCreatedResponse" />
+  <wsdl:message name="ILobbyManager_LobbyCreated_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:LobbyCreatedResponse" />
   </wsdl:message>
-  <wsdl:message name="IPartyManager_PlayerJoined_OutputCallbackMessage">
+  <wsdl:message name="ILobbyManager_PlayerJoined_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:PlayerJoined" />
   </wsdl:message>
-  <wsdl:message name="IPartyManager_PlayerJoined_InputCallbackMessage">
+  <wsdl:message name="ILobbyManager_PlayerJoined_InputCallbackMessage">
     <wsdl:part name="parameters" element="tns:PlayerJoinedResponse" />
   </wsdl:message>
-  <wsdl:message name="IPartyManager_MessageReceived_OutputCallbackMessage">
+  <wsdl:message name="ILobbyManager_MessageReceived_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:MessageReceived" />
   </wsdl:message>
-  <wsdl:message name="IPartyManager_MessageReceived_InputCallbackMessage">
+  <wsdl:message name="ILobbyManager_MessageReceived_InputCallbackMessage">
     <wsdl:part name="parameters" element="tns:MessageReceivedResponse" />
   </wsdl:message>
-  <wsdl:message name="IPartyManager_PlayerLeft_OutputCallbackMessage">
+  <wsdl:message name="ILobbyManager_PlayerLeft_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:PlayerLeft" />
   </wsdl:message>
-  <wsdl:message name="IPartyManager_PlayerLeft_InputCallbackMessage">
+  <wsdl:message name="ILobbyManager_PlayerLeft_InputCallbackMessage">
     <wsdl:part name="parameters" element="tns:PlayerLeftResponse" />
   </wsdl:message>
-  <wsdl:message name="IPartyManager_PlayerKicked_OutputCallbackMessage">
+  <wsdl:message name="ILobbyManager_PlayerKicked_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:PlayerKicked" />
   </wsdl:message>
-  <wsdl:message name="IPartyManager_PlayerKicked_InputCallbackMessage">
+  <wsdl:message name="ILobbyManager_PlayerKicked_InputCallbackMessage">
     <wsdl:part name="parameters" element="tns:PlayerKickedResponse" />
   </wsdl:message>
-  <wsdl:message name="IPartyManager_GameStarted_OutputCallbackMessage">
+  <wsdl:message name="ILobbyManager_GameStarted_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:GameStarted" />
   </wsdl:message>
-  <wsdl:message name="IPartyManager_GameStarted_InputCallbackMessage">
+  <wsdl:message name="ILobbyManager_GameStarted_InputCallbackMessage">
     <wsdl:part name="parameters" element="tns:GameStartedResponse" />
   </wsdl:message>
-  <wsdl:message name="IPartyValidator_IsPartyExistent_InputMessage">
-    <wsdl:part name="parameters" element="tns:IsPartyExistent" />
+  <wsdl:message name="ILobbyValidator_IsLobbyExistent_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsLobbyExistent" />
   </wsdl:message>
-  <wsdl:message name="IPartyValidator_IsPartyExistent_OutputMessage">
-    <wsdl:part name="parameters" element="tns:IsPartyExistentResponse" />
+  <wsdl:message name="ILobbyValidator_IsLobbyExistent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsLobbyExistentResponse" />
   </wsdl:message>
-  <wsdl:message name="IPartyValidator_IsSpaceAvailable_InputMessage">
+  <wsdl:message name="ILobbyValidator_IsSpaceAvailable_InputMessage">
     <wsdl:part name="parameters" element="tns:IsSpaceAvailable" />
   </wsdl:message>
-  <wsdl:message name="IPartyValidator_IsSpaceAvailable_OutputMessage">
+  <wsdl:message name="ILobbyValidator_IsSpaceAvailable_OutputMessage">
     <wsdl:part name="parameters" element="tns:IsSpaceAvailableResponse" />
   </wsdl:message>
-  <wsdl:message name="IPartyValidator_IsUsernameInParty_InputMessage">
-    <wsdl:part name="parameters" element="tns:IsUsernameInParty" />
+  <wsdl:message name="ILobbyValidator_IsUsernameInLobby_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsUsernameInLobby" />
   </wsdl:message>
-  <wsdl:message name="IPartyValidator_IsUsernameInParty_OutputMessage">
-    <wsdl:part name="parameters" element="tns:IsUsernameInPartyResponse" />
+  <wsdl:message name="ILobbyValidator_IsUsernameInLobby_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsUsernameInLobbyResponse" />
   </wsdl:message>
-  <wsdl:message name="IPartyValidator_GetPlayersInParty_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetPlayersInParty" />
+  <wsdl:message name="ILobbyValidator_GetPlayersInLobby_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayersInLobby" />
   </wsdl:message>
-  <wsdl:message name="IPartyValidator_GetPlayersInParty_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetPlayersInPartyResponse" />
+  <wsdl:message name="ILobbyValidator_GetPlayersInLobby_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayersInLobbyResponse" />
   </wsdl:message>
   <wsdl:message name="ICardManager_DrawCard_InputMessage">
     <wsdl:part name="parameters" element="tns:DrawCard" />
@@ -457,42 +481,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/IsEmailTaken" message="tns:IUsersManager_IsEmailTaken_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/IsEmailTakenResponse" message="tns:IUsersManager_IsEmailTaken_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="SendFriendRequest">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/SendFriendRequest" message="tns:IUsersManager_SendFriendRequest_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/SendFriendRequestResponse" message="tns:IUsersManager_SendFriendRequest_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="IsFriendRequestAlreadyExistent">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/IsFriendRequestAlreadyExistent" message="tns:IUsersManager_IsFriendRequestAlreadyExistent_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/IsFriendRequestAlreadyExistentResponse" message="tns:IUsersManager_IsFriendRequestAlreadyExistent_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="AcceptFriendRequest">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/AcceptFriendRequest" message="tns:IUsersManager_AcceptFriendRequest_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/AcceptFriendRequestResponse" message="tns:IUsersManager_AcceptFriendRequest_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="RejectFriendRequest">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/RejectFriendRequest" message="tns:IUsersManager_RejectFriendRequest_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/RejectFriendRequestResponse" message="tns:IUsersManager_RejectFriendRequest_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetFriendRequestsList">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/GetFriendRequestsList" message="tns:IUsersManager_GetFriendRequestsList_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/GetFriendRequestsListResponse" message="tns:IUsersManager_GetFriendRequestsList_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetFriendsList">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/GetFriendsList" message="tns:IUsersManager_GetFriendsList_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/GetFriendsListResponse" message="tns:IUsersManager_GetFriendsList_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetOnlineFriends">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/GetOnlineFriends" message="tns:IUsersManager_GetOnlineFriends_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/GetOnlineFriendsResponse" message="tns:IUsersManager_GetOnlineFriends_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="DeleteFriendshipById">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/DeleteFriendshipById" message="tns:IUsersManager_DeleteFriendshipById_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/DeleteFriendshipByIdResponse" message="tns:IUsersManager_DeleteFriendshipById_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="IsAlreadyFriend">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/IsAlreadyFriend" message="tns:IUsersManager_IsAlreadyFriend_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/IsAlreadyFriendResponse" message="tns:IUsersManager_IsAlreadyFriend_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="IsUserAlreadyLoggedIn">
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/IsUserAlreadyLoggedIn" message="tns:IUsersManager_IsUserAlreadyLoggedIn_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/IsUserAlreadyLoggedInResponse" message="tns:IUsersManager_IsUserAlreadyLoggedIn_OutputMessage" />
@@ -505,22 +493,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/ModifyPasswordByEmail" message="tns:IUsersManager_ModifyPasswordByEmail_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/ModifyPasswordByEmailResponse" message="tns:IUsersManager_ModifyPasswordByEmail_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="BlockUserByUsername">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/BlockUserByUsername" message="tns:IUsersManager_BlockUserByUsername_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/BlockUserByUsernameResponse" message="tns:IUsersManager_BlockUserByUsername_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="UnblockUserByBlockId">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/UnblockUserByBlockId" message="tns:IUsersManager_UnblockUserByBlockId_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/UnblockUserByBlockIdResponse" message="tns:IUsersManager_UnblockUserByBlockId_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="IsUserBlockedByUsername">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/IsUserBlockedByUsername" message="tns:IUsersManager_IsUserBlockedByUsername_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/IsUserBlockedByUsernameResponse" message="tns:IUsersManager_IsUserBlockedByUsername_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetBlockedUsersListByUserId">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/GetBlockedUsersListByUserId" message="tns:IUsersManager_GetBlockedUsersListByUserId_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/GetBlockedUsersListByUserIdResponse" message="tns:IUsersManager_GetBlockedUsersListByUserId_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetTopTenWinners">
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/GetTopTenWinners" message="tns:IUsersManager_GetTopTenWinners_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/GetTopTenWinnersResponse" message="tns:IUsersManager_GetTopTenWinners_OutputMessage" />
@@ -528,6 +500,62 @@
     <wsdl:operation name="IsUserBanned">
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/IsUserBanned" message="tns:IUsersManager_IsUserBanned_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/IsUserBannedResponse" message="tns:IUsersManager_IsUserBanned_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IFriendsManager">
+    <wsdl:operation name="SendFriendRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendsManager/SendFriendRequest" message="tns:IFriendsManager_SendFriendRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendsManager/SendFriendRequestResponse" message="tns:IFriendsManager_SendFriendRequest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsFriendRequestAlreadyExistent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendsManager/IsFriendRequestAlreadyExistent" message="tns:IFriendsManager_IsFriendRequestAlreadyExistent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendsManager/IsFriendRequestAlreadyExistentResponse" message="tns:IFriendsManager_IsFriendRequestAlreadyExistent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AcceptFriendRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendsManager/AcceptFriendRequest" message="tns:IFriendsManager_AcceptFriendRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendsManager/AcceptFriendRequestResponse" message="tns:IFriendsManager_AcceptFriendRequest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RejectFriendRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendsManager/RejectFriendRequest" message="tns:IFriendsManager_RejectFriendRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendsManager/RejectFriendRequestResponse" message="tns:IFriendsManager_RejectFriendRequest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFriendRequestsList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendsManager/GetFriendRequestsList" message="tns:IFriendsManager_GetFriendRequestsList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendsManager/GetFriendRequestsListResponse" message="tns:IFriendsManager_GetFriendRequestsList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFriendsList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendsManager/GetFriendsList" message="tns:IFriendsManager_GetFriendsList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendsManager/GetFriendsListResponse" message="tns:IFriendsManager_GetFriendsList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOnlineFriends">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendsManager/GetOnlineFriends" message="tns:IFriendsManager_GetOnlineFriends_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendsManager/GetOnlineFriendsResponse" message="tns:IFriendsManager_GetOnlineFriends_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFriendshipById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendsManager/DeleteFriendshipById" message="tns:IFriendsManager_DeleteFriendshipById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendsManager/DeleteFriendshipByIdResponse" message="tns:IFriendsManager_DeleteFriendshipById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsAlreadyFriend">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendsManager/IsAlreadyFriend" message="tns:IFriendsManager_IsAlreadyFriend_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendsManager/IsAlreadyFriendResponse" message="tns:IFriendsManager_IsAlreadyFriend_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IBlockManager">
+    <wsdl:operation name="BlockUserByUsername">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBlockManager/BlockUserByUsername" message="tns:IBlockManager_BlockUserByUsername_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBlockManager/BlockUserByUsernameResponse" message="tns:IBlockManager_BlockUserByUsername_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnblockUserByBlockId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBlockManager/UnblockUserByBlockId" message="tns:IBlockManager_UnblockUserByBlockId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBlockManager/UnblockUserByBlockIdResponse" message="tns:IBlockManager_UnblockUserByBlockId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsUserBlockedByUsername">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBlockManager/IsUserBlockedByUsername" message="tns:IBlockManager_IsUserBlockedByUsername_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBlockManager/IsUserBlockedByUsernameResponse" message="tns:IBlockManager_IsUserBlockedByUsername_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBlockedUsersListByUserId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBlockManager/GetBlockedUsersListByUserId" message="tns:IBlockManager_GetBlockedUsersListByUserId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBlockManager/GetBlockedUsersListByUserIdResponse" message="tns:IBlockManager_GetBlockedUsersListByUserId_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IUserConnectionHandler">
@@ -548,69 +576,69 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IUserConnectionHandler/LogOutResponse" message="tns:IUserConnectionHandler_LogOut_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:portType name="IPartyManager">
-    <wsdl:operation name="NotifyCreateParty">
-      <wsdl:input wsaw:Action="http://tempuri.org/IPartyManager/NotifyCreateParty" message="tns:IPartyManager_NotifyCreateParty_InputMessage" />
+  <wsdl:portType name="ILobbyManager">
+    <wsdl:operation name="NotifyCreateLobby">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILobbyManager/NotifyCreateLobby" message="tns:ILobbyManager_NotifyCreateLobby_InputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="NotifyJoinParty">
-      <wsdl:input wsaw:Action="http://tempuri.org/IPartyManager/NotifyJoinParty" message="tns:IPartyManager_NotifyJoinParty_InputMessage" />
+    <wsdl:operation name="NotifyJoinLobby">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILobbyManager/NotifyJoinLobby" message="tns:ILobbyManager_NotifyJoinLobby_InputMessage" />
     </wsdl:operation>
     <wsdl:operation name="NotifySendMessage">
-      <wsdl:input wsaw:Action="http://tempuri.org/IPartyManager/NotifySendMessage" message="tns:IPartyManager_NotifySendMessage_InputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/ILobbyManager/NotifySendMessage" message="tns:ILobbyManager_NotifySendMessage_InputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="NotifyLeaveParty">
-      <wsdl:input wsaw:Action="http://tempuri.org/IPartyManager/NotifyLeaveParty" message="tns:IPartyManager_NotifyLeaveParty_InputMessage" />
+    <wsdl:operation name="NotifyLeaveLobby">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILobbyManager/NotifyLeaveLobby" message="tns:ILobbyManager_NotifyLeaveLobby_InputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="NotifyCloseParty">
-      <wsdl:input wsaw:Action="http://tempuri.org/IPartyManager/NotifyCloseParty" message="tns:IPartyManager_NotifyCloseParty_InputMessage" />
+    <wsdl:operation name="NotifyCloseLobby">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILobbyManager/NotifyCloseLobby" message="tns:ILobbyManager_NotifyCloseLobby_InputMessage" />
     </wsdl:operation>
     <wsdl:operation name="NotifyStartGame">
-      <wsdl:input wsaw:Action="http://tempuri.org/IPartyManager/NotifyStartGame" message="tns:IPartyManager_NotifyStartGame_InputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/ILobbyManager/NotifyStartGame" message="tns:ILobbyManager_NotifyStartGame_InputMessage" />
     </wsdl:operation>
     <wsdl:operation name="NotifyKickPlayer">
-      <wsdl:input wsaw:Action="http://tempuri.org/IPartyManager/NotifyKickPlayer" message="tns:IPartyManager_NotifyKickPlayer_InputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/ILobbyManager/NotifyKickPlayer" message="tns:ILobbyManager_NotifyKickPlayer_InputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="PartyCreated">
-      <wsdl:output wsaw:Action="http://tempuri.org/IPartyManager/PartyCreated" message="tns:IPartyManager_PartyCreated_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IPartyManager/PartyCreatedResponse" message="tns:IPartyManager_PartyCreated_InputCallbackMessage" />
+    <wsdl:operation name="LobbyCreated">
+      <wsdl:output wsaw:Action="http://tempuri.org/ILobbyManager/LobbyCreated" message="tns:ILobbyManager_LobbyCreated_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/ILobbyManager/LobbyCreatedResponse" message="tns:ILobbyManager_LobbyCreated_InputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation name="PlayerJoined">
-      <wsdl:output wsaw:Action="http://tempuri.org/IPartyManager/PlayerJoined" message="tns:IPartyManager_PlayerJoined_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IPartyManager/PlayerJoinedResponse" message="tns:IPartyManager_PlayerJoined_InputCallbackMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILobbyManager/PlayerJoined" message="tns:ILobbyManager_PlayerJoined_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/ILobbyManager/PlayerJoinedResponse" message="tns:ILobbyManager_PlayerJoined_InputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation name="MessageReceived">
-      <wsdl:output wsaw:Action="http://tempuri.org/IPartyManager/MessageReceived" message="tns:IPartyManager_MessageReceived_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IPartyManager/MessageReceivedResponse" message="tns:IPartyManager_MessageReceived_InputCallbackMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILobbyManager/MessageReceived" message="tns:ILobbyManager_MessageReceived_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/ILobbyManager/MessageReceivedResponse" message="tns:ILobbyManager_MessageReceived_InputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation name="PlayerLeft">
-      <wsdl:output wsaw:Action="http://tempuri.org/IPartyManager/PlayerLeft" message="tns:IPartyManager_PlayerLeft_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IPartyManager/PlayerLeftResponse" message="tns:IPartyManager_PlayerLeft_InputCallbackMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILobbyManager/PlayerLeft" message="tns:ILobbyManager_PlayerLeft_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/ILobbyManager/PlayerLeftResponse" message="tns:ILobbyManager_PlayerLeft_InputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation name="PlayerKicked">
-      <wsdl:output wsaw:Action="http://tempuri.org/IPartyManager/PlayerKicked" message="tns:IPartyManager_PlayerKicked_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IPartyManager/PlayerKickedResponse" message="tns:IPartyManager_PlayerKicked_InputCallbackMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILobbyManager/PlayerKicked" message="tns:ILobbyManager_PlayerKicked_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/ILobbyManager/PlayerKickedResponse" message="tns:ILobbyManager_PlayerKicked_InputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation name="GameStarted">
-      <wsdl:output wsaw:Action="http://tempuri.org/IPartyManager/GameStarted" message="tns:IPartyManager_GameStarted_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IPartyManager/GameStartedResponse" message="tns:IPartyManager_GameStarted_InputCallbackMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILobbyManager/GameStarted" message="tns:ILobbyManager_GameStarted_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/ILobbyManager/GameStartedResponse" message="tns:ILobbyManager_GameStarted_InputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:portType name="IPartyValidator">
-    <wsdl:operation name="IsPartyExistent">
-      <wsdl:input wsaw:Action="http://tempuri.org/IPartyValidator/IsPartyExistent" message="tns:IPartyValidator_IsPartyExistent_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IPartyValidator/IsPartyExistentResponse" message="tns:IPartyValidator_IsPartyExistent_OutputMessage" />
+  <wsdl:portType name="ILobbyValidator">
+    <wsdl:operation name="IsLobbyExistent">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILobbyValidator/IsLobbyExistent" message="tns:ILobbyValidator_IsLobbyExistent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILobbyValidator/IsLobbyExistentResponse" message="tns:ILobbyValidator_IsLobbyExistent_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="IsSpaceAvailable">
-      <wsdl:input wsaw:Action="http://tempuri.org/IPartyValidator/IsSpaceAvailable" message="tns:IPartyValidator_IsSpaceAvailable_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IPartyValidator/IsSpaceAvailableResponse" message="tns:IPartyValidator_IsSpaceAvailable_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/ILobbyValidator/IsSpaceAvailable" message="tns:ILobbyValidator_IsSpaceAvailable_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILobbyValidator/IsSpaceAvailableResponse" message="tns:ILobbyValidator_IsSpaceAvailable_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="IsUsernameInParty">
-      <wsdl:input wsaw:Action="http://tempuri.org/IPartyValidator/IsUsernameInParty" message="tns:IPartyValidator_IsUsernameInParty_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IPartyValidator/IsUsernameInPartyResponse" message="tns:IPartyValidator_IsUsernameInParty_OutputMessage" />
+    <wsdl:operation name="IsUsernameInLobby">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILobbyValidator/IsUsernameInLobby" message="tns:ILobbyValidator_IsUsernameInLobby_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILobbyValidator/IsUsernameInLobbyResponse" message="tns:ILobbyValidator_IsUsernameInLobby_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetPlayersInParty">
-      <wsdl:input wsaw:Action="http://tempuri.org/IPartyValidator/GetPlayersInParty" message="tns:IPartyValidator_GetPlayersInParty_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IPartyValidator/GetPlayersInPartyResponse" message="tns:IPartyValidator_GetPlayersInParty_OutputMessage" />
+    <wsdl:operation name="GetPlayersInLobby">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILobbyValidator/GetPlayersInLobby" message="tns:ILobbyValidator_GetPlayersInLobby_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILobbyValidator/GetPlayersInLobbyResponse" message="tns:ILobbyValidator_GetPlayersInLobby_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ICardManager">
@@ -748,87 +776,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SendFriendRequest">
-      <soap12:operation soapAction="http://tempuri.org/IUsersManager/SendFriendRequest" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="IsFriendRequestAlreadyExistent">
-      <soap12:operation soapAction="http://tempuri.org/IUsersManager/IsFriendRequestAlreadyExistent" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="AcceptFriendRequest">
-      <soap12:operation soapAction="http://tempuri.org/IUsersManager/AcceptFriendRequest" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="RejectFriendRequest">
-      <soap12:operation soapAction="http://tempuri.org/IUsersManager/RejectFriendRequest" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetFriendRequestsList">
-      <soap12:operation soapAction="http://tempuri.org/IUsersManager/GetFriendRequestsList" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetFriendsList">
-      <soap12:operation soapAction="http://tempuri.org/IUsersManager/GetFriendsList" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetOnlineFriends">
-      <soap12:operation soapAction="http://tempuri.org/IUsersManager/GetOnlineFriends" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteFriendshipById">
-      <soap12:operation soapAction="http://tempuri.org/IUsersManager/DeleteFriendshipById" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="IsAlreadyFriend">
-      <soap12:operation soapAction="http://tempuri.org/IUsersManager/IsAlreadyFriend" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="IsUserAlreadyLoggedIn">
       <soap12:operation soapAction="http://tempuri.org/IUsersManager/IsUserAlreadyLoggedIn" style="document" />
       <wsdl:input>
@@ -856,42 +803,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="BlockUserByUsername">
-      <soap12:operation soapAction="http://tempuri.org/IUsersManager/BlockUserByUsername" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UnblockUserByBlockId">
-      <soap12:operation soapAction="http://tempuri.org/IUsersManager/UnblockUserByBlockId" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="IsUserBlockedByUsername">
-      <soap12:operation soapAction="http://tempuri.org/IUsersManager/IsUserBlockedByUsername" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetBlockedUsersListByUserId">
-      <soap12:operation soapAction="http://tempuri.org/IUsersManager/GetBlockedUsersListByUserId" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetTopTenWinners">
       <soap12:operation soapAction="http://tempuri.org/IUsersManager/GetTopTenWinners" style="document" />
       <wsdl:input>
@@ -903,6 +814,131 @@
     </wsdl:operation>
     <wsdl:operation name="IsUserBanned">
       <soap12:operation soapAction="http://tempuri.org/IUsersManager/IsUserBanned" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IFriendsManager" type="tns:IFriendsManager">
+    <wsp:PolicyReference URI="#NetTcpBinding_IFriendsManager_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="SendFriendRequest">
+      <soap12:operation soapAction="http://tempuri.org/IFriendsManager/SendFriendRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsFriendRequestAlreadyExistent">
+      <soap12:operation soapAction="http://tempuri.org/IFriendsManager/IsFriendRequestAlreadyExistent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcceptFriendRequest">
+      <soap12:operation soapAction="http://tempuri.org/IFriendsManager/AcceptFriendRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RejectFriendRequest">
+      <soap12:operation soapAction="http://tempuri.org/IFriendsManager/RejectFriendRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFriendRequestsList">
+      <soap12:operation soapAction="http://tempuri.org/IFriendsManager/GetFriendRequestsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFriendsList">
+      <soap12:operation soapAction="http://tempuri.org/IFriendsManager/GetFriendsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOnlineFriends">
+      <soap12:operation soapAction="http://tempuri.org/IFriendsManager/GetOnlineFriends" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFriendshipById">
+      <soap12:operation soapAction="http://tempuri.org/IFriendsManager/DeleteFriendshipById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsAlreadyFriend">
+      <soap12:operation soapAction="http://tempuri.org/IFriendsManager/IsAlreadyFriend" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IBlockManager" type="tns:IBlockManager">
+    <wsp:PolicyReference URI="#NetTcpBinding_IBlockManager_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="BlockUserByUsername">
+      <soap12:operation soapAction="http://tempuri.org/IBlockManager/BlockUserByUsername" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnblockUserByBlockId">
+      <soap12:operation soapAction="http://tempuri.org/IBlockManager/UnblockUserByBlockId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUserBlockedByUsername">
+      <soap12:operation soapAction="http://tempuri.org/IBlockManager/IsUserBlockedByUsername" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBlockedUsersListByUserId">
+      <soap12:operation soapAction="http://tempuri.org/IBlockManager/GetBlockedUsersListByUserId" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -951,53 +987,53 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:binding name="NetTcpBinding_IPartyManager" type="tns:IPartyManager">
-    <wsp:PolicyReference URI="#NetTcpBinding_IPartyManager_policy" />
+  <wsdl:binding name="NetTcpBinding_ILobbyManager" type="tns:ILobbyManager">
+    <wsp:PolicyReference URI="#NetTcpBinding_ILobbyManager_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="NotifyCreateParty">
-      <soap12:operation soapAction="http://tempuri.org/IPartyManager/NotifyCreateParty" style="document" />
+    <wsdl:operation name="NotifyCreateLobby">
+      <soap12:operation soapAction="http://tempuri.org/ILobbyManager/NotifyCreateLobby" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
-    <wsdl:operation name="NotifyJoinParty">
-      <soap12:operation soapAction="http://tempuri.org/IPartyManager/NotifyJoinParty" style="document" />
+    <wsdl:operation name="NotifyJoinLobby">
+      <soap12:operation soapAction="http://tempuri.org/ILobbyManager/NotifyJoinLobby" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
     <wsdl:operation name="NotifySendMessage">
-      <soap12:operation soapAction="http://tempuri.org/IPartyManager/NotifySendMessage" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ILobbyManager/NotifySendMessage" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
-    <wsdl:operation name="NotifyLeaveParty">
-      <soap12:operation soapAction="http://tempuri.org/IPartyManager/NotifyLeaveParty" style="document" />
+    <wsdl:operation name="NotifyLeaveLobby">
+      <soap12:operation soapAction="http://tempuri.org/ILobbyManager/NotifyLeaveLobby" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
-    <wsdl:operation name="NotifyCloseParty">
-      <soap12:operation soapAction="http://tempuri.org/IPartyManager/NotifyCloseParty" style="document" />
+    <wsdl:operation name="NotifyCloseLobby">
+      <soap12:operation soapAction="http://tempuri.org/ILobbyManager/NotifyCloseLobby" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
     <wsdl:operation name="NotifyStartGame">
-      <soap12:operation soapAction="http://tempuri.org/IPartyManager/NotifyStartGame" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ILobbyManager/NotifyStartGame" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
     <wsdl:operation name="NotifyKickPlayer">
-      <soap12:operation soapAction="http://tempuri.org/IPartyManager/NotifyKickPlayer" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ILobbyManager/NotifyKickPlayer" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
-    <wsdl:operation name="PartyCreated">
-      <soap12:operation soapAction="http://tempuri.org/IPartyManager/PartyCreated" style="document" />
+    <wsdl:operation name="LobbyCreated">
+      <soap12:operation soapAction="http://tempuri.org/ILobbyManager/LobbyCreated" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1006,7 +1042,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="PlayerJoined">
-      <soap12:operation soapAction="http://tempuri.org/IPartyManager/PlayerJoined" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ILobbyManager/PlayerJoined" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1015,7 +1051,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="MessageReceived">
-      <soap12:operation soapAction="http://tempuri.org/IPartyManager/MessageReceived" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ILobbyManager/MessageReceived" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1024,7 +1060,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="PlayerLeft">
-      <soap12:operation soapAction="http://tempuri.org/IPartyManager/PlayerLeft" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ILobbyManager/PlayerLeft" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1033,7 +1069,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="PlayerKicked">
-      <soap12:operation soapAction="http://tempuri.org/IPartyManager/PlayerKicked" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ILobbyManager/PlayerKicked" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1042,7 +1078,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GameStarted">
-      <soap12:operation soapAction="http://tempuri.org/IPartyManager/GameStarted" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ILobbyManager/GameStarted" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1051,11 +1087,11 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:binding name="NetTcpBinding_IPartyValidator" type="tns:IPartyValidator">
-    <wsp:PolicyReference URI="#NetTcpBinding_IPartyValidator_policy" />
+  <wsdl:binding name="NetTcpBinding_ILobbyValidator" type="tns:ILobbyValidator">
+    <wsp:PolicyReference URI="#NetTcpBinding_ILobbyValidator_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="IsPartyExistent">
-      <soap12:operation soapAction="http://tempuri.org/IPartyValidator/IsPartyExistent" style="document" />
+    <wsdl:operation name="IsLobbyExistent">
+      <soap12:operation soapAction="http://tempuri.org/ILobbyValidator/IsLobbyExistent" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1064,7 +1100,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="IsSpaceAvailable">
-      <soap12:operation soapAction="http://tempuri.org/IPartyValidator/IsSpaceAvailable" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ILobbyValidator/IsSpaceAvailable" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1072,8 +1108,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="IsUsernameInParty">
-      <soap12:operation soapAction="http://tempuri.org/IPartyValidator/IsUsernameInParty" style="document" />
+    <wsdl:operation name="IsUsernameInLobby">
+      <soap12:operation soapAction="http://tempuri.org/ILobbyValidator/IsUsernameInLobby" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1081,8 +1117,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetPlayersInParty">
-      <soap12:operation soapAction="http://tempuri.org/IPartyValidator/GetPlayersInParty" style="document" />
+    <wsdl:operation name="GetPlayersInLobby">
+      <soap12:operation soapAction="http://tempuri.org/ILobbyValidator/GetPlayersInLobby" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1250,19 +1286,31 @@
         <wsa10:Address>net.tcp://localhost:8080/Service</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IFriendsManager" binding="tns:NetTcpBinding_IFriendsManager">
+      <soap12:address location="net.tcp://localhost:8080/Service" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8080/Service</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IBlockManager" binding="tns:NetTcpBinding_IBlockManager">
+      <soap12:address location="net.tcp://localhost:8080/Service" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8080/Service</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
     <wsdl:port name="NetTcpBinding_IUserConnectionHandler" binding="tns:NetTcpBinding_IUserConnectionHandler">
       <soap12:address location="net.tcp://localhost:8080/Service" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8080/Service</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
-    <wsdl:port name="NetTcpBinding_IPartyManager" binding="tns:NetTcpBinding_IPartyManager">
+    <wsdl:port name="NetTcpBinding_ILobbyManager" binding="tns:NetTcpBinding_ILobbyManager">
       <soap12:address location="net.tcp://localhost:8080/Service" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8080/Service</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
-    <wsdl:port name="NetTcpBinding_IPartyValidator" binding="tns:NetTcpBinding_IPartyValidator">
+    <wsdl:port name="NetTcpBinding_ILobbyValidator" binding="tns:NetTcpBinding_ILobbyValidator">
       <soap12:address location="net.tcp://localhost:8080/Service" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8080/Service</wsa10:Address>

@@ -51,8 +51,8 @@ namespace ClienteDuo.Pages
                         {
                             UsersManagerClient userClient = new UsersManagerClient();
 
-                            if (userClient.IsAlreadyFriend(SessionDetails.Username, playerBar.Username) ||
-                                userClient.IsFriendRequestAlreadyExistent(SessionDetails.Username, playerUsername))
+                            if (FriendsManager.IsAlreadyFriend(SessionDetails.Username, playerBar.Username) ||
+                                FriendsManager.IsFriendRequestAlreadySent(SessionDetails.Username, playerUsername))
                             {
                                 UserDTO userData = userClient.GetUserInfoByUsername(playerUsername);
 
@@ -98,7 +98,7 @@ namespace ClienteDuo.Pages
         {
             if (MainWindow.ShowConfirmationBox(Properties.Resources.DlgExitMatchConfirmation))
             {
-                _client.ExitMatch(SessionDetails.PartyCode, SessionDetails.Username);
+                _client.ExitMatch(SessionDetails.LobbyCode, SessionDetails.Username);
 
                 if (SessionDetails.IsGuest)
                 {

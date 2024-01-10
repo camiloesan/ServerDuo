@@ -24,7 +24,7 @@ namespace ClienteDuo.Pages.Sidebars
             IEnumerable<UserBlockedDTO> blockedUsersList = new List<UserBlockedDTO>();
             try
             {
-                blockedUsersList = UsersManager.GetBlockedUsersListByUserId(SessionDetails.UserId);
+                blockedUsersList = BlockManager.GetBlockedUsersListByUserId(SessionDetails.UserId);
             }
             catch (CommunicationException)
             {
@@ -72,7 +72,7 @@ namespace ClienteDuo.Pages.Sidebars
             bool result = false;
             try
             {
-                result = UsersManager.UnblockUserByBlockId(blockedUser.BlockID) == 1;
+                result = BlockManager.UnblockUserByBlockId(blockedUser.BlockID) == 1;
             }
             catch (CommunicationException)
             {

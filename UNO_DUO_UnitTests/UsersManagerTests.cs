@@ -29,110 +29,21 @@ namespace ClienteDuo.Utilities.Tests
         }
 
         [TestMethod()]
-        public void AcceptFriendRequestSuccessTest()
-        {
-            UsersManager.SendFriendRequest(_user1, _user2);
-            UserDTO user2Object = UsersManager.GetUserInfoByUsername(_user2);
-            var requestList = UsersManager.GetFriendRequestsByUserId(user2Object.ID);
-
-
-            bool result = UsersManager.AcceptFriendRequest(requestList.First());
-
-            var friends = UsersManager.GetFriendsListByUserId(user2Object.ID);
-            foreach (var item in friends)
-            {
-                UsersManager.DeleteFriendshipById(item.FriendshipID);
-            }
-
-            Assert.IsTrue(result);
-        }
-
-        [TestMethod()]
-        public void AcceptFriendRequestNotExistsTest()
-        {
-            FriendRequestDTO friendRequestDTO = new FriendRequestDTO();
-            friendRequestDTO.SenderID = 0;
-            bool result = UsersManager.AcceptFriendRequest(friendRequestDTO);
-
-            Assert.IsFalse(result);
-        }
-
-        [TestMethod()]
-        public void DeclineFriendRequestSuccessTest()
-        {
-            UsersManager.SendFriendRequest(_user1, _user2);
-            UserDTO user2Object = UsersManager.GetUserInfoByUsername(_user2);
-            var requestList = UsersManager.GetFriendRequestsByUserId(user2Object.ID);
-
-            bool result = UsersManager.DeclineFriendRequest(requestList.First());
-
-            Assert.IsTrue(result);
-        }
-
-        [TestMethod()]
-        public void DeclineFriendRequestNotExistsTest()
-        {
-            UsersManager.SendFriendRequest(_user1, _user2);
-
-            FriendRequestDTO friendRequestDTO = new FriendRequestDTO();
-            friendRequestDTO.SenderID = 0;
-            bool result = UsersManager.DeclineFriendRequest(friendRequestDTO);
-
-            Assert.IsFalse(result);
-        }
-
-        [TestMethod()]
-        public void GetFriendRequestsByUserIdHasTwoTest()
-        {
-            string user3 = "roberto";
-            string email3 = "roberto@gmail.com";
-            string password3 = "panda!78990";
-            UsersManager.AddUserToDatabase(user3, email3, password3);
-            UsersManager.SendFriendRequest(_user1, _user2);
-            UsersManager.SendFriendRequest(user3, _user2);
-
-            UserDTO user2Object = UsersManager.GetUserInfoByUsername(_user2);
-            var requestList = UsersManager.GetFriendRequestsByUserId(user2Object.ID);
-            int actualSize = requestList.Count();
-
-            foreach (var item in requestList)
-            {
-                UsersManager.DeclineFriendRequest(item);
-            }
-
-            UsersManager.DeleteUserFromDatabase(user3);
-
-            int expected = 2;
-
-            Assert.AreEqual(expected, actualSize);
-        }
-
-        [TestMethod()]
-        public void GetFriendRequestsByUserIdHasNoneTest()
-        {
-            UserDTO user2Object = UsersManager.GetUserInfoByUsername(_user1);
-            var requestList = UsersManager.GetFriendRequestsByUserId(user2Object.ID);
-
-            int expected = 0;
-            Assert.AreEqual(expected, requestList.Count());
-        }
-
-        [TestMethod()]
         public void UnblockUserByBlockIdSuccessTest()
         {
 
-            UsersManager.BlockUserByUsername(_user1, _user2);
+            BlockManager.BlockUserByUsername(_user1, _user2);
             UserDTO user1Object = UsersManager.GetUserInfoByUsername(_user1);
-            var blockList = UsersManager.GetBlockedUsersListByUserId(user1Object.ID);
+            var blockList = BlockManager.GetBlockedUsersListByUserId(user1Object.ID);
 
-            bool result = UsersManager.UnblockUserByBlockId(blockList.First().BlockID) == 1;
+            bool result = BlockManager.UnblockUserByBlockId(blockList.First().BlockID) == 1;
             Assert.IsTrue(result);
         }
 
         [TestMethod()]
         public void UnblockUserByBlockIdUserDoesNotExistTest()
         {
-            bool result = UsersManager.UnblockUserByBlockId(0) == 1;
+            bool result = BlockManager.UnblockUserByBlockId(0) == 1;
 
             Assert.IsFalse(result);
         }
@@ -140,13 +51,13 @@ namespace ClienteDuo.Utilities.Tests
         [TestMethod()]
         public void GetBlockedUsersListByIdHasOneTest()
         {
-            UsersManager.BlockUserByUsername(_user1, _user2);
+            BlockManager.BlockUserByUsername(_user1, _user2);
             UserDTO user1Object = UsersManager.GetUserInfoByUsername(_user1);
-            var result = UsersManager.GetBlockedUsersListByUserId(user1Object.ID);
+            var result = BlockManager.GetBlockedUsersListByUserId(user1Object.ID);
 
             foreach (var item in result)
             {
-                UsersManager.UnblockUserByBlockId(item.BlockID);
+                BlockManager.UnblockUserByBlockId(item.BlockID);
             }
 
             int expected = 1;
@@ -156,8 +67,8 @@ namespace ClienteDuo.Utilities.Tests
         [TestMethod()]
         public void IsUserBlockedOneWayTest()
         {
-            UsersManager.BlockUserByUsername(_user1, _user2);
-            bool result = UsersManager.IsUserBlocked(_user1, _user2);
+            BlockManager.BlockUserByUsername(_user1, _user2);
+            bool result = BlockManager.IsUserBlocked(_user1, _user2);
 
             Assert.IsTrue(result);
         }
@@ -165,22 +76,22 @@ namespace ClienteDuo.Utilities.Tests
         [TestMethod()]
         public void IsUserBlockedBothWaysTest()
         {
-            UsersManager.BlockUserByUsername(_user1, _user2);
-            bool result = UsersManager.IsUserBlocked(_user2, _user1);
+            BlockManager.BlockUserByUsername(_user1, _user2);
+            bool result = BlockManager.IsUserBlocked(_user2, _user1);
             Assert.IsFalse(result);
         }
 
         [TestMethod()]
         public void IsUserBlockedDoesNotExistTest()
         {
-            bool result = UsersManager.IsUserBlocked("joseAntonio", "janoRodriguez");
+            bool result = BlockManager.IsUserBlocked("joseAntonio", "janoRodriguez");
             Assert.IsFalse(result);
         }
 
         [TestMethod()]
         public void IsUserBlockedNotBlockedTest()
         {
-            bool result = UsersManager.IsUserBlocked(_user2, _user1);
+            bool result = BlockManager.IsUserBlocked(_user2, _user1);
             Assert.IsFalse(result);
         }
 
@@ -198,131 +109,6 @@ namespace ClienteDuo.Utilities.Tests
             var result = UsersManager.GetUserInfoByUsername("persianaAmericana");
 
             Assert.IsNull(result);
-        }
-
-        [TestMethod()]
-        public void IsAlreadyFriendLeftToRightTest()
-        {
-            UsersManager.SendFriendRequest(_user1, _user2);
-            UserDTO userObject = UsersManager.GetUserInfoByUsername(_user2);
-            var requestList = UsersManager.GetFriendRequestsByUserId(userObject.ID);
-            UsersManager.AcceptFriendRequest(requestList.First());
-            bool result = UsersManager.IsAlreadyFriend(_user1, _user2);
-
-            Assert.IsTrue(result);
-        }
-
-        [TestMethod()]
-        public void IsAlreadyFriendRightToLeftTest()
-        {
-            UsersManager.SendFriendRequest(_user1, _user2);
-            UserDTO userObject = UsersManager.GetUserInfoByUsername(_user2);
-            var requestList = UsersManager.GetFriendRequestsByUserId(userObject.ID);
-            UsersManager.AcceptFriendRequest(requestList.First());
-            bool result = UsersManager.IsAlreadyFriend(_user2, _user1);
-
-            Assert.IsTrue(result);
-        }
-
-        [TestMethod()]
-        public void IsAlreadyFriendNotFriendTest()
-        {
-            bool result = UsersManager.IsAlreadyFriend(_user2, _user1);
-
-            Assert.IsFalse(result);
-        }
-
-        [TestMethod()]
-        public void IsAlreadyFriendDoesNotExist()
-        {
-            bool result = UsersManager.IsAlreadyFriend(_user2, "reikInolvidable");
-
-            Assert.IsFalse(result);
-        }
-
-        [TestMethod()]
-        public void IsFriendRequestAlreadySentTrueTest()
-        {
-            UsersManager.SendFriendRequest(_user1, _user2);
-
-            bool result = UsersManager.IsFriendRequestAlreadySent(_user1, _user2);
-
-            Assert.IsTrue(result);
-        }
-
-        [TestMethod()]
-        public void IsFriendRequestAlreadySentFalseTest()
-        {
-            bool result = UsersManager.IsFriendRequestAlreadySent(_user1, _user2);
-
-            Assert.IsFalse(result);
-        }
-
-        [TestMethod()]
-        public void IsFriendRequestAlreadySentUserDoesNotExistTest()
-        {
-            bool result = UsersManager.IsFriendRequestAlreadySent(_user1, "cristinaRomo");
-
-            Assert.IsFalse(result);
-        }
-
-        [TestMethod()]
-        public void GetOnlineFriendsHasNoneTest()
-        {
-            UsersManager.SendFriendRequest(_user1, _user2);
-            UserDTO userObject = UsersManager.GetUserInfoByUsername(_user2);
-            var requestList = UsersManager.GetFriendRequestsByUserId(userObject.ID);
-            UsersManager.AcceptFriendRequest(requestList.First());
-
-            var result = UsersManager.GetOnlineFriends(userObject.ID);
-
-            int expected = 0;
-            Assert.AreEqual(expected, result.Count());
-        }
-
-        [TestMethod()]
-        public void GetFriendsListHasOneTest()
-        {
-            UsersManager.SendFriendRequest(_user1, _user2);
-            UserDTO userObject = UsersManager.GetUserInfoByUsername(_user2);
-            var requestList = UsersManager.GetFriendRequestsByUserId(userObject.ID);
-            UsersManager.AcceptFriendRequest(requestList.First());
-
-            var result = UsersManager.GetFriendsListByUserId(userObject.ID);
-
-            int expected = 1;
-            Assert.AreEqual(expected, result.Count());
-        }
-
-        [TestMethod()]
-        public void GetFriendsListHasZeroTest()
-        {
-            UserDTO userObject = UsersManager.GetUserInfoByUsername(_user2);
-            var result = UsersManager.GetFriendsListByUserId(userObject.ID);
-
-            int expected = 0;
-            Assert.AreEqual(expected, result.Count());
-        }
-
-        [TestMethod()]
-        public void DeleteFriendshipByIdSuccessTest()
-        {
-            UsersManager.SendFriendRequest(_user1, _user2);
-            UserDTO userObject = UsersManager.GetUserInfoByUsername(_user2);
-            var requestList = UsersManager.GetFriendRequestsByUserId(userObject.ID);
-            UsersManager.AcceptFriendRequest(requestList.First());
-            var friendsList = UsersManager.GetFriendsListByUserId(userObject.ID);
-            bool result = UsersManager.DeleteFriendshipById(friendsList.First().FriendshipID);
-
-            Assert.IsTrue(result);
-        }
-
-        [TestMethod()]
-        public void DeleteFriendshipByIdDoesNotExistTest()
-        {
-            bool result = UsersManager.DeleteFriendshipById(0);
-
-            Assert.IsFalse(result);
         }
 
         [TestMethod()]
@@ -356,9 +142,9 @@ namespace ClienteDuo.Utilities.Tests
             UsersManager.AddUserToDatabase(user1, "degos@gmail.com", "12345");
             UsersManager.AddUserToDatabase(user2, "degas@gmail.com", "12345");
             UsersManager.AddUserToDatabase(user3, "degbs@gmail.com", "12345");
-            UsersManager.BlockUserByUsername(user1 ,_user1);
-            UsersManager.BlockUserByUsername(user2, _user1);
-            int result = UsersManager.BlockUserByUsername(user3, _user1);
+            BlockManager.BlockUserByUsername(user1 ,_user1);
+            BlockManager.BlockUserByUsername(user2, _user1);
+            int result = BlockManager.BlockUserByUsername(user3, _user1);
             Assert.AreEqual(2, result);
             UsersManager.DeleteUserFromDatabase(user1);
             UsersManager.DeleteUserFromDatabase(user2);
@@ -374,9 +160,9 @@ namespace ClienteDuo.Utilities.Tests
             UsersManager.AddUserToDatabase(user1, "degos@gmail.com", "12345");
             UsersManager.AddUserToDatabase(user2, "degas@gmail.com", "12345");
             UsersManager.AddUserToDatabase(user3, "degbs@gmail.com", "12345");
-            UsersManager.BlockUserByUsername(user1, _user1);
-            UsersManager.BlockUserByUsername(user2, _user1);
-            UsersManager.BlockUserByUsername(user3, _user1);
+            BlockManager.BlockUserByUsername(user1, _user1);
+            BlockManager.BlockUserByUsername(user2, _user1);
+            BlockManager.BlockUserByUsername(user3, _user1);
             var userInfo = UsersManager.GetUserInfoByUsername(_user1);
             Assert.IsTrue(UsersManager.IsUserBanned(userInfo.ID));
             UsersManager.DeleteUserFromDatabase(user1);

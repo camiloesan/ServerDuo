@@ -320,6 +320,377 @@ references:
   isSpec: "True"
   fullName: CommunicationService.ICardManager.PlayCard
   nameWithType: ICardManager.PlayCard
+- uid: CommunicationService.IFriendsManager
+  name: IFriendsManager
+  href: api/CommunicationService.IFriendsManager.html
+  commentId: T:CommunicationService.IFriendsManager
+  fullName: CommunicationService.IFriendsManager
+  nameWithType: IFriendsManager
+- uid: CommunicationService.IFriendsManager.AcceptFriendRequest(CommunicationService.FriendRequestDTO)
+  name: AcceptFriendRequest(FriendRequestDTO)
+  href: api/CommunicationService.IFriendsManager.html#CommunicationService_IFriendsManager_AcceptFriendRequest_CommunicationService_FriendRequestDTO_
+  commentId: M:CommunicationService.IFriendsManager.AcceptFriendRequest(CommunicationService.FriendRequestDTO)
+  fullName: CommunicationService.IFriendsManager.AcceptFriendRequest(CommunicationService.FriendRequestDTO)
+  nameWithType: IFriendsManager.AcceptFriendRequest(FriendRequestDTO)
+- uid: CommunicationService.IFriendsManager.AcceptFriendRequest*
+  name: AcceptFriendRequest
+  href: api/CommunicationService.IFriendsManager.html#CommunicationService_IFriendsManager_AcceptFriendRequest_
+  commentId: Overload:CommunicationService.IFriendsManager.AcceptFriendRequest
+  isSpec: "True"
+  fullName: CommunicationService.IFriendsManager.AcceptFriendRequest
+  nameWithType: IFriendsManager.AcceptFriendRequest
+- uid: CommunicationService.IFriendsManager.DeleteFriendshipById(System.Int32)
+  name: DeleteFriendshipById(Int32)
+  href: api/CommunicationService.IFriendsManager.html#CommunicationService_IFriendsManager_DeleteFriendshipById_System_Int32_
+  commentId: M:CommunicationService.IFriendsManager.DeleteFriendshipById(System.Int32)
+  fullName: CommunicationService.IFriendsManager.DeleteFriendshipById(System.Int32)
+  nameWithType: IFriendsManager.DeleteFriendshipById(Int32)
+- uid: CommunicationService.IFriendsManager.DeleteFriendshipById*
+  name: DeleteFriendshipById
+  href: api/CommunicationService.IFriendsManager.html#CommunicationService_IFriendsManager_DeleteFriendshipById_
+  commentId: Overload:CommunicationService.IFriendsManager.DeleteFriendshipById
+  isSpec: "True"
+  fullName: CommunicationService.IFriendsManager.DeleteFriendshipById
+  nameWithType: IFriendsManager.DeleteFriendshipById
+- uid: CommunicationService.IFriendsManager.GetFriendRequestsList(System.Int32)
+  name: GetFriendRequestsList(Int32)
+  href: api/CommunicationService.IFriendsManager.html#CommunicationService_IFriendsManager_GetFriendRequestsList_System_Int32_
+  commentId: M:CommunicationService.IFriendsManager.GetFriendRequestsList(System.Int32)
+  fullName: CommunicationService.IFriendsManager.GetFriendRequestsList(System.Int32)
+  nameWithType: IFriendsManager.GetFriendRequestsList(Int32)
+- uid: CommunicationService.IFriendsManager.GetFriendRequestsList*
+  name: GetFriendRequestsList
+  href: api/CommunicationService.IFriendsManager.html#CommunicationService_IFriendsManager_GetFriendRequestsList_
+  commentId: Overload:CommunicationService.IFriendsManager.GetFriendRequestsList
+  isSpec: "True"
+  fullName: CommunicationService.IFriendsManager.GetFriendRequestsList
+  nameWithType: IFriendsManager.GetFriendRequestsList
+- uid: CommunicationService.IFriendsManager.GetFriendsList(System.Int32)
+  name: GetFriendsList(Int32)
+  href: api/CommunicationService.IFriendsManager.html#CommunicationService_IFriendsManager_GetFriendsList_System_Int32_
+  commentId: M:CommunicationService.IFriendsManager.GetFriendsList(System.Int32)
+  fullName: CommunicationService.IFriendsManager.GetFriendsList(System.Int32)
+  nameWithType: IFriendsManager.GetFriendsList(Int32)
+- uid: CommunicationService.IFriendsManager.GetFriendsList*
+  name: GetFriendsList
+  href: api/CommunicationService.IFriendsManager.html#CommunicationService_IFriendsManager_GetFriendsList_
+  commentId: Overload:CommunicationService.IFriendsManager.GetFriendsList
+  isSpec: "True"
+  fullName: CommunicationService.IFriendsManager.GetFriendsList
+  nameWithType: IFriendsManager.GetFriendsList
+- uid: CommunicationService.IFriendsManager.GetOnlineFriends(System.Int32)
+  name: GetOnlineFriends(Int32)
+  href: api/CommunicationService.IFriendsManager.html#CommunicationService_IFriendsManager_GetOnlineFriends_System_Int32_
+  commentId: M:CommunicationService.IFriendsManager.GetOnlineFriends(System.Int32)
+  fullName: CommunicationService.IFriendsManager.GetOnlineFriends(System.Int32)
+  nameWithType: IFriendsManager.GetOnlineFriends(Int32)
+- uid: CommunicationService.IFriendsManager.GetOnlineFriends*
+  name: GetOnlineFriends
+  href: api/CommunicationService.IFriendsManager.html#CommunicationService_IFriendsManager_GetOnlineFriends_
+  commentId: Overload:CommunicationService.IFriendsManager.GetOnlineFriends
+  isSpec: "True"
+  fullName: CommunicationService.IFriendsManager.GetOnlineFriends
+  nameWithType: IFriendsManager.GetOnlineFriends
+- uid: CommunicationService.IFriendsManager.IsAlreadyFriend(System.String,System.String)
+  name: IsAlreadyFriend(String, String)
+  href: api/CommunicationService.IFriendsManager.html#CommunicationService_IFriendsManager_IsAlreadyFriend_System_String_System_String_
+  commentId: M:CommunicationService.IFriendsManager.IsAlreadyFriend(System.String,System.String)
+  fullName: CommunicationService.IFriendsManager.IsAlreadyFriend(System.String, System.String)
+  nameWithType: IFriendsManager.IsAlreadyFriend(String, String)
+- uid: CommunicationService.IFriendsManager.IsAlreadyFriend*
+  name: IsAlreadyFriend
+  href: api/CommunicationService.IFriendsManager.html#CommunicationService_IFriendsManager_IsAlreadyFriend_
+  commentId: Overload:CommunicationService.IFriendsManager.IsAlreadyFriend
+  isSpec: "True"
+  fullName: CommunicationService.IFriendsManager.IsAlreadyFriend
+  nameWithType: IFriendsManager.IsAlreadyFriend
+- uid: CommunicationService.IFriendsManager.IsFriendRequestAlreadyExistent(System.String,System.String)
+  name: IsFriendRequestAlreadyExistent(String, String)
+  href: api/CommunicationService.IFriendsManager.html#CommunicationService_IFriendsManager_IsFriendRequestAlreadyExistent_System_String_System_String_
+  commentId: M:CommunicationService.IFriendsManager.IsFriendRequestAlreadyExistent(System.String,System.String)
+  fullName: CommunicationService.IFriendsManager.IsFriendRequestAlreadyExistent(System.String, System.String)
+  nameWithType: IFriendsManager.IsFriendRequestAlreadyExistent(String, String)
+- uid: CommunicationService.IFriendsManager.IsFriendRequestAlreadyExistent*
+  name: IsFriendRequestAlreadyExistent
+  href: api/CommunicationService.IFriendsManager.html#CommunicationService_IFriendsManager_IsFriendRequestAlreadyExistent_
+  commentId: Overload:CommunicationService.IFriendsManager.IsFriendRequestAlreadyExistent
+  isSpec: "True"
+  fullName: CommunicationService.IFriendsManager.IsFriendRequestAlreadyExistent
+  nameWithType: IFriendsManager.IsFriendRequestAlreadyExistent
+- uid: CommunicationService.IFriendsManager.RejectFriendRequest(System.Int32)
+  name: RejectFriendRequest(Int32)
+  href: api/CommunicationService.IFriendsManager.html#CommunicationService_IFriendsManager_RejectFriendRequest_System_Int32_
+  commentId: M:CommunicationService.IFriendsManager.RejectFriendRequest(System.Int32)
+  fullName: CommunicationService.IFriendsManager.RejectFriendRequest(System.Int32)
+  nameWithType: IFriendsManager.RejectFriendRequest(Int32)
+- uid: CommunicationService.IFriendsManager.RejectFriendRequest*
+  name: RejectFriendRequest
+  href: api/CommunicationService.IFriendsManager.html#CommunicationService_IFriendsManager_RejectFriendRequest_
+  commentId: Overload:CommunicationService.IFriendsManager.RejectFriendRequest
+  isSpec: "True"
+  fullName: CommunicationService.IFriendsManager.RejectFriendRequest
+  nameWithType: IFriendsManager.RejectFriendRequest
+- uid: CommunicationService.IFriendsManager.SendFriendRequest(System.String,System.String)
+  name: SendFriendRequest(String, String)
+  href: api/CommunicationService.IFriendsManager.html#CommunicationService_IFriendsManager_SendFriendRequest_System_String_System_String_
+  commentId: M:CommunicationService.IFriendsManager.SendFriendRequest(System.String,System.String)
+  fullName: CommunicationService.IFriendsManager.SendFriendRequest(System.String, System.String)
+  nameWithType: IFriendsManager.SendFriendRequest(String, String)
+- uid: CommunicationService.IFriendsManager.SendFriendRequest*
+  name: SendFriendRequest
+  href: api/CommunicationService.IFriendsManager.html#CommunicationService_IFriendsManager_SendFriendRequest_
+  commentId: Overload:CommunicationService.IFriendsManager.SendFriendRequest
+  isSpec: "True"
+  fullName: CommunicationService.IFriendsManager.SendFriendRequest
+  nameWithType: IFriendsManager.SendFriendRequest
+- uid: CommunicationService.ILobbyManager
+  name: ILobbyManager
+  href: api/CommunicationService.ILobbyManager.html
+  commentId: T:CommunicationService.ILobbyManager
+  fullName: CommunicationService.ILobbyManager
+  nameWithType: ILobbyManager
+- uid: CommunicationService.ILobbyManager.NotifyCloseLobby(System.Int32,System.String,System.String)
+  name: NotifyCloseLobby(Int32, String, String)
+  href: api/CommunicationService.ILobbyManager.html#CommunicationService_ILobbyManager_NotifyCloseLobby_System_Int32_System_String_System_String_
+  commentId: M:CommunicationService.ILobbyManager.NotifyCloseLobby(System.Int32,System.String,System.String)
+  fullName: CommunicationService.ILobbyManager.NotifyCloseLobby(System.Int32, System.String, System.String)
+  nameWithType: ILobbyManager.NotifyCloseLobby(Int32, String, String)
+- uid: CommunicationService.ILobbyManager.NotifyCloseLobby*
+  name: NotifyCloseLobby
+  href: api/CommunicationService.ILobbyManager.html#CommunicationService_ILobbyManager_NotifyCloseLobby_
+  commentId: Overload:CommunicationService.ILobbyManager.NotifyCloseLobby
+  isSpec: "True"
+  fullName: CommunicationService.ILobbyManager.NotifyCloseLobby
+  nameWithType: ILobbyManager.NotifyCloseLobby
+- uid: CommunicationService.ILobbyManager.NotifyCreateLobby(System.Int32,System.String)
+  name: NotifyCreateLobby(Int32, String)
+  href: api/CommunicationService.ILobbyManager.html#CommunicationService_ILobbyManager_NotifyCreateLobby_System_Int32_System_String_
+  commentId: M:CommunicationService.ILobbyManager.NotifyCreateLobby(System.Int32,System.String)
+  fullName: CommunicationService.ILobbyManager.NotifyCreateLobby(System.Int32, System.String)
+  nameWithType: ILobbyManager.NotifyCreateLobby(Int32, String)
+- uid: CommunicationService.ILobbyManager.NotifyCreateLobby*
+  name: NotifyCreateLobby
+  href: api/CommunicationService.ILobbyManager.html#CommunicationService_ILobbyManager_NotifyCreateLobby_
+  commentId: Overload:CommunicationService.ILobbyManager.NotifyCreateLobby
+  isSpec: "True"
+  fullName: CommunicationService.ILobbyManager.NotifyCreateLobby
+  nameWithType: ILobbyManager.NotifyCreateLobby
+- uid: CommunicationService.ILobbyManager.NotifyJoinLobby(System.Int32,System.String)
+  name: NotifyJoinLobby(Int32, String)
+  href: api/CommunicationService.ILobbyManager.html#CommunicationService_ILobbyManager_NotifyJoinLobby_System_Int32_System_String_
+  commentId: M:CommunicationService.ILobbyManager.NotifyJoinLobby(System.Int32,System.String)
+  fullName: CommunicationService.ILobbyManager.NotifyJoinLobby(System.Int32, System.String)
+  nameWithType: ILobbyManager.NotifyJoinLobby(Int32, String)
+- uid: CommunicationService.ILobbyManager.NotifyJoinLobby*
+  name: NotifyJoinLobby
+  href: api/CommunicationService.ILobbyManager.html#CommunicationService_ILobbyManager_NotifyJoinLobby_
+  commentId: Overload:CommunicationService.ILobbyManager.NotifyJoinLobby
+  isSpec: "True"
+  fullName: CommunicationService.ILobbyManager.NotifyJoinLobby
+  nameWithType: ILobbyManager.NotifyJoinLobby
+- uid: CommunicationService.ILobbyManager.NotifyKickPlayer(System.Int32,System.String,System.String)
+  name: NotifyKickPlayer(Int32, String, String)
+  href: api/CommunicationService.ILobbyManager.html#CommunicationService_ILobbyManager_NotifyKickPlayer_System_Int32_System_String_System_String_
+  commentId: M:CommunicationService.ILobbyManager.NotifyKickPlayer(System.Int32,System.String,System.String)
+  fullName: CommunicationService.ILobbyManager.NotifyKickPlayer(System.Int32, System.String, System.String)
+  nameWithType: ILobbyManager.NotifyKickPlayer(Int32, String, String)
+- uid: CommunicationService.ILobbyManager.NotifyKickPlayer*
+  name: NotifyKickPlayer
+  href: api/CommunicationService.ILobbyManager.html#CommunicationService_ILobbyManager_NotifyKickPlayer_
+  commentId: Overload:CommunicationService.ILobbyManager.NotifyKickPlayer
+  isSpec: "True"
+  fullName: CommunicationService.ILobbyManager.NotifyKickPlayer
+  nameWithType: ILobbyManager.NotifyKickPlayer
+- uid: CommunicationService.ILobbyManager.NotifyLeaveLobby(System.Int32,System.String)
+  name: NotifyLeaveLobby(Int32, String)
+  href: api/CommunicationService.ILobbyManager.html#CommunicationService_ILobbyManager_NotifyLeaveLobby_System_Int32_System_String_
+  commentId: M:CommunicationService.ILobbyManager.NotifyLeaveLobby(System.Int32,System.String)
+  fullName: CommunicationService.ILobbyManager.NotifyLeaveLobby(System.Int32, System.String)
+  nameWithType: ILobbyManager.NotifyLeaveLobby(Int32, String)
+- uid: CommunicationService.ILobbyManager.NotifyLeaveLobby*
+  name: NotifyLeaveLobby
+  href: api/CommunicationService.ILobbyManager.html#CommunicationService_ILobbyManager_NotifyLeaveLobby_
+  commentId: Overload:CommunicationService.ILobbyManager.NotifyLeaveLobby
+  isSpec: "True"
+  fullName: CommunicationService.ILobbyManager.NotifyLeaveLobby
+  nameWithType: ILobbyManager.NotifyLeaveLobby
+- uid: CommunicationService.ILobbyManager.NotifySendMessage(System.Int32,System.String)
+  name: NotifySendMessage(Int32, String)
+  href: api/CommunicationService.ILobbyManager.html#CommunicationService_ILobbyManager_NotifySendMessage_System_Int32_System_String_
+  commentId: M:CommunicationService.ILobbyManager.NotifySendMessage(System.Int32,System.String)
+  fullName: CommunicationService.ILobbyManager.NotifySendMessage(System.Int32, System.String)
+  nameWithType: ILobbyManager.NotifySendMessage(Int32, String)
+- uid: CommunicationService.ILobbyManager.NotifySendMessage*
+  name: NotifySendMessage
+  href: api/CommunicationService.ILobbyManager.html#CommunicationService_ILobbyManager_NotifySendMessage_
+  commentId: Overload:CommunicationService.ILobbyManager.NotifySendMessage
+  isSpec: "True"
+  fullName: CommunicationService.ILobbyManager.NotifySendMessage
+  nameWithType: ILobbyManager.NotifySendMessage
+- uid: CommunicationService.ILobbyManager.NotifyStartGame(System.Int32)
+  name: NotifyStartGame(Int32)
+  href: api/CommunicationService.ILobbyManager.html#CommunicationService_ILobbyManager_NotifyStartGame_System_Int32_
+  commentId: M:CommunicationService.ILobbyManager.NotifyStartGame(System.Int32)
+  fullName: CommunicationService.ILobbyManager.NotifyStartGame(System.Int32)
+  nameWithType: ILobbyManager.NotifyStartGame(Int32)
+- uid: CommunicationService.ILobbyManager.NotifyStartGame*
+  name: NotifyStartGame
+  href: api/CommunicationService.ILobbyManager.html#CommunicationService_ILobbyManager_NotifyStartGame_
+  commentId: Overload:CommunicationService.ILobbyManager.NotifyStartGame
+  isSpec: "True"
+  fullName: CommunicationService.ILobbyManager.NotifyStartGame
+  nameWithType: ILobbyManager.NotifyStartGame
+- uid: CommunicationService.ILobbyManagerCallback
+  name: ILobbyManagerCallback
+  href: api/CommunicationService.ILobbyManagerCallback.html
+  commentId: T:CommunicationService.ILobbyManagerCallback
+  fullName: CommunicationService.ILobbyManagerCallback
+  nameWithType: ILobbyManagerCallback
+- uid: CommunicationService.ILobbyManagerCallback.GameStarted
+  name: GameStarted()
+  href: api/CommunicationService.ILobbyManagerCallback.html#CommunicationService_ILobbyManagerCallback_GameStarted
+  commentId: M:CommunicationService.ILobbyManagerCallback.GameStarted
+  fullName: CommunicationService.ILobbyManagerCallback.GameStarted()
+  nameWithType: ILobbyManagerCallback.GameStarted()
+- uid: CommunicationService.ILobbyManagerCallback.GameStarted*
+  name: GameStarted
+  href: api/CommunicationService.ILobbyManagerCallback.html#CommunicationService_ILobbyManagerCallback_GameStarted_
+  commentId: Overload:CommunicationService.ILobbyManagerCallback.GameStarted
+  isSpec: "True"
+  fullName: CommunicationService.ILobbyManagerCallback.GameStarted
+  nameWithType: ILobbyManagerCallback.GameStarted
+- uid: CommunicationService.ILobbyManagerCallback.LobbyCreated(System.Collections.Concurrent.ConcurrentDictionary{System.String,CommunicationService.ILobbyManagerCallback})
+  name: LobbyCreated(ConcurrentDictionary<String, ILobbyManagerCallback>)
+  href: api/CommunicationService.ILobbyManagerCallback.html#CommunicationService_ILobbyManagerCallback_LobbyCreated_System_Collections_Concurrent_ConcurrentDictionary_System_String_CommunicationService_ILobbyManagerCallback__
+  commentId: M:CommunicationService.ILobbyManagerCallback.LobbyCreated(System.Collections.Concurrent.ConcurrentDictionary{System.String,CommunicationService.ILobbyManagerCallback})
+  name.vb: LobbyCreated(ConcurrentDictionary(Of String, ILobbyManagerCallback))
+  fullName: CommunicationService.ILobbyManagerCallback.LobbyCreated(System.Collections.Concurrent.ConcurrentDictionary<System.String, CommunicationService.ILobbyManagerCallback>)
+  fullName.vb: CommunicationService.ILobbyManagerCallback.LobbyCreated(System.Collections.Concurrent.ConcurrentDictionary(Of System.String, CommunicationService.ILobbyManagerCallback))
+  nameWithType: ILobbyManagerCallback.LobbyCreated(ConcurrentDictionary<String, ILobbyManagerCallback>)
+  nameWithType.vb: ILobbyManagerCallback.LobbyCreated(ConcurrentDictionary(Of String, ILobbyManagerCallback))
+- uid: CommunicationService.ILobbyManagerCallback.LobbyCreated*
+  name: LobbyCreated
+  href: api/CommunicationService.ILobbyManagerCallback.html#CommunicationService_ILobbyManagerCallback_LobbyCreated_
+  commentId: Overload:CommunicationService.ILobbyManagerCallback.LobbyCreated
+  isSpec: "True"
+  fullName: CommunicationService.ILobbyManagerCallback.LobbyCreated
+  nameWithType: ILobbyManagerCallback.LobbyCreated
+- uid: CommunicationService.ILobbyManagerCallback.MessageReceived(System.String)
+  name: MessageReceived(String)
+  href: api/CommunicationService.ILobbyManagerCallback.html#CommunicationService_ILobbyManagerCallback_MessageReceived_System_String_
+  commentId: M:CommunicationService.ILobbyManagerCallback.MessageReceived(System.String)
+  fullName: CommunicationService.ILobbyManagerCallback.MessageReceived(System.String)
+  nameWithType: ILobbyManagerCallback.MessageReceived(String)
+- uid: CommunicationService.ILobbyManagerCallback.MessageReceived*
+  name: MessageReceived
+  href: api/CommunicationService.ILobbyManagerCallback.html#CommunicationService_ILobbyManagerCallback_MessageReceived_
+  commentId: Overload:CommunicationService.ILobbyManagerCallback.MessageReceived
+  isSpec: "True"
+  fullName: CommunicationService.ILobbyManagerCallback.MessageReceived
+  nameWithType: ILobbyManagerCallback.MessageReceived
+- uid: CommunicationService.ILobbyManagerCallback.PlayerJoined(System.Collections.Concurrent.ConcurrentDictionary{System.String,CommunicationService.ILobbyManagerCallback})
+  name: PlayerJoined(ConcurrentDictionary<String, ILobbyManagerCallback>)
+  href: api/CommunicationService.ILobbyManagerCallback.html#CommunicationService_ILobbyManagerCallback_PlayerJoined_System_Collections_Concurrent_ConcurrentDictionary_System_String_CommunicationService_ILobbyManagerCallback__
+  commentId: M:CommunicationService.ILobbyManagerCallback.PlayerJoined(System.Collections.Concurrent.ConcurrentDictionary{System.String,CommunicationService.ILobbyManagerCallback})
+  name.vb: PlayerJoined(ConcurrentDictionary(Of String, ILobbyManagerCallback))
+  fullName: CommunicationService.ILobbyManagerCallback.PlayerJoined(System.Collections.Concurrent.ConcurrentDictionary<System.String, CommunicationService.ILobbyManagerCallback>)
+  fullName.vb: CommunicationService.ILobbyManagerCallback.PlayerJoined(System.Collections.Concurrent.ConcurrentDictionary(Of System.String, CommunicationService.ILobbyManagerCallback))
+  nameWithType: ILobbyManagerCallback.PlayerJoined(ConcurrentDictionary<String, ILobbyManagerCallback>)
+  nameWithType.vb: ILobbyManagerCallback.PlayerJoined(ConcurrentDictionary(Of String, ILobbyManagerCallback))
+- uid: CommunicationService.ILobbyManagerCallback.PlayerJoined*
+  name: PlayerJoined
+  href: api/CommunicationService.ILobbyManagerCallback.html#CommunicationService_ILobbyManagerCallback_PlayerJoined_
+  commentId: Overload:CommunicationService.ILobbyManagerCallback.PlayerJoined
+  isSpec: "True"
+  fullName: CommunicationService.ILobbyManagerCallback.PlayerJoined
+  nameWithType: ILobbyManagerCallback.PlayerJoined
+- uid: CommunicationService.ILobbyManagerCallback.PlayerKicked(System.String)
+  name: PlayerKicked(String)
+  href: api/CommunicationService.ILobbyManagerCallback.html#CommunicationService_ILobbyManagerCallback_PlayerKicked_System_String_
+  commentId: M:CommunicationService.ILobbyManagerCallback.PlayerKicked(System.String)
+  fullName: CommunicationService.ILobbyManagerCallback.PlayerKicked(System.String)
+  nameWithType: ILobbyManagerCallback.PlayerKicked(String)
+- uid: CommunicationService.ILobbyManagerCallback.PlayerKicked*
+  name: PlayerKicked
+  href: api/CommunicationService.ILobbyManagerCallback.html#CommunicationService_ILobbyManagerCallback_PlayerKicked_
+  commentId: Overload:CommunicationService.ILobbyManagerCallback.PlayerKicked
+  isSpec: "True"
+  fullName: CommunicationService.ILobbyManagerCallback.PlayerKicked
+  nameWithType: ILobbyManagerCallback.PlayerKicked
+- uid: CommunicationService.ILobbyManagerCallback.PlayerLeft(System.Collections.Concurrent.ConcurrentDictionary{System.String,CommunicationService.ILobbyManagerCallback})
+  name: PlayerLeft(ConcurrentDictionary<String, ILobbyManagerCallback>)
+  href: api/CommunicationService.ILobbyManagerCallback.html#CommunicationService_ILobbyManagerCallback_PlayerLeft_System_Collections_Concurrent_ConcurrentDictionary_System_String_CommunicationService_ILobbyManagerCallback__
+  commentId: M:CommunicationService.ILobbyManagerCallback.PlayerLeft(System.Collections.Concurrent.ConcurrentDictionary{System.String,CommunicationService.ILobbyManagerCallback})
+  name.vb: PlayerLeft(ConcurrentDictionary(Of String, ILobbyManagerCallback))
+  fullName: CommunicationService.ILobbyManagerCallback.PlayerLeft(System.Collections.Concurrent.ConcurrentDictionary<System.String, CommunicationService.ILobbyManagerCallback>)
+  fullName.vb: CommunicationService.ILobbyManagerCallback.PlayerLeft(System.Collections.Concurrent.ConcurrentDictionary(Of System.String, CommunicationService.ILobbyManagerCallback))
+  nameWithType: ILobbyManagerCallback.PlayerLeft(ConcurrentDictionary<String, ILobbyManagerCallback>)
+  nameWithType.vb: ILobbyManagerCallback.PlayerLeft(ConcurrentDictionary(Of String, ILobbyManagerCallback))
+- uid: CommunicationService.ILobbyManagerCallback.PlayerLeft*
+  name: PlayerLeft
+  href: api/CommunicationService.ILobbyManagerCallback.html#CommunicationService_ILobbyManagerCallback_PlayerLeft_
+  commentId: Overload:CommunicationService.ILobbyManagerCallback.PlayerLeft
+  isSpec: "True"
+  fullName: CommunicationService.ILobbyManagerCallback.PlayerLeft
+  nameWithType: ILobbyManagerCallback.PlayerLeft
+- uid: CommunicationService.ILobbyValidator
+  name: ILobbyValidator
+  href: api/CommunicationService.ILobbyValidator.html
+  commentId: T:CommunicationService.ILobbyValidator
+  fullName: CommunicationService.ILobbyValidator
+  nameWithType: ILobbyValidator
+- uid: CommunicationService.ILobbyValidator.GetPlayersInLobby(System.Int32)
+  name: GetPlayersInLobby(Int32)
+  href: api/CommunicationService.ILobbyValidator.html#CommunicationService_ILobbyValidator_GetPlayersInLobby_System_Int32_
+  commentId: M:CommunicationService.ILobbyValidator.GetPlayersInLobby(System.Int32)
+  fullName: CommunicationService.ILobbyValidator.GetPlayersInLobby(System.Int32)
+  nameWithType: ILobbyValidator.GetPlayersInLobby(Int32)
+- uid: CommunicationService.ILobbyValidator.GetPlayersInLobby*
+  name: GetPlayersInLobby
+  href: api/CommunicationService.ILobbyValidator.html#CommunicationService_ILobbyValidator_GetPlayersInLobby_
+  commentId: Overload:CommunicationService.ILobbyValidator.GetPlayersInLobby
+  isSpec: "True"
+  fullName: CommunicationService.ILobbyValidator.GetPlayersInLobby
+  nameWithType: ILobbyValidator.GetPlayersInLobby
+- uid: CommunicationService.ILobbyValidator.IsLobbyExistent(System.Int32)
+  name: IsLobbyExistent(Int32)
+  href: api/CommunicationService.ILobbyValidator.html#CommunicationService_ILobbyValidator_IsLobbyExistent_System_Int32_
+  commentId: M:CommunicationService.ILobbyValidator.IsLobbyExistent(System.Int32)
+  fullName: CommunicationService.ILobbyValidator.IsLobbyExistent(System.Int32)
+  nameWithType: ILobbyValidator.IsLobbyExistent(Int32)
+- uid: CommunicationService.ILobbyValidator.IsLobbyExistent*
+  name: IsLobbyExistent
+  href: api/CommunicationService.ILobbyValidator.html#CommunicationService_ILobbyValidator_IsLobbyExistent_
+  commentId: Overload:CommunicationService.ILobbyValidator.IsLobbyExistent
+  isSpec: "True"
+  fullName: CommunicationService.ILobbyValidator.IsLobbyExistent
+  nameWithType: ILobbyValidator.IsLobbyExistent
+- uid: CommunicationService.ILobbyValidator.IsSpaceAvailable(System.Int32)
+  name: IsSpaceAvailable(Int32)
+  href: api/CommunicationService.ILobbyValidator.html#CommunicationService_ILobbyValidator_IsSpaceAvailable_System_Int32_
+  commentId: M:CommunicationService.ILobbyValidator.IsSpaceAvailable(System.Int32)
+  fullName: CommunicationService.ILobbyValidator.IsSpaceAvailable(System.Int32)
+  nameWithType: ILobbyValidator.IsSpaceAvailable(Int32)
+- uid: CommunicationService.ILobbyValidator.IsSpaceAvailable*
+  name: IsSpaceAvailable
+  href: api/CommunicationService.ILobbyValidator.html#CommunicationService_ILobbyValidator_IsSpaceAvailable_
+  commentId: Overload:CommunicationService.ILobbyValidator.IsSpaceAvailable
+  isSpec: "True"
+  fullName: CommunicationService.ILobbyValidator.IsSpaceAvailable
+  nameWithType: ILobbyValidator.IsSpaceAvailable
+- uid: CommunicationService.ILobbyValidator.IsUsernameInLobby(System.Int32,System.String)
+  name: IsUsernameInLobby(Int32, String)
+  href: api/CommunicationService.ILobbyValidator.html#CommunicationService_ILobbyValidator_IsUsernameInLobby_System_Int32_System_String_
+  commentId: M:CommunicationService.ILobbyValidator.IsUsernameInLobby(System.Int32,System.String)
+  fullName: CommunicationService.ILobbyValidator.IsUsernameInLobby(System.Int32, System.String)
+  nameWithType: ILobbyValidator.IsUsernameInLobby(Int32, String)
+- uid: CommunicationService.ILobbyValidator.IsUsernameInLobby*
+  name: IsUsernameInLobby
+  href: api/CommunicationService.ILobbyValidator.html#CommunicationService_ILobbyValidator_IsUsernameInLobby_
+  commentId: Overload:CommunicationService.ILobbyValidator.IsUsernameInLobby
+  isSpec: "True"
+  fullName: CommunicationService.ILobbyValidator.IsUsernameInLobby
+  nameWithType: ILobbyValidator.IsUsernameInLobby
 - uid: CommunicationService.IMatchManager
   name: IMatchManager
   href: api/CommunicationService.IMatchManager.html
@@ -501,254 +872,6 @@ references:
   isSpec: "True"
   fullName: CommunicationService.IMatchManagerCallback.UpdateTableCards
   nameWithType: IMatchManagerCallback.UpdateTableCards
-- uid: CommunicationService.IPartyManager
-  name: IPartyManager
-  href: api/CommunicationService.IPartyManager.html
-  commentId: T:CommunicationService.IPartyManager
-  fullName: CommunicationService.IPartyManager
-  nameWithType: IPartyManager
-- uid: CommunicationService.IPartyManager.NotifyCloseParty(System.Int32,System.String,System.String)
-  name: NotifyCloseParty(Int32, String, String)
-  href: api/CommunicationService.IPartyManager.html#CommunicationService_IPartyManager_NotifyCloseParty_System_Int32_System_String_System_String_
-  commentId: M:CommunicationService.IPartyManager.NotifyCloseParty(System.Int32,System.String,System.String)
-  fullName: CommunicationService.IPartyManager.NotifyCloseParty(System.Int32, System.String, System.String)
-  nameWithType: IPartyManager.NotifyCloseParty(Int32, String, String)
-- uid: CommunicationService.IPartyManager.NotifyCloseParty*
-  name: NotifyCloseParty
-  href: api/CommunicationService.IPartyManager.html#CommunicationService_IPartyManager_NotifyCloseParty_
-  commentId: Overload:CommunicationService.IPartyManager.NotifyCloseParty
-  isSpec: "True"
-  fullName: CommunicationService.IPartyManager.NotifyCloseParty
-  nameWithType: IPartyManager.NotifyCloseParty
-- uid: CommunicationService.IPartyManager.NotifyCreateParty(System.Int32,System.String)
-  name: NotifyCreateParty(Int32, String)
-  href: api/CommunicationService.IPartyManager.html#CommunicationService_IPartyManager_NotifyCreateParty_System_Int32_System_String_
-  commentId: M:CommunicationService.IPartyManager.NotifyCreateParty(System.Int32,System.String)
-  fullName: CommunicationService.IPartyManager.NotifyCreateParty(System.Int32, System.String)
-  nameWithType: IPartyManager.NotifyCreateParty(Int32, String)
-- uid: CommunicationService.IPartyManager.NotifyCreateParty*
-  name: NotifyCreateParty
-  href: api/CommunicationService.IPartyManager.html#CommunicationService_IPartyManager_NotifyCreateParty_
-  commentId: Overload:CommunicationService.IPartyManager.NotifyCreateParty
-  isSpec: "True"
-  fullName: CommunicationService.IPartyManager.NotifyCreateParty
-  nameWithType: IPartyManager.NotifyCreateParty
-- uid: CommunicationService.IPartyManager.NotifyJoinParty(System.Int32,System.String)
-  name: NotifyJoinParty(Int32, String)
-  href: api/CommunicationService.IPartyManager.html#CommunicationService_IPartyManager_NotifyJoinParty_System_Int32_System_String_
-  commentId: M:CommunicationService.IPartyManager.NotifyJoinParty(System.Int32,System.String)
-  fullName: CommunicationService.IPartyManager.NotifyJoinParty(System.Int32, System.String)
-  nameWithType: IPartyManager.NotifyJoinParty(Int32, String)
-- uid: CommunicationService.IPartyManager.NotifyJoinParty*
-  name: NotifyJoinParty
-  href: api/CommunicationService.IPartyManager.html#CommunicationService_IPartyManager_NotifyJoinParty_
-  commentId: Overload:CommunicationService.IPartyManager.NotifyJoinParty
-  isSpec: "True"
-  fullName: CommunicationService.IPartyManager.NotifyJoinParty
-  nameWithType: IPartyManager.NotifyJoinParty
-- uid: CommunicationService.IPartyManager.NotifyKickPlayer(System.Int32,System.String,System.String)
-  name: NotifyKickPlayer(Int32, String, String)
-  href: api/CommunicationService.IPartyManager.html#CommunicationService_IPartyManager_NotifyKickPlayer_System_Int32_System_String_System_String_
-  commentId: M:CommunicationService.IPartyManager.NotifyKickPlayer(System.Int32,System.String,System.String)
-  fullName: CommunicationService.IPartyManager.NotifyKickPlayer(System.Int32, System.String, System.String)
-  nameWithType: IPartyManager.NotifyKickPlayer(Int32, String, String)
-- uid: CommunicationService.IPartyManager.NotifyKickPlayer*
-  name: NotifyKickPlayer
-  href: api/CommunicationService.IPartyManager.html#CommunicationService_IPartyManager_NotifyKickPlayer_
-  commentId: Overload:CommunicationService.IPartyManager.NotifyKickPlayer
-  isSpec: "True"
-  fullName: CommunicationService.IPartyManager.NotifyKickPlayer
-  nameWithType: IPartyManager.NotifyKickPlayer
-- uid: CommunicationService.IPartyManager.NotifyLeaveParty(System.Int32,System.String)
-  name: NotifyLeaveParty(Int32, String)
-  href: api/CommunicationService.IPartyManager.html#CommunicationService_IPartyManager_NotifyLeaveParty_System_Int32_System_String_
-  commentId: M:CommunicationService.IPartyManager.NotifyLeaveParty(System.Int32,System.String)
-  fullName: CommunicationService.IPartyManager.NotifyLeaveParty(System.Int32, System.String)
-  nameWithType: IPartyManager.NotifyLeaveParty(Int32, String)
-- uid: CommunicationService.IPartyManager.NotifyLeaveParty*
-  name: NotifyLeaveParty
-  href: api/CommunicationService.IPartyManager.html#CommunicationService_IPartyManager_NotifyLeaveParty_
-  commentId: Overload:CommunicationService.IPartyManager.NotifyLeaveParty
-  isSpec: "True"
-  fullName: CommunicationService.IPartyManager.NotifyLeaveParty
-  nameWithType: IPartyManager.NotifyLeaveParty
-- uid: CommunicationService.IPartyManager.NotifySendMessage(System.Int32,System.String)
-  name: NotifySendMessage(Int32, String)
-  href: api/CommunicationService.IPartyManager.html#CommunicationService_IPartyManager_NotifySendMessage_System_Int32_System_String_
-  commentId: M:CommunicationService.IPartyManager.NotifySendMessage(System.Int32,System.String)
-  fullName: CommunicationService.IPartyManager.NotifySendMessage(System.Int32, System.String)
-  nameWithType: IPartyManager.NotifySendMessage(Int32, String)
-- uid: CommunicationService.IPartyManager.NotifySendMessage*
-  name: NotifySendMessage
-  href: api/CommunicationService.IPartyManager.html#CommunicationService_IPartyManager_NotifySendMessage_
-  commentId: Overload:CommunicationService.IPartyManager.NotifySendMessage
-  isSpec: "True"
-  fullName: CommunicationService.IPartyManager.NotifySendMessage
-  nameWithType: IPartyManager.NotifySendMessage
-- uid: CommunicationService.IPartyManager.NotifyStartGame(System.Int32)
-  name: NotifyStartGame(Int32)
-  href: api/CommunicationService.IPartyManager.html#CommunicationService_IPartyManager_NotifyStartGame_System_Int32_
-  commentId: M:CommunicationService.IPartyManager.NotifyStartGame(System.Int32)
-  fullName: CommunicationService.IPartyManager.NotifyStartGame(System.Int32)
-  nameWithType: IPartyManager.NotifyStartGame(Int32)
-- uid: CommunicationService.IPartyManager.NotifyStartGame*
-  name: NotifyStartGame
-  href: api/CommunicationService.IPartyManager.html#CommunicationService_IPartyManager_NotifyStartGame_
-  commentId: Overload:CommunicationService.IPartyManager.NotifyStartGame
-  isSpec: "True"
-  fullName: CommunicationService.IPartyManager.NotifyStartGame
-  nameWithType: IPartyManager.NotifyStartGame
-- uid: CommunicationService.IPartyManagerCallback
-  name: IPartyManagerCallback
-  href: api/CommunicationService.IPartyManagerCallback.html
-  commentId: T:CommunicationService.IPartyManagerCallback
-  fullName: CommunicationService.IPartyManagerCallback
-  nameWithType: IPartyManagerCallback
-- uid: CommunicationService.IPartyManagerCallback.GameStarted
-  name: GameStarted()
-  href: api/CommunicationService.IPartyManagerCallback.html#CommunicationService_IPartyManagerCallback_GameStarted
-  commentId: M:CommunicationService.IPartyManagerCallback.GameStarted
-  fullName: CommunicationService.IPartyManagerCallback.GameStarted()
-  nameWithType: IPartyManagerCallback.GameStarted()
-- uid: CommunicationService.IPartyManagerCallback.GameStarted*
-  name: GameStarted
-  href: api/CommunicationService.IPartyManagerCallback.html#CommunicationService_IPartyManagerCallback_GameStarted_
-  commentId: Overload:CommunicationService.IPartyManagerCallback.GameStarted
-  isSpec: "True"
-  fullName: CommunicationService.IPartyManagerCallback.GameStarted
-  nameWithType: IPartyManagerCallback.GameStarted
-- uid: CommunicationService.IPartyManagerCallback.MessageReceived(System.String)
-  name: MessageReceived(String)
-  href: api/CommunicationService.IPartyManagerCallback.html#CommunicationService_IPartyManagerCallback_MessageReceived_System_String_
-  commentId: M:CommunicationService.IPartyManagerCallback.MessageReceived(System.String)
-  fullName: CommunicationService.IPartyManagerCallback.MessageReceived(System.String)
-  nameWithType: IPartyManagerCallback.MessageReceived(String)
-- uid: CommunicationService.IPartyManagerCallback.MessageReceived*
-  name: MessageReceived
-  href: api/CommunicationService.IPartyManagerCallback.html#CommunicationService_IPartyManagerCallback_MessageReceived_
-  commentId: Overload:CommunicationService.IPartyManagerCallback.MessageReceived
-  isSpec: "True"
-  fullName: CommunicationService.IPartyManagerCallback.MessageReceived
-  nameWithType: IPartyManagerCallback.MessageReceived
-- uid: CommunicationService.IPartyManagerCallback.PartyCreated(System.Collections.Concurrent.ConcurrentDictionary{System.String,CommunicationService.IPartyManagerCallback})
-  name: PartyCreated(ConcurrentDictionary<String, IPartyManagerCallback>)
-  href: api/CommunicationService.IPartyManagerCallback.html#CommunicationService_IPartyManagerCallback_PartyCreated_System_Collections_Concurrent_ConcurrentDictionary_System_String_CommunicationService_IPartyManagerCallback__
-  commentId: M:CommunicationService.IPartyManagerCallback.PartyCreated(System.Collections.Concurrent.ConcurrentDictionary{System.String,CommunicationService.IPartyManagerCallback})
-  name.vb: PartyCreated(ConcurrentDictionary(Of String, IPartyManagerCallback))
-  fullName: CommunicationService.IPartyManagerCallback.PartyCreated(System.Collections.Concurrent.ConcurrentDictionary<System.String, CommunicationService.IPartyManagerCallback>)
-  fullName.vb: CommunicationService.IPartyManagerCallback.PartyCreated(System.Collections.Concurrent.ConcurrentDictionary(Of System.String, CommunicationService.IPartyManagerCallback))
-  nameWithType: IPartyManagerCallback.PartyCreated(ConcurrentDictionary<String, IPartyManagerCallback>)
-  nameWithType.vb: IPartyManagerCallback.PartyCreated(ConcurrentDictionary(Of String, IPartyManagerCallback))
-- uid: CommunicationService.IPartyManagerCallback.PartyCreated*
-  name: PartyCreated
-  href: api/CommunicationService.IPartyManagerCallback.html#CommunicationService_IPartyManagerCallback_PartyCreated_
-  commentId: Overload:CommunicationService.IPartyManagerCallback.PartyCreated
-  isSpec: "True"
-  fullName: CommunicationService.IPartyManagerCallback.PartyCreated
-  nameWithType: IPartyManagerCallback.PartyCreated
-- uid: CommunicationService.IPartyManagerCallback.PlayerJoined(System.Collections.Concurrent.ConcurrentDictionary{System.String,CommunicationService.IPartyManagerCallback})
-  name: PlayerJoined(ConcurrentDictionary<String, IPartyManagerCallback>)
-  href: api/CommunicationService.IPartyManagerCallback.html#CommunicationService_IPartyManagerCallback_PlayerJoined_System_Collections_Concurrent_ConcurrentDictionary_System_String_CommunicationService_IPartyManagerCallback__
-  commentId: M:CommunicationService.IPartyManagerCallback.PlayerJoined(System.Collections.Concurrent.ConcurrentDictionary{System.String,CommunicationService.IPartyManagerCallback})
-  name.vb: PlayerJoined(ConcurrentDictionary(Of String, IPartyManagerCallback))
-  fullName: CommunicationService.IPartyManagerCallback.PlayerJoined(System.Collections.Concurrent.ConcurrentDictionary<System.String, CommunicationService.IPartyManagerCallback>)
-  fullName.vb: CommunicationService.IPartyManagerCallback.PlayerJoined(System.Collections.Concurrent.ConcurrentDictionary(Of System.String, CommunicationService.IPartyManagerCallback))
-  nameWithType: IPartyManagerCallback.PlayerJoined(ConcurrentDictionary<String, IPartyManagerCallback>)
-  nameWithType.vb: IPartyManagerCallback.PlayerJoined(ConcurrentDictionary(Of String, IPartyManagerCallback))
-- uid: CommunicationService.IPartyManagerCallback.PlayerJoined*
-  name: PlayerJoined
-  href: api/CommunicationService.IPartyManagerCallback.html#CommunicationService_IPartyManagerCallback_PlayerJoined_
-  commentId: Overload:CommunicationService.IPartyManagerCallback.PlayerJoined
-  isSpec: "True"
-  fullName: CommunicationService.IPartyManagerCallback.PlayerJoined
-  nameWithType: IPartyManagerCallback.PlayerJoined
-- uid: CommunicationService.IPartyManagerCallback.PlayerKicked(System.String)
-  name: PlayerKicked(String)
-  href: api/CommunicationService.IPartyManagerCallback.html#CommunicationService_IPartyManagerCallback_PlayerKicked_System_String_
-  commentId: M:CommunicationService.IPartyManagerCallback.PlayerKicked(System.String)
-  fullName: CommunicationService.IPartyManagerCallback.PlayerKicked(System.String)
-  nameWithType: IPartyManagerCallback.PlayerKicked(String)
-- uid: CommunicationService.IPartyManagerCallback.PlayerKicked*
-  name: PlayerKicked
-  href: api/CommunicationService.IPartyManagerCallback.html#CommunicationService_IPartyManagerCallback_PlayerKicked_
-  commentId: Overload:CommunicationService.IPartyManagerCallback.PlayerKicked
-  isSpec: "True"
-  fullName: CommunicationService.IPartyManagerCallback.PlayerKicked
-  nameWithType: IPartyManagerCallback.PlayerKicked
-- uid: CommunicationService.IPartyManagerCallback.PlayerLeft(System.Collections.Concurrent.ConcurrentDictionary{System.String,CommunicationService.IPartyManagerCallback})
-  name: PlayerLeft(ConcurrentDictionary<String, IPartyManagerCallback>)
-  href: api/CommunicationService.IPartyManagerCallback.html#CommunicationService_IPartyManagerCallback_PlayerLeft_System_Collections_Concurrent_ConcurrentDictionary_System_String_CommunicationService_IPartyManagerCallback__
-  commentId: M:CommunicationService.IPartyManagerCallback.PlayerLeft(System.Collections.Concurrent.ConcurrentDictionary{System.String,CommunicationService.IPartyManagerCallback})
-  name.vb: PlayerLeft(ConcurrentDictionary(Of String, IPartyManagerCallback))
-  fullName: CommunicationService.IPartyManagerCallback.PlayerLeft(System.Collections.Concurrent.ConcurrentDictionary<System.String, CommunicationService.IPartyManagerCallback>)
-  fullName.vb: CommunicationService.IPartyManagerCallback.PlayerLeft(System.Collections.Concurrent.ConcurrentDictionary(Of System.String, CommunicationService.IPartyManagerCallback))
-  nameWithType: IPartyManagerCallback.PlayerLeft(ConcurrentDictionary<String, IPartyManagerCallback>)
-  nameWithType.vb: IPartyManagerCallback.PlayerLeft(ConcurrentDictionary(Of String, IPartyManagerCallback))
-- uid: CommunicationService.IPartyManagerCallback.PlayerLeft*
-  name: PlayerLeft
-  href: api/CommunicationService.IPartyManagerCallback.html#CommunicationService_IPartyManagerCallback_PlayerLeft_
-  commentId: Overload:CommunicationService.IPartyManagerCallback.PlayerLeft
-  isSpec: "True"
-  fullName: CommunicationService.IPartyManagerCallback.PlayerLeft
-  nameWithType: IPartyManagerCallback.PlayerLeft
-- uid: CommunicationService.IPartyValidator
-  name: IPartyValidator
-  href: api/CommunicationService.IPartyValidator.html
-  commentId: T:CommunicationService.IPartyValidator
-  fullName: CommunicationService.IPartyValidator
-  nameWithType: IPartyValidator
-- uid: CommunicationService.IPartyValidator.GetPlayersInParty(System.Int32)
-  name: GetPlayersInParty(Int32)
-  href: api/CommunicationService.IPartyValidator.html#CommunicationService_IPartyValidator_GetPlayersInParty_System_Int32_
-  commentId: M:CommunicationService.IPartyValidator.GetPlayersInParty(System.Int32)
-  fullName: CommunicationService.IPartyValidator.GetPlayersInParty(System.Int32)
-  nameWithType: IPartyValidator.GetPlayersInParty(Int32)
-- uid: CommunicationService.IPartyValidator.GetPlayersInParty*
-  name: GetPlayersInParty
-  href: api/CommunicationService.IPartyValidator.html#CommunicationService_IPartyValidator_GetPlayersInParty_
-  commentId: Overload:CommunicationService.IPartyValidator.GetPlayersInParty
-  isSpec: "True"
-  fullName: CommunicationService.IPartyValidator.GetPlayersInParty
-  nameWithType: IPartyValidator.GetPlayersInParty
-- uid: CommunicationService.IPartyValidator.IsPartyExistent(System.Int32)
-  name: IsPartyExistent(Int32)
-  href: api/CommunicationService.IPartyValidator.html#CommunicationService_IPartyValidator_IsPartyExistent_System_Int32_
-  commentId: M:CommunicationService.IPartyValidator.IsPartyExistent(System.Int32)
-  fullName: CommunicationService.IPartyValidator.IsPartyExistent(System.Int32)
-  nameWithType: IPartyValidator.IsPartyExistent(Int32)
-- uid: CommunicationService.IPartyValidator.IsPartyExistent*
-  name: IsPartyExistent
-  href: api/CommunicationService.IPartyValidator.html#CommunicationService_IPartyValidator_IsPartyExistent_
-  commentId: Overload:CommunicationService.IPartyValidator.IsPartyExistent
-  isSpec: "True"
-  fullName: CommunicationService.IPartyValidator.IsPartyExistent
-  nameWithType: IPartyValidator.IsPartyExistent
-- uid: CommunicationService.IPartyValidator.IsSpaceAvailable(System.Int32)
-  name: IsSpaceAvailable(Int32)
-  href: api/CommunicationService.IPartyValidator.html#CommunicationService_IPartyValidator_IsSpaceAvailable_System_Int32_
-  commentId: M:CommunicationService.IPartyValidator.IsSpaceAvailable(System.Int32)
-  fullName: CommunicationService.IPartyValidator.IsSpaceAvailable(System.Int32)
-  nameWithType: IPartyValidator.IsSpaceAvailable(Int32)
-- uid: CommunicationService.IPartyValidator.IsSpaceAvailable*
-  name: IsSpaceAvailable
-  href: api/CommunicationService.IPartyValidator.html#CommunicationService_IPartyValidator_IsSpaceAvailable_
-  commentId: Overload:CommunicationService.IPartyValidator.IsSpaceAvailable
-  isSpec: "True"
-  fullName: CommunicationService.IPartyValidator.IsSpaceAvailable
-  nameWithType: IPartyValidator.IsSpaceAvailable
-- uid: CommunicationService.IPartyValidator.IsUsernameInParty(System.Int32,System.String)
-  name: IsUsernameInParty(Int32, String)
-  href: api/CommunicationService.IPartyValidator.html#CommunicationService_IPartyValidator_IsUsernameInParty_System_Int32_System_String_
-  commentId: M:CommunicationService.IPartyValidator.IsUsernameInParty(System.Int32,System.String)
-  fullName: CommunicationService.IPartyValidator.IsUsernameInParty(System.Int32, System.String)
-  nameWithType: IPartyValidator.IsUsernameInParty(Int32, String)
-- uid: CommunicationService.IPartyValidator.IsUsernameInParty*
-  name: IsUsernameInParty
-  href: api/CommunicationService.IPartyValidator.html#CommunicationService_IPartyValidator_IsUsernameInParty_
-  commentId: Overload:CommunicationService.IPartyValidator.IsUsernameInParty
-  isSpec: "True"
-  fullName: CommunicationService.IPartyValidator.IsUsernameInParty
-  nameWithType: IPartyValidator.IsUsernameInParty
 - uid: CommunicationService.IUserConnectionHandler
   name: IUserConnectionHandler
   href: api/CommunicationService.IUserConnectionHandler.html
@@ -813,19 +936,6 @@ references:
   commentId: T:CommunicationService.IUsersManager
   fullName: CommunicationService.IUsersManager
   nameWithType: IUsersManager
-- uid: CommunicationService.IUsersManager.AcceptFriendRequest(CommunicationService.FriendRequestDTO)
-  name: AcceptFriendRequest(FriendRequestDTO)
-  href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_AcceptFriendRequest_CommunicationService_FriendRequestDTO_
-  commentId: M:CommunicationService.IUsersManager.AcceptFriendRequest(CommunicationService.FriendRequestDTO)
-  fullName: CommunicationService.IUsersManager.AcceptFriendRequest(CommunicationService.FriendRequestDTO)
-  nameWithType: IUsersManager.AcceptFriendRequest(FriendRequestDTO)
-- uid: CommunicationService.IUsersManager.AcceptFriendRequest*
-  name: AcceptFriendRequest
-  href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_AcceptFriendRequest_
-  commentId: Overload:CommunicationService.IUsersManager.AcceptFriendRequest
-  isSpec: "True"
-  fullName: CommunicationService.IUsersManager.AcceptFriendRequest
-  nameWithType: IUsersManager.AcceptFriendRequest
 - uid: CommunicationService.IUsersManager.AddUserToDatabase(CommunicationService.UserDTO)
   name: AddUserToDatabase(UserDTO)
   href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_AddUserToDatabase_CommunicationService_UserDTO_
@@ -839,32 +949,6 @@ references:
   isSpec: "True"
   fullName: CommunicationService.IUsersManager.AddUserToDatabase
   nameWithType: IUsersManager.AddUserToDatabase
-- uid: CommunicationService.IUsersManager.BlockUserByUsername(System.String,System.String)
-  name: BlockUserByUsername(String, String)
-  href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_BlockUserByUsername_System_String_System_String_
-  commentId: M:CommunicationService.IUsersManager.BlockUserByUsername(System.String,System.String)
-  fullName: CommunicationService.IUsersManager.BlockUserByUsername(System.String, System.String)
-  nameWithType: IUsersManager.BlockUserByUsername(String, String)
-- uid: CommunicationService.IUsersManager.BlockUserByUsername*
-  name: BlockUserByUsername
-  href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_BlockUserByUsername_
-  commentId: Overload:CommunicationService.IUsersManager.BlockUserByUsername
-  isSpec: "True"
-  fullName: CommunicationService.IUsersManager.BlockUserByUsername
-  nameWithType: IUsersManager.BlockUserByUsername
-- uid: CommunicationService.IUsersManager.DeleteFriendshipById(System.Int32)
-  name: DeleteFriendshipById(Int32)
-  href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_DeleteFriendshipById_System_Int32_
-  commentId: M:CommunicationService.IUsersManager.DeleteFriendshipById(System.Int32)
-  fullName: CommunicationService.IUsersManager.DeleteFriendshipById(System.Int32)
-  nameWithType: IUsersManager.DeleteFriendshipById(Int32)
-- uid: CommunicationService.IUsersManager.DeleteFriendshipById*
-  name: DeleteFriendshipById
-  href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_DeleteFriendshipById_
-  commentId: Overload:CommunicationService.IUsersManager.DeleteFriendshipById
-  isSpec: "True"
-  fullName: CommunicationService.IUsersManager.DeleteFriendshipById
-  nameWithType: IUsersManager.DeleteFriendshipById
 - uid: CommunicationService.IUsersManager.DeleteUserFromDatabaseByUsername(System.String)
   name: DeleteUserFromDatabaseByUsername(String)
   href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_DeleteUserFromDatabaseByUsername_System_String_
@@ -878,58 +962,6 @@ references:
   isSpec: "True"
   fullName: CommunicationService.IUsersManager.DeleteUserFromDatabaseByUsername
   nameWithType: IUsersManager.DeleteUserFromDatabaseByUsername
-- uid: CommunicationService.IUsersManager.GetBlockedUsersListByUserId(System.Int32)
-  name: GetBlockedUsersListByUserId(Int32)
-  href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_GetBlockedUsersListByUserId_System_Int32_
-  commentId: M:CommunicationService.IUsersManager.GetBlockedUsersListByUserId(System.Int32)
-  fullName: CommunicationService.IUsersManager.GetBlockedUsersListByUserId(System.Int32)
-  nameWithType: IUsersManager.GetBlockedUsersListByUserId(Int32)
-- uid: CommunicationService.IUsersManager.GetBlockedUsersListByUserId*
-  name: GetBlockedUsersListByUserId
-  href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_GetBlockedUsersListByUserId_
-  commentId: Overload:CommunicationService.IUsersManager.GetBlockedUsersListByUserId
-  isSpec: "True"
-  fullName: CommunicationService.IUsersManager.GetBlockedUsersListByUserId
-  nameWithType: IUsersManager.GetBlockedUsersListByUserId
-- uid: CommunicationService.IUsersManager.GetFriendRequestsList(System.Int32)
-  name: GetFriendRequestsList(Int32)
-  href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_GetFriendRequestsList_System_Int32_
-  commentId: M:CommunicationService.IUsersManager.GetFriendRequestsList(System.Int32)
-  fullName: CommunicationService.IUsersManager.GetFriendRequestsList(System.Int32)
-  nameWithType: IUsersManager.GetFriendRequestsList(Int32)
-- uid: CommunicationService.IUsersManager.GetFriendRequestsList*
-  name: GetFriendRequestsList
-  href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_GetFriendRequestsList_
-  commentId: Overload:CommunicationService.IUsersManager.GetFriendRequestsList
-  isSpec: "True"
-  fullName: CommunicationService.IUsersManager.GetFriendRequestsList
-  nameWithType: IUsersManager.GetFriendRequestsList
-- uid: CommunicationService.IUsersManager.GetFriendsList(System.Int32)
-  name: GetFriendsList(Int32)
-  href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_GetFriendsList_System_Int32_
-  commentId: M:CommunicationService.IUsersManager.GetFriendsList(System.Int32)
-  fullName: CommunicationService.IUsersManager.GetFriendsList(System.Int32)
-  nameWithType: IUsersManager.GetFriendsList(Int32)
-- uid: CommunicationService.IUsersManager.GetFriendsList*
-  name: GetFriendsList
-  href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_GetFriendsList_
-  commentId: Overload:CommunicationService.IUsersManager.GetFriendsList
-  isSpec: "True"
-  fullName: CommunicationService.IUsersManager.GetFriendsList
-  nameWithType: IUsersManager.GetFriendsList
-- uid: CommunicationService.IUsersManager.GetOnlineFriends(System.Int32)
-  name: GetOnlineFriends(Int32)
-  href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_GetOnlineFriends_System_Int32_
-  commentId: M:CommunicationService.IUsersManager.GetOnlineFriends(System.Int32)
-  fullName: CommunicationService.IUsersManager.GetOnlineFriends(System.Int32)
-  nameWithType: IUsersManager.GetOnlineFriends(Int32)
-- uid: CommunicationService.IUsersManager.GetOnlineFriends*
-  name: GetOnlineFriends
-  href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_GetOnlineFriends_
-  commentId: Overload:CommunicationService.IUsersManager.GetOnlineFriends
-  isSpec: "True"
-  fullName: CommunicationService.IUsersManager.GetOnlineFriends
-  nameWithType: IUsersManager.GetOnlineFriends
 - uid: CommunicationService.IUsersManager.GetTopTenWinners
   name: GetTopTenWinners()
   href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_GetTopTenWinners
@@ -956,19 +988,6 @@ references:
   isSpec: "True"
   fullName: CommunicationService.IUsersManager.GetUserInfoByUsername
   nameWithType: IUsersManager.GetUserInfoByUsername
-- uid: CommunicationService.IUsersManager.IsAlreadyFriend(System.String,System.String)
-  name: IsAlreadyFriend(String, String)
-  href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_IsAlreadyFriend_System_String_System_String_
-  commentId: M:CommunicationService.IUsersManager.IsAlreadyFriend(System.String,System.String)
-  fullName: CommunicationService.IUsersManager.IsAlreadyFriend(System.String, System.String)
-  nameWithType: IUsersManager.IsAlreadyFriend(String, String)
-- uid: CommunicationService.IUsersManager.IsAlreadyFriend*
-  name: IsAlreadyFriend
-  href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_IsAlreadyFriend_
-  commentId: Overload:CommunicationService.IUsersManager.IsAlreadyFriend
-  isSpec: "True"
-  fullName: CommunicationService.IUsersManager.IsAlreadyFriend
-  nameWithType: IUsersManager.IsAlreadyFriend
 - uid: CommunicationService.IUsersManager.IsEmailTaken(System.String)
   name: IsEmailTaken(String)
   href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_IsEmailTaken_System_String_
@@ -982,19 +1001,6 @@ references:
   isSpec: "True"
   fullName: CommunicationService.IUsersManager.IsEmailTaken
   nameWithType: IUsersManager.IsEmailTaken
-- uid: CommunicationService.IUsersManager.IsFriendRequestAlreadyExistent(System.String,System.String)
-  name: IsFriendRequestAlreadyExistent(String, String)
-  href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_IsFriendRequestAlreadyExistent_System_String_System_String_
-  commentId: M:CommunicationService.IUsersManager.IsFriendRequestAlreadyExistent(System.String,System.String)
-  fullName: CommunicationService.IUsersManager.IsFriendRequestAlreadyExistent(System.String, System.String)
-  nameWithType: IUsersManager.IsFriendRequestAlreadyExistent(String, String)
-- uid: CommunicationService.IUsersManager.IsFriendRequestAlreadyExistent*
-  name: IsFriendRequestAlreadyExistent
-  href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_IsFriendRequestAlreadyExistent_
-  commentId: Overload:CommunicationService.IUsersManager.IsFriendRequestAlreadyExistent
-  isSpec: "True"
-  fullName: CommunicationService.IUsersManager.IsFriendRequestAlreadyExistent
-  nameWithType: IUsersManager.IsFriendRequestAlreadyExistent
 - uid: CommunicationService.IUsersManager.IsLoginValid(System.String,System.String)
   name: IsLoginValid(String, String)
   href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_IsLoginValid_System_String_System_String_
@@ -1034,19 +1040,6 @@ references:
   isSpec: "True"
   fullName: CommunicationService.IUsersManager.IsUserBanned
   nameWithType: IUsersManager.IsUserBanned
-- uid: CommunicationService.IUsersManager.IsUserBlockedByUsername(System.String,System.String)
-  name: IsUserBlockedByUsername(String, String)
-  href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_IsUserBlockedByUsername_System_String_System_String_
-  commentId: M:CommunicationService.IUsersManager.IsUserBlockedByUsername(System.String,System.String)
-  fullName: CommunicationService.IUsersManager.IsUserBlockedByUsername(System.String, System.String)
-  nameWithType: IUsersManager.IsUserBlockedByUsername(String, String)
-- uid: CommunicationService.IUsersManager.IsUserBlockedByUsername*
-  name: IsUserBlockedByUsername
-  href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_IsUserBlockedByUsername_
-  commentId: Overload:CommunicationService.IUsersManager.IsUserBlockedByUsername
-  isSpec: "True"
-  fullName: CommunicationService.IUsersManager.IsUserBlockedByUsername
-  nameWithType: IUsersManager.IsUserBlockedByUsername
 - uid: CommunicationService.IUsersManager.IsUsernameTaken(System.String)
   name: IsUsernameTaken(String)
   href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_IsUsernameTaken_System_String_
@@ -1073,19 +1066,6 @@ references:
   isSpec: "True"
   fullName: CommunicationService.IUsersManager.ModifyPasswordByEmail
   nameWithType: IUsersManager.ModifyPasswordByEmail
-- uid: CommunicationService.IUsersManager.RejectFriendRequest(System.Int32)
-  name: RejectFriendRequest(Int32)
-  href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_RejectFriendRequest_System_Int32_
-  commentId: M:CommunicationService.IUsersManager.RejectFriendRequest(System.Int32)
-  fullName: CommunicationService.IUsersManager.RejectFriendRequest(System.Int32)
-  nameWithType: IUsersManager.RejectFriendRequest(Int32)
-- uid: CommunicationService.IUsersManager.RejectFriendRequest*
-  name: RejectFriendRequest
-  href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_RejectFriendRequest_
-  commentId: Overload:CommunicationService.IUsersManager.RejectFriendRequest
-  isSpec: "True"
-  fullName: CommunicationService.IUsersManager.RejectFriendRequest
-  nameWithType: IUsersManager.RejectFriendRequest
 - uid: CommunicationService.IUsersManager.SendConfirmationCode(System.String,System.String)
   name: SendConfirmationCode(String, String)
   href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_SendConfirmationCode_System_String_System_String_
@@ -1099,32 +1079,6 @@ references:
   isSpec: "True"
   fullName: CommunicationService.IUsersManager.SendConfirmationCode
   nameWithType: IUsersManager.SendConfirmationCode
-- uid: CommunicationService.IUsersManager.SendFriendRequest(System.String,System.String)
-  name: SendFriendRequest(String, String)
-  href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_SendFriendRequest_System_String_System_String_
-  commentId: M:CommunicationService.IUsersManager.SendFriendRequest(System.String,System.String)
-  fullName: CommunicationService.IUsersManager.SendFriendRequest(System.String, System.String)
-  nameWithType: IUsersManager.SendFriendRequest(String, String)
-- uid: CommunicationService.IUsersManager.SendFriendRequest*
-  name: SendFriendRequest
-  href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_SendFriendRequest_
-  commentId: Overload:CommunicationService.IUsersManager.SendFriendRequest
-  isSpec: "True"
-  fullName: CommunicationService.IUsersManager.SendFriendRequest
-  nameWithType: IUsersManager.SendFriendRequest
-- uid: CommunicationService.IUsersManager.UnblockUserByBlockId(System.Int32)
-  name: UnblockUserByBlockId(Int32)
-  href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_UnblockUserByBlockId_System_Int32_
-  commentId: M:CommunicationService.IUsersManager.UnblockUserByBlockId(System.Int32)
-  fullName: CommunicationService.IUsersManager.UnblockUserByBlockId(System.Int32)
-  nameWithType: IUsersManager.UnblockUserByBlockId(Int32)
-- uid: CommunicationService.IUsersManager.UnblockUserByBlockId*
-  name: UnblockUserByBlockId
-  href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_UnblockUserByBlockId_
-  commentId: Overload:CommunicationService.IUsersManager.UnblockUserByBlockId
-  isSpec: "True"
-  fullName: CommunicationService.IUsersManager.UnblockUserByBlockId
-  nameWithType: IUsersManager.UnblockUserByBlockId
 - uid: CommunicationService.IUsersManager.UpdateProfilePictureByUserId(System.Int32,System.Int32)
   name: UpdateProfilePictureByUserId(Int32, Int32)
   href: api/CommunicationService.IUsersManager.html#CommunicationService_IUsersManager_UpdateProfilePictureByUserId_System_Int32_System_Int32_
@@ -1378,19 +1332,19 @@ references:
   isSpec: "True"
   fullName: CommunicationService.ServiceImplementation.GetPlayerList
   nameWithType: ServiceImplementation.GetPlayerList
-- uid: CommunicationService.ServiceImplementation.GetPlayersInParty(System.Int32)
-  name: GetPlayersInParty(Int32)
-  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_GetPlayersInParty_System_Int32_
-  commentId: M:CommunicationService.ServiceImplementation.GetPlayersInParty(System.Int32)
-  fullName: CommunicationService.ServiceImplementation.GetPlayersInParty(System.Int32)
-  nameWithType: ServiceImplementation.GetPlayersInParty(Int32)
-- uid: CommunicationService.ServiceImplementation.GetPlayersInParty*
-  name: GetPlayersInParty
-  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_GetPlayersInParty_
-  commentId: Overload:CommunicationService.ServiceImplementation.GetPlayersInParty
+- uid: CommunicationService.ServiceImplementation.GetPlayersInLobby(System.Int32)
+  name: GetPlayersInLobby(Int32)
+  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_GetPlayersInLobby_System_Int32_
+  commentId: M:CommunicationService.ServiceImplementation.GetPlayersInLobby(System.Int32)
+  fullName: CommunicationService.ServiceImplementation.GetPlayersInLobby(System.Int32)
+  nameWithType: ServiceImplementation.GetPlayersInLobby(Int32)
+- uid: CommunicationService.ServiceImplementation.GetPlayersInLobby*
+  name: GetPlayersInLobby
+  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_GetPlayersInLobby_
+  commentId: Overload:CommunicationService.ServiceImplementation.GetPlayersInLobby
   isSpec: "True"
-  fullName: CommunicationService.ServiceImplementation.GetPlayersInParty
-  nameWithType: ServiceImplementation.GetPlayersInParty
+  fullName: CommunicationService.ServiceImplementation.GetPlayersInLobby
+  nameWithType: ServiceImplementation.GetPlayersInLobby
 - uid: CommunicationService.ServiceImplementation.GetTopTenWinners
   name: GetTopTenWinners()
   href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_GetTopTenWinners
@@ -1456,6 +1410,19 @@ references:
   isSpec: "True"
   fullName: CommunicationService.ServiceImplementation.IsFriendRequestAlreadyExistent
   nameWithType: ServiceImplementation.IsFriendRequestAlreadyExistent
+- uid: CommunicationService.ServiceImplementation.IsLobbyExistent(System.Int32)
+  name: IsLobbyExistent(Int32)
+  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_IsLobbyExistent_System_Int32_
+  commentId: M:CommunicationService.ServiceImplementation.IsLobbyExistent(System.Int32)
+  fullName: CommunicationService.ServiceImplementation.IsLobbyExistent(System.Int32)
+  nameWithType: ServiceImplementation.IsLobbyExistent(Int32)
+- uid: CommunicationService.ServiceImplementation.IsLobbyExistent*
+  name: IsLobbyExistent
+  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_IsLobbyExistent_
+  commentId: Overload:CommunicationService.ServiceImplementation.IsLobbyExistent
+  isSpec: "True"
+  fullName: CommunicationService.ServiceImplementation.IsLobbyExistent
+  nameWithType: ServiceImplementation.IsLobbyExistent
 - uid: CommunicationService.ServiceImplementation.IsLoginValid(System.String,System.String)
   name: IsLoginValid(String, String)
   href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_IsLoginValid_System_String_System_String_
@@ -1469,19 +1436,6 @@ references:
   isSpec: "True"
   fullName: CommunicationService.ServiceImplementation.IsLoginValid
   nameWithType: ServiceImplementation.IsLoginValid
-- uid: CommunicationService.ServiceImplementation.IsPartyExistent(System.Int32)
-  name: IsPartyExistent(Int32)
-  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_IsPartyExistent_System_Int32_
-  commentId: M:CommunicationService.ServiceImplementation.IsPartyExistent(System.Int32)
-  fullName: CommunicationService.ServiceImplementation.IsPartyExistent(System.Int32)
-  nameWithType: ServiceImplementation.IsPartyExistent(Int32)
-- uid: CommunicationService.ServiceImplementation.IsPartyExistent*
-  name: IsPartyExistent
-  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_IsPartyExistent_
-  commentId: Overload:CommunicationService.ServiceImplementation.IsPartyExistent
-  isSpec: "True"
-  fullName: CommunicationService.ServiceImplementation.IsPartyExistent
-  nameWithType: ServiceImplementation.IsPartyExistent
 - uid: CommunicationService.ServiceImplementation.IsSpaceAvailable(System.Int32)
   name: IsSpaceAvailable(Int32)
   href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_IsSpaceAvailable_System_Int32_
@@ -1534,19 +1488,19 @@ references:
   isSpec: "True"
   fullName: CommunicationService.ServiceImplementation.IsUserBlockedByUsername
   nameWithType: ServiceImplementation.IsUserBlockedByUsername
-- uid: CommunicationService.ServiceImplementation.IsUsernameInParty(System.Int32,System.String)
-  name: IsUsernameInParty(Int32, String)
-  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_IsUsernameInParty_System_Int32_System_String_
-  commentId: M:CommunicationService.ServiceImplementation.IsUsernameInParty(System.Int32,System.String)
-  fullName: CommunicationService.ServiceImplementation.IsUsernameInParty(System.Int32, System.String)
-  nameWithType: ServiceImplementation.IsUsernameInParty(Int32, String)
-- uid: CommunicationService.ServiceImplementation.IsUsernameInParty*
-  name: IsUsernameInParty
-  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_IsUsernameInParty_
-  commentId: Overload:CommunicationService.ServiceImplementation.IsUsernameInParty
+- uid: CommunicationService.ServiceImplementation.IsUsernameInLobby(System.Int32,System.String)
+  name: IsUsernameInLobby(Int32, String)
+  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_IsUsernameInLobby_System_Int32_System_String_
+  commentId: M:CommunicationService.ServiceImplementation.IsUsernameInLobby(System.Int32,System.String)
+  fullName: CommunicationService.ServiceImplementation.IsUsernameInLobby(System.Int32, System.String)
+  nameWithType: ServiceImplementation.IsUsernameInLobby(Int32, String)
+- uid: CommunicationService.ServiceImplementation.IsUsernameInLobby*
+  name: IsUsernameInLobby
+  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_IsUsernameInLobby_
+  commentId: Overload:CommunicationService.ServiceImplementation.IsUsernameInLobby
   isSpec: "True"
-  fullName: CommunicationService.ServiceImplementation.IsUsernameInParty
-  nameWithType: ServiceImplementation.IsUsernameInParty
+  fullName: CommunicationService.ServiceImplementation.IsUsernameInLobby
+  nameWithType: ServiceImplementation.IsUsernameInLobby
 - uid: CommunicationService.ServiceImplementation.IsUsernameTaken(System.String)
   name: IsUsernameTaken(String)
   href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_IsUsernameTaken_System_String_
@@ -1599,32 +1553,32 @@ references:
   isSpec: "True"
   fullName: CommunicationService.ServiceImplementation.ModifyPasswordByEmail
   nameWithType: ServiceImplementation.ModifyPasswordByEmail
-- uid: CommunicationService.ServiceImplementation.NotifyCloseParty(System.Int32,System.String,System.String)
-  name: NotifyCloseParty(Int32, String, String)
-  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_NotifyCloseParty_System_Int32_System_String_System_String_
-  commentId: M:CommunicationService.ServiceImplementation.NotifyCloseParty(System.Int32,System.String,System.String)
-  fullName: CommunicationService.ServiceImplementation.NotifyCloseParty(System.Int32, System.String, System.String)
-  nameWithType: ServiceImplementation.NotifyCloseParty(Int32, String, String)
-- uid: CommunicationService.ServiceImplementation.NotifyCloseParty*
-  name: NotifyCloseParty
-  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_NotifyCloseParty_
-  commentId: Overload:CommunicationService.ServiceImplementation.NotifyCloseParty
+- uid: CommunicationService.ServiceImplementation.NotifyCloseLobby(System.Int32,System.String,System.String)
+  name: NotifyCloseLobby(Int32, String, String)
+  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_NotifyCloseLobby_System_Int32_System_String_System_String_
+  commentId: M:CommunicationService.ServiceImplementation.NotifyCloseLobby(System.Int32,System.String,System.String)
+  fullName: CommunicationService.ServiceImplementation.NotifyCloseLobby(System.Int32, System.String, System.String)
+  nameWithType: ServiceImplementation.NotifyCloseLobby(Int32, String, String)
+- uid: CommunicationService.ServiceImplementation.NotifyCloseLobby*
+  name: NotifyCloseLobby
+  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_NotifyCloseLobby_
+  commentId: Overload:CommunicationService.ServiceImplementation.NotifyCloseLobby
   isSpec: "True"
-  fullName: CommunicationService.ServiceImplementation.NotifyCloseParty
-  nameWithType: ServiceImplementation.NotifyCloseParty
-- uid: CommunicationService.ServiceImplementation.NotifyCreateParty(System.Int32,System.String)
-  name: NotifyCreateParty(Int32, String)
-  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_NotifyCreateParty_System_Int32_System_String_
-  commentId: M:CommunicationService.ServiceImplementation.NotifyCreateParty(System.Int32,System.String)
-  fullName: CommunicationService.ServiceImplementation.NotifyCreateParty(System.Int32, System.String)
-  nameWithType: ServiceImplementation.NotifyCreateParty(Int32, String)
-- uid: CommunicationService.ServiceImplementation.NotifyCreateParty*
-  name: NotifyCreateParty
-  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_NotifyCreateParty_
-  commentId: Overload:CommunicationService.ServiceImplementation.NotifyCreateParty
+  fullName: CommunicationService.ServiceImplementation.NotifyCloseLobby
+  nameWithType: ServiceImplementation.NotifyCloseLobby
+- uid: CommunicationService.ServiceImplementation.NotifyCreateLobby(System.Int32,System.String)
+  name: NotifyCreateLobby(Int32, String)
+  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_NotifyCreateLobby_System_Int32_System_String_
+  commentId: M:CommunicationService.ServiceImplementation.NotifyCreateLobby(System.Int32,System.String)
+  fullName: CommunicationService.ServiceImplementation.NotifyCreateLobby(System.Int32, System.String)
+  nameWithType: ServiceImplementation.NotifyCreateLobby(Int32, String)
+- uid: CommunicationService.ServiceImplementation.NotifyCreateLobby*
+  name: NotifyCreateLobby
+  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_NotifyCreateLobby_
+  commentId: Overload:CommunicationService.ServiceImplementation.NotifyCreateLobby
   isSpec: "True"
-  fullName: CommunicationService.ServiceImplementation.NotifyCreateParty
-  nameWithType: ServiceImplementation.NotifyCreateParty
+  fullName: CommunicationService.ServiceImplementation.NotifyCreateLobby
+  nameWithType: ServiceImplementation.NotifyCreateLobby
 - uid: CommunicationService.ServiceImplementation.NotifyGuestLeft(System.Int32,System.String)
   name: NotifyGuestLeft(Int32, String)
   href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_NotifyGuestLeft_System_Int32_System_String_
@@ -1638,19 +1592,19 @@ references:
   isSpec: "True"
   fullName: CommunicationService.ServiceImplementation.NotifyGuestLeft
   nameWithType: ServiceImplementation.NotifyGuestLeft
-- uid: CommunicationService.ServiceImplementation.NotifyJoinParty(System.Int32,System.String)
-  name: NotifyJoinParty(Int32, String)
-  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_NotifyJoinParty_System_Int32_System_String_
-  commentId: M:CommunicationService.ServiceImplementation.NotifyJoinParty(System.Int32,System.String)
-  fullName: CommunicationService.ServiceImplementation.NotifyJoinParty(System.Int32, System.String)
-  nameWithType: ServiceImplementation.NotifyJoinParty(Int32, String)
-- uid: CommunicationService.ServiceImplementation.NotifyJoinParty*
-  name: NotifyJoinParty
-  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_NotifyJoinParty_
-  commentId: Overload:CommunicationService.ServiceImplementation.NotifyJoinParty
+- uid: CommunicationService.ServiceImplementation.NotifyJoinLobby(System.Int32,System.String)
+  name: NotifyJoinLobby(Int32, String)
+  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_NotifyJoinLobby_System_Int32_System_String_
+  commentId: M:CommunicationService.ServiceImplementation.NotifyJoinLobby(System.Int32,System.String)
+  fullName: CommunicationService.ServiceImplementation.NotifyJoinLobby(System.Int32, System.String)
+  nameWithType: ServiceImplementation.NotifyJoinLobby(Int32, String)
+- uid: CommunicationService.ServiceImplementation.NotifyJoinLobby*
+  name: NotifyJoinLobby
+  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_NotifyJoinLobby_
+  commentId: Overload:CommunicationService.ServiceImplementation.NotifyJoinLobby
   isSpec: "True"
-  fullName: CommunicationService.ServiceImplementation.NotifyJoinParty
-  nameWithType: ServiceImplementation.NotifyJoinParty
+  fullName: CommunicationService.ServiceImplementation.NotifyJoinLobby
+  nameWithType: ServiceImplementation.NotifyJoinLobby
 - uid: CommunicationService.ServiceImplementation.NotifyKickPlayer(System.Int32,System.String,System.String)
   name: NotifyKickPlayer(Int32, String, String)
   href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_NotifyKickPlayer_System_Int32_System_String_System_String_
@@ -1664,19 +1618,19 @@ references:
   isSpec: "True"
   fullName: CommunicationService.ServiceImplementation.NotifyKickPlayer
   nameWithType: ServiceImplementation.NotifyKickPlayer
-- uid: CommunicationService.ServiceImplementation.NotifyLeaveParty(System.Int32,System.String)
-  name: NotifyLeaveParty(Int32, String)
-  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_NotifyLeaveParty_System_Int32_System_String_
-  commentId: M:CommunicationService.ServiceImplementation.NotifyLeaveParty(System.Int32,System.String)
-  fullName: CommunicationService.ServiceImplementation.NotifyLeaveParty(System.Int32, System.String)
-  nameWithType: ServiceImplementation.NotifyLeaveParty(Int32, String)
-- uid: CommunicationService.ServiceImplementation.NotifyLeaveParty*
-  name: NotifyLeaveParty
-  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_NotifyLeaveParty_
-  commentId: Overload:CommunicationService.ServiceImplementation.NotifyLeaveParty
+- uid: CommunicationService.ServiceImplementation.NotifyLeaveLobby(System.Int32,System.String)
+  name: NotifyLeaveLobby(Int32, String)
+  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_NotifyLeaveLobby_System_Int32_System_String_
+  commentId: M:CommunicationService.ServiceImplementation.NotifyLeaveLobby(System.Int32,System.String)
+  fullName: CommunicationService.ServiceImplementation.NotifyLeaveLobby(System.Int32, System.String)
+  nameWithType: ServiceImplementation.NotifyLeaveLobby(Int32, String)
+- uid: CommunicationService.ServiceImplementation.NotifyLeaveLobby*
+  name: NotifyLeaveLobby
+  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_NotifyLeaveLobby_
+  commentId: Overload:CommunicationService.ServiceImplementation.NotifyLeaveLobby
   isSpec: "True"
-  fullName: CommunicationService.ServiceImplementation.NotifyLeaveParty
-  nameWithType: ServiceImplementation.NotifyLeaveParty
+  fullName: CommunicationService.ServiceImplementation.NotifyLeaveLobby
+  nameWithType: ServiceImplementation.NotifyLeaveLobby
 - uid: CommunicationService.ServiceImplementation.NotifyLogIn(CommunicationService.UserDTO)
   name: NotifyLogIn(UserDTO)
   href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_NotifyLogIn_CommunicationService_UserDTO_

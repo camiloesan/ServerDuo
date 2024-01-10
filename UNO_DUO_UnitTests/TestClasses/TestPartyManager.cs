@@ -8,48 +8,48 @@ using System.Threading.Tasks;
 
 namespace ClienteDuo.TestClasses
 {
-    public class TestPartyManager : IPartyManagerCallback
+    public class TestPartyManager : ILobbyManagerCallback
     {
-        private readonly PartyManagerClient _partyManagerClient;
-        private int _partyCode = 0;
+        private readonly LobbyManagerClient _LobbyManagerClient;
+        private int _lobbyCode = 0;
         private string _username;
 
         public TestPartyManager()
         {
             InstanceContext instanceContext = new InstanceContext(this);
-            _partyManagerClient = new PartyManagerClient(instanceContext);
+            _LobbyManagerClient = new LobbyManagerClient(instanceContext);
         }
 
         public void NotifyCreateParty(int partyCode, string hostUseraname)
         {
-            _partyCode = partyCode;
+            _lobbyCode = partyCode;
             _username = hostUseraname;
-            _partyManagerClient.NotifyCreateParty(partyCode, hostUseraname);
+            _LobbyManagerClient.NotifyCreateLobby(partyCode, hostUseraname);
         }
 
         public void NotifyCloseParty(int partyCode, string hostUsername, string reason)
         {
-            _partyManagerClient.NotifyCloseParty(partyCode, hostUsername , reason);
+            _LobbyManagerClient.NotifyCloseLobby(partyCode, hostUsername , reason);
         }
 
         public void NotifySendMessage(string message)
         {
-            _partyManagerClient.NotifySendMessage(_partyCode, message);
+            _LobbyManagerClient.NotifySendMessage(_lobbyCode, message);
         }
 
         public void NotifyJoinParty(int partyCode, string username)
         {
-            _partyManagerClient.NotifyJoinParty(partyCode, username);
+            _LobbyManagerClient.NotifyJoinLobby(partyCode, username);
         }
 
         public void NotifyKickPlayer(int partyCode, string username, string reason)
         {
-            _partyManagerClient.NotifyKickPlayer(partyCode, username, reason);
+            _LobbyManagerClient.NotifyKickPlayer(partyCode, username, reason);
         }
 
         public void NotifyStartGame(int partyCode)
         {
-            _partyManagerClient.NotifyStartGame(partyCode);
+            _LobbyManagerClient.NotifyStartGame(partyCode);
         }
 
         //callback section
@@ -63,7 +63,7 @@ namespace ClienteDuo.TestClasses
             ReceivedMessage = messageSent;
         }
 
-        public void PartyCreated(Dictionary<string, object> playersInLobby)
+        public void LobbyCreated(Dictionary<string, object> playersInLobby)
         {
             PlayersInParty = playersInLobby;
         }

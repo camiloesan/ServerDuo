@@ -588,60 +588,6 @@ namespace ClienteDuo.DataService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/IsEmailTaken", ReplyAction="http://tempuri.org/IUsersManager/IsEmailTakenResponse")]
         System.Threading.Tasks.Task<bool> IsEmailTakenAsync(string email);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/SendFriendRequest", ReplyAction="http://tempuri.org/IUsersManager/SendFriendRequestResponse")]
-        int SendFriendRequest(string usernameSender, string usernameReceiver);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/SendFriendRequest", ReplyAction="http://tempuri.org/IUsersManager/SendFriendRequestResponse")]
-        System.Threading.Tasks.Task<int> SendFriendRequestAsync(string usernameSender, string usernameReceiver);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/IsFriendRequestAlreadyExistent", ReplyAction="http://tempuri.org/IUsersManager/IsFriendRequestAlreadyExistentResponse")]
-        bool IsFriendRequestAlreadyExistent(string usernameSender, string usernameReceiver);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/IsFriendRequestAlreadyExistent", ReplyAction="http://tempuri.org/IUsersManager/IsFriendRequestAlreadyExistentResponse")]
-        System.Threading.Tasks.Task<bool> IsFriendRequestAlreadyExistentAsync(string usernameSender, string usernameReceiver);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/AcceptFriendRequest", ReplyAction="http://tempuri.org/IUsersManager/AcceptFriendRequestResponse")]
-        bool AcceptFriendRequest(ClienteDuo.DataService.FriendRequestDTO friendRequest);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/AcceptFriendRequest", ReplyAction="http://tempuri.org/IUsersManager/AcceptFriendRequestResponse")]
-        System.Threading.Tasks.Task<bool> AcceptFriendRequestAsync(ClienteDuo.DataService.FriendRequestDTO friendRequest);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/RejectFriendRequest", ReplyAction="http://tempuri.org/IUsersManager/RejectFriendRequestResponse")]
-        bool RejectFriendRequest(int friendRequestId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/RejectFriendRequest", ReplyAction="http://tempuri.org/IUsersManager/RejectFriendRequestResponse")]
-        System.Threading.Tasks.Task<bool> RejectFriendRequestAsync(int friendRequestId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/GetFriendRequestsList", ReplyAction="http://tempuri.org/IUsersManager/GetFriendRequestsListResponse")]
-        ClienteDuo.DataService.FriendRequestDTO[] GetFriendRequestsList(int userId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/GetFriendRequestsList", ReplyAction="http://tempuri.org/IUsersManager/GetFriendRequestsListResponse")]
-        System.Threading.Tasks.Task<ClienteDuo.DataService.FriendRequestDTO[]> GetFriendRequestsListAsync(int userId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/GetFriendsList", ReplyAction="http://tempuri.org/IUsersManager/GetFriendsListResponse")]
-        ClienteDuo.DataService.FriendshipDTO[] GetFriendsList(int userId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/GetFriendsList", ReplyAction="http://tempuri.org/IUsersManager/GetFriendsListResponse")]
-        System.Threading.Tasks.Task<ClienteDuo.DataService.FriendshipDTO[]> GetFriendsListAsync(int userId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/GetOnlineFriends", ReplyAction="http://tempuri.org/IUsersManager/GetOnlineFriendsResponse")]
-        ClienteDuo.DataService.FriendshipDTO[] GetOnlineFriends(int userId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/GetOnlineFriends", ReplyAction="http://tempuri.org/IUsersManager/GetOnlineFriendsResponse")]
-        System.Threading.Tasks.Task<ClienteDuo.DataService.FriendshipDTO[]> GetOnlineFriendsAsync(int userId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/DeleteFriendshipById", ReplyAction="http://tempuri.org/IUsersManager/DeleteFriendshipByIdResponse")]
-        bool DeleteFriendshipById(int friendshipId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/DeleteFriendshipById", ReplyAction="http://tempuri.org/IUsersManager/DeleteFriendshipByIdResponse")]
-        System.Threading.Tasks.Task<bool> DeleteFriendshipByIdAsync(int friendshipId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/IsAlreadyFriend", ReplyAction="http://tempuri.org/IUsersManager/IsAlreadyFriendResponse")]
-        bool IsAlreadyFriend(string senderUsername, string receiverUsername);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/IsAlreadyFriend", ReplyAction="http://tempuri.org/IUsersManager/IsAlreadyFriendResponse")]
-        System.Threading.Tasks.Task<bool> IsAlreadyFriendAsync(string senderUsername, string receiverUsername);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/IsUserAlreadyLoggedIn", ReplyAction="http://tempuri.org/IUsersManager/IsUserAlreadyLoggedInResponse")]
         bool IsUserAlreadyLoggedIn(string username);
         
@@ -659,30 +605,6 @@ namespace ClienteDuo.DataService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/ModifyPasswordByEmail", ReplyAction="http://tempuri.org/IUsersManager/ModifyPasswordByEmailResponse")]
         System.Threading.Tasks.Task<int> ModifyPasswordByEmailAsync(string email, string newPassword);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/BlockUserByUsername", ReplyAction="http://tempuri.org/IUsersManager/BlockUserByUsernameResponse")]
-        int BlockUserByUsername(string blockerUsername, string blockedUsername);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/BlockUserByUsername", ReplyAction="http://tempuri.org/IUsersManager/BlockUserByUsernameResponse")]
-        System.Threading.Tasks.Task<int> BlockUserByUsernameAsync(string blockerUsername, string blockedUsername);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/UnblockUserByBlockId", ReplyAction="http://tempuri.org/IUsersManager/UnblockUserByBlockIdResponse")]
-        int UnblockUserByBlockId(int blockId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/UnblockUserByBlockId", ReplyAction="http://tempuri.org/IUsersManager/UnblockUserByBlockIdResponse")]
-        System.Threading.Tasks.Task<int> UnblockUserByBlockIdAsync(int blockId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/IsUserBlockedByUsername", ReplyAction="http://tempuri.org/IUsersManager/IsUserBlockedByUsernameResponse")]
-        bool IsUserBlockedByUsername(string usernameBlocker, string usernameBlocked);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/IsUserBlockedByUsername", ReplyAction="http://tempuri.org/IUsersManager/IsUserBlockedByUsernameResponse")]
-        System.Threading.Tasks.Task<bool> IsUserBlockedByUsernameAsync(string usernameBlocker, string usernameBlocked);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/GetBlockedUsersListByUserId", ReplyAction="http://tempuri.org/IUsersManager/GetBlockedUsersListByUserIdResponse")]
-        ClienteDuo.DataService.UserBlockedDTO[] GetBlockedUsersListByUserId(int userId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/GetBlockedUsersListByUserId", ReplyAction="http://tempuri.org/IUsersManager/GetBlockedUsersListByUserIdResponse")]
-        System.Threading.Tasks.Task<ClienteDuo.DataService.UserBlockedDTO[]> GetBlockedUsersListByUserIdAsync(int userId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/GetTopTenWinners", ReplyAction="http://tempuri.org/IUsersManager/GetTopTenWinnersResponse")]
         ClienteDuo.DataService.UserDTO[] GetTopTenWinners();
@@ -780,6 +702,133 @@ namespace ClienteDuo.DataService {
             return base.Channel.IsEmailTakenAsync(email);
         }
         
+        public bool IsUserAlreadyLoggedIn(string username) {
+            return base.Channel.IsUserAlreadyLoggedIn(username);
+        }
+        
+        public System.Threading.Tasks.Task<bool> IsUserAlreadyLoggedInAsync(string username) {
+            return base.Channel.IsUserAlreadyLoggedInAsync(username);
+        }
+        
+        public int SendConfirmationCode(string email, string lang) {
+            return base.Channel.SendConfirmationCode(email, lang);
+        }
+        
+        public System.Threading.Tasks.Task<int> SendConfirmationCodeAsync(string email, string lang) {
+            return base.Channel.SendConfirmationCodeAsync(email, lang);
+        }
+        
+        public int ModifyPasswordByEmail(string email, string newPassword) {
+            return base.Channel.ModifyPasswordByEmail(email, newPassword);
+        }
+        
+        public System.Threading.Tasks.Task<int> ModifyPasswordByEmailAsync(string email, string newPassword) {
+            return base.Channel.ModifyPasswordByEmailAsync(email, newPassword);
+        }
+        
+        public ClienteDuo.DataService.UserDTO[] GetTopTenWinners() {
+            return base.Channel.GetTopTenWinners();
+        }
+        
+        public System.Threading.Tasks.Task<ClienteDuo.DataService.UserDTO[]> GetTopTenWinnersAsync() {
+            return base.Channel.GetTopTenWinnersAsync();
+        }
+        
+        public bool IsUserBanned(int userId) {
+            return base.Channel.IsUserBanned(userId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> IsUserBannedAsync(int userId) {
+            return base.Channel.IsUserBannedAsync(userId);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DataService.IFriendsManager")]
+    public interface IFriendsManager {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendsManager/SendFriendRequest", ReplyAction="http://tempuri.org/IFriendsManager/SendFriendRequestResponse")]
+        int SendFriendRequest(string usernameSender, string usernameReceiver);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendsManager/SendFriendRequest", ReplyAction="http://tempuri.org/IFriendsManager/SendFriendRequestResponse")]
+        System.Threading.Tasks.Task<int> SendFriendRequestAsync(string usernameSender, string usernameReceiver);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendsManager/IsFriendRequestAlreadyExistent", ReplyAction="http://tempuri.org/IFriendsManager/IsFriendRequestAlreadyExistentResponse")]
+        bool IsFriendRequestAlreadyExistent(string usernameSender, string usernameReceiver);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendsManager/IsFriendRequestAlreadyExistent", ReplyAction="http://tempuri.org/IFriendsManager/IsFriendRequestAlreadyExistentResponse")]
+        System.Threading.Tasks.Task<bool> IsFriendRequestAlreadyExistentAsync(string usernameSender, string usernameReceiver);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendsManager/AcceptFriendRequest", ReplyAction="http://tempuri.org/IFriendsManager/AcceptFriendRequestResponse")]
+        bool AcceptFriendRequest(ClienteDuo.DataService.FriendRequestDTO friendRequest);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendsManager/AcceptFriendRequest", ReplyAction="http://tempuri.org/IFriendsManager/AcceptFriendRequestResponse")]
+        System.Threading.Tasks.Task<bool> AcceptFriendRequestAsync(ClienteDuo.DataService.FriendRequestDTO friendRequest);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendsManager/RejectFriendRequest", ReplyAction="http://tempuri.org/IFriendsManager/RejectFriendRequestResponse")]
+        bool RejectFriendRequest(int friendRequestId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendsManager/RejectFriendRequest", ReplyAction="http://tempuri.org/IFriendsManager/RejectFriendRequestResponse")]
+        System.Threading.Tasks.Task<bool> RejectFriendRequestAsync(int friendRequestId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendsManager/GetFriendRequestsList", ReplyAction="http://tempuri.org/IFriendsManager/GetFriendRequestsListResponse")]
+        ClienteDuo.DataService.FriendRequestDTO[] GetFriendRequestsList(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendsManager/GetFriendRequestsList", ReplyAction="http://tempuri.org/IFriendsManager/GetFriendRequestsListResponse")]
+        System.Threading.Tasks.Task<ClienteDuo.DataService.FriendRequestDTO[]> GetFriendRequestsListAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendsManager/GetFriendsList", ReplyAction="http://tempuri.org/IFriendsManager/GetFriendsListResponse")]
+        ClienteDuo.DataService.FriendshipDTO[] GetFriendsList(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendsManager/GetFriendsList", ReplyAction="http://tempuri.org/IFriendsManager/GetFriendsListResponse")]
+        System.Threading.Tasks.Task<ClienteDuo.DataService.FriendshipDTO[]> GetFriendsListAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendsManager/GetOnlineFriends", ReplyAction="http://tempuri.org/IFriendsManager/GetOnlineFriendsResponse")]
+        ClienteDuo.DataService.FriendshipDTO[] GetOnlineFriends(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendsManager/GetOnlineFriends", ReplyAction="http://tempuri.org/IFriendsManager/GetOnlineFriendsResponse")]
+        System.Threading.Tasks.Task<ClienteDuo.DataService.FriendshipDTO[]> GetOnlineFriendsAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendsManager/DeleteFriendshipById", ReplyAction="http://tempuri.org/IFriendsManager/DeleteFriendshipByIdResponse")]
+        bool DeleteFriendshipById(int friendshipId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendsManager/DeleteFriendshipById", ReplyAction="http://tempuri.org/IFriendsManager/DeleteFriendshipByIdResponse")]
+        System.Threading.Tasks.Task<bool> DeleteFriendshipByIdAsync(int friendshipId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendsManager/IsAlreadyFriend", ReplyAction="http://tempuri.org/IFriendsManager/IsAlreadyFriendResponse")]
+        bool IsAlreadyFriend(string senderUsername, string receiverUsername);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendsManager/IsAlreadyFriend", ReplyAction="http://tempuri.org/IFriendsManager/IsAlreadyFriendResponse")]
+        System.Threading.Tasks.Task<bool> IsAlreadyFriendAsync(string senderUsername, string receiverUsername);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IFriendsManagerChannel : ClienteDuo.DataService.IFriendsManager, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class FriendsManagerClient : System.ServiceModel.ClientBase<ClienteDuo.DataService.IFriendsManager>, ClienteDuo.DataService.IFriendsManager {
+        
+        public FriendsManagerClient() {
+        }
+        
+        public FriendsManagerClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public FriendsManagerClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public FriendsManagerClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public FriendsManagerClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
         public int SendFriendRequest(string usernameSender, string usernameReceiver) {
             return base.Channel.SendFriendRequest(usernameSender, usernameReceiver);
         }
@@ -851,29 +900,62 @@ namespace ClienteDuo.DataService {
         public System.Threading.Tasks.Task<bool> IsAlreadyFriendAsync(string senderUsername, string receiverUsername) {
             return base.Channel.IsAlreadyFriendAsync(senderUsername, receiverUsername);
         }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DataService.IBlockManager")]
+    public interface IBlockManager {
         
-        public bool IsUserAlreadyLoggedIn(string username) {
-            return base.Channel.IsUserAlreadyLoggedIn(username);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBlockManager/BlockUserByUsername", ReplyAction="http://tempuri.org/IBlockManager/BlockUserByUsernameResponse")]
+        int BlockUserByUsername(string blockerUsername, string blockedUsername);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBlockManager/BlockUserByUsername", ReplyAction="http://tempuri.org/IBlockManager/BlockUserByUsernameResponse")]
+        System.Threading.Tasks.Task<int> BlockUserByUsernameAsync(string blockerUsername, string blockedUsername);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBlockManager/UnblockUserByBlockId", ReplyAction="http://tempuri.org/IBlockManager/UnblockUserByBlockIdResponse")]
+        int UnblockUserByBlockId(int blockId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBlockManager/UnblockUserByBlockId", ReplyAction="http://tempuri.org/IBlockManager/UnblockUserByBlockIdResponse")]
+        System.Threading.Tasks.Task<int> UnblockUserByBlockIdAsync(int blockId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBlockManager/IsUserBlockedByUsername", ReplyAction="http://tempuri.org/IBlockManager/IsUserBlockedByUsernameResponse")]
+        bool IsUserBlockedByUsername(string usernameBlocker, string usernameBlocked);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBlockManager/IsUserBlockedByUsername", ReplyAction="http://tempuri.org/IBlockManager/IsUserBlockedByUsernameResponse")]
+        System.Threading.Tasks.Task<bool> IsUserBlockedByUsernameAsync(string usernameBlocker, string usernameBlocked);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBlockManager/GetBlockedUsersListByUserId", ReplyAction="http://tempuri.org/IBlockManager/GetBlockedUsersListByUserIdResponse")]
+        ClienteDuo.DataService.UserBlockedDTO[] GetBlockedUsersListByUserId(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBlockManager/GetBlockedUsersListByUserId", ReplyAction="http://tempuri.org/IBlockManager/GetBlockedUsersListByUserIdResponse")]
+        System.Threading.Tasks.Task<ClienteDuo.DataService.UserBlockedDTO[]> GetBlockedUsersListByUserIdAsync(int userId);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IBlockManagerChannel : ClienteDuo.DataService.IBlockManager, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class BlockManagerClient : System.ServiceModel.ClientBase<ClienteDuo.DataService.IBlockManager>, ClienteDuo.DataService.IBlockManager {
+        
+        public BlockManagerClient() {
         }
         
-        public System.Threading.Tasks.Task<bool> IsUserAlreadyLoggedInAsync(string username) {
-            return base.Channel.IsUserAlreadyLoggedInAsync(username);
+        public BlockManagerClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
         }
         
-        public int SendConfirmationCode(string email, string lang) {
-            return base.Channel.SendConfirmationCode(email, lang);
+        public BlockManagerClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
         }
         
-        public System.Threading.Tasks.Task<int> SendConfirmationCodeAsync(string email, string lang) {
-            return base.Channel.SendConfirmationCodeAsync(email, lang);
+        public BlockManagerClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
         }
         
-        public int ModifyPasswordByEmail(string email, string newPassword) {
-            return base.Channel.ModifyPasswordByEmail(email, newPassword);
-        }
-        
-        public System.Threading.Tasks.Task<int> ModifyPasswordByEmailAsync(string email, string newPassword) {
-            return base.Channel.ModifyPasswordByEmailAsync(email, newPassword);
+        public BlockManagerClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
         }
         
         public int BlockUserByUsername(string blockerUsername, string blockedUsername) {
@@ -906,22 +988,6 @@ namespace ClienteDuo.DataService {
         
         public System.Threading.Tasks.Task<ClienteDuo.DataService.UserBlockedDTO[]> GetBlockedUsersListByUserIdAsync(int userId) {
             return base.Channel.GetBlockedUsersListByUserIdAsync(userId);
-        }
-        
-        public ClienteDuo.DataService.UserDTO[] GetTopTenWinners() {
-            return base.Channel.GetTopTenWinners();
-        }
-        
-        public System.Threading.Tasks.Task<ClienteDuo.DataService.UserDTO[]> GetTopTenWinnersAsync() {
-            return base.Channel.GetTopTenWinnersAsync();
-        }
-        
-        public bool IsUserBanned(int userId) {
-            return base.Channel.IsUserBanned(userId);
-        }
-        
-        public System.Threading.Tasks.Task<bool> IsUserBannedAsync(int userId) {
-            return base.Channel.IsUserBannedAsync(userId);
         }
     }
     
@@ -1015,245 +1081,245 @@ namespace ClienteDuo.DataService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DataService.IPartyManager", CallbackContract=typeof(ClienteDuo.DataService.IPartyManagerCallback))]
-    public interface IPartyManager {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DataService.ILobbyManager", CallbackContract=typeof(ClienteDuo.DataService.ILobbyManagerCallback))]
+    public interface ILobbyManager {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IPartyManager/NotifyCreateParty")]
-        void NotifyCreateParty(int partyCode, string hostUsername);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ILobbyManager/NotifyCreateLobby")]
+        void NotifyCreateLobby(int lobbyCode, string hostUsername);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IPartyManager/NotifyCreateParty")]
-        System.Threading.Tasks.Task NotifyCreatePartyAsync(int partyCode, string hostUsername);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ILobbyManager/NotifyCreateLobby")]
+        System.Threading.Tasks.Task NotifyCreateLobbyAsync(int lobbyCode, string hostUsername);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IPartyManager/NotifyJoinParty")]
-        void NotifyJoinParty(int partyCode, string username);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ILobbyManager/NotifyJoinLobby")]
+        void NotifyJoinLobby(int lobbyCode, string username);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IPartyManager/NotifyJoinParty")]
-        System.Threading.Tasks.Task NotifyJoinPartyAsync(int partyCode, string username);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ILobbyManager/NotifyJoinLobby")]
+        System.Threading.Tasks.Task NotifyJoinLobbyAsync(int lobbyCode, string username);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IPartyManager/NotifySendMessage")]
-        void NotifySendMessage(int partyCode, string message);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ILobbyManager/NotifySendMessage")]
+        void NotifySendMessage(int lobbyCode, string message);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IPartyManager/NotifySendMessage")]
-        System.Threading.Tasks.Task NotifySendMessageAsync(int partyCode, string message);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ILobbyManager/NotifySendMessage")]
+        System.Threading.Tasks.Task NotifySendMessageAsync(int lobbyCode, string message);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IPartyManager/NotifyLeaveParty")]
-        void NotifyLeaveParty(int partyCode, string username);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ILobbyManager/NotifyLeaveLobby")]
+        void NotifyLeaveLobby(int lobbyCode, string username);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IPartyManager/NotifyLeaveParty")]
-        System.Threading.Tasks.Task NotifyLeavePartyAsync(int partyCode, string username);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ILobbyManager/NotifyLeaveLobby")]
+        System.Threading.Tasks.Task NotifyLeaveLobbyAsync(int lobbyCode, string username);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IPartyManager/NotifyCloseParty")]
-        void NotifyCloseParty(int partyCode, string hostName, string reason);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ILobbyManager/NotifyCloseLobby")]
+        void NotifyCloseLobby(int lobbyCode, string hostName, string reason);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IPartyManager/NotifyCloseParty")]
-        System.Threading.Tasks.Task NotifyClosePartyAsync(int partyCode, string hostName, string reason);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ILobbyManager/NotifyCloseLobby")]
+        System.Threading.Tasks.Task NotifyCloseLobbyAsync(int lobbyCode, string hostName, string reason);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IPartyManager/NotifyStartGame")]
-        void NotifyStartGame(int partyCode);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ILobbyManager/NotifyStartGame")]
+        void NotifyStartGame(int lobbyCode);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IPartyManager/NotifyStartGame")]
-        System.Threading.Tasks.Task NotifyStartGameAsync(int partyCode);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ILobbyManager/NotifyStartGame")]
+        System.Threading.Tasks.Task NotifyStartGameAsync(int lobbyCode);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IPartyManager/NotifyKickPlayer")]
-        void NotifyKickPlayer(int partyCode, string username, string reason);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ILobbyManager/NotifyKickPlayer")]
+        void NotifyKickPlayer(int lobbyCode, string username, string reason);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IPartyManager/NotifyKickPlayer")]
-        System.Threading.Tasks.Task NotifyKickPlayerAsync(int partyCode, string username, string reason);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ILobbyManager/NotifyKickPlayer")]
+        System.Threading.Tasks.Task NotifyKickPlayerAsync(int lobbyCode, string username, string reason);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IPartyManagerCallback {
+    public interface ILobbyManagerCallback {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPartyManager/PartyCreated", ReplyAction="http://tempuri.org/IPartyManager/PartyCreatedResponse")]
-        void PartyCreated(System.Collections.Generic.Dictionary<string, object> playersInLobby);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILobbyManager/LobbyCreated", ReplyAction="http://tempuri.org/ILobbyManager/LobbyCreatedResponse")]
+        void LobbyCreated(System.Collections.Generic.Dictionary<string, object> playersInLobby);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPartyManager/PlayerJoined", ReplyAction="http://tempuri.org/IPartyManager/PlayerJoinedResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILobbyManager/PlayerJoined", ReplyAction="http://tempuri.org/ILobbyManager/PlayerJoinedResponse")]
         void PlayerJoined(System.Collections.Generic.Dictionary<string, object> playersInLobby);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPartyManager/MessageReceived", ReplyAction="http://tempuri.org/IPartyManager/MessageReceivedResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILobbyManager/MessageReceived", ReplyAction="http://tempuri.org/ILobbyManager/MessageReceivedResponse")]
         void MessageReceived(string messageSent);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPartyManager/PlayerLeft", ReplyAction="http://tempuri.org/IPartyManager/PlayerLeftResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILobbyManager/PlayerLeft", ReplyAction="http://tempuri.org/ILobbyManager/PlayerLeftResponse")]
         void PlayerLeft(System.Collections.Generic.Dictionary<string, object> playersInLobby);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPartyManager/PlayerKicked", ReplyAction="http://tempuri.org/IPartyManager/PlayerKickedResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILobbyManager/PlayerKicked", ReplyAction="http://tempuri.org/ILobbyManager/PlayerKickedResponse")]
         void PlayerKicked(string reason);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPartyManager/GameStarted", ReplyAction="http://tempuri.org/IPartyManager/GameStartedResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILobbyManager/GameStarted", ReplyAction="http://tempuri.org/ILobbyManager/GameStartedResponse")]
         void GameStarted();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IPartyManagerChannel : ClienteDuo.DataService.IPartyManager, System.ServiceModel.IClientChannel {
+    public interface ILobbyManagerChannel : ClienteDuo.DataService.ILobbyManager, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class PartyManagerClient : System.ServiceModel.DuplexClientBase<ClienteDuo.DataService.IPartyManager>, ClienteDuo.DataService.IPartyManager {
+    public partial class LobbyManagerClient : System.ServiceModel.DuplexClientBase<ClienteDuo.DataService.ILobbyManager>, ClienteDuo.DataService.ILobbyManager {
         
-        public PartyManagerClient(System.ServiceModel.InstanceContext callbackInstance) : 
+        public LobbyManagerClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
         }
         
-        public PartyManagerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+        public LobbyManagerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
                 base(callbackInstance, endpointConfigurationName) {
         }
         
-        public PartyManagerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+        public LobbyManagerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
                 base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public PartyManagerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public LobbyManagerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public PartyManagerClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public LobbyManagerClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public void NotifyCreateParty(int partyCode, string hostUsername) {
-            base.Channel.NotifyCreateParty(partyCode, hostUsername);
+        public void NotifyCreateLobby(int lobbyCode, string hostUsername) {
+            base.Channel.NotifyCreateLobby(lobbyCode, hostUsername);
         }
         
-        public System.Threading.Tasks.Task NotifyCreatePartyAsync(int partyCode, string hostUsername) {
-            return base.Channel.NotifyCreatePartyAsync(partyCode, hostUsername);
+        public System.Threading.Tasks.Task NotifyCreateLobbyAsync(int lobbyCode, string hostUsername) {
+            return base.Channel.NotifyCreateLobbyAsync(lobbyCode, hostUsername);
         }
         
-        public void NotifyJoinParty(int partyCode, string username) {
-            base.Channel.NotifyJoinParty(partyCode, username);
+        public void NotifyJoinLobby(int lobbyCode, string username) {
+            base.Channel.NotifyJoinLobby(lobbyCode, username);
         }
         
-        public System.Threading.Tasks.Task NotifyJoinPartyAsync(int partyCode, string username) {
-            return base.Channel.NotifyJoinPartyAsync(partyCode, username);
+        public System.Threading.Tasks.Task NotifyJoinLobbyAsync(int lobbyCode, string username) {
+            return base.Channel.NotifyJoinLobbyAsync(lobbyCode, username);
         }
         
-        public void NotifySendMessage(int partyCode, string message) {
-            base.Channel.NotifySendMessage(partyCode, message);
+        public void NotifySendMessage(int lobbyCode, string message) {
+            base.Channel.NotifySendMessage(lobbyCode, message);
         }
         
-        public System.Threading.Tasks.Task NotifySendMessageAsync(int partyCode, string message) {
-            return base.Channel.NotifySendMessageAsync(partyCode, message);
+        public System.Threading.Tasks.Task NotifySendMessageAsync(int lobbyCode, string message) {
+            return base.Channel.NotifySendMessageAsync(lobbyCode, message);
         }
         
-        public void NotifyLeaveParty(int partyCode, string username) {
-            base.Channel.NotifyLeaveParty(partyCode, username);
+        public void NotifyLeaveLobby(int lobbyCode, string username) {
+            base.Channel.NotifyLeaveLobby(lobbyCode, username);
         }
         
-        public System.Threading.Tasks.Task NotifyLeavePartyAsync(int partyCode, string username) {
-            return base.Channel.NotifyLeavePartyAsync(partyCode, username);
+        public System.Threading.Tasks.Task NotifyLeaveLobbyAsync(int lobbyCode, string username) {
+            return base.Channel.NotifyLeaveLobbyAsync(lobbyCode, username);
         }
         
-        public void NotifyCloseParty(int partyCode, string hostName, string reason) {
-            base.Channel.NotifyCloseParty(partyCode, hostName, reason);
+        public void NotifyCloseLobby(int lobbyCode, string hostName, string reason) {
+            base.Channel.NotifyCloseLobby(lobbyCode, hostName, reason);
         }
         
-        public System.Threading.Tasks.Task NotifyClosePartyAsync(int partyCode, string hostName, string reason) {
-            return base.Channel.NotifyClosePartyAsync(partyCode, hostName, reason);
+        public System.Threading.Tasks.Task NotifyCloseLobbyAsync(int lobbyCode, string hostName, string reason) {
+            return base.Channel.NotifyCloseLobbyAsync(lobbyCode, hostName, reason);
         }
         
-        public void NotifyStartGame(int partyCode) {
-            base.Channel.NotifyStartGame(partyCode);
+        public void NotifyStartGame(int lobbyCode) {
+            base.Channel.NotifyStartGame(lobbyCode);
         }
         
-        public System.Threading.Tasks.Task NotifyStartGameAsync(int partyCode) {
-            return base.Channel.NotifyStartGameAsync(partyCode);
+        public System.Threading.Tasks.Task NotifyStartGameAsync(int lobbyCode) {
+            return base.Channel.NotifyStartGameAsync(lobbyCode);
         }
         
-        public void NotifyKickPlayer(int partyCode, string username, string reason) {
-            base.Channel.NotifyKickPlayer(partyCode, username, reason);
+        public void NotifyKickPlayer(int lobbyCode, string username, string reason) {
+            base.Channel.NotifyKickPlayer(lobbyCode, username, reason);
         }
         
-        public System.Threading.Tasks.Task NotifyKickPlayerAsync(int partyCode, string username, string reason) {
-            return base.Channel.NotifyKickPlayerAsync(partyCode, username, reason);
+        public System.Threading.Tasks.Task NotifyKickPlayerAsync(int lobbyCode, string username, string reason) {
+            return base.Channel.NotifyKickPlayerAsync(lobbyCode, username, reason);
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DataService.IPartyValidator")]
-    public interface IPartyValidator {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DataService.ILobbyValidator")]
+    public interface ILobbyValidator {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPartyValidator/IsPartyExistent", ReplyAction="http://tempuri.org/IPartyValidator/IsPartyExistentResponse")]
-        bool IsPartyExistent(int partyCode);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILobbyValidator/IsLobbyExistent", ReplyAction="http://tempuri.org/ILobbyValidator/IsLobbyExistentResponse")]
+        bool IsLobbyExistent(int lobbyCode);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPartyValidator/IsPartyExistent", ReplyAction="http://tempuri.org/IPartyValidator/IsPartyExistentResponse")]
-        System.Threading.Tasks.Task<bool> IsPartyExistentAsync(int partyCode);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILobbyValidator/IsLobbyExistent", ReplyAction="http://tempuri.org/ILobbyValidator/IsLobbyExistentResponse")]
+        System.Threading.Tasks.Task<bool> IsLobbyExistentAsync(int lobbyCode);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPartyValidator/IsSpaceAvailable", ReplyAction="http://tempuri.org/IPartyValidator/IsSpaceAvailableResponse")]
-        bool IsSpaceAvailable(int partyCode);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILobbyValidator/IsSpaceAvailable", ReplyAction="http://tempuri.org/ILobbyValidator/IsSpaceAvailableResponse")]
+        bool IsSpaceAvailable(int lobbyCode);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPartyValidator/IsSpaceAvailable", ReplyAction="http://tempuri.org/IPartyValidator/IsSpaceAvailableResponse")]
-        System.Threading.Tasks.Task<bool> IsSpaceAvailableAsync(int partyCode);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILobbyValidator/IsSpaceAvailable", ReplyAction="http://tempuri.org/ILobbyValidator/IsSpaceAvailableResponse")]
+        System.Threading.Tasks.Task<bool> IsSpaceAvailableAsync(int lobbyCode);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPartyValidator/IsUsernameInParty", ReplyAction="http://tempuri.org/IPartyValidator/IsUsernameInPartyResponse")]
-        bool IsUsernameInParty(int partyCode, string username);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILobbyValidator/IsUsernameInLobby", ReplyAction="http://tempuri.org/ILobbyValidator/IsUsernameInLobbyResponse")]
+        bool IsUsernameInLobby(int lobbyCode, string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPartyValidator/IsUsernameInParty", ReplyAction="http://tempuri.org/IPartyValidator/IsUsernameInPartyResponse")]
-        System.Threading.Tasks.Task<bool> IsUsernameInPartyAsync(int partyCode, string username);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILobbyValidator/IsUsernameInLobby", ReplyAction="http://tempuri.org/ILobbyValidator/IsUsernameInLobbyResponse")]
+        System.Threading.Tasks.Task<bool> IsUsernameInLobbyAsync(int lobbyCode, string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPartyValidator/GetPlayersInParty", ReplyAction="http://tempuri.org/IPartyValidator/GetPlayersInPartyResponse")]
-        string[] GetPlayersInParty(int partyCode);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILobbyValidator/GetPlayersInLobby", ReplyAction="http://tempuri.org/ILobbyValidator/GetPlayersInLobbyResponse")]
+        string[] GetPlayersInLobby(int lobbyCode);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPartyValidator/GetPlayersInParty", ReplyAction="http://tempuri.org/IPartyValidator/GetPlayersInPartyResponse")]
-        System.Threading.Tasks.Task<string[]> GetPlayersInPartyAsync(int partyCode);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILobbyValidator/GetPlayersInLobby", ReplyAction="http://tempuri.org/ILobbyValidator/GetPlayersInLobbyResponse")]
+        System.Threading.Tasks.Task<string[]> GetPlayersInLobbyAsync(int lobbyCode);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IPartyValidatorChannel : ClienteDuo.DataService.IPartyValidator, System.ServiceModel.IClientChannel {
+    public interface ILobbyValidatorChannel : ClienteDuo.DataService.ILobbyValidator, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class PartyValidatorClient : System.ServiceModel.ClientBase<ClienteDuo.DataService.IPartyValidator>, ClienteDuo.DataService.IPartyValidator {
+    public partial class LobbyValidatorClient : System.ServiceModel.ClientBase<ClienteDuo.DataService.ILobbyValidator>, ClienteDuo.DataService.ILobbyValidator {
         
-        public PartyValidatorClient() {
+        public LobbyValidatorClient() {
         }
         
-        public PartyValidatorClient(string endpointConfigurationName) : 
+        public LobbyValidatorClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public PartyValidatorClient(string endpointConfigurationName, string remoteAddress) : 
+        public LobbyValidatorClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public PartyValidatorClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public LobbyValidatorClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public PartyValidatorClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public LobbyValidatorClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         
-        public bool IsPartyExistent(int partyCode) {
-            return base.Channel.IsPartyExistent(partyCode);
+        public bool IsLobbyExistent(int lobbyCode) {
+            return base.Channel.IsLobbyExistent(lobbyCode);
         }
         
-        public System.Threading.Tasks.Task<bool> IsPartyExistentAsync(int partyCode) {
-            return base.Channel.IsPartyExistentAsync(partyCode);
+        public System.Threading.Tasks.Task<bool> IsLobbyExistentAsync(int lobbyCode) {
+            return base.Channel.IsLobbyExistentAsync(lobbyCode);
         }
         
-        public bool IsSpaceAvailable(int partyCode) {
-            return base.Channel.IsSpaceAvailable(partyCode);
+        public bool IsSpaceAvailable(int lobbyCode) {
+            return base.Channel.IsSpaceAvailable(lobbyCode);
         }
         
-        public System.Threading.Tasks.Task<bool> IsSpaceAvailableAsync(int partyCode) {
-            return base.Channel.IsSpaceAvailableAsync(partyCode);
+        public System.Threading.Tasks.Task<bool> IsSpaceAvailableAsync(int lobbyCode) {
+            return base.Channel.IsSpaceAvailableAsync(lobbyCode);
         }
         
-        public bool IsUsernameInParty(int partyCode, string username) {
-            return base.Channel.IsUsernameInParty(partyCode, username);
+        public bool IsUsernameInLobby(int lobbyCode, string username) {
+            return base.Channel.IsUsernameInLobby(lobbyCode, username);
         }
         
-        public System.Threading.Tasks.Task<bool> IsUsernameInPartyAsync(int partyCode, string username) {
-            return base.Channel.IsUsernameInPartyAsync(partyCode, username);
+        public System.Threading.Tasks.Task<bool> IsUsernameInLobbyAsync(int lobbyCode, string username) {
+            return base.Channel.IsUsernameInLobbyAsync(lobbyCode, username);
         }
         
-        public string[] GetPlayersInParty(int partyCode) {
-            return base.Channel.GetPlayersInParty(partyCode);
+        public string[] GetPlayersInLobby(int lobbyCode) {
+            return base.Channel.GetPlayersInLobby(lobbyCode);
         }
         
-        public System.Threading.Tasks.Task<string[]> GetPlayersInPartyAsync(int partyCode) {
-            return base.Channel.GetPlayersInPartyAsync(partyCode);
+        public System.Threading.Tasks.Task<string[]> GetPlayersInLobbyAsync(int lobbyCode) {
+            return base.Channel.GetPlayersInLobbyAsync(lobbyCode);
         }
     }
     

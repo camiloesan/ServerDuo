@@ -41,7 +41,7 @@ namespace ClienteDuo.Pages.Sidebars
                 SetProfilePicture(userInfo.PictureID);
                 LblUsername.Content = Properties.Resources.LblUsername + ": " + username;
                 LblTrophies.Content = Properties.Resources.LblTotalWins + ": " + userInfo.TotalWins;
-                bool isFriend = UsersManager.IsAlreadyFriend(SessionDetails.Username, username);
+                bool isFriend = FriendsManager.IsAlreadyFriend(SessionDetails.Username, username);
                 if (isFriend)
                 {
                     BtnAddFriend.Visibility = Visibility.Collapsed;
@@ -110,13 +110,13 @@ namespace ClienteDuo.Pages.Sidebars
 
         private void AddFriend(string usernameSender, string usernameReceiver)
         {
-            if (UsersManager.IsFriendRequestAlreadySent(usernameSender, usernameReceiver))
+            if (FriendsManager.IsFriendRequestAlreadySent(usernameSender, usernameReceiver))
             {
                 MainWindow.ShowMessageBox(Properties.Resources.DlgFriendRequestAlreadySent, MessageBoxImage.Information);
             }
             else
             {
-                if (UsersManager.SendFriendRequest(usernameSender, usernameReceiver) == 1)
+                if (FriendsManager.SendFriendRequest(usernameSender, usernameReceiver) == 1)
                 {
                     MainWindow.ShowMessageBox(Properties.Resources.DlgFriendRequestSent, MessageBoxImage.Information);
                     Visibility = Visibility.Collapsed;
@@ -132,7 +132,7 @@ namespace ClienteDuo.Pages.Sidebars
                 bool isFriend = false;
                 try
                 {
-                    isFriend = UsersManager.IsAlreadyFriend(SessionDetails.Username, _userSelectedName);
+                    isFriend = FriendsManager.IsAlreadyFriend(SessionDetails.Username, _userSelectedName);
                 }
                 catch (CommunicationException)
                 {
@@ -146,10 +146,10 @@ namespace ClienteDuo.Pages.Sidebars
                 if (isFriend)
                 {
                     int friendshipId = (int)DataContext;
-                    UsersManager.DeleteFriendshipById(friendshipId);
+                    FriendsManager.DeleteFriendshipById(friendshipId);
                 }
 
-                if (!UsersManager.IsUserBlocked(SessionDetails.Username, _userSelectedName))
+                if (!BlockManager.IsUserBlocked(SessionDetails.Username, _userSelectedName))
                 {
                     int result = 0;
                     try
@@ -190,7 +190,7 @@ namespace ClienteDuo.Pages.Sidebars
             int result = 0;
             try
             {
-                result = UsersManager.BlockUserByUsername(usernameSender, usernameReceiver);
+                result = BlockManager.BlockUserByUsername(usernameSender, usernameReceiver);
             }
             catch (CommunicationException)
             {
@@ -201,7 +201,7 @@ namespace ClienteDuo.Pages.Sidebars
                 SessionDetails.AbortOperation();
             }
 
-            if (result > 0 && SessionDetails.PartyCode == 0)
+            if (result > 0 && SessionDetails.LobbyCode == 0)
             {
                 var mainMenu = new MainMenu();
                 Application.Current.MainWindow.Content = mainMenu;

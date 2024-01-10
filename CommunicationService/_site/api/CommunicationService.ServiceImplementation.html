@@ -83,9 +83,10 @@
   <div class="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="CommunicationService.IUsersManager.html">IUsersManager</a></div>
-    <div><a class="xref" href="CommunicationService.IPartyManager.html">IPartyManager</a></div>
+    <div><a class="xref" href="CommunicationService.IFriendsManager.html">IFriendsManager</a></div>
+    <div><a class="xref" href="CommunicationService.ILobbyManager.html">ILobbyManager</a></div>
     <div><a class="xref" href="CommunicationService.IUserConnectionHandler.html">IUserConnectionHandler</a></div>
-    <div><a class="xref" href="CommunicationService.IPartyValidator.html">IPartyValidator</a></div>
+    <div><a class="xref" href="CommunicationService.ILobbyValidator.html">ILobbyValidator</a></div>
     <div><a class="xref" href="CommunicationService.IMatchManager.html">IMatchManager</a></div>
     <div><a class="xref" href="CommunicationService.ICardManager.html">ICardManager</a></div>
   </div>
@@ -118,7 +119,7 @@
   <h5 id="CommunicationService_ServiceImplementation_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
-public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnectionHandler, IPartyValidator, IMatchManager, ICardManager</code></pre>
+public class ServiceImplementation : IUsersManager, IFriendsManager, ILobbyManager, IUserConnectionHandler, ILobbyValidator, IMatchManager, ICardManager</code></pre>
   </div>
   <h3 id="methods">Methods
   </h3>
@@ -127,7 +128,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_AcceptFriendRequest_CommunicationService_FriendRequestDTO_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.AcceptFriendRequest(CommunicationService.FriendRequestDTO)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L240">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L493">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_AcceptFriendRequest_" data-uid="CommunicationService.ServiceImplementation.AcceptFriendRequest*"></a>
   <h4 id="CommunicationService_ServiceImplementation_AcceptFriendRequest_CommunicationService_FriendRequestDTO_" data-uid="CommunicationService.ServiceImplementation.AcceptFriendRequest(CommunicationService.FriendRequestDTO)">AcceptFriendRequest(FriendRequestDTO)</h4>
@@ -221,7 +222,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_BlockUserByUsername_System_String_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.BlockUserByUsername(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L638">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L778">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_BlockUserByUsername_" data-uid="CommunicationService.ServiceImplementation.BlockUserByUsername*"></a>
   <h4 id="CommunicationService_ServiceImplementation_BlockUserByUsername_System_String_System_String_" data-uid="CommunicationService.ServiceImplementation.BlockUserByUsername(System.String,System.String)">BlockUserByUsername(String, String)</h4>
@@ -273,7 +274,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_DealCards_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.DealCards(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1372">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1378">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_DealCards_" data-uid="CommunicationService.ServiceImplementation.DealCards*"></a>
   <h4 id="CommunicationService_ServiceImplementation_DealCards_System_Int32_" data-uid="CommunicationService.ServiceImplementation.DealCards(System.Int32)">DealCards(Int32)</h4>
@@ -305,7 +306,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_DeleteFriendshipById_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.DeleteFriendshipById(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L399">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L621">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_DeleteFriendshipById_" data-uid="CommunicationService.ServiceImplementation.DeleteFriendshipById*"></a>
   <h4 id="CommunicationService_ServiceImplementation_DeleteFriendshipById_System_Int32_" data-uid="CommunicationService.ServiceImplementation.DeleteFriendshipById(System.Int32)">DeleteFriendshipById(Int32)</h4>
@@ -352,7 +353,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_DeleteUserFromDatabaseByUsername_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.DeleteUserFromDatabaseByUsername(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L368">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L146">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_DeleteUserFromDatabaseByUsername_" data-uid="CommunicationService.ServiceImplementation.DeleteUserFromDatabaseByUsername*"></a>
   <h4 id="CommunicationService_ServiceImplementation_DeleteUserFromDatabaseByUsername_System_String_" data-uid="CommunicationService.ServiceImplementation.DeleteUserFromDatabaseByUsername(System.String)">DeleteUserFromDatabaseByUsername(String)</h4>
@@ -399,7 +400,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_DrawCard.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.DrawCard%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1399">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1405">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_DrawCard_" data-uid="CommunicationService.ServiceImplementation.DrawCard*"></a>
   <h4 id="CommunicationService_ServiceImplementation_DrawCard" data-uid="CommunicationService.ServiceImplementation.DrawCard">DrawCard()</h4>
@@ -429,7 +430,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_EndGame_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.EndGame(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1199">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1205">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_EndGame_" data-uid="CommunicationService.ServiceImplementation.EndGame*"></a>
   <h4 id="CommunicationService_ServiceImplementation_EndGame_System_Int32_" data-uid="CommunicationService.ServiceImplementation.EndGame(System.Int32)">EndGame(Int32)</h4>
@@ -461,7 +462,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_EndTurn_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.EndTurn(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1204">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1210">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_EndTurn_" data-uid="CommunicationService.ServiceImplementation.EndTurn*"></a>
   <h4 id="CommunicationService_ServiceImplementation_EndTurn_System_Int32_" data-uid="CommunicationService.ServiceImplementation.EndTurn(System.Int32)">EndTurn(Int32)</h4>
@@ -493,7 +494,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_ExitMatch_System_Int32_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.ExitMatch(System.Int32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1187">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1193">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_ExitMatch_" data-uid="CommunicationService.ServiceImplementation.ExitMatch*"></a>
   <h4 id="CommunicationService_ServiceImplementation_ExitMatch_System_Int32_System_String_" data-uid="CommunicationService.ServiceImplementation.ExitMatch(System.Int32,System.String)">ExitMatch(Int32, String)</h4>
@@ -530,7 +531,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_GetBlockedUsersListByUserId_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.GetBlockedUsersListByUserId(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L707">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L847">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_GetBlockedUsersListByUserId_" data-uid="CommunicationService.ServiceImplementation.GetBlockedUsersListByUserId*"></a>
   <h4 id="CommunicationService_ServiceImplementation_GetBlockedUsersListByUserId_System_Int32_" data-uid="CommunicationService.ServiceImplementation.GetBlockedUsersListByUserId(System.Int32)">GetBlockedUsersListByUserId(Int32)</h4>
@@ -577,7 +578,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_GetCards_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.GetCards(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1423">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1429">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_GetCards_" data-uid="CommunicationService.ServiceImplementation.GetCards*"></a>
   <h4 id="CommunicationService_ServiceImplementation_GetCards_System_Int32_" data-uid="CommunicationService.ServiceImplementation.GetCards(System.Int32)">GetCards(Int32)</h4>
@@ -624,7 +625,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_GetCurrentTurn_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.GetCurrentTurn(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1212">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1218">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_GetCurrentTurn_" data-uid="CommunicationService.ServiceImplementation.GetCurrentTurn*"></a>
   <h4 id="CommunicationService_ServiceImplementation_GetCurrentTurn_System_Int32_" data-uid="CommunicationService.ServiceImplementation.GetCurrentTurn(System.Int32)">GetCurrentTurn(Int32)</h4>
@@ -671,7 +672,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_GetFriendRequestsList_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.GetFriendRequestsList(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L56">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L399">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_GetFriendRequestsList_" data-uid="CommunicationService.ServiceImplementation.GetFriendRequestsList*"></a>
   <h4 id="CommunicationService_ServiceImplementation_GetFriendRequestsList_System_Int32_" data-uid="CommunicationService.ServiceImplementation.GetFriendRequestsList(System.Int32)">GetFriendRequestsList(Int32)</h4>
@@ -718,7 +719,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_GetFriendsList_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.GetFriendsList(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L308">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L580">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_GetFriendsList_" data-uid="CommunicationService.ServiceImplementation.GetFriendsList*"></a>
   <h4 id="CommunicationService_ServiceImplementation_GetFriendsList_System_Int32_" data-uid="CommunicationService.ServiceImplementation.GetFriendsList(System.Int32)">GetFriendsList(Int32)</h4>
@@ -765,7 +766,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_GetMatchResults_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.GetMatchResults(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1224">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1230">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_GetMatchResults_" data-uid="CommunicationService.ServiceImplementation.GetMatchResults*"></a>
   <h4 id="CommunicationService_ServiceImplementation_GetMatchResults_System_Int32_" data-uid="CommunicationService.ServiceImplementation.GetMatchResults(System.Int32)">GetMatchResults(Int32)</h4>
@@ -812,7 +813,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_GetOnlineFriends_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.GetOnlineFriends(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L349">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L561">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_GetOnlineFriends_" data-uid="CommunicationService.ServiceImplementation.GetOnlineFriends*"></a>
   <h4 id="CommunicationService_ServiceImplementation_GetOnlineFriends_System_Int32_" data-uid="CommunicationService.ServiceImplementation.GetOnlineFriends(System.Int32)">GetOnlineFriends(Int32)</h4>
@@ -859,7 +860,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_GetPlayerList_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.GetPlayerList(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1219">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1225">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_GetPlayerList_" data-uid="CommunicationService.ServiceImplementation.GetPlayerList*"></a>
   <h4 id="CommunicationService_ServiceImplementation_GetPlayerList_System_Int32_" data-uid="CommunicationService.ServiceImplementation.GetPlayerList(System.Int32)">GetPlayerList(Int32)</h4>
@@ -903,18 +904,18 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_GetPlayersInParty_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.GetPlayersInParty(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_GetPlayersInLobby_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.GetPlayersInLobby(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1135">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1141">View Source</a>
   </span>
-  <a id="CommunicationService_ServiceImplementation_GetPlayersInParty_" data-uid="CommunicationService.ServiceImplementation.GetPlayersInParty*"></a>
-  <h4 id="CommunicationService_ServiceImplementation_GetPlayersInParty_System_Int32_" data-uid="CommunicationService.ServiceImplementation.GetPlayersInParty(System.Int32)">GetPlayersInParty(Int32)</h4>
+  <a id="CommunicationService_ServiceImplementation_GetPlayersInLobby_" data-uid="CommunicationService.ServiceImplementation.GetPlayersInLobby*"></a>
+  <h4 id="CommunicationService_ServiceImplementation_GetPlayersInLobby_System_Int32_" data-uid="CommunicationService.ServiceImplementation.GetPlayersInLobby(System.Int32)">GetPlayersInLobby(Int32)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;string&gt; GetPlayersInParty(int partyCode)</code></pre>
+    <pre><code class="lang-csharp hljs">public List&lt;string&gt; GetPlayersInLobby(int lobbyCode)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -928,7 +929,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">partyCode</span></td>
+        <td><span class="parametername">lobbyCode</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -953,7 +954,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_GetTopTenWinners.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.GetTopTenWinners%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L749">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L262">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_GetTopTenWinners_" data-uid="CommunicationService.ServiceImplementation.GetTopTenWinners*"></a>
   <h4 id="CommunicationService_ServiceImplementation_GetTopTenWinners" data-uid="CommunicationService.ServiceImplementation.GetTopTenWinners">GetTopTenWinners()</h4>
@@ -983,7 +984,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_GetUserInfoByUsername_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.GetUserInfoByUsername(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L790">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L303">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_GetUserInfoByUsername_" data-uid="CommunicationService.ServiceImplementation.GetUserInfoByUsername*"></a>
   <h4 id="CommunicationService_ServiceImplementation_GetUserInfoByUsername_System_String_" data-uid="CommunicationService.ServiceImplementation.GetUserInfoByUsername(System.String)">GetUserInfoByUsername(String)</h4>
@@ -1030,7 +1031,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_IsAlreadyFriend_System_String_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.IsAlreadyFriend(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L482">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L704">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_IsAlreadyFriend_" data-uid="CommunicationService.ServiceImplementation.IsAlreadyFriend*"></a>
   <h4 id="CommunicationService_ServiceImplementation_IsAlreadyFriend_System_String_System_String_" data-uid="CommunicationService.ServiceImplementation.IsAlreadyFriend(System.String,System.String)">IsAlreadyFriend(String, String)</h4>
@@ -1082,7 +1083,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_IsEmailTaken_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.IsEmailTaken(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L93">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L56">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_IsEmailTaken_" data-uid="CommunicationService.ServiceImplementation.IsEmailTaken*"></a>
   <h4 id="CommunicationService_ServiceImplementation_IsEmailTaken_System_String_" data-uid="CommunicationService.ServiceImplementation.IsEmailTaken(System.String)">IsEmailTaken(String)</h4>
@@ -1129,7 +1130,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_IsFriendRequestAlreadyExistent_System_String_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.IsFriendRequestAlreadyExistent(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L431">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L653">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_IsFriendRequestAlreadyExistent_" data-uid="CommunicationService.ServiceImplementation.IsFriendRequestAlreadyExistent*"></a>
   <h4 id="CommunicationService_ServiceImplementation_IsFriendRequestAlreadyExistent_System_String_System_String_" data-uid="CommunicationService.ServiceImplementation.IsFriendRequestAlreadyExistent(System.String,System.String)">IsFriendRequestAlreadyExistent(String, String)</h4>
@@ -1178,10 +1179,57 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_IsLobbyExistent_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.IsLobbyExistent(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1126">View Source</a>
+  </span>
+  <a id="CommunicationService_ServiceImplementation_IsLobbyExistent_" data-uid="CommunicationService.ServiceImplementation.IsLobbyExistent*"></a>
+  <h4 id="CommunicationService_ServiceImplementation_IsLobbyExistent_System_Int32_" data-uid="CommunicationService.ServiceImplementation.IsLobbyExistent(System.Int32)">IsLobbyExistent(Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsLobbyExistent(int lobbyCode)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">lobbyCode</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_IsLoginValid_System_String_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.IsLoginValid(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L119">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L82">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_IsLoginValid_" data-uid="CommunicationService.ServiceImplementation.IsLoginValid*"></a>
   <h4 id="CommunicationService_ServiceImplementation_IsLoginValid_System_String_System_String_" data-uid="CommunicationService.ServiceImplementation.IsLoginValid(System.String,System.String)">IsLoginValid(String, String)</h4>
@@ -1230,57 +1278,10 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_IsPartyExistent_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.IsPartyExistent(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1120">View Source</a>
-  </span>
-  <a id="CommunicationService_ServiceImplementation_IsPartyExistent_" data-uid="CommunicationService.ServiceImplementation.IsPartyExistent*"></a>
-  <h4 id="CommunicationService_ServiceImplementation_IsPartyExistent_System_Int32_" data-uid="CommunicationService.ServiceImplementation.IsPartyExistent(System.Int32)">IsPartyExistent(Int32)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsPartyExistent(int partyCode)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">partyCode</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_IsSpaceAvailable_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.IsSpaceAvailable(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1125">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1131">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_IsSpaceAvailable_" data-uid="CommunicationService.ServiceImplementation.IsSpaceAvailable*"></a>
   <h4 id="CommunicationService_ServiceImplementation_IsSpaceAvailable_System_Int32_" data-uid="CommunicationService.ServiceImplementation.IsSpaceAvailable(System.Int32)">IsSpaceAvailable(Int32)</h4>
@@ -1288,7 +1289,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsSpaceAvailable(int partyCode)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool IsSpaceAvailable(int lobbyCode)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1302,7 +1303,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">partyCode</span></td>
+        <td><span class="parametername">lobbyCode</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -1327,7 +1328,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_IsUserAlreadyLoggedIn_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.IsUserAlreadyLoggedIn(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L519">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L177">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_IsUserAlreadyLoggedIn_" data-uid="CommunicationService.ServiceImplementation.IsUserAlreadyLoggedIn*"></a>
   <h4 id="CommunicationService_ServiceImplementation_IsUserAlreadyLoggedIn_System_String_" data-uid="CommunicationService.ServiceImplementation.IsUserAlreadyLoggedIn(System.String)">IsUserAlreadyLoggedIn(String)</h4>
@@ -1374,7 +1375,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_IsUserBanned_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.IsUserBanned(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L856">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L369">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_IsUserBanned_" data-uid="CommunicationService.ServiceImplementation.IsUserBanned*"></a>
   <h4 id="CommunicationService_ServiceImplementation_IsUserBanned_System_Int32_" data-uid="CommunicationService.ServiceImplementation.IsUserBanned(System.Int32)">IsUserBanned(Int32)</h4>
@@ -1421,7 +1422,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_IsUserBlockedByUsername_System_String_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.IsUserBlockedByUsername(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L576">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L744">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_IsUserBlockedByUsername_" data-uid="CommunicationService.ServiceImplementation.IsUserBlockedByUsername*"></a>
   <h4 id="CommunicationService_ServiceImplementation_IsUserBlockedByUsername_System_String_System_String_" data-uid="CommunicationService.ServiceImplementation.IsUserBlockedByUsername(System.String,System.String)">IsUserBlockedByUsername(String, String)</h4>
@@ -1470,18 +1471,18 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_IsUsernameInParty_System_Int32_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.IsUsernameInParty(System.Int32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_IsUsernameInLobby_System_Int32_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.IsUsernameInLobby(System.Int32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1130">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1136">View Source</a>
   </span>
-  <a id="CommunicationService_ServiceImplementation_IsUsernameInParty_" data-uid="CommunicationService.ServiceImplementation.IsUsernameInParty*"></a>
-  <h4 id="CommunicationService_ServiceImplementation_IsUsernameInParty_System_Int32_System_String_" data-uid="CommunicationService.ServiceImplementation.IsUsernameInParty(System.Int32,System.String)">IsUsernameInParty(Int32, String)</h4>
+  <a id="CommunicationService_ServiceImplementation_IsUsernameInLobby_" data-uid="CommunicationService.ServiceImplementation.IsUsernameInLobby*"></a>
+  <h4 id="CommunicationService_ServiceImplementation_IsUsernameInLobby_System_Int32_System_String_" data-uid="CommunicationService.ServiceImplementation.IsUsernameInLobby(System.Int32,System.String)">IsUsernameInLobby(Int32, String)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsUsernameInParty(int partyCode, string username)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool IsUsernameInLobby(int lobbyCode, string username)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1495,7 +1496,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">partyCode</span></td>
+        <td><span class="parametername">lobbyCode</span></td>
         <td></td>
       </tr>
       <tr>
@@ -1525,7 +1526,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_IsUsernameTaken_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.IsUsernameTaken(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L158">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L121">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_IsUsernameTaken_" data-uid="CommunicationService.ServiceImplementation.IsUsernameTaken*"></a>
   <h4 id="CommunicationService_ServiceImplementation_IsUsernameTaken_System_String_" data-uid="CommunicationService.ServiceImplementation.IsUsernameTaken(System.String)">IsUsernameTaken(String)</h4>
@@ -1572,7 +1573,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_KickPlayerFromGame_System_Int32_System_String_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.KickPlayerFromGame(System.Int32%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1194">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1200">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_KickPlayerFromGame_" data-uid="CommunicationService.ServiceImplementation.KickPlayerFromGame*"></a>
   <h4 id="CommunicationService_ServiceImplementation_KickPlayerFromGame_System_Int32_System_String_System_String_" data-uid="CommunicationService.ServiceImplementation.KickPlayerFromGame(System.Int32,System.String,System.String)">KickPlayerFromGame(Int32, String, String)</h4>
@@ -1614,7 +1615,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_LogOut_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.LogOut(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1112">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1118">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_LogOut_" data-uid="CommunicationService.ServiceImplementation.LogOut*"></a>
   <h4 id="CommunicationService_ServiceImplementation_LogOut_System_String_" data-uid="CommunicationService.ServiceImplementation.LogOut(System.String)">LogOut(String)</h4>
@@ -1646,7 +1647,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_ModifyPasswordByEmail_System_String_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.ModifyPasswordByEmail(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L610">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L234">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_ModifyPasswordByEmail_" data-uid="CommunicationService.ServiceImplementation.ModifyPasswordByEmail*"></a>
   <h4 id="CommunicationService_ServiceImplementation_ModifyPasswordByEmail_System_String_System_String_" data-uid="CommunicationService.ServiceImplementation.ModifyPasswordByEmail(System.String,System.String)">ModifyPasswordByEmail(String, String)</h4>
@@ -1695,18 +1696,18 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_NotifyCloseParty_System_Int32_System_String_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.NotifyCloseParty(System.Int32%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_NotifyCloseLobby_System_Int32_System_String_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.NotifyCloseLobby(System.Int32%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L977">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L983">View Source</a>
   </span>
-  <a id="CommunicationService_ServiceImplementation_NotifyCloseParty_" data-uid="CommunicationService.ServiceImplementation.NotifyCloseParty*"></a>
-  <h4 id="CommunicationService_ServiceImplementation_NotifyCloseParty_System_Int32_System_String_System_String_" data-uid="CommunicationService.ServiceImplementation.NotifyCloseParty(System.Int32,System.String,System.String)">NotifyCloseParty(Int32, String, String)</h4>
+  <a id="CommunicationService_ServiceImplementation_NotifyCloseLobby_" data-uid="CommunicationService.ServiceImplementation.NotifyCloseLobby*"></a>
+  <h4 id="CommunicationService_ServiceImplementation_NotifyCloseLobby_System_Int32_System_String_System_String_" data-uid="CommunicationService.ServiceImplementation.NotifyCloseLobby(System.Int32,System.String,System.String)">NotifyCloseLobby(Int32, String, String)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void NotifyCloseParty(int partyCode, string hostName, string reason)</code></pre>
+    <pre><code class="lang-csharp hljs">public void NotifyCloseLobby(int lobbyCode, string hostName, string reason)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1720,7 +1721,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">partyCode</span></td>
+        <td><span class="parametername">lobbyCode</span></td>
         <td></td>
       </tr>
       <tr>
@@ -1737,18 +1738,18 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_NotifyCreateParty_System_Int32_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.NotifyCreateParty(System.Int32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_NotifyCreateLobby_System_Int32_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.NotifyCreateLobby(System.Int32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L908">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L914">View Source</a>
   </span>
-  <a id="CommunicationService_ServiceImplementation_NotifyCreateParty_" data-uid="CommunicationService.ServiceImplementation.NotifyCreateParty*"></a>
-  <h4 id="CommunicationService_ServiceImplementation_NotifyCreateParty_System_Int32_System_String_" data-uid="CommunicationService.ServiceImplementation.NotifyCreateParty(System.Int32,System.String)">NotifyCreateParty(Int32, String)</h4>
+  <a id="CommunicationService_ServiceImplementation_NotifyCreateLobby_" data-uid="CommunicationService.ServiceImplementation.NotifyCreateLobby*"></a>
+  <h4 id="CommunicationService_ServiceImplementation_NotifyCreateLobby_System_Int32_System_String_" data-uid="CommunicationService.ServiceImplementation.NotifyCreateLobby(System.Int32,System.String)">NotifyCreateLobby(Int32, String)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void NotifyCreateParty(int partyCode, string hostUsername)</code></pre>
+    <pre><code class="lang-csharp hljs">public void NotifyCreateLobby(int lobbyCode, string hostUsername)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1762,7 +1763,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">partyCode</span></td>
+        <td><span class="parametername">lobbyCode</span></td>
         <td></td>
       </tr>
       <tr>
@@ -1777,7 +1778,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_NotifyGuestLeft_System_Int32_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.NotifyGuestLeft(System.Int32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1107">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1113">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_NotifyGuestLeft_" data-uid="CommunicationService.ServiceImplementation.NotifyGuestLeft*"></a>
   <h4 id="CommunicationService_ServiceImplementation_NotifyGuestLeft_System_Int32_System_String_" data-uid="CommunicationService.ServiceImplementation.NotifyGuestLeft(System.Int32,System.String)">NotifyGuestLeft(Int32, String)</h4>
@@ -1811,18 +1812,18 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_NotifyJoinParty_System_Int32_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.NotifyJoinParty(System.Int32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_NotifyJoinLobby_System_Int32_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.NotifyJoinLobby(System.Int32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L930">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L936">View Source</a>
   </span>
-  <a id="CommunicationService_ServiceImplementation_NotifyJoinParty_" data-uid="CommunicationService.ServiceImplementation.NotifyJoinParty*"></a>
-  <h4 id="CommunicationService_ServiceImplementation_NotifyJoinParty_System_Int32_System_String_" data-uid="CommunicationService.ServiceImplementation.NotifyJoinParty(System.Int32,System.String)">NotifyJoinParty(Int32, String)</h4>
+  <a id="CommunicationService_ServiceImplementation_NotifyJoinLobby_" data-uid="CommunicationService.ServiceImplementation.NotifyJoinLobby*"></a>
+  <h4 id="CommunicationService_ServiceImplementation_NotifyJoinLobby_System_Int32_System_String_" data-uid="CommunicationService.ServiceImplementation.NotifyJoinLobby(System.Int32,System.String)">NotifyJoinLobby(Int32, String)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void NotifyJoinParty(int partyCode, string username)</code></pre>
+    <pre><code class="lang-csharp hljs">public void NotifyJoinLobby(int lobbyCode, string username)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1836,7 +1837,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">partyCode</span></td>
+        <td><span class="parametername">lobbyCode</span></td>
         <td></td>
       </tr>
       <tr>
@@ -1851,7 +1852,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_NotifyKickPlayer_System_Int32_System_String_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.NotifyKickPlayer(System.Int32%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1023">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1029">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_NotifyKickPlayer_" data-uid="CommunicationService.ServiceImplementation.NotifyKickPlayer*"></a>
   <h4 id="CommunicationService_ServiceImplementation_NotifyKickPlayer_System_Int32_System_String_System_String_" data-uid="CommunicationService.ServiceImplementation.NotifyKickPlayer(System.Int32,System.String,System.String)">NotifyKickPlayer(Int32, String, String)</h4>
@@ -1859,7 +1860,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void NotifyKickPlayer(int partyCode, string username, string reason)</code></pre>
+    <pre><code class="lang-csharp hljs">public void NotifyKickPlayer(int lobbyCode, string username, string reason)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1873,7 +1874,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">partyCode</span></td>
+        <td><span class="parametername">lobbyCode</span></td>
         <td></td>
       </tr>
       <tr>
@@ -1890,18 +1891,18 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_NotifyLeaveParty_System_Int32_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.NotifyLeaveParty(System.Int32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_NotifyLeaveLobby_System_Int32_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.NotifyLeaveLobby(System.Int32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L954">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L960">View Source</a>
   </span>
-  <a id="CommunicationService_ServiceImplementation_NotifyLeaveParty_" data-uid="CommunicationService.ServiceImplementation.NotifyLeaveParty*"></a>
-  <h4 id="CommunicationService_ServiceImplementation_NotifyLeaveParty_System_Int32_System_String_" data-uid="CommunicationService.ServiceImplementation.NotifyLeaveParty(System.Int32,System.String)">NotifyLeaveParty(Int32, String)</h4>
+  <a id="CommunicationService_ServiceImplementation_NotifyLeaveLobby_" data-uid="CommunicationService.ServiceImplementation.NotifyLeaveLobby*"></a>
+  <h4 id="CommunicationService_ServiceImplementation_NotifyLeaveLobby_System_Int32_System_String_" data-uid="CommunicationService.ServiceImplementation.NotifyLeaveLobby(System.Int32,System.String)">NotifyLeaveLobby(Int32, String)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void NotifyLeaveParty(int partyCode, string username)</code></pre>
+    <pre><code class="lang-csharp hljs">public void NotifyLeaveLobby(int lobbyCode, string username)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1915,7 +1916,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">partyCode</span></td>
+        <td><span class="parametername">lobbyCode</span></td>
         <td></td>
       </tr>
       <tr>
@@ -1930,7 +1931,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_NotifyLogIn_CommunicationService_UserDTO_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.NotifyLogIn(CommunicationService.UserDTO)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1089">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1095">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_NotifyLogIn_" data-uid="CommunicationService.ServiceImplementation.NotifyLogIn*"></a>
   <h4 id="CommunicationService_ServiceImplementation_NotifyLogIn_CommunicationService_UserDTO_" data-uid="CommunicationService.ServiceImplementation.NotifyLogIn(CommunicationService.UserDTO)">NotifyLogIn(UserDTO)</h4>
@@ -1962,7 +1963,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_NotifyLogOut_CommunicationService_UserDTO_System_Boolean_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.NotifyLogOut(CommunicationService.UserDTO%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1094">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1100">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_NotifyLogOut_" data-uid="CommunicationService.ServiceImplementation.NotifyLogOut*"></a>
   <h4 id="CommunicationService_ServiceImplementation_NotifyLogOut_CommunicationService_UserDTO_System_Boolean_" data-uid="CommunicationService.ServiceImplementation.NotifyLogOut(CommunicationService.UserDTO,System.Boolean)">NotifyLogOut(UserDTO, Boolean)</h4>
@@ -1999,7 +2000,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_NotifySendMessage_System_Int32_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.NotifySendMessage(System.Int32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1000">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1006">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_NotifySendMessage_" data-uid="CommunicationService.ServiceImplementation.NotifySendMessage*"></a>
   <h4 id="CommunicationService_ServiceImplementation_NotifySendMessage_System_Int32_System_String_" data-uid="CommunicationService.ServiceImplementation.NotifySendMessage(System.Int32,System.String)">NotifySendMessage(Int32, String)</h4>
@@ -2007,7 +2008,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void NotifySendMessage(int partyCode, string message)</code></pre>
+    <pre><code class="lang-csharp hljs">public void NotifySendMessage(int lobbyCode, string message)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2021,7 +2022,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">partyCode</span></td>
+        <td><span class="parametername">lobbyCode</span></td>
         <td></td>
       </tr>
       <tr>
@@ -2036,7 +2037,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_NotifyStartGame_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.NotifyStartGame(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1060">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1066">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_NotifyStartGame_" data-uid="CommunicationService.ServiceImplementation.NotifyStartGame*"></a>
   <h4 id="CommunicationService_ServiceImplementation_NotifyStartGame_System_Int32_" data-uid="CommunicationService.ServiceImplementation.NotifyStartGame(System.Int32)">NotifyStartGame(Int32)</h4>
@@ -2044,7 +2045,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public async void NotifyStartGame(int partyCode)</code></pre>
+    <pre><code class="lang-csharp hljs">public async void NotifyStartGame(int lobbyCode)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2058,7 +2059,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">partyCode</span></td>
+        <td><span class="parametername">lobbyCode</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -2068,7 +2069,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_PlayCard_System_Int32_System_Int32_CommunicationService_Card_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.PlayCard(System.Int32%2CSystem.Int32%2CCommunicationService.Card)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1428">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1434">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_PlayCard_" data-uid="CommunicationService.ServiceImplementation.PlayCard*"></a>
   <h4 id="CommunicationService_ServiceImplementation_PlayCard_System_Int32_System_Int32_CommunicationService_Card_" data-uid="CommunicationService.ServiceImplementation.PlayCard(System.Int32,System.Int32,CommunicationService.Card)">PlayCard(Int32, Int32, Card)</h4>
@@ -2110,7 +2111,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_RejectFriendRequest_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.RejectFriendRequest(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L278">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L531">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_RejectFriendRequest_" data-uid="CommunicationService.ServiceImplementation.RejectFriendRequest*"></a>
   <h4 id="CommunicationService_ServiceImplementation_RejectFriendRequest_System_Int32_" data-uid="CommunicationService.ServiceImplementation.RejectFriendRequest(System.Int32)">RejectFriendRequest(Int32)</h4>
@@ -2157,7 +2158,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_SendConfirmationCode_System_String_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.SendConfirmationCode(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L524">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L182">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_SendConfirmationCode_" data-uid="CommunicationService.ServiceImplementation.SendConfirmationCode*"></a>
   <h4 id="CommunicationService_ServiceImplementation_SendConfirmationCode_System_String_System_String_" data-uid="CommunicationService.ServiceImplementation.SendConfirmationCode(System.String,System.String)">SendConfirmationCode(String, String)</h4>
@@ -2209,7 +2210,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_SendFriendRequest_System_String_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.SendFriendRequest(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L183">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L436">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_SendFriendRequest_" data-uid="CommunicationService.ServiceImplementation.SendFriendRequest*"></a>
   <h4 id="CommunicationService_ServiceImplementation_SendFriendRequest_System_String_System_String_" data-uid="CommunicationService.ServiceImplementation.SendFriendRequest(System.String,System.String)">SendFriendRequest(String, String)</h4>
@@ -2261,7 +2262,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_SetGameScore_System_Int32_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.SetGameScore(System.Int32%2CSystem.String%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1172">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1178">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_SetGameScore_" data-uid="CommunicationService.ServiceImplementation.SetGameScore*"></a>
   <h4 id="CommunicationService_ServiceImplementation_SetGameScore_System_Int32_System_String_System_Int32_" data-uid="CommunicationService.ServiceImplementation.SetGameScore(System.Int32,System.String,System.Int32)">SetGameScore(Int32, String, Int32)</h4>
@@ -2303,7 +2304,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_Subscribe_System_Int32_System_String_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.Subscribe(System.Int32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1153">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1159">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_Subscribe_" data-uid="CommunicationService.ServiceImplementation.Subscribe*"></a>
   <h4 id="CommunicationService_ServiceImplementation_Subscribe_System_Int32_System_String_" data-uid="CommunicationService.ServiceImplementation.Subscribe(System.Int32,System.String)">Subscribe(Int32, String)</h4>
@@ -2343,7 +2344,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_UnblockUserByBlockId_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.UnblockUserByBlockId(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L678">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L818">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_UnblockUserByBlockId_" data-uid="CommunicationService.ServiceImplementation.UnblockUserByBlockId*"></a>
   <h4 id="CommunicationService_ServiceImplementation_UnblockUserByBlockId_System_Int32_" data-uid="CommunicationService.ServiceImplementation.UnblockUserByBlockId(System.Int32)">UnblockUserByBlockId(Int32)</h4>
@@ -2390,7 +2391,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation_UpdateProfilePictureByUserId_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation.UpdateProfilePictureByUserId(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L828">View Source</a>
+    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L341">View Source</a>
   </span>
   <a id="CommunicationService_ServiceImplementation_UpdateProfilePictureByUserId_" data-uid="CommunicationService.ServiceImplementation.UpdateProfilePictureByUserId*"></a>
   <h4 id="CommunicationService_ServiceImplementation_UpdateProfilePictureByUserId_System_Int32_System_Int32_" data-uid="CommunicationService.ServiceImplementation.UpdateProfilePictureByUserId(System.Int32,System.Int32)">UpdateProfilePictureByUserId(Int32, Int32)</h4>
@@ -2442,13 +2443,16 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
       <a class="xref" href="CommunicationService.IUsersManager.html">IUsersManager</a>
   </div>
   <div>
-      <a class="xref" href="CommunicationService.IPartyManager.html">IPartyManager</a>
+      <a class="xref" href="CommunicationService.IFriendsManager.html">IFriendsManager</a>
+  </div>
+  <div>
+      <a class="xref" href="CommunicationService.ILobbyManager.html">ILobbyManager</a>
   </div>
   <div>
       <a class="xref" href="CommunicationService.IUserConnectionHandler.html">IUserConnectionHandler</a>
   </div>
   <div>
-      <a class="xref" href="CommunicationService.IPartyValidator.html">IPartyValidator</a>
+      <a class="xref" href="CommunicationService.ILobbyValidator.html">ILobbyValidator</a>
   </div>
   <div>
       <a class="xref" href="CommunicationService.IMatchManager.html">IMatchManager</a>
@@ -2467,7 +2471,7 @@ public class ServiceImplementation : IUsersManager, IPartyManager, IUserConnecti
                     <a href="https://github.com/camiloesan/ServerDuo/new/pre-release/apiSpec/new?filename=CommunicationService_ServiceImplementation.md&amp;value=---%0Auid%3A%20CommunicationService.ServiceImplementation%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1345" class="contribution-link">View Source</a>
+                    <a href="https://github.com/camiloesan/ServerDuo/blob/pre-release/CommunicationService/ServiceImplementation.cs/#L1351" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

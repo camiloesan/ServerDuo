@@ -89,8 +89,8 @@ namespace ClienteDuo.Pages
             {
                 InstanceContext instanceContext = new InstanceContext(this);
                 MatchManagerClient client = new MatchManagerClient(instanceContext);
-                List<string> matchPlayers = new List<string>(client.GetPlayerList(SessionDetails.PartyCode));
-                LblCurrentTurn.Content = client.GetCurrentTurn(SessionDetails.PartyCode);
+                List<string> matchPlayers = new List<string>(client.GetPlayerList(SessionDetails.LobbyCode));
+                LblCurrentTurn.Content = client.GetCurrentTurn(SessionDetails.LobbyCode);
 
                 List<string> otherPlayers = new List<string>();
                 foreach (string player in matchPlayers)
@@ -182,7 +182,7 @@ namespace ClienteDuo.Pages
             try
             {
                 CardManagerClient client = new CardManagerClient();
-                _tableCards = client.GetCards(SessionDetails.PartyCode);
+                _tableCards = client.GetCards(SessionDetails.LobbyCode);
 
                 for (int i = 0; i < _tableCards.Length; i++)
                 {
@@ -226,7 +226,7 @@ namespace ClienteDuo.Pages
                 GameOver gameOverScreen = new GameOver();
                 InstanceContext instanceContext = new InstanceContext(this);
                 MatchManagerClient client = new MatchManagerClient(instanceContext);
-                client.SetGameScore(SessionDetails.PartyCode, SessionDetails.Username, PlayerDeck.Children.Count);
+                client.SetGameScore(SessionDetails.LobbyCode, SessionDetails.Username, PlayerDeck.Children.Count);
 
                 MatchOverLabel matchOverLabel = new MatchOverLabel();
                 matchOverLabel.Visibility = Visibility.Visible;
@@ -236,7 +236,7 @@ namespace ClienteDuo.Pages
 
                 await Task.Delay(5000);
 
-                Dictionary<string, int> playerScores = client.GetMatchResults(SessionDetails.PartyCode);
+                Dictionary<string, int> playerScores = client.GetMatchResults(SessionDetails.LobbyCode);
                 gameOverScreen.LoadPlayers(playerScores);
 
                 gameOverScreen.Visibility = Visibility.Visible;
@@ -344,7 +344,7 @@ namespace ClienteDuo.Pages
                 playedCard.Number = _selectedCards[0].Number;
                 playedCard.Color = _selectedCards[0].Color;
 
-                client.PlayCard(SessionDetails.PartyCode, position, playedCard);
+                client.PlayCard(SessionDetails.LobbyCode, position, playedCard);
                 MusicManager.PlayCardFlippedSound();
 
                 for (int i = 0; i < _selectedCards.Count; i++)
@@ -363,7 +363,7 @@ namespace ClienteDuo.Pages
                     InstanceContext context = new InstanceContext(this);
                     MatchManagerClient matchClient = new MatchManagerClient(context);
 
-                    matchClient.EndGame(SessionDetails.PartyCode);
+                    matchClient.EndGame(SessionDetails.LobbyCode);
                 }
                 else
                 {
@@ -424,9 +424,9 @@ namespace ClienteDuo.Pages
                 _matchingColors = 0;
 
                 CardManagerClient cardClient = new CardManagerClient();
-                cardClient.DealCards(SessionDetails.PartyCode);
+                cardClient.DealCards(SessionDetails.LobbyCode);
 
-                client.EndTurn(SessionDetails.PartyCode);
+                client.EndTurn(SessionDetails.LobbyCode);
             }
             catch (CommunicationException)
             {
