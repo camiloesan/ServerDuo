@@ -44,37 +44,37 @@ namespace ClienteDuo.Pages
 
         private void BtnContinueEvent(object sender, RoutedEventArgs e)
         {
-            bool result = false;
-            try
+            if (_selectedPictureId != SessionDetails.PictureID)
             {
-                result = UsersManager.UpdateProfilePicture(SessionDetails.UserId, _selectedPictureId) == 1;
-            }
-            catch (CommunicationException)
-            {
-                AbortOperation();
-            }
-            catch (TimeoutException)
-            {
-                AbortOperation();
-            }
+                bool result = false;
+                try
+                {
+                    result = UsersManager.UpdateProfilePicture(SessionDetails.UserId, _selectedPictureId) == 1;
+                }
+                catch (CommunicationException)
+                {
+                    MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
+                }
+                catch (TimeoutException)
+                {
+                    MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
+                }
 
-            if (result)
-            {
-                SessionDetails.PictureID = _selectedPictureId;
-                MainWindow.ShowMessageBox(Properties.Resources.DlgProfilePictureUpdated, MessageBoxImage.Information);
-                Application.Current.MainWindow.Content = new MainMenu();
+                if (result)
+                {
+                    SessionDetails.PictureID = _selectedPictureId;
+                    MainWindow.ShowMessageBox(Properties.Resources.DlgProfilePictureUpdated, MessageBoxImage.Information);
+                    Application.Current.MainWindow.Content = new MainMenu();
+                }
+                else
+                {
+                    MainWindow.ShowMessageBox(Properties.Resources.DlgProfilePictureNotUpdated, MessageBoxImage.Information);
+                }
             }
             else
             {
-                MainWindow.ShowMessageBox(Properties.Resources.DlgProfilePictureNotUpdated, MessageBoxImage.Information);
+                MainWindow.ShowMessageBox(Properties.Resources.DlgSameProfilePicture, MessageBoxImage.Information);
             }
-        }
-
-        private void AbortOperation()
-        {
-            SessionDetails.CleanSessionDetails();
-            Application.Current.MainWindow.Content = new Launcher();
-            MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
         }
 
         private void BtnCancelEvent(object sender, RoutedEventArgs e)
