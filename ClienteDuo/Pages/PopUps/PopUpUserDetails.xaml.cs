@@ -9,9 +9,6 @@ using System.Windows.Media.Imaging;
 
 namespace ClienteDuo.Pages.Sidebars
 {
-    /// <summary>
-    /// Interaction logic for PopUpUserDetails.xaml
-    /// </summary>
     public partial class PopUpUserDetails : UserControl
     {
         private string _userSelectedName;
@@ -44,10 +41,11 @@ namespace ClienteDuo.Pages.Sidebars
                 SetProfilePicture(userInfo.PictureID);
                 LblUsername.Content = Properties.Resources.LblUsername + ": " + username;
                 LblTrophies.Content = Properties.Resources.LblTotalWins + ": " + userInfo.TotalWins;
-                bool isFriend = UsersManager.IsAlreadyFriend(SessionDetails.Username, username);
+                bool isFriend = FriendsManager.IsAlreadyFriend(SessionDetails.Username, username);
                 if (isFriend)
                 {
                     BtnAddFriend.Visibility = Visibility.Collapsed;
+                    BtnBlock.Visibility = Visibility.Collapsed;
                 }
                 if (SessionDetails.IsGuest)
                 {
@@ -59,7 +57,7 @@ namespace ClienteDuo.Pages.Sidebars
 
         public void InitializeUserInfo(int friendshipId, string username)
         {
-            UserDTO userInfo = UsersManager.GetUserInfoByUsername(username); // thus
+            UserDTO userInfo = UsersManager.GetUserInfoByUsername(username);
             DataContext = friendshipId;
             _userSelectedName = username;
 
@@ -112,13 +110,13 @@ namespace ClienteDuo.Pages.Sidebars
 
         private void AddFriend(string usernameSender, string usernameReceiver)
         {
-            if (UsersManager.IsFriendRequestAlreadySent(usernameSender, usernameReceiver))
+            if (FriendsManager.IsFriendRequestAlreadySent(usernameSender, usernameReceiver))
             {
                 MainWindow.ShowMessageBox(Properties.Resources.DlgFriendRequestAlreadySent, MessageBoxImage.Information);
             }
             else
             {
-                if (UsersManager.SendFriendRequest(usernameSender, usernameReceiver) == 1)
+                if (FriendsManager.SendFriendRequest(usernameSender, usernameReceiver) == 1)
                 {
                     MainWindow.ShowMessageBox(Properties.Resources.DlgFriendRequestSent, MessageBoxImage.Information);
                     Visibility = Visibility.Collapsed;
@@ -134,7 +132,7 @@ namespace ClienteDuo.Pages.Sidebars
                 bool isFriend = false;
                 try
                 {
-                    isFriend = UsersManager.IsAlreadyFriend(SessionDetails.Username, _userSelectedName);
+                    isFriend = FriendsManager.IsAlreadyFriend(SessionDetails.Username, _userSelectedName);
                 }
                 catch (CommunicationException)
                 {
@@ -148,33 +146,41 @@ namespace ClienteDuo.Pages.Sidebars
                 if (isFriend)
                 {
                     int friendshipId = (int)DataContext;
-                    UsersManager.DeleteFriendshipById(friendshipId);
+                    FriendsManager.DeleteFriendshipById(friendshipId);
                 }
 
-                int result = 0;
-                try
+                if (!BlockManager.IsUserBlocked(SessionDetails.Username, _userSelectedName))
                 {
-                    result = BlockUser(SessionDetails.Username, _userSelectedName);
-                }
-                catch (CommunicationException)
-                {
-                    MainWindow.ShowMessageBox(Properties.Resources.DlgServiceException, MessageBoxImage.Error);
-                }
-                catch (TimeoutException)
-                {
-                    SessionDetails.AbortOperation();
-                }
+                    int result = 0;
+                    try
+                    {
+                        result = BlockUser(SessionDetails.Username, _userSelectedName);
+                    }
+                    catch (CommunicationException)
+                    {
+                        MainWindow.ShowMessageBox(Properties.Resources.DlgServiceException, MessageBoxImage.Error);
+                    }
+                    catch (TimeoutException)
+                    {
+                        SessionDetails.AbortOperation();
+                    }
 
-                switch (result) {
-                    case 1:
-                        MainWindow.ShowMessageBox(Properties.Resources.DlgBlockedUser, MessageBoxImage.Exclamation);
-                        break;
-                    case 2:
-                        MainWindow.ShowMessageBox(Properties.Resources.DlgUserBanned, MessageBoxImage.Exclamation);
-                        break;
-                    default:
-                        MainWindow.ShowMessageBox(Properties.Resources.DlgCouldntBlockUser, MessageBoxImage.Exclamation);
-                        break;
+                    //if it was blocked 1, if it was blocked and therefore banned 2, else 0.
+                    switch (result) { 
+                        case 1:
+                            MainWindow.ShowMessageBox(Properties.Resources.DlgBlockedUser, MessageBoxImage.Exclamation);
+                            break;
+                        case 2:
+                            MainWindow.ShowMessageBox(Properties.Resources.DlgUserBanned, MessageBoxImage.Exclamation);
+                            break;
+                        default:
+                            MainWindow.ShowMessageBox(Properties.Resources.DlgCouldntBlockUser, MessageBoxImage.Exclamation);
+                            break;
+                    }
+                }
+                else
+                {
+                    MainWindow.ShowMessageBox(Properties.Resources.DlgUserAlreadyBlocked, MessageBoxImage.Exclamation);
                 }
             }
         }
@@ -184,7 +190,7 @@ namespace ClienteDuo.Pages.Sidebars
             int result = 0;
             try
             {
-                result = UsersManager.BlockUserByUsername(usernameSender, usernameReceiver);
+                result = BlockManager.BlockUserByUsername(usernameSender, usernameReceiver);
             }
             catch (CommunicationException)
             {
@@ -195,7 +201,7 @@ namespace ClienteDuo.Pages.Sidebars
                 SessionDetails.AbortOperation();
             }
 
-            if (result > 0 && SessionDetails.PartyCode == 0)
+            if (result > 0 && SessionDetails.LobbyCode == 0)
             {
                 var mainMenu = new MainMenu();
                 Application.Current.MainWindow.Content = mainMenu;
@@ -208,7 +214,5 @@ namespace ClienteDuo.Pages.Sidebars
         {
             Visibility = Visibility.Collapsed;
         }
-        
-        
     }
 }

@@ -53,7 +53,7 @@ namespace ClienteDuo.Pages
             bool result = false;
             try
             {
-                result = UsersManager.SendFriendRequest(SessionDetails.Username, _username) == 1;
+                result = FriendsManager.SendFriendRequest(SessionDetails.Username, _username) == 1;
             }
             catch (CommunicationException)
             {

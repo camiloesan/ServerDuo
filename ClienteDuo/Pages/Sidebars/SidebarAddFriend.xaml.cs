@@ -73,18 +73,18 @@ namespace ClienteDuo.Pages.Sidebars
                 MainWindow.ShowMessageBox(Properties.Resources.DlgUsernameDoesNotExist,
                     MessageBoxImage.Information);
             }
-            else if (UsersManager.IsAlreadyFriend(usernameSender, usernameReceiver))
+            else if (FriendsManager.IsAlreadyFriend(usernameSender, usernameReceiver))
             {
                 MainWindow.ShowMessageBox(Properties.Resources.DlgAlreadyFriends,
                     MessageBoxImage.Information);
             }
-            else if (UsersManager.IsFriendRequestAlreadySent(usernameSender, usernameReceiver))
+            else if (FriendsManager.IsFriendRequestAlreadySent(usernameSender, usernameReceiver))
             {
                 MainWindow.ShowMessageBox(Properties.Resources.DlgFriendRequestAlreadySent,
                     MessageBoxImage.Information);
             }
-            else if (UsersManager.IsUserBlocked(SessionDetails.Username, usernameReceiver)
-                     || UsersManager.IsUserBlocked(usernameReceiver, SessionDetails.Username))
+            else if (BlockManager.IsUserBlocked(SessionDetails.Username, usernameReceiver)
+                     || BlockManager.IsUserBlocked(usernameReceiver, SessionDetails.Username))
             {
                 MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError,
                     MessageBoxImage.Information);
@@ -93,7 +93,7 @@ namespace ClienteDuo.Pages.Sidebars
             {
                 try
                 {
-                    result = UsersManager.SendFriendRequest(usernameSender, usernameReceiver) == 1;
+                    result = FriendsManager.SendFriendRequest(usernameSender, usernameReceiver) == 1;
                 }
                 catch (CommunicationException)
                 {

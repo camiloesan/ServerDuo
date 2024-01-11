@@ -34,7 +34,7 @@ namespace CommunicationService
         /// <param name="user"></param>
         /// <returns>Rows affected</returns>
         [OperationContract]
-        int AddUserToDatabase(UserDTO user);
+        int AddUserToDatabase(UserDTO user); //reconsider naming (toDatabase)
 
         /// <summary>
         /// Deletes user from database
@@ -42,7 +42,7 @@ namespace CommunicationService
         /// <param name="username"></param>
         /// <returns>Success status</returns>
         [OperationContract]
-        bool DeleteUserFromDatabaseByUsername(String username);
+        bool DeleteUserFromDatabaseByUsername(string username);
 
         /// <summary>
         /// Checks if login credentials are valid
@@ -51,7 +51,7 @@ namespace CommunicationService
         /// <param name="password"></param>
         /// <returns>UserDTO if valid, null if not</returns>
         [OperationContract]
-        UserDTO IsLoginValid(string username, string password);
+        UserDTO IsLoginValid(string username, string password); //fix
 
         /// <summary>
         /// Checks if provided username exists in database
@@ -68,81 +68,6 @@ namespace CommunicationService
         /// <returns>True if exists, false if not</returns>
         [OperationContract]
         bool IsEmailTaken(string email);
-
-        /// <summary>
-        /// Adds a friend request to database
-        /// </summary>
-        /// <param name="usernameSender"></param>
-        /// <param name="usernameReceiver"></param>
-        /// <returns>Rows affected</returns>
-        [OperationContract]
-        int SendFriendRequest(string usernameSender, string usernameReceiver);
-
-        /// <summary>
-        /// Checks if sender has already sent a request to receiver
-        /// </summary>
-        /// <param name="usernameSender"></param>
-        /// <param name="usernameReceiver"></param>
-        /// <returns>True if a request if found, false if not</returns>
-        [OperationContract]
-        bool IsFriendRequestAlreadyExistent(string usernameSender, string usernameReceiver);
-
-        /// <summary>
-        /// Adds request user id's to friendship table
-        /// </summary>
-        /// <param name="friendRequest"></param>
-        /// <returns>True if succeded, false if not</returns>
-        [OperationContract]
-        bool AcceptFriendRequest(FriendRequestDTO friendRequest);
-
-        /// <summary>
-        /// Deletes from friend request table the request
-        /// </summary>
-        /// <param name="friendRequestId"></param>
-        /// <returns>True if succeded, false if not</returns>
-        [OperationContract]
-        bool RejectFriendRequest(int friendRequestId);
-
-        /// <summary>
-        /// Gets user's friend requests
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns>List FriendRequestDTO</returns>
-        [OperationContract]
-        List<FriendRequestDTO> GetFriendRequestsList(int userId);
-
-        /// <summary>
-        /// Gets user's friends
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns>List FriendshipDTO</returns>
-        [OperationContract]
-        List<FriendshipDTO> GetFriendsList(int userId);
-
-        /// <summary>
-        /// Gets user´s online friends
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns>List FriendshipDTO</returns>
-        [OperationContract]
-        List<FriendshipDTO> GetOnlineFriends(int userId);
-
-        /// <summary>
-        /// Deletes friendship from database
-        /// </summary>
-        /// <param name="friendshipId"></param>
-        /// <returns>True if success, false if not</returns>
-        [OperationContract]
-        bool DeleteFriendshipById(int friendshipId);
-
-        /// <summary>
-        /// Checks if receiver username is sender's friend
-        /// </summary>
-        /// <param name="senderUsername"></param>
-        /// <param name="receiverUsername"></param>
-        /// <returns>True if is friend, false if not</returns>
-        [OperationContract]
-        bool IsAlreadyFriend(string senderUsername, string receiverUsername);
 
         /// <summary>
         /// Checks if user is logged in (online)
@@ -169,40 +94,6 @@ namespace CommunicationService
         /// <returns>Rows affected</returns>
         [OperationContract]
         int ModifyPasswordByEmail(string email, string newPassword);
-
-        /// <summary>
-        /// Adds user to blocked user's list
-        /// </summary>
-        /// <param name="blockerUsername"></param>
-        /// <param name="blockedUsername"></param>
-        /// <returns>Rows affected: 1 if succeed, 2 if banned definitely</returns>
-        [OperationContract]
-        int BlockUserByUsername(string blockerUsername, string blockedUsername);
-
-        /// <summary>
-        /// Deletes user from user's block list
-        /// </summary>
-        /// <param name="blockId"></param>
-        /// <returns>Rows affected</returns>
-        [OperationContract]
-        int UnblockUserByBlockId(int blockId);
-
-        /// <summary>
-        /// Checks if user is blocked by another user
-        /// </summary>
-        /// <param name="usernameBlocker"></param>
-        /// <param name="usernameBlocked"></param>
-        /// <returns>True if is blocked, false if not</returns>
-        [OperationContract]
-        bool IsUserBlockedByUsername(string usernameBlocker, string usernameBlocked);
-
-        /// <summary>
-        /// Gets user's blocked list
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns>List UserBlockedDTO</returns>
-        [OperationContract]
-        List<UserBlockedDTO> GetBlockedUsersListByUserId(int userId);
 
         /// <summary>
         /// Gets top 10 global winners

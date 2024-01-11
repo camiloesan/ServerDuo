@@ -610,6 +610,15 @@ namespace ClienteDuo.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This is currently your profile picture.
+        /// </summary>
+        public static string DlgSameProfilePicture {
+            get {
+                return ResourceManager.GetString("DlgSameProfilePicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There was an error connecting with the service, try again later.
         /// </summary>
         public static string DlgServiceException {
@@ -651,6 +660,15 @@ namespace ClienteDuo.Properties {
         public static string DlgUnfriendConfirmation {
             get {
                 return ResourceManager.GetString("DlgUnfriendConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This user has already been blocked by you.
+        /// </summary>
+        public static string DlgUserAlreadyBlocked {
+            get {
+                return ResourceManager.GetString("DlgUserAlreadyBlocked", resourceCulture);
             }
         }
         

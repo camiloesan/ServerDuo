@@ -445,4 +445,10 @@
   <data name="DlgTooManyCards" xml:space="preserve">
     <value>You can't draw any more cards!</value>
   </data>
+  <data name="DlgUserAlreadyBlocked" xml:space="preserve">
+    <value>This user has already been blocked by you</value>
+  </data>
+  <data name="DlgSameProfilePicture" xml:space="preserve">
+    <value>This is currently your profile picture</value>
+  </data>
 </root>

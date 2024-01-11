@@ -25,7 +25,7 @@ namespace ClienteDuo.Pages.Sidebars
             IEnumerable<FriendRequestDTO> friendRequestsList = new List<FriendRequestDTO>();
             try
             {
-                friendRequestsList = UsersManager.GetFriendRequestsByUserId(SessionDetails.UserId);
+                friendRequestsList = FriendsManager.GetFriendRequestsByUserId(SessionDetails.UserId);
             }
             catch (CommunicationException)
             {
@@ -81,7 +81,7 @@ namespace ClienteDuo.Pages.Sidebars
             bool result = false;
             try
             {
-                result = UsersManager.AcceptFriendRequest(friendRequest);
+                result = FriendsManager.AcceptFriendRequest(friendRequest);
             }
             catch (CommunicationException)
             {
@@ -108,7 +108,7 @@ namespace ClienteDuo.Pages.Sidebars
             bool result = false;
             try
             {
-                result = UsersManager.DeclineFriendRequest(friendRequest);
+                result = FriendsManager.DeclineFriendRequest(friendRequest);
             }
             catch (CommunicationException)
             {

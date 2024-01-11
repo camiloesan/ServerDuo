@@ -13,12 +13,12 @@ namespace ClienteDuo.Utilities
         public static int UserId { get; set; }
         public static string Username { get; set; }
         public static bool IsGuest { get; set; } = true;
-        public static bool IsHost { get; set; }
+        public static bool IsHost { get; set; } = false;
         public static string Email { get; set; }
-        public static int PartyCode { get; set; }
+        public static int LobbyCode { get; set; }
         public static int TotalWins { get; set; }
         public static int PictureID { get; set; }
-        public static bool IsLogged { get; set; }
+        public static bool IsLogged { get; set; } = false;
 
         public static void CleanSessionDetails()
         {
@@ -27,7 +27,7 @@ namespace ClienteDuo.Utilities
             IsGuest = true;
             IsHost = false;
             Email = string.Empty;
-            PartyCode = 0;
+            LobbyCode = 0;
             TotalWins = 0;
             PictureID = 0;
         }

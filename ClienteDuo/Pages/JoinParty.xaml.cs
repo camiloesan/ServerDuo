@@ -30,12 +30,12 @@ namespace ClienteDuo.Pages
 
         public void JoinLobby()
         {
-            string partyCodeString = TBoxPartyCode.Text.Trim();
+            string lobbyCodeString = TBoxPartyCode.Text.Trim();
 
-            bool isPartyValid = false;
+            bool isLobbyValid = false;
             try
             {
-                isPartyValid = ArePartyConditionsValid(partyCodeString);
+                isLobbyValid = AreLobbyConditionsValid(lobbyCodeString);
             }
             catch (CommunicationException)
             {
@@ -46,35 +46,35 @@ namespace ClienteDuo.Pages
                 SessionDetails.AbortOperation();
             }
 
-            if (isPartyValid)
+            if (isLobbyValid)
             {
                 if (SessionDetails.IsGuest)
                 {
-                    GenerateGuestName(partyCodeString);
+                    GenerateGuestName(lobbyCodeString);
                 }
 
-                SessionDetails.PartyCode = int.Parse(partyCodeString);
-                Lobby lobby = new Lobby(SessionDetails.Username, SessionDetails.PartyCode);
+                SessionDetails.LobbyCode = int.Parse(lobbyCodeString);
+                Lobby lobby = new Lobby(SessionDetails.Username, SessionDetails.LobbyCode);
                 Application.Current.MainWindow.Content = lobby;
             }
         }
 
-        private bool ArePartyConditionsValid(string partyCode)
+        private bool AreLobbyConditionsValid(string lobbyCode)
         {
             bool result = false;
-            if (!IsInputInteger(partyCode))
+            if (!IsInputInteger(lobbyCode))
             {
                 MainWindow.ShowMessageBox(Properties.Resources.DlgInvalidPartyCodeFormat, MessageBoxImage.Information);
             }
-            else if (!IsPartyCodeExistent(int.Parse(partyCode)))
+            else if (!IsLobbyCodeExistent(int.Parse(lobbyCode)))
             {
                 MainWindow.ShowMessageBox(Properties.Resources.DlgPartyNotFound, MessageBoxImage.Information);
             }
-            else if (!IsSpaceAvailable(int.Parse(partyCode)))
+            else if (!IsSpaceAvailable(int.Parse(lobbyCode)))
             {
                 MainWindow.ShowMessageBox(Properties.Resources.DlgFullParty, MessageBoxImage.Information);
             }
-            else if (SessionDetails.IsGuest == false && IsUserBlockedByPlayerInParty(SessionDetails.Username, int.Parse(partyCode)))
+            else if (SessionDetails.IsGuest && IsUserBlockedByPlayerInLobby(SessionDetails.Username, int.Parse(lobbyCode)))
             {
                 MainWindow.ShowMessageBox(Properties.Resources.DlgUserBlockedInParty, MessageBoxImage.Information);
             }
@@ -86,13 +86,13 @@ namespace ClienteDuo.Pages
             return result;
         }
 
-        private void GenerateGuestName(string partyCodeString)
+        private void GenerateGuestName(string lobbyCodeString)
         {
-            PartyValidatorClient partyValidatorClient = new PartyValidatorClient();
+            LobbyValidatorClient lobbyValidatorClient = new LobbyValidatorClient();
             Random randomId = new Random();
             int id = randomId.Next(0, 1000);
             string randomUsername = "guest" + id;
-            if (partyValidatorClient.IsUsernameInParty(int.Parse(partyCodeString), randomUsername))
+            if (lobbyValidatorClient.IsUsernameInLobby(int.Parse(lobbyCodeString), randomUsername))
             {
                 GenerateGuestName(randomUsername);
             }
@@ -104,29 +104,29 @@ namespace ClienteDuo.Pages
             return int.TryParse(code, out _);
         }
 
-        public bool IsPartyCodeExistent(int partyCode)
+        public bool IsLobbyCodeExistent(int lobbyCode)
         {
-            PartyValidatorClient partyValidatorClient = new PartyValidatorClient();
-            return partyValidatorClient.IsPartyExistent(partyCode);
+            LobbyValidatorClient lobbyValidatorClient = new LobbyValidatorClient();
+            return lobbyValidatorClient.IsLobbyExistent(lobbyCode);
         }
 
-        public bool IsSpaceAvailable(int partyCode)
+        public bool IsSpaceAvailable(int lobbyCode)
         {
-            PartyValidatorClient partyValidatorClient = new PartyValidatorClient();
-            return partyValidatorClient.IsSpaceAvailable(partyCode);
+            LobbyValidatorClient lobbyValidatorClient = new LobbyValidatorClient();
+            return lobbyValidatorClient.IsSpaceAvailable(lobbyCode);
         }
 
-        public bool IsUserBlockedByPlayerInParty(string usernameBlocker, int partyCode)
+        public bool IsUserBlockedByPlayerInLobby(string usernameBlocker, int lobbyCode)
         {
-            UsersManagerClient usersManagerClient = new UsersManagerClient();
-            PartyValidatorClient partyValidatorClient = new PartyValidatorClient();
-            var playersInPartyList = partyValidatorClient.GetPlayersInParty(partyCode);
+            LobbyValidatorClient lobbyValidatorClient = new LobbyValidatorClient();
+
+            var playersInLobbyList = lobbyValidatorClient.GetPlayersInLobby(lobbyCode);
 
             bool result = false;
-            foreach (var player in playersInPartyList)
+            foreach (var player in playersInLobbyList)
             {
-                if (usersManagerClient.IsUserBlockedByUsername(usernameBlocker, player)
-                    || usersManagerClient.IsUserBlockedByUsername(player, usernameBlocker))
+                if (BlockManager.IsUserBlocked(usernameBlocker, player)
+                    || BlockManager.IsUserBlocked(player, usernameBlocker))
                 {
                     result = true;
                 }

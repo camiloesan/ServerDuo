@@ -12,10 +12,10 @@ using System.Windows.Media;
 
 namespace ClienteDuo.Pages
 {
-    public partial class Lobby : Page, IPartyManagerCallback
+    public partial class Lobby : Page, ILobbyManagerCallback
     {
-        private readonly PartyManagerClient _partyManagerClient;
-        private readonly PartyValidatorClient _partyValidatorClient = new PartyValidatorClient();
+        private readonly LobbyManagerClient _lobbyManagerClient;
+        private readonly LobbyValidatorClient _lobbyValidatorClient = new LobbyValidatorClient();
         private PopUpUserDetails _popUpUserDetails;
 
         public Lobby(string hostUsername)
@@ -23,47 +23,47 @@ namespace ClienteDuo.Pages
             InitializeComponent();
             SessionDetails.IsHost = true;
             InstanceContext instanceContext = new InstanceContext(this);
-            _partyManagerClient = new PartyManagerClient(instanceContext);
+            _lobbyManagerClient = new LobbyManagerClient(instanceContext);
 
-            int partyCode;
-            partyCode = CreateNewParty(hostUsername);
+            int lobbyCode;
+            lobbyCode = CreateNewLobby(hostUsername);
 
-            if (partyCode != 0)
+            if (lobbyCode != 0)
             {
                 LoadVisualComponents();
                 MusicManager.PlayPlayerJoinedSound();
             }
         }
 
-        public Lobby(string username, int partyCode)
+        public Lobby(string username, int lobbyCode)
         {
             InitializeComponent();
             SessionDetails.IsHost = false;
             InstanceContext instanceContext = new InstanceContext(this);
-            _partyManagerClient = new PartyManagerClient(instanceContext);
-            JoinGame(partyCode, username);
+            _lobbyManagerClient = new LobbyManagerClient(instanceContext);
+            JoinGame(lobbyCode, username);
             LoadVisualComponents();
             MusicManager.PlayPlayerJoinedSound();
         }
 
-        public int CreateNewParty(string hostUsername)
+        public int CreateNewLobby(string hostUsername)
         {
-            SessionDetails.PartyCode = GenerateNewPartyCode();
+            SessionDetails.LobbyCode = GenerateNewLobbyCode();
             SessionDetails.Username = hostUsername;
-            _partyManagerClient.NotifyCreateParty(SessionDetails.PartyCode, SessionDetails.Username);
+            _lobbyManagerClient.NotifyCreateLobby(SessionDetails.LobbyCode, SessionDetails.Username);
 
-            return SessionDetails.PartyCode;
+            return SessionDetails.LobbyCode;
         }
 
-        private int GenerateNewPartyCode()
+        private int GenerateNewLobbyCode()
         {
             Random random = new Random();
             int randomCode = random.Next(1000, 10000);
 
-            bool IsPartyExistent = false; 
+            bool IsLobbyExistent = false; 
             try
             {
-                IsPartyExistent = _partyValidatorClient.IsPartyExistent(randomCode);
+                IsLobbyExistent = _lobbyValidatorClient.IsLobbyExistent(randomCode);
             }
             catch (CommunicationException)
             {
@@ -74,19 +74,19 @@ namespace ClienteDuo.Pages
                 randomCode = 0;
             }
 
-            if (IsPartyExistent)
+            if (IsLobbyExistent)
             {
-                GenerateNewPartyCode();
+                GenerateNewLobbyCode();
             }
 
             return randomCode;
         }
 
-        public void JoinGame(int partyCode, string username)
+        public void JoinGame(int lobbyCode, string username)
         {
             try
             {
-                _partyManagerClient.NotifyJoinParty(partyCode, username);
+                _lobbyManagerClient.NotifyJoinLobby(lobbyCode, username);
             }
             catch (CommunicationException)
             {
@@ -100,7 +100,7 @@ namespace ClienteDuo.Pages
 
         private void LoadVisualComponents()
         {
-            LblPartyCode.Content = Properties.Resources.LblPartyCode + ": " + SessionDetails.PartyCode;
+            LblLobbyCode.Content = Properties.Resources.LblPartyCode + ": " + SessionDetails.LobbyCode;
 
             if (!SessionDetails.IsHost)
             {
@@ -124,7 +124,7 @@ namespace ClienteDuo.Pages
             {
                 string message = SessionDetails.Username + ": " + TBoxMessage.Text;
 
-                SendMessage(SessionDetails.PartyCode, message);
+                SendMessage(SessionDetails.LobbyCode, message);
 
                 TBoxMessage.Text = "";
             }
@@ -134,11 +134,11 @@ namespace ClienteDuo.Pages
             }
         }
 
-        public void SendMessage(int partyCode, string message)
+        public void SendMessage(int lobbyCode, string message)
         {
             try
             {
-                _partyManagerClient.NotifySendMessage(partyCode, message);
+                _lobbyManagerClient.NotifySendMessage(lobbyCode, message);
             }
             catch (CommunicationException)
             {
@@ -162,7 +162,7 @@ namespace ClienteDuo.Pages
                 SessionDetails.IsHost = false;
                 try
                 {
-                    CloseParty(SessionDetails.PartyCode);
+                    CloseLobby(SessionDetails.LobbyCode);
                 }
                 catch (CommunicationException)
                 {
@@ -177,7 +177,7 @@ namespace ClienteDuo.Pages
             {
                 try
                 {
-                    _partyManagerClient.NotifyLeaveParty(SessionDetails.PartyCode, SessionDetails.Username);
+                    _lobbyManagerClient.NotifyLeaveLobby(SessionDetails.LobbyCode, SessionDetails.Username);
                 }
                 catch (CommunicationException)
                 {
@@ -189,7 +189,7 @@ namespace ClienteDuo.Pages
                 }
             }
             
-            SessionDetails.PartyCode = 0;
+            SessionDetails.LobbyCode = 0;
             if (SessionDetails.IsGuest)
             {
                 Application.Current.MainWindow.Content = new Launcher();
@@ -202,11 +202,11 @@ namespace ClienteDuo.Pages
             MusicManager.PlayPlayerLeftSound();
         }
 
-        public void CloseParty(int partyCode)
+        public void CloseLobby(int lobbyCode)
         {
             try
             {
-                _partyManagerClient.NotifyCloseParty(partyCode, SessionDetails.Username, Properties.Resources.DlgHostHasClosedTheParty);
+                _lobbyManagerClient.NotifyCloseLobby(lobbyCode, SessionDetails.Username, Properties.Resources.DlgHostHasClosedTheParty);
             }
             catch (CommunicationException)
             {
@@ -301,23 +301,25 @@ namespace ClienteDuo.Pages
         private void KickPlayerEvent(object sender, RoutedEventArgs e)
         {
             string username = ((FrameworkElement)sender).DataContext as string;
-            PopUpKickPlayer popUpKickPlayer = new PopUpKickPlayer();
-            popUpKickPlayer.KickedUsername = username;
-            popUpKickPlayer.SetClient(_partyManagerClient);
+            PopUpKickPlayer popUpKickPlayer = new PopUpKickPlayer
+            {
+                KickedUsername = username
+            };
+            popUpKickPlayer.SetClient(_lobbyManagerClient);
             popUpKickPlayer.Show();
         }
 
         private void StartGameEvent(object sender, RoutedEventArgs e)
         {
-            PartyValidatorClient partyValidatorClient = new PartyValidatorClient();
+            LobbyValidatorClient lobbyValidatorClient = new LobbyValidatorClient();
 
-            if (partyValidatorClient.GetPlayersInParty(SessionDetails.PartyCode).Length > 1)
+            if (lobbyValidatorClient.GetPlayersInLobby(SessionDetails.LobbyCode).Length > 1)
             {
-                PartyManagerClient partyManagerClient = new PartyManagerClient(new InstanceContext(this));
+                LobbyManagerClient lobbyManagerClient = new LobbyManagerClient(new InstanceContext(this));
 
                 try
                 {
-                    partyManagerClient.NotifyStartGame(SessionDetails.PartyCode);
+                    lobbyManagerClient.NotifyStartGame(SessionDetails.LobbyCode);
                 }
                 catch (CommunicationException)
                 {
@@ -363,7 +365,7 @@ namespace ClienteDuo.Pages
             UpdatePlayerList(playersInLobby);
         }
 
-        public void PartyCreated(Dictionary<string, object> playersInLobby)
+        public void LobbyCreated(Dictionary<string, object> playersInLobby)
         {
             UpdatePlayerList(playersInLobby);
         }
@@ -377,7 +379,7 @@ namespace ClienteDuo.Pages
 
             try
             {
-                tableClient.Subscribe(SessionDetails.PartyCode, SessionDetails.Username);
+                tableClient.Subscribe(SessionDetails.LobbyCode, SessionDetails.Username);
                 await Task.Delay(3000);
                 cardTable.LoadPlayers();
                 cardTable.UpdateTableCards();

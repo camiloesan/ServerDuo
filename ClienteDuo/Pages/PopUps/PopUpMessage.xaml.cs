@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ClienteDuo.Utilities;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,21 +18,24 @@ using System.Windows.Shapes;
 
 namespace ClienteDuo.Pages.Sidebars
 {
-    /// <summary>
-    /// Interaction logic for PopUpMessage.xaml
-    /// </summary>
     public partial class PopUpMessage : Window
     {
         public PopUpMessage()
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            Closing += OnWindowClosing;
         }
 
         private void BtnOkEvent(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.MainWindow.IsEnabled = true;
             Close();
+        }
+
+        private void OnWindowClosing(object sender, CancelEventArgs e)
+        {
+            System.Windows.Application.Current.MainWindow.IsEnabled = true;
         }
 
         public string Message { get { return LblMessage.Text; } set { LblMessage.Text = value; } }

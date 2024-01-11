@@ -1,8 +1,6 @@
 ﻿using ClienteDuo.DataService;
 using ClienteDuo.Utilities;
-using System;
 using System.Collections.Generic;
-using System.ServiceModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -51,26 +49,15 @@ namespace ClienteDuo.Pages
                     {
                         if (!playerUsername.Contains("guest"))
                         {
-                            try
-                            {
-                                UsersManagerClient userClient = new UsersManagerClient();
+                            UsersManagerClient userClient = new UsersManagerClient();
 
-                                if (userClient.IsAlreadyFriend(SessionDetails.Username, playerBar.Username) ||
-                                    userClient.IsFriendRequestAlreadyExistent(SessionDetails.Username, playerUsername))
-                                {
-                                    UserDTO userData = userClient.GetUserInfoByUsername(playerUsername);
+                            if (FriendsManager.IsAlreadyFriend(SessionDetails.Username, playerBar.Username) ||
+                                FriendsManager.IsFriendRequestAlreadySent(SessionDetails.Username, playerUsername))
+                            {
+                                UserDTO userData = userClient.GetUserInfoByUsername(playerUsername);
 
-                                    playerBar.SetProfilePicture(userData.PictureID);
-                                    playerBar.BtnAddFriend.Visibility = Visibility.Collapsed;
-                                }
-                            }
-                            catch (CommunicationException)
-                            {
-                                SessionDetails.AbortOperation();
-                            }
-                            catch (TimeoutException)
-                            {
-                                SessionDetails.AbortOperation();
+                                playerBar.SetProfilePicture(userData.PictureID);
+                                playerBar.BtnAddFriend.Visibility = Visibility.Collapsed;
                             }
                         }
                         else
@@ -111,30 +98,19 @@ namespace ClienteDuo.Pages
         {
             if (MainWindow.ShowConfirmationBox(Properties.Resources.DlgExitMatchConfirmation))
             {
-                try
+                _client.ExitMatch(SessionDetails.LobbyCode, SessionDetails.Username);
+
+                if (SessionDetails.IsGuest)
                 {
-                    _client.ExitMatch(SessionDetails.PartyCode, SessionDetails.Username);
+                    Launcher launcher = new Launcher();
 
-                    if (SessionDetails.IsGuest)
-                    {
-                        Launcher launcher = new Launcher();
-
-                        App.Current.MainWindow.Content = launcher;
-                    }
-                    else
-                    {
-                        MainMenu mainMenu = new MainMenu();
-
-                        App.Current.MainWindow.Content = mainMenu;
-                    }
+                    App.Current.MainWindow.Content = launcher;
                 }
-                catch (CommunicationException)
+                else
                 {
-                    SessionDetails.AbortOperation();
-                }
-                catch (TimeoutException)
-                {
-                    SessionDetails.AbortOperation();
+                    MainMenu mainMenu = new MainMenu();
+
+                    App.Current.MainWindow.Content = mainMenu;
                 }
             }
         }
