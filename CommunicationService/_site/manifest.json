@@ -165,10 +165,10 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.IMatchManager.html",
-          "hash": "zAghhJYwMdB+bo2SK3YFAmOIEBEiVYuqYArgseWXY6E="
+          "hash": "sBRbAOxV1nzSFzH1yP8RoUU/kTXSjKXyTfXGRzhdi+E="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -189,10 +189,10 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.IMatchPlayerManager.html",
-          "hash": "GTN/KiBG9Y58tSnDMIYBV2d9q3B/J3T4KsoxaPIRziA="
+          "hash": "ACnJFr28pXnVEIoBwQz181BM/MQlTkXEjCcBHnKKkyM="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -228,7 +228,7 @@
           "hash": "AK7qTHsYHTyu1PbWJrd7hhenmlMR2xIBL5t6iCAfWFI="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -264,7 +264,7 @@
           "hash": "X5q73ZA5eI9nmekJwd+tOXyja9e3mi8gH9LIJER4cuE="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -311,7 +311,7 @@
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 18,
-          "skipped_file_count": 18
+          "skipped_file_count": 15
         },
         "TocDocumentProcessor": {
           "can_incremental": false,
