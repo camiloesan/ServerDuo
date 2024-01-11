@@ -4,9 +4,6 @@ using System.Windows.Controls;
 
 namespace ClienteDuo.Pages.Sidebars
 {
-    /// <summary>
-    /// Interaction logic for EmailCodeVerification.xaml
-    /// </summary>
     public partial class EmailCodeVerification : Page
     {
         public EmailCodeVerification(string email, int confirmationCode)

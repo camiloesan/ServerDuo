@@ -13,7 +13,7 @@
             <RowDefinition Height="491*"/>
             <RowDefinition Height="45*"/>
         </Grid.RowDefinitions>
-        <Label Content="{x:Static p:Resources.LblMyProfile}" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" FontSize="18" Grid.Row="1" FontWeight="Bold" Height="34" Width="98"/>
+        <Label Content="{x:Static p:Resources.LblMyProfile}" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" FontSize="18" Grid.Row="1" FontWeight="Bold" Height="34" Width="175"/>
         <StackPanel HorizontalAlignment="Center" Orientation="Vertical" VerticalAlignment="Center" Grid.Row="1" Width="175">
             <Grid Width="100" Height="100" Margin="0,50,0,0">
                 <Image x:Name="ImageProfilePicture" Stretch="Uniform"/>

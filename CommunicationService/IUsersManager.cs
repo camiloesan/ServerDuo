@@ -34,7 +34,7 @@ namespace CommunicationService
         /// <param name="user"></param>
         /// <returns>Rows affected</returns>
         [OperationContract]
-        int AddUserToDatabase(UserDTO user); //reconsider naming (toDatabase)
+        int AddUserToDatabase(UserDTO user);
 
         /// <summary>
         /// Deletes user from database
@@ -51,7 +51,7 @@ namespace CommunicationService
         /// <param name="password"></param>
         /// <returns>UserDTO if valid, null if not</returns>
         [OperationContract]
-        UserDTO IsLoginValid(string username, string password); //fix
+        UserDTO IsLoginValid(string username, string password);
 
         /// <summary>
         /// Checks if provided username exists in database

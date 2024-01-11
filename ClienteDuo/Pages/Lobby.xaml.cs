@@ -313,7 +313,21 @@ namespace ClienteDuo.Pages
         {
             LobbyValidatorClient lobbyValidatorClient = new LobbyValidatorClient();
 
-            if (lobbyValidatorClient.GetPlayersInLobby(SessionDetails.LobbyCode).Length > 1)
+            bool areEnoughPlayers = false;
+            try
+            {
+                areEnoughPlayers = lobbyValidatorClient.GetPlayersInLobby(SessionDetails.LobbyCode).Length > 1;
+            }
+            catch (CommunicationException)
+            {
+                SessionDetails.AbortOperation();
+            }
+            catch (TimeoutException)
+            {
+                SessionDetails.AbortOperation();
+            }
+
+            if (areEnoughPlayers)
             {
                 BtnStartGame.Visibility = Visibility.Collapsed;
                 LobbyManagerClient lobbyManagerClient = new LobbyManagerClient(new InstanceContext(this));

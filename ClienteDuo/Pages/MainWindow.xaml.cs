@@ -75,7 +75,7 @@ namespace ClienteDuo.Pages
                 {
                     MessageBox.Show(Properties.Resources.DlgConnectionError);
                 }
-                catch
+                catch (Exception)
                 {
                     MessageBox.Show(Properties.Resources.DlgConnectionError);
                 }
