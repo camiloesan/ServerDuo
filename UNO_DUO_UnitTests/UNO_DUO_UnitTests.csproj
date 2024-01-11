@@ -72,6 +72,7 @@
     <Compile Include="FriendsManagerTests.cs" />
     <Compile Include="JoinPartyTests.cs" />
     <Compile Include="LoginTests.cs" />
+    <Compile Include="MatchPlayerManagerTests.cs" />
     <Compile Include="MatchManagerTests.cs" />
     <Compile Include="ModifyProfileTests.cs" />
     <Compile Include="NewAccountTests.cs" />

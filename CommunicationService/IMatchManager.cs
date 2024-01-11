@@ -35,6 +35,14 @@ namespace CommunicationService
         void EndTurn(int partyCode);
 
         /// <summary>
+        /// Get the current turn in the match
+        /// </summary>
+        /// <param name="partyCode">Code of the match</param>
+        /// <returns></returns>
+        [OperationContract]
+        string GetCurrentTurn(int partyCode);
+
+        /// <summary>
         /// Sends the amount of remaining cards to calculate which one has the least cards and therefore wins the match
         /// </summary>
         /// <param name="partyCode">Code of the matchg</param>

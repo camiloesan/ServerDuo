@@ -658,20 +658,6 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="SetGameScore">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="partyCode" type="xs:int" />
-        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="cardCount" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SetGameScoreResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
   <xs:element name="EndGame">
     <xs:complexType>
       <xs:sequence>
@@ -698,6 +684,20 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="GetCurrentTurnResult" nillable="true" type="xs:string" />
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetGameScore">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="partyCode" type="xs:int" />
+        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="cardCount" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetGameScoreResponse">
+    <xs:complexType>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="GetMatchResults">

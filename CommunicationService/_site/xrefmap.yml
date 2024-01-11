@@ -723,6 +723,19 @@ references:
   isSpec: "True"
   fullName: CommunicationService.IMatchManager.EndTurn
   nameWithType: IMatchManager.EndTurn
+- uid: CommunicationService.IMatchManager.GetCurrentTurn(System.Int32)
+  name: GetCurrentTurn(Int32)
+  href: api/CommunicationService.IMatchManager.html#CommunicationService_IMatchManager_GetCurrentTurn_System_Int32_
+  commentId: M:CommunicationService.IMatchManager.GetCurrentTurn(System.Int32)
+  fullName: CommunicationService.IMatchManager.GetCurrentTurn(System.Int32)
+  nameWithType: IMatchManager.GetCurrentTurn(Int32)
+- uid: CommunicationService.IMatchManager.GetCurrentTurn*
+  name: GetCurrentTurn
+  href: api/CommunicationService.IMatchManager.html#CommunicationService_IMatchManager_GetCurrentTurn_
+  commentId: Overload:CommunicationService.IMatchManager.GetCurrentTurn
+  isSpec: "True"
+  fullName: CommunicationService.IMatchManager.GetCurrentTurn
+  nameWithType: IMatchManager.GetCurrentTurn
 - uid: CommunicationService.IMatchManager.GetMatchResults(System.Int32)
   name: GetMatchResults(Int32)
   href: api/CommunicationService.IMatchManager.html#CommunicationService_IMatchManager_GetMatchResults_System_Int32_
@@ -839,19 +852,6 @@ references:
   isSpec: "True"
   fullName: CommunicationService.IMatchPlayerManager.ExitMatch
   nameWithType: IMatchPlayerManager.ExitMatch
-- uid: CommunicationService.IMatchPlayerManager.GetCurrentTurn(System.Int32)
-  name: GetCurrentTurn(Int32)
-  href: api/CommunicationService.IMatchPlayerManager.html#CommunicationService_IMatchPlayerManager_GetCurrentTurn_System_Int32_
-  commentId: M:CommunicationService.IMatchPlayerManager.GetCurrentTurn(System.Int32)
-  fullName: CommunicationService.IMatchPlayerManager.GetCurrentTurn(System.Int32)
-  nameWithType: IMatchPlayerManager.GetCurrentTurn(Int32)
-- uid: CommunicationService.IMatchPlayerManager.GetCurrentTurn*
-  name: GetCurrentTurn
-  href: api/CommunicationService.IMatchPlayerManager.html#CommunicationService_IMatchPlayerManager_GetCurrentTurn_
-  commentId: Overload:CommunicationService.IMatchPlayerManager.GetCurrentTurn
-  isSpec: "True"
-  fullName: CommunicationService.IMatchPlayerManager.GetCurrentTurn
-  nameWithType: IMatchPlayerManager.GetCurrentTurn
 - uid: CommunicationService.IMatchPlayerManager.GetPlayerList(System.Int32)
   name: GetPlayerList(Int32)
   href: api/CommunicationService.IMatchPlayerManager.html#CommunicationService_IMatchPlayerManager_GetPlayerList_System_Int32_

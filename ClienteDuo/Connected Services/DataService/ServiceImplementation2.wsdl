@@ -401,12 +401,6 @@
   <wsdl:message name="IMatchManager_Subscribe_OutputMessage">
     <wsdl:part name="parameters" element="tns:SubscribeResponse" />
   </wsdl:message>
-  <wsdl:message name="IMatchManager_SetGameScore_InputMessage">
-    <wsdl:part name="parameters" element="tns:SetGameScore" />
-  </wsdl:message>
-  <wsdl:message name="IMatchManager_SetGameScore_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SetGameScoreResponse" />
-  </wsdl:message>
   <wsdl:message name="IMatchManager_EndGame_InputMessage">
     <wsdl:part name="parameters" element="tns:EndGame" />
   </wsdl:message>
@@ -418,6 +412,12 @@
   </wsdl:message>
   <wsdl:message name="IMatchManager_GetCurrentTurn_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCurrentTurnResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManager_SetGameScore_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetGameScore" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManager_SetGameScore_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetGameScoreResponse" />
   </wsdl:message>
   <wsdl:message name="IMatchManager_GetMatchResults_InputMessage">
     <wsdl:part name="parameters" element="tns:GetMatchResults" />
@@ -676,10 +676,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/Subscribe" message="tns:IMatchManager_Subscribe_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMatchManager/SubscribeResponse" message="tns:IMatchManager_Subscribe_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="SetGameScore">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/SetGameScore" message="tns:IMatchManager_SetGameScore_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManager/SetGameScoreResponse" message="tns:IMatchManager_SetGameScore_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="EndGame">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/EndGame" message="tns:IMatchManager_EndGame_InputMessage" />
     </wsdl:operation>
@@ -689,6 +685,10 @@
     <wsdl:operation name="GetCurrentTurn">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/GetCurrentTurn" message="tns:IMatchManager_GetCurrentTurn_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMatchManager/GetCurrentTurnResponse" message="tns:IMatchManager_GetCurrentTurn_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetGameScore">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/SetGameScore" message="tns:IMatchManager_SetGameScore_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManager/SetGameScoreResponse" message="tns:IMatchManager_SetGameScore_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetMatchResults">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/GetMatchResults" message="tns:IMatchManager_GetMatchResults_InputMessage" />
@@ -1193,15 +1193,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SetGameScore">
-      <soap12:operation soapAction="http://tempuri.org/IMatchManager/SetGameScore" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="EndGame">
       <soap12:operation soapAction="http://tempuri.org/IMatchManager/EndGame" style="document" />
       <wsdl:input>
@@ -1216,6 +1207,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetCurrentTurn">
       <soap12:operation soapAction="http://tempuri.org/IMatchManager/GetCurrentTurn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetGameScore">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManager/SetGameScore" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
