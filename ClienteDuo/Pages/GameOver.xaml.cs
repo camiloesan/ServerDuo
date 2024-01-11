@@ -21,6 +21,8 @@ namespace ClienteDuo.Pages
             if (SessionDetails.Username.Equals(winner))
             {
                 SessionDetails.TotalWins++;
+
+                MusicManager.PlayVictoryMusic();
             }
 
             foreach (KeyValuePair<string, int> playerScore in playerScores)
