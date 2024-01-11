@@ -57,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.Card.html",
-          "hash": "H36TUqmgWIY2q36XeEZcG3vtTyHdWWuMPfUni8DiHNI="
+          "hash": "TGoRcm42gLiIYkEUuf9B0CyjwwTNFI7Z957vi4/ye9Q="
         }
       },
       "is_incremental": true,
@@ -69,7 +69,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.CardColors.html",
-          "hash": "4sO8wmY/5kpBdW4fjEaJcIIjnSGXqXSYOqvZXEc1BOQ="
+          "hash": "Ex9YC+89WrQg+QFEyqNW+dS2vr4kiujVarcUUKBE7r4="
         }
       },
       "is_incremental": true,
@@ -105,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.ICardManager.html",
-          "hash": "2EHO6RbjKMN17wkK1CoVbmgYkreHqgvix+9ScDkktck="
+          "hash": "+52imS7vfl6n8hJKY1i8Jbh2jdqKNov852GAWAcm3A0="
         }
       },
       "is_incremental": true,
@@ -165,7 +165,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.IMatchManager.html",
-          "hash": "v7Uu62uzWdz9C4vxVZN6Y4RW33HgVQ8ikUS+2w+KmsY="
+          "hash": "zAghhJYwMdB+bo2SK3YFAmOIEBEiVYuqYArgseWXY6E="
         }
       },
       "is_incremental": true,
@@ -177,7 +177,19 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.IMatchManagerCallback.html",
-          "hash": "EPOU8/+zHk+94RfQvRDAJPliTySijHhBgYriQeA8KmE="
+          "hash": "3to/y7BmK7Z4YP4mO/HPv1D6QV8IlttHlX7bbhI1I20="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CommunicationService.IMatchPlayerManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CommunicationService.IMatchPlayerManager.html",
+          "hash": "GTN/KiBG9Y58tSnDMIYBV2d9q3B/J3T4KsoxaPIRziA="
         }
       },
       "is_incremental": true,
@@ -213,7 +225,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.ServiceImplementation.html",
-          "hash": "hu51Jrq8xGezPVLPTpW6AhKT9y4Teit1mRpIp0ZaOR8="
+          "hash": "AK7qTHsYHTyu1PbWJrd7hhenmlMR2xIBL5t6iCAfWFI="
         }
       },
       "is_incremental": true,
@@ -249,7 +261,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.html",
-          "hash": "BGMinGNsdJzk87tNMAEmbon2fUdEL4vbCHt1anknJP4="
+          "hash": "X5q73ZA5eI9nmekJwd+tOXyja9e3mi8gH9LIJER4cuE="
         }
       },
       "is_incremental": true,
@@ -261,7 +273,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "9HYosCohYaVCD2KeIdNn32l5P5TVaFG6/VQPkwH/oZo="
+          "hash": "cGHNudJSP9D6nrmnIAFV4LsNu9CcTGCbbg+NlbGdv7Y="
         }
       },
       "is_incremental": false,
@@ -298,8 +310,8 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 17,
-          "skipped_file_count": 17
+          "total_file_count": 18,
+          "skipped_file_count": 18
         },
         "TocDocumentProcessor": {
           "can_incremental": false,
