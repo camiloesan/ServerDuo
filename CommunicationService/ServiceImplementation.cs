@@ -1190,18 +1190,6 @@ namespace CommunicationService
             }
         }
 
-        public void ExitMatch(int partyCode, string username)
-        {
-            _playerCallbacks[partyCode].TryRemove(username, out _);
-
-            NotifyPlayerQuit(partyCode, username, "User clicked exit button");
-        }
-
-        public void KickPlayerFromGame(int partyCode, string username, string reason)
-        {
-            NotifyPlayerQuit(partyCode, username, reason);
-        }
-
         public async void EndGame(int partyCode)
         {
             await NotifyEndGame(partyCode);
@@ -1220,11 +1208,6 @@ namespace CommunicationService
             List<string> playerList = new List<string>(_playerCallbacks[partyCode].Keys);
 
             return playerList[_currentTurn[partyCode]];
-        }
-
-        public List<string> GetPlayerList(int partyCode)
-        {
-            return new List<string>(_playerCallbacks[partyCode].Keys);
         }
 
         public ConcurrentDictionary<string, int> GetMatchResults(int partyCode)
@@ -1273,6 +1256,18 @@ namespace CommunicationService
                 }
             }
 
+            SaveMatchResult(partyCode);
+
+            await Task.Delay(10000);
+            //Match data will be deleted so players start out with fresh data every match
+            _gameCards.TryRemove(partyCode, out _);
+            _currentTurn.TryRemove(partyCode, out _);
+            _playerCallbacks.TryRemove(partyCode, out _);
+            _matchResults.TryRemove(partyCode, out _);
+        }
+
+        private void SaveMatchResult(int partyCode)
+        {
             if (_matchResults.ContainsKey(partyCode))
             {
                 using (DuoContext databaseContext = new DuoContext())
@@ -1299,51 +1294,6 @@ namespace CommunicationService
                         }
                     }
                 }
-            }
-
-            await Task.Delay(10000);
-            //Match data will be deleted so players start out with fresh data every match
-            _gameCards.TryRemove(partyCode, out _);
-            _currentTurn.TryRemove(partyCode, out _);
-            _playerCallbacks.TryRemove(partyCode, out _);
-            _matchResults.TryRemove(partyCode, out _);
-        }
-
-        private async void NotifyPlayerQuit(int partyCode, string username, string reason)
-        {
-            foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[partyCode])
-            {
-                try
-                {
-                    player.Value.PlayerLeftGame(username, reason);
-                }
-                catch (CommunicationException)
-                {
-                    NotifyPlayerQuit(partyCode, player.Key, "Error when trying to communicate with the server");
-                    player.Value.TurnFinished(GetCurrentTurn(partyCode));
-                }
-                catch (TimeoutException)
-                {
-                    _playerCallbacks[partyCode].TryRemove(player.Key, out _);
-                    NotifyPlayerQuit(partyCode, player.Key, "Timeout");
-                }
-            }
-
-            if (_playerCallbacks[partyCode].ContainsKey(username))
-            {
-                _playerCallbacks[partyCode].TryRemove(username, out _);
-            }
-
-            if (_playerCallbacks[partyCode].Count > 1)
-            {
-                if (GetCurrentTurn(partyCode).Equals(username))
-                {
-                    EndTurn(partyCode);
-                }
-            }
-            else
-            {
-                EndGame(partyCode);
             }
         }
     }
@@ -1441,6 +1391,63 @@ namespace CommunicationService
             else
             {
                 _gameCards[partyCode][position].Number = "";
+            }
+        }
+    }
+    public partial class ServiceImplementation : IMatchPlayerManager
+    {
+        public List<string> GetPlayerList(int partyCode)
+        {
+            return new List<string>(_playerCallbacks[partyCode].Keys);
+        }
+
+        public void ExitMatch(int partyCode, string username)
+        {
+            _playerCallbacks[partyCode].TryRemove(username, out _);
+
+            NotifyPlayerQuit(partyCode, username, "User clicked exit button");
+        }
+
+        public void KickPlayerFromGame(int partyCode, string username, string reason)
+        {
+            NotifyPlayerQuit(partyCode, username, reason);
+        }
+
+        private async void NotifyPlayerQuit(int partyCode, string username, string reason)
+        {
+            foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[partyCode])
+            {
+                try
+                {
+                    player.Value.PlayerLeftGame(username, reason);
+                }
+                catch (CommunicationException)
+                {
+                    NotifyPlayerQuit(partyCode, player.Key, "Error when trying to communicate with the server");
+                    player.Value.TurnFinished(GetCurrentTurn(partyCode));
+                }
+                catch (TimeoutException)
+                {
+                    _playerCallbacks[partyCode].TryRemove(player.Key, out _);
+                    NotifyPlayerQuit(partyCode, player.Key, "Timeout");
+                }
+            }
+
+            if (_playerCallbacks[partyCode].ContainsKey(username))
+            {
+                _playerCallbacks[partyCode].TryRemove(username, out _);
+            }
+
+            if (_playerCallbacks[partyCode].Count > 1)
+            {
+                if (GetCurrentTurn(partyCode).Equals(username))
+                {
+                    EndTurn(partyCode);
+                }
+            }
+            else
+            {
+                EndGame(partyCode);
             }
         }
     }

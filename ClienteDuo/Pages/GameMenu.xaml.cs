@@ -9,8 +9,6 @@ namespace ClienteDuo.Pages
 {
     public partial class GameMenu : UserControl
     {
-        private MatchManagerClient _client;
-
         public GameMenu()
         {
             InitializeComponent();
@@ -26,7 +24,7 @@ namespace ClienteDuo.Pages
             playerStackPanel.Children.Add(yourBar);
         }
 
-        public void LoadPlayers(List<string> playerList, MatchManagerClient client)
+        public void LoadPlayers(List<string> playerList)
         {
             foreach (string playerUsername in playerList)
             {
@@ -34,7 +32,6 @@ namespace ClienteDuo.Pages
                 {
                     PlayerBar playerBar = new PlayerBar();
                     playerBar.Username = playerUsername;
-                    playerBar.SetClient(client);
 
                     if (SessionDetails.IsHost)
                     {
@@ -89,16 +86,12 @@ namespace ClienteDuo.Pages
             playerStackPanel.Children.Remove(kickedPlayer);
         }
 
-        public void setClient(MatchManagerClient client)
-        {
-            _client = client;
-        }
-
         private void BtnExitEvent(object sender, RoutedEventArgs e)
         {
             if (MainWindow.ShowConfirmationBox(Properties.Resources.DlgExitMatchConfirmation))
             {
-                _client.ExitMatch(SessionDetails.LobbyCode, SessionDetails.Username);
+                MatchPlayerManagerClient client = new MatchPlayerManagerClient();
+                client.ExitMatch(SessionDetails.LobbyCode, SessionDetails.Username);
 
                 if (SessionDetails.IsGuest)
                 {

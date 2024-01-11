@@ -723,32 +723,6 @@ references:
   isSpec: "True"
   fullName: CommunicationService.IMatchManager.EndTurn
   nameWithType: IMatchManager.EndTurn
-- uid: CommunicationService.IMatchManager.ExitMatch(System.Int32,System.String)
-  name: ExitMatch(Int32, String)
-  href: api/CommunicationService.IMatchManager.html#CommunicationService_IMatchManager_ExitMatch_System_Int32_System_String_
-  commentId: M:CommunicationService.IMatchManager.ExitMatch(System.Int32,System.String)
-  fullName: CommunicationService.IMatchManager.ExitMatch(System.Int32, System.String)
-  nameWithType: IMatchManager.ExitMatch(Int32, String)
-- uid: CommunicationService.IMatchManager.ExitMatch*
-  name: ExitMatch
-  href: api/CommunicationService.IMatchManager.html#CommunicationService_IMatchManager_ExitMatch_
-  commentId: Overload:CommunicationService.IMatchManager.ExitMatch
-  isSpec: "True"
-  fullName: CommunicationService.IMatchManager.ExitMatch
-  nameWithType: IMatchManager.ExitMatch
-- uid: CommunicationService.IMatchManager.GetCurrentTurn(System.Int32)
-  name: GetCurrentTurn(Int32)
-  href: api/CommunicationService.IMatchManager.html#CommunicationService_IMatchManager_GetCurrentTurn_System_Int32_
-  commentId: M:CommunicationService.IMatchManager.GetCurrentTurn(System.Int32)
-  fullName: CommunicationService.IMatchManager.GetCurrentTurn(System.Int32)
-  nameWithType: IMatchManager.GetCurrentTurn(Int32)
-- uid: CommunicationService.IMatchManager.GetCurrentTurn*
-  name: GetCurrentTurn
-  href: api/CommunicationService.IMatchManager.html#CommunicationService_IMatchManager_GetCurrentTurn_
-  commentId: Overload:CommunicationService.IMatchManager.GetCurrentTurn
-  isSpec: "True"
-  fullName: CommunicationService.IMatchManager.GetCurrentTurn
-  nameWithType: IMatchManager.GetCurrentTurn
 - uid: CommunicationService.IMatchManager.GetMatchResults(System.Int32)
   name: GetMatchResults(Int32)
   href: api/CommunicationService.IMatchManager.html#CommunicationService_IMatchManager_GetMatchResults_System_Int32_
@@ -762,32 +736,6 @@ references:
   isSpec: "True"
   fullName: CommunicationService.IMatchManager.GetMatchResults
   nameWithType: IMatchManager.GetMatchResults
-- uid: CommunicationService.IMatchManager.GetPlayerList(System.Int32)
-  name: GetPlayerList(Int32)
-  href: api/CommunicationService.IMatchManager.html#CommunicationService_IMatchManager_GetPlayerList_System_Int32_
-  commentId: M:CommunicationService.IMatchManager.GetPlayerList(System.Int32)
-  fullName: CommunicationService.IMatchManager.GetPlayerList(System.Int32)
-  nameWithType: IMatchManager.GetPlayerList(Int32)
-- uid: CommunicationService.IMatchManager.GetPlayerList*
-  name: GetPlayerList
-  href: api/CommunicationService.IMatchManager.html#CommunicationService_IMatchManager_GetPlayerList_
-  commentId: Overload:CommunicationService.IMatchManager.GetPlayerList
-  isSpec: "True"
-  fullName: CommunicationService.IMatchManager.GetPlayerList
-  nameWithType: IMatchManager.GetPlayerList
-- uid: CommunicationService.IMatchManager.KickPlayerFromGame(System.Int32,System.String,System.String)
-  name: KickPlayerFromGame(Int32, String, String)
-  href: api/CommunicationService.IMatchManager.html#CommunicationService_IMatchManager_KickPlayerFromGame_System_Int32_System_String_System_String_
-  commentId: M:CommunicationService.IMatchManager.KickPlayerFromGame(System.Int32,System.String,System.String)
-  fullName: CommunicationService.IMatchManager.KickPlayerFromGame(System.Int32, System.String, System.String)
-  nameWithType: IMatchManager.KickPlayerFromGame(Int32, String, String)
-- uid: CommunicationService.IMatchManager.KickPlayerFromGame*
-  name: KickPlayerFromGame
-  href: api/CommunicationService.IMatchManager.html#CommunicationService_IMatchManager_KickPlayerFromGame_
-  commentId: Overload:CommunicationService.IMatchManager.KickPlayerFromGame
-  isSpec: "True"
-  fullName: CommunicationService.IMatchManager.KickPlayerFromGame
-  nameWithType: IMatchManager.KickPlayerFromGame
 - uid: CommunicationService.IMatchManager.SetGameScore(System.Int32,System.String,System.Int32)
   name: SetGameScore(Int32, String, Int32)
   href: api/CommunicationService.IMatchManager.html#CommunicationService_IMatchManager_SetGameScore_System_Int32_System_String_System_Int32_
@@ -872,6 +820,64 @@ references:
   isSpec: "True"
   fullName: CommunicationService.IMatchManagerCallback.UpdateTableCards
   nameWithType: IMatchManagerCallback.UpdateTableCards
+- uid: CommunicationService.IMatchPlayerManager
+  name: IMatchPlayerManager
+  href: api/CommunicationService.IMatchPlayerManager.html
+  commentId: T:CommunicationService.IMatchPlayerManager
+  fullName: CommunicationService.IMatchPlayerManager
+  nameWithType: IMatchPlayerManager
+- uid: CommunicationService.IMatchPlayerManager.ExitMatch(System.Int32,System.String)
+  name: ExitMatch(Int32, String)
+  href: api/CommunicationService.IMatchPlayerManager.html#CommunicationService_IMatchPlayerManager_ExitMatch_System_Int32_System_String_
+  commentId: M:CommunicationService.IMatchPlayerManager.ExitMatch(System.Int32,System.String)
+  fullName: CommunicationService.IMatchPlayerManager.ExitMatch(System.Int32, System.String)
+  nameWithType: IMatchPlayerManager.ExitMatch(Int32, String)
+- uid: CommunicationService.IMatchPlayerManager.ExitMatch*
+  name: ExitMatch
+  href: api/CommunicationService.IMatchPlayerManager.html#CommunicationService_IMatchPlayerManager_ExitMatch_
+  commentId: Overload:CommunicationService.IMatchPlayerManager.ExitMatch
+  isSpec: "True"
+  fullName: CommunicationService.IMatchPlayerManager.ExitMatch
+  nameWithType: IMatchPlayerManager.ExitMatch
+- uid: CommunicationService.IMatchPlayerManager.GetCurrentTurn(System.Int32)
+  name: GetCurrentTurn(Int32)
+  href: api/CommunicationService.IMatchPlayerManager.html#CommunicationService_IMatchPlayerManager_GetCurrentTurn_System_Int32_
+  commentId: M:CommunicationService.IMatchPlayerManager.GetCurrentTurn(System.Int32)
+  fullName: CommunicationService.IMatchPlayerManager.GetCurrentTurn(System.Int32)
+  nameWithType: IMatchPlayerManager.GetCurrentTurn(Int32)
+- uid: CommunicationService.IMatchPlayerManager.GetCurrentTurn*
+  name: GetCurrentTurn
+  href: api/CommunicationService.IMatchPlayerManager.html#CommunicationService_IMatchPlayerManager_GetCurrentTurn_
+  commentId: Overload:CommunicationService.IMatchPlayerManager.GetCurrentTurn
+  isSpec: "True"
+  fullName: CommunicationService.IMatchPlayerManager.GetCurrentTurn
+  nameWithType: IMatchPlayerManager.GetCurrentTurn
+- uid: CommunicationService.IMatchPlayerManager.GetPlayerList(System.Int32)
+  name: GetPlayerList(Int32)
+  href: api/CommunicationService.IMatchPlayerManager.html#CommunicationService_IMatchPlayerManager_GetPlayerList_System_Int32_
+  commentId: M:CommunicationService.IMatchPlayerManager.GetPlayerList(System.Int32)
+  fullName: CommunicationService.IMatchPlayerManager.GetPlayerList(System.Int32)
+  nameWithType: IMatchPlayerManager.GetPlayerList(Int32)
+- uid: CommunicationService.IMatchPlayerManager.GetPlayerList*
+  name: GetPlayerList
+  href: api/CommunicationService.IMatchPlayerManager.html#CommunicationService_IMatchPlayerManager_GetPlayerList_
+  commentId: Overload:CommunicationService.IMatchPlayerManager.GetPlayerList
+  isSpec: "True"
+  fullName: CommunicationService.IMatchPlayerManager.GetPlayerList
+  nameWithType: IMatchPlayerManager.GetPlayerList
+- uid: CommunicationService.IMatchPlayerManager.KickPlayerFromGame(System.Int32,System.String,System.String)
+  name: KickPlayerFromGame(Int32, String, String)
+  href: api/CommunicationService.IMatchPlayerManager.html#CommunicationService_IMatchPlayerManager_KickPlayerFromGame_System_Int32_System_String_System_String_
+  commentId: M:CommunicationService.IMatchPlayerManager.KickPlayerFromGame(System.Int32,System.String,System.String)
+  fullName: CommunicationService.IMatchPlayerManager.KickPlayerFromGame(System.Int32, System.String, System.String)
+  nameWithType: IMatchPlayerManager.KickPlayerFromGame(Int32, String, String)
+- uid: CommunicationService.IMatchPlayerManager.KickPlayerFromGame*
+  name: KickPlayerFromGame
+  href: api/CommunicationService.IMatchPlayerManager.html#CommunicationService_IMatchPlayerManager_KickPlayerFromGame_
+  commentId: Overload:CommunicationService.IMatchPlayerManager.KickPlayerFromGame
+  isSpec: "True"
+  fullName: CommunicationService.IMatchPlayerManager.KickPlayerFromGame
+  nameWithType: IMatchPlayerManager.KickPlayerFromGame
 - uid: CommunicationService.IUserConnectionHandler
   name: IUserConnectionHandler
   href: api/CommunicationService.IUserConnectionHandler.html

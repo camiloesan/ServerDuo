@@ -73,7 +73,7 @@
   
   <h1 id="CommunicationService_IMatchManager" data-uid="CommunicationService.IMatchManager" class="text-break">Interface IMatchManager
   </h1>
-  <div class="markdown level0 summary"><p>This contract manages match operations such as joining and kicking players out of match, and non-card-related operations such as ending turns and matches</p>
+  <div class="markdown level0 summary"><p>This contract manages match operations such as ending turns and matches and calling callbacks</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <h6><strong>Namespace</strong>: <a class="xref" href="CommunicationService.html">CommunicationService</a></h6>
@@ -147,87 +147,6 @@ void EndTurn(int partyCode)</code></pre>
   </table>
   
   
-  <a id="CommunicationService_IMatchManager_ExitMatch_" data-uid="CommunicationService.IMatchManager.ExitMatch*"></a>
-  <h4 id="CommunicationService_IMatchManager_ExitMatch_System_Int32_System_String_" data-uid="CommunicationService.IMatchManager.ExitMatch(System.Int32,System.String)">ExitMatch(Int32, String)</h4>
-  <div class="markdown level1 summary"><p>Deletes the player that calls this method from the match and notifies que exit to the other players</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[OperationContract(IsOneWay = true)]
-void ExitMatch(int partyCode, string username)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">partyCode</span></td>
-        <td><p>Code of the match</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">username</span></td>
-        <td><p>Name of the player that is leaving</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="CommunicationService_IMatchManager_GetCurrentTurn_" data-uid="CommunicationService.IMatchManager.GetCurrentTurn*"></a>
-  <h4 id="CommunicationService_IMatchManager_GetCurrentTurn_System_Int32_" data-uid="CommunicationService.IMatchManager.GetCurrentTurn(System.Int32)">GetCurrentTurn(Int32)</h4>
-  <div class="markdown level1 summary"><p>Get the current turn in the match</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[OperationContract]
-string GetCurrentTurn(int partyCode)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">partyCode</span></td>
-        <td><p>Code of the match</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
   <a id="CommunicationService_IMatchManager_GetMatchResults_" data-uid="CommunicationService.IMatchManager.GetMatchResults*"></a>
   <h4 id="CommunicationService_IMatchManager_GetMatchResults_System_Int32_" data-uid="CommunicationService.IMatchManager.GetMatchResults(System.Int32)">GetMatchResults(Int32)</h4>
   <div class="markdown level1 summary"><p>Get the results when a match is over</p>
@@ -267,92 +186,6 @@ ConcurrentDictionary&lt;string, int&gt; GetMatchResults(int partyCode)</code></p
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Concurrent.ConcurrentDictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Int32</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="CommunicationService_IMatchManager_GetPlayerList_" data-uid="CommunicationService.IMatchManager.GetPlayerList*"></a>
-  <h4 id="CommunicationService_IMatchManager_GetPlayerList_System_Int32_" data-uid="CommunicationService.IMatchManager.GetPlayerList(System.Int32)">GetPlayerList(Int32)</h4>
-  <div class="markdown level1 summary"><p>Get list of players in the match</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[OperationContract]
-List&lt;string&gt; GetPlayerList(int partyCode)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">partyCode</span></td>
-        <td><p>Code of the match</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="CommunicationService_IMatchManager_KickPlayerFromGame_" data-uid="CommunicationService.IMatchManager.KickPlayerFromGame*"></a>
-  <h4 id="CommunicationService_IMatchManager_KickPlayerFromGame_System_Int32_System_String_System_String_" data-uid="CommunicationService.IMatchManager.KickPlayerFromGame(System.Int32,System.String,System.String)">KickPlayerFromGame(Int32, String, String)</h4>
-  <div class="markdown level1 summary"><p>Expells a player from a match and if there is only the host left, he wins</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[OperationContract]
-void KickPlayerFromGame(int partyCode, string username, string reason)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">partyCode</span></td>
-        <td><p>Code of the match</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">username</span></td>
-        <td><p>Name of the player is kicked</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">reason</span></td>
         <td></td>
       </tr>
     </tbody>

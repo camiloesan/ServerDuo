@@ -1,6 +1,6 @@
 {
   "homepages": [],
-  "source_base_path": "C:/Users/desktop/Documents/ServerDuo/CommunicationService",
+  "source_base_path": "C:/Users/lisre/Documents/GitHub/ServerDuo/CommunicationService",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -9,10 +9,10 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "2sF8fMc/MHc8aqJgJaCeld3BUL+fpV96iRQEoashcnU="
+          "hash": "ZcRFJgNhvhM6kAH28Vkb5TxxGPe7FlftmernEpHWKBw="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -21,10 +21,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/intro.html",
-          "hash": "xUgfl4JKw9O9lgIpG0568RwAAqTV13XvcHVHDVNgRVs="
+          "hash": "yF4cM99miGSsrT64oV0kgkl56YkQylthgw5Gl1aJqzo="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -45,10 +45,10 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "mOpiKRULOP29hX7n0Z6KLSrJ33YAN6Mz4Z8gtpMfGEY="
+          "hash": "GGOovSab6ZFxRkwbTiKX/AxcXz9WU1qSZOSIhjRqq74="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -57,10 +57,10 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.Card.html",
-          "hash": "H36TUqmgWIY2q36XeEZcG3vtTyHdWWuMPfUni8DiHNI="
+          "hash": "iqWQe9EAUjKzPIpGU1XHVN6rL0VwjETh3ZmtgthS9v8="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -69,10 +69,10 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.CardColors.html",
-          "hash": "4sO8wmY/5kpBdW4fjEaJcIIjnSGXqXSYOqvZXEc1BOQ="
+          "hash": "oFiYU+H0ZESpdYHEDQQOWoMUR6NUdkngPBa4iXZRxg4="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -81,10 +81,10 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.FriendRequestDTO.html",
-          "hash": "IAUFhEUAk0Kf1Hm2inPjbfHYnrQ1AQD91QNUIzmcz4I="
+          "hash": "j9XQbhYN0ppeA1FTreBF1ubPpOc6HKEMPv1qcp+7bpk="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -93,10 +93,10 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.FriendshipDTO.html",
-          "hash": "jsi1onoDSEWh/PvHQBt/tXCnwK6nUKsV7xKEJ+/+FXg="
+          "hash": "8CIOwsl+pZ/kl4ryGZ81xLms+G7ojisWtSSg7djUsGk="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -105,10 +105,10 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.ICardManager.html",
-          "hash": "2EHO6RbjKMN17wkK1CoVbmgYkreHqgvix+9ScDkktck="
+          "hash": "KdnkTnBSzEGyvnHwbXs3+oIhnm99DdCKlebAwifchdU="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -117,10 +117,10 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.IFriendsManager.html",
-          "hash": "xJ5zih9KH509jRMMMlLlnJQu2Q3PZnLnrj/8gTiDEhc="
+          "hash": "9rzPPzGHC50PJpgOPzsOPAMQi7NSjo+SccoRanwp3qE="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -129,7 +129,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.ILobbyManager.html",
-          "hash": "LKYcp+j6+hl2lwMp7tdFk8Q2Nhp01aZD7wtpWavZGWo="
+          "hash": "ZIQH01aos7AzmZkamManl86+5rHLrsGTcolpS+xg/hw="
         }
       },
       "is_incremental": false,
@@ -141,7 +141,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.ILobbyManagerCallback.html",
-          "hash": "aXN/0IwCvdYYJG9pUg6+HXFcQWNGn6xQ3ShiKM8BV/8="
+          "hash": "iXGhVem2xkExkXY5Pz9WK+184cQRZSxRlfbeYWp0tkk="
         }
       },
       "is_incremental": false,
@@ -153,7 +153,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.ILobbyValidator.html",
-          "hash": "GmrdN+QgguwCoyrZ7JwNCW5+N4hEDnm5WZopjdJL2WY="
+          "hash": "xVb6PsDEDe4FApinBBwuT9gpjBkyKsfpA7itZGdBr/U="
         }
       },
       "is_incremental": false,
@@ -165,10 +165,10 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.IMatchManager.html",
-          "hash": "v7Uu62uzWdz9C4vxVZN6Y4RW33HgVQ8ikUS+2w+KmsY="
+          "hash": "BaxO72PGCJfbuS/uHCN5nVEBDx5ZDoa4HkGVB1YfEtY="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -177,10 +177,22 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.IMatchManagerCallback.html",
-          "hash": "EPOU8/+zHk+94RfQvRDAJPliTySijHhBgYriQeA8KmE="
+          "hash": "ZLy/taC+EhE8uq1vMdV3kK7mqkw7Jxmg1d1vuY1nyfo="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/CommunicationService.IMatchPlayerManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CommunicationService.IMatchPlayerManager.html",
+          "hash": "6DadkCB79SDHOivxDCMYDIo6KVbfoqGaJwn2pP9Tkhs="
+        }
+      },
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -189,10 +201,10 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.IUserConnectionHandler.html",
-          "hash": "yiKR5hce6IvzQ8pwY1vDiYO5493A4RRXp1uHTt69HHQ="
+          "hash": "11Xb5JsOXAe99sVhyEpysI35+gT+arF8w9YguqOCF3c="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -201,10 +213,10 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.IUsersManager.html",
-          "hash": "yvgdFd/9te2mwk9jRoVvXsC71fOjPV3PUvbHeZI61XM="
+          "hash": "gKSlIx6P3yOrqvmtmCn3AdrVAQJ7YwCFXMXk97SrdIM="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -213,7 +225,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.ServiceImplementation.html",
-          "hash": "hu51Jrq8xGezPVLPTpW6AhKT9y4Teit1mRpIp0ZaOR8="
+          "hash": "HcafA2kBH5XYeHX9mYePP6i613G1Utiw7unCrxfT06U="
         }
       },
       "is_incremental": false,
@@ -225,10 +237,10 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.UserBlockedDTO.html",
-          "hash": "vPjw+asI/8ud80XhV5JknJDbXFlxhSh07wuB7liWaI8="
+          "hash": "EIm6N3OrLAUkL9GV1pG1hKVGAEd1qeB6SIcdqFB1sJY="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -237,10 +249,10 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.UserDTO.html",
-          "hash": "FWmhZz3+6hV5vFCcdpz/pWP9FaKzI5cl4facLcV8BUk="
+          "hash": "qxqRZzB2KzDoYeUumCt0bjGZ6snGSoPpomc7/0L4O70="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -249,7 +261,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.html",
-          "hash": "BGMinGNsdJzk87tNMAEmbon2fUdEL4vbCHt1anknJP4="
+          "hash": "X5q73ZA5eI9nmekJwd+tOXyja9e3mi8gH9LIJER4cuE="
         }
       },
       "is_incremental": false,
@@ -261,7 +273,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "9HYosCohYaVCD2KeIdNn32l5P5TVaFG6/VQPkwH/oZo="
+          "hash": "cGHNudJSP9D6nrmnIAFV4LsNu9CcTGCbbg+NlbGdv7Y="
         }
       },
       "is_incremental": false,
@@ -283,23 +295,25 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": true,
+        "can_incremental": false,
+        "details": "Disable incremental build by force rebuild option.",
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0
+        "skipped_file_count": 0,
+        "full_build_reason_code": "ForceRebuild"
       },
       "processors": {
         "ConceptualDocumentProcessor": {
-          "can_incremental": true,
+          "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 3,
-          "skipped_file_count": 3
+          "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
-          "can_incremental": true,
+          "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 17,
-          "skipped_file_count": 14
+          "total_file_count": 18,
+          "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
           "can_incremental": false,
@@ -312,8 +326,8 @@
     },
     {
       "status": {
-        "can_incremental": true,
-        "details": "Can support incremental post processing.",
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: it's disabled.",
         "incrementalPhase": "postProcessing",
         "total_file_count": 0,
         "skipped_file_count": 0

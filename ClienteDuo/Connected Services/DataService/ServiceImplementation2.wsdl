@@ -96,6 +96,18 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IMatchPlayerManager_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd0" namespace="http://tempuri.org/" />
@@ -395,15 +407,6 @@
   <wsdl:message name="IMatchManager_SetGameScore_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetGameScoreResponse" />
   </wsdl:message>
-  <wsdl:message name="IMatchManager_ExitMatch_InputMessage">
-    <wsdl:part name="parameters" element="tns:ExitMatch" />
-  </wsdl:message>
-  <wsdl:message name="IMatchManager_KickPlayerFromGame_InputMessage">
-    <wsdl:part name="parameters" element="tns:KickPlayerFromGame" />
-  </wsdl:message>
-  <wsdl:message name="IMatchManager_KickPlayerFromGame_OutputMessage">
-    <wsdl:part name="parameters" element="tns:KickPlayerFromGameResponse" />
-  </wsdl:message>
   <wsdl:message name="IMatchManager_EndGame_InputMessage">
     <wsdl:part name="parameters" element="tns:EndGame" />
   </wsdl:message>
@@ -415,12 +418,6 @@
   </wsdl:message>
   <wsdl:message name="IMatchManager_GetCurrentTurn_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCurrentTurnResponse" />
-  </wsdl:message>
-  <wsdl:message name="IMatchManager_GetPlayerList_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetPlayerList" />
-  </wsdl:message>
-  <wsdl:message name="IMatchManager_GetPlayerList_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetPlayerListResponse" />
   </wsdl:message>
   <wsdl:message name="IMatchManager_GetMatchResults_InputMessage">
     <wsdl:part name="parameters" element="tns:GetMatchResults" />
@@ -451,6 +448,21 @@
   </wsdl:message>
   <wsdl:message name="IMatchManager_GameOver_InputCallbackMessage">
     <wsdl:part name="parameters" element="tns:GameOverResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchPlayerManager_GetPlayerList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerList" />
+  </wsdl:message>
+  <wsdl:message name="IMatchPlayerManager_GetPlayerList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchPlayerManager_ExitMatch_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExitMatch" />
+  </wsdl:message>
+  <wsdl:message name="IMatchPlayerManager_KickPlayerFromGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:KickPlayerFromGame" />
+  </wsdl:message>
+  <wsdl:message name="IMatchPlayerManager_KickPlayerFromGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:KickPlayerFromGameResponse" />
   </wsdl:message>
   <wsdl:portType name="IUsersManager">
     <wsdl:operation name="UpdateProfilePictureByUserId">
@@ -668,13 +680,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/SetGameScore" message="tns:IMatchManager_SetGameScore_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMatchManager/SetGameScoreResponse" message="tns:IMatchManager_SetGameScore_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ExitMatch">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/ExitMatch" message="tns:IMatchManager_ExitMatch_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="KickPlayerFromGame">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/KickPlayerFromGame" message="tns:IMatchManager_KickPlayerFromGame_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManager/KickPlayerFromGameResponse" message="tns:IMatchManager_KickPlayerFromGame_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="EndGame">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/EndGame" message="tns:IMatchManager_EndGame_InputMessage" />
     </wsdl:operation>
@@ -684,10 +689,6 @@
     <wsdl:operation name="GetCurrentTurn">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/GetCurrentTurn" message="tns:IMatchManager_GetCurrentTurn_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMatchManager/GetCurrentTurnResponse" message="tns:IMatchManager_GetCurrentTurn_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetPlayerList">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/GetPlayerList" message="tns:IMatchManager_GetPlayerList_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManager/GetPlayerListResponse" message="tns:IMatchManager_GetPlayerList_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetMatchResults">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/GetMatchResults" message="tns:IMatchManager_GetMatchResults_InputMessage" />
@@ -708,6 +709,19 @@
     <wsdl:operation name="GameOver">
       <wsdl:output wsaw:Action="http://tempuri.org/IMatchManager/GameOver" message="tns:IMatchManager_GameOver_OutputCallbackMessage" />
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchManager/GameOverResponse" message="tns:IMatchManager_GameOver_InputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IMatchPlayerManager">
+    <wsdl:operation name="GetPlayerList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchPlayerManager/GetPlayerList" message="tns:IMatchPlayerManager_GetPlayerList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchPlayerManager/GetPlayerListResponse" message="tns:IMatchPlayerManager_GetPlayerList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExitMatch">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchPlayerManager/ExitMatch" message="tns:IMatchPlayerManager_ExitMatch_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="KickPlayerFromGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchPlayerManager/KickPlayerFromGame" message="tns:IMatchPlayerManager_KickPlayerFromGame_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchPlayerManager/KickPlayerFromGameResponse" message="tns:IMatchPlayerManager_KickPlayerFromGame_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IUsersManager" type="tns:IUsersManager">
@@ -1188,21 +1202,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ExitMatch">
-      <soap12:operation soapAction="http://tempuri.org/IMatchManager/ExitMatch" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="KickPlayerFromGame">
-      <soap12:operation soapAction="http://tempuri.org/IMatchManager/KickPlayerFromGame" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="EndGame">
       <soap12:operation soapAction="http://tempuri.org/IMatchManager/EndGame" style="document" />
       <wsdl:input>
@@ -1217,15 +1216,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetCurrentTurn">
       <soap12:operation soapAction="http://tempuri.org/IMatchManager/GetCurrentTurn" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetPlayerList">
-      <soap12:operation soapAction="http://tempuri.org/IMatchManager/GetPlayerList" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1279,6 +1269,34 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IMatchPlayerManager" type="tns:IMatchPlayerManager">
+    <wsp:PolicyReference URI="#NetTcpBinding_IMatchPlayerManager_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="GetPlayerList">
+      <soap12:operation soapAction="http://tempuri.org/IMatchPlayerManager/GetPlayerList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExitMatch">
+      <soap12:operation soapAction="http://tempuri.org/IMatchPlayerManager/ExitMatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="KickPlayerFromGame">
+      <soap12:operation soapAction="http://tempuri.org/IMatchPlayerManager/KickPlayerFromGame" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
   <wsdl:service name="ServiceImplementation">
     <wsdl:port name="NetTcpBinding_IUsersManager" binding="tns:NetTcpBinding_IUsersManager">
       <soap12:address location="net.tcp://localhost:8080/Service" />
@@ -1323,6 +1341,12 @@
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IMatchManager" binding="tns:NetTcpBinding_IMatchManager">
+      <soap12:address location="net.tcp://localhost:8080/Service" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8080/Service</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IMatchPlayerManager" binding="tns:NetTcpBinding_IMatchPlayerManager">
       <soap12:address location="net.tcp://localhost:8080/Service" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8080/Service</wsa10:Address>
