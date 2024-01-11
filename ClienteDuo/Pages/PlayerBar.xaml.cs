@@ -13,7 +13,6 @@ namespace ClienteDuo.Pages
     public partial class PlayerBar : UserControl
     {
         private string _username;
-        private MatchManagerClient _client;
 
         public PlayerBar()
         {
@@ -31,11 +30,6 @@ namespace ClienteDuo.Pages
                 _username = value;
                 LblUsername.Content = _username;
             }
-        }
-
-        public void SetClient(MatchManagerClient client)
-        {
-            _client = client;
         }
 
         public void SetProfilePicture(int pictureId)
@@ -80,7 +74,6 @@ namespace ClienteDuo.Pages
             {
                 KickedUsername = _username
             };
-            popUpKickPlayer.SetClient(_client);
             popUpKickPlayer.Show();
         }
     }

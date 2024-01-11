@@ -1428,18 +1428,6 @@ namespace ClienteDuo.DataService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/SetGameScore", ReplyAction="http://tempuri.org/IMatchManager/SetGameScoreResponse")]
         System.Threading.Tasks.Task SetGameScoreAsync(int partyCode, string username, int cardCount);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManager/ExitMatch")]
-        void ExitMatch(int partyCode, string username);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManager/ExitMatch")]
-        System.Threading.Tasks.Task ExitMatchAsync(int partyCode, string username);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/KickPlayerFromGame", ReplyAction="http://tempuri.org/IMatchManager/KickPlayerFromGameResponse")]
-        void KickPlayerFromGame(int partyCode, string username, string reason);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/KickPlayerFromGame", ReplyAction="http://tempuri.org/IMatchManager/KickPlayerFromGameResponse")]
-        System.Threading.Tasks.Task KickPlayerFromGameAsync(int partyCode, string username, string reason);
-        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManager/EndGame")]
         void EndGame(int partyCode);
         
@@ -1457,12 +1445,6 @@ namespace ClienteDuo.DataService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/GetCurrentTurn", ReplyAction="http://tempuri.org/IMatchManager/GetCurrentTurnResponse")]
         System.Threading.Tasks.Task<string> GetCurrentTurnAsync(int partyCode);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/GetPlayerList", ReplyAction="http://tempuri.org/IMatchManager/GetPlayerListResponse")]
-        string[] GetPlayerList(int partyCode);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/GetPlayerList", ReplyAction="http://tempuri.org/IMatchManager/GetPlayerListResponse")]
-        System.Threading.Tasks.Task<string[]> GetPlayerListAsync(int partyCode);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/GetMatchResults", ReplyAction="http://tempuri.org/IMatchManager/GetMatchResultsResponse")]
         System.Collections.Generic.Dictionary<string, int> GetMatchResults(int partyCode);
@@ -1531,22 +1513,6 @@ namespace ClienteDuo.DataService {
             return base.Channel.SetGameScoreAsync(partyCode, username, cardCount);
         }
         
-        public void ExitMatch(int partyCode, string username) {
-            base.Channel.ExitMatch(partyCode, username);
-        }
-        
-        public System.Threading.Tasks.Task ExitMatchAsync(int partyCode, string username) {
-            return base.Channel.ExitMatchAsync(partyCode, username);
-        }
-        
-        public void KickPlayerFromGame(int partyCode, string username, string reason) {
-            base.Channel.KickPlayerFromGame(partyCode, username, reason);
-        }
-        
-        public System.Threading.Tasks.Task KickPlayerFromGameAsync(int partyCode, string username, string reason) {
-            return base.Channel.KickPlayerFromGameAsync(partyCode, username, reason);
-        }
-        
         public void EndGame(int partyCode) {
             base.Channel.EndGame(partyCode);
         }
@@ -1571,6 +1537,65 @@ namespace ClienteDuo.DataService {
             return base.Channel.GetCurrentTurnAsync(partyCode);
         }
         
+        public System.Collections.Generic.Dictionary<string, int> GetMatchResults(int partyCode) {
+            return base.Channel.GetMatchResults(partyCode);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, int>> GetMatchResultsAsync(int partyCode) {
+            return base.Channel.GetMatchResultsAsync(partyCode);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DataService.IMatchPlayerManager")]
+    public interface IMatchPlayerManager {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchPlayerManager/GetPlayerList", ReplyAction="http://tempuri.org/IMatchPlayerManager/GetPlayerListResponse")]
+        string[] GetPlayerList(int partyCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchPlayerManager/GetPlayerList", ReplyAction="http://tempuri.org/IMatchPlayerManager/GetPlayerListResponse")]
+        System.Threading.Tasks.Task<string[]> GetPlayerListAsync(int partyCode);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchPlayerManager/ExitMatch")]
+        void ExitMatch(int partyCode, string username);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchPlayerManager/ExitMatch")]
+        System.Threading.Tasks.Task ExitMatchAsync(int partyCode, string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchPlayerManager/KickPlayerFromGame", ReplyAction="http://tempuri.org/IMatchPlayerManager/KickPlayerFromGameResponse")]
+        void KickPlayerFromGame(int partyCode, string username, string reason);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchPlayerManager/KickPlayerFromGame", ReplyAction="http://tempuri.org/IMatchPlayerManager/KickPlayerFromGameResponse")]
+        System.Threading.Tasks.Task KickPlayerFromGameAsync(int partyCode, string username, string reason);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IMatchPlayerManagerChannel : ClienteDuo.DataService.IMatchPlayerManager, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class MatchPlayerManagerClient : System.ServiceModel.ClientBase<ClienteDuo.DataService.IMatchPlayerManager>, ClienteDuo.DataService.IMatchPlayerManager {
+        
+        public MatchPlayerManagerClient() {
+        }
+        
+        public MatchPlayerManagerClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public MatchPlayerManagerClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public MatchPlayerManagerClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public MatchPlayerManagerClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
         public string[] GetPlayerList(int partyCode) {
             return base.Channel.GetPlayerList(partyCode);
         }
@@ -1579,12 +1604,20 @@ namespace ClienteDuo.DataService {
             return base.Channel.GetPlayerListAsync(partyCode);
         }
         
-        public System.Collections.Generic.Dictionary<string, int> GetMatchResults(int partyCode) {
-            return base.Channel.GetMatchResults(partyCode);
+        public void ExitMatch(int partyCode, string username) {
+            base.Channel.ExitMatch(partyCode, username);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, int>> GetMatchResultsAsync(int partyCode) {
-            return base.Channel.GetMatchResultsAsync(partyCode);
+        public System.Threading.Tasks.Task ExitMatchAsync(int partyCode, string username) {
+            return base.Channel.ExitMatchAsync(partyCode, username);
+        }
+        
+        public void KickPlayerFromGame(int partyCode, string username, string reason) {
+            base.Channel.KickPlayerFromGame(partyCode, username, reason);
+        }
+        
+        public System.Threading.Tasks.Task KickPlayerFromGameAsync(int partyCode, string username, string reason) {
+            return base.Channel.KickPlayerFromGameAsync(partyCode, username, reason);
         }
     }
 }

@@ -6,7 +6,6 @@ namespace ClienteDuo.Pages.Sidebars
 {
     public partial class PopUpKickPlayer : Window
     {
-        MatchManagerClient _client;
         LobbyManagerClient _lobbyManager;
 
         public PopUpKickPlayer()
@@ -23,11 +22,6 @@ namespace ClienteDuo.Pages.Sidebars
 
         public string KickedUsername { get; set; }
 
-        public void SetClient(MatchManagerClient client)
-        {
-            _client = client;
-        }
-
         public void SetClient(LobbyManagerClient client)
         {
             _lobbyManager = client;
@@ -37,9 +31,11 @@ namespace ClienteDuo.Pages.Sidebars
         {
             if (!KickReasonComboBox.Text.Equals(""))
             {
-                if (_client != null)
+                if (SessionDetails.IsPlaying)
                 {
-                    _client.KickPlayerFromGame(SessionDetails.LobbyCode, KickedUsername, KickReasonComboBox.Text);
+                    MatchPlayerManagerClient client = new MatchPlayerManagerClient();
+
+                    client.KickPlayerFromGame(SessionDetails.LobbyCode, KickedUsername, KickReasonComboBox.Text);
                 }
                 else
                 {

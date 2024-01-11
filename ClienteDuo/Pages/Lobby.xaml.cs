@@ -315,6 +315,7 @@ namespace ClienteDuo.Pages
 
             if (lobbyValidatorClient.GetPlayersInLobby(SessionDetails.LobbyCode).Length > 1)
             {
+                BtnStartGame.Visibility = Visibility.Collapsed;
                 LobbyManagerClient lobbyManagerClient = new LobbyManagerClient(new InstanceContext(this));
 
                 try

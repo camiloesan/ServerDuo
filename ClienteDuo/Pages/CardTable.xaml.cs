@@ -67,7 +67,6 @@ namespace ClienteDuo.Pages
                 MatchManagerClient client = new MatchManagerClient(instanceContext);
 
                 _gameMenu = new GameMenu();
-                _gameMenu.setClient(client);
                 _gameMenu.Margin = new Thickness(550, 0, 0, 0);
                 _gameMenu.Visibility = Visibility.Collapsed;
 
@@ -87,10 +86,12 @@ namespace ClienteDuo.Pages
         {
             try
             {
-                InstanceContext instanceContext = new InstanceContext(this);
-                MatchManagerClient client = new MatchManagerClient(instanceContext);
+                MatchPlayerManagerClient client = new MatchPlayerManagerClient();
                 List<string> matchPlayers = new List<string>(client.GetPlayerList(SessionDetails.LobbyCode));
-                LblCurrentTurn.Content = client.GetCurrentTurn(SessionDetails.LobbyCode);
+
+                InstanceContext instanceContext = new InstanceContext(this);
+                MatchManagerClient matchClient = new MatchManagerClient(instanceContext);
+                LblCurrentTurn.Content = new MatchManagerClient(instanceContext).GetCurrentTurn(SessionDetails.LobbyCode);
 
                 List<string> otherPlayers = new List<string>();
                 foreach (string player in matchPlayers)
@@ -113,7 +114,7 @@ namespace ClienteDuo.Pages
                     }
                 }
 
-                _gameMenu.LoadPlayers(otherPlayers, client);
+                _gameMenu.LoadPlayers(otherPlayers);
             }
             catch (CommunicationException)
             {

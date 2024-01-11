@@ -14,6 +14,7 @@ namespace ClienteDuo.Utilities
         public static string Username { get; set; }
         public static bool IsGuest { get; set; } = true;
         public static bool IsHost { get; set; } = false;
+        public static bool IsPlaying { get; set; } = false;
         public static string Email { get; set; }
         public static int LobbyCode { get; set; }
         public static int TotalWins { get; set; }

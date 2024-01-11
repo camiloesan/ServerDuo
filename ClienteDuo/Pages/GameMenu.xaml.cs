@@ -1,8 +1,6 @@
 ﻿using ClienteDuo.DataService;
 using ClienteDuo.Utilities;
-using System;
 using System.Collections.Generic;
-using System.ServiceModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -11,8 +9,6 @@ namespace ClienteDuo.Pages
 {
     public partial class GameMenu : UserControl
     {
-        private MatchManagerClient _client;
-
         public GameMenu()
         {
             InitializeComponent();
@@ -28,7 +24,7 @@ namespace ClienteDuo.Pages
             playerStackPanel.Children.Add(yourBar);
         }
 
-        public void LoadPlayers(List<string> playerList, MatchManagerClient client)
+        public void LoadPlayers(List<string> playerList)
         {
             foreach (string playerUsername in playerList)
             {
@@ -36,7 +32,6 @@ namespace ClienteDuo.Pages
                 {
                     PlayerBar playerBar = new PlayerBar();
                     playerBar.Username = playerUsername;
-                    playerBar.SetClient(client);
 
                     if (SessionDetails.IsHost)
                     {
@@ -51,26 +46,15 @@ namespace ClienteDuo.Pages
                     {
                         if (!playerUsername.Contains("guest"))
                         {
-                            try
-                            {
-                                UsersManagerClient userClient = new UsersManagerClient();
+                            UsersManagerClient userClient = new UsersManagerClient();
 
                             if (FriendsManager.IsAlreadyFriend(SessionDetails.Username, playerBar.Username) ||
                                 FriendsManager.IsFriendRequestAlreadySent(SessionDetails.Username, playerUsername))
                             {
                                 UserDTO userData = userClient.GetUserInfoByUsername(playerUsername);
 
-                                    playerBar.SetProfilePicture(userData.PictureID);
-                                    playerBar.BtnAddFriend.Visibility = Visibility.Collapsed;
-                                }
-                            }
-                            catch (CommunicationException)
-                            {
-                                SessionDetails.AbortOperation();
-                            }
-                            catch (TimeoutException)
-                            {
-                                SessionDetails.AbortOperation();
+                                playerBar.SetProfilePicture(userData.PictureID);
+                                playerBar.BtnAddFriend.Visibility = Visibility.Collapsed;
                             }
                         }
                         else
@@ -102,39 +86,24 @@ namespace ClienteDuo.Pages
             playerStackPanel.Children.Remove(kickedPlayer);
         }
 
-        public void setClient(MatchManagerClient client)
-        {
-            _client = client;
-        }
-
         private void BtnExitEvent(object sender, RoutedEventArgs e)
         {
             if (MainWindow.ShowConfirmationBox(Properties.Resources.DlgExitMatchConfirmation))
             {
-                try
+                MatchPlayerManagerClient client = new MatchPlayerManagerClient();
+                client.ExitMatch(SessionDetails.LobbyCode, SessionDetails.Username);
+
+                if (SessionDetails.IsGuest)
                 {
-                    _client.ExitMatch(SessionDetails.PartyCode, SessionDetails.Username);
+                    Launcher launcher = new Launcher();
 
-                    if (SessionDetails.IsGuest)
-                    {
-                        Launcher launcher = new Launcher();
-
-                        App.Current.MainWindow.Content = launcher;
-                    }
-                    else
-                    {
-                        MainMenu mainMenu = new MainMenu();
-
-                        App.Current.MainWindow.Content = mainMenu;
-                    }
+                    App.Current.MainWindow.Content = launcher;
                 }
-                catch (CommunicationException)
+                else
                 {
-                    SessionDetails.AbortOperation();
-                }
-                catch (TimeoutException)
-                {
-                    SessionDetails.AbortOperation();
+                    MainMenu mainMenu = new MainMenu();
+
+                    App.Current.MainWindow.Content = mainMenu;
                 }
             }
         }
