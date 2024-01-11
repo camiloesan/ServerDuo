@@ -57,14 +57,30 @@ namespace ClienteDuo.Pages.Sidebars
 
         public void InitializeUserInfo(int friendshipId, string username)
         {
-            UserDTO userInfo = UsersManager.GetUserInfoByUsername(username);
-            DataContext = friendshipId;
-            _userSelectedName = username;
+            UserDTO userInfo = null;
+            try
+            {
+                userInfo = UsersManager.GetUserInfoByUsername(username);
+            }
+            catch (CommunicationException)
+            {
+                MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
+            }
+            catch (TimeoutException)
+            {
+                MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
+            }
 
-            SetProfilePicture(userInfo.PictureID);
-            LblUsername.Content = Properties.Resources.LblUsername + ": " + username;
-            LblTrophies.Content = Properties.Resources.LblTotalWins + ": " + userInfo.TotalWins;
-            BtnAddFriend.Visibility = Visibility.Collapsed;
+            if (userInfo != null) 
+            {
+                DataContext = friendshipId;
+                _userSelectedName = username;
+
+                SetProfilePicture(userInfo.PictureID);
+                LblUsername.Content = Properties.Resources.LblUsername + ": " + username;
+                LblTrophies.Content = Properties.Resources.LblTotalWins + ": " + userInfo.TotalWins;
+                BtnAddFriend.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void SetProfilePicture(int pictureId)
@@ -100,11 +116,11 @@ namespace ClienteDuo.Pages.Sidebars
             }
             catch (CommunicationException)
             {
-                SessionDetails.AbortOperation();
+                MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
             }
             catch (TimeoutException)
             {
-                SessionDetails.AbortOperation();
+                MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
             }
         }
 
@@ -136,11 +152,11 @@ namespace ClienteDuo.Pages.Sidebars
                 }
                 catch (CommunicationException)
                 {
-                    SessionDetails.AbortOperation();
+                    MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
                 }
                 catch (TimeoutException)
                 {
-                    SessionDetails.AbortOperation();
+                    MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
                 }
 
                 if (isFriend)
@@ -162,7 +178,7 @@ namespace ClienteDuo.Pages.Sidebars
                     }
                     catch (TimeoutException)
                     {
-                        SessionDetails.AbortOperation();
+                        MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
                     }
 
                     //if it was blocked 1, if it was blocked and therefore banned 2, else 0.
@@ -198,7 +214,7 @@ namespace ClienteDuo.Pages.Sidebars
             }
             catch (TimeoutException)
             {
-                SessionDetails.AbortOperation();
+                MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
             }
 
             if (result > 0 && SessionDetails.LobbyCode == 0)
