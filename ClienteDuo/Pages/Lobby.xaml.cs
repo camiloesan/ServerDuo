@@ -377,6 +377,7 @@ namespace ClienteDuo.Pages
             InstanceContext tableContext = new InstanceContext(cardTable);
             MatchManagerClient tableClient = new MatchManagerClient(tableContext);
             LblLoading.Visibility = Visibility.Visible;
+            SessionDetails.IsPlaying = true;
 
             try
             {

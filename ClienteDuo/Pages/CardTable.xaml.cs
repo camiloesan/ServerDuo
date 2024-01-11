@@ -221,6 +221,7 @@ namespace ClienteDuo.Pages
             BtnEndTurn.Visibility = Visibility.Collapsed;
             _gameMenu.Visibility = Visibility.Collapsed;
             BtnShowGameMenu.Visibility = Visibility.Collapsed;
+            SessionDetails.IsPlaying = false;
 
             try
             {
