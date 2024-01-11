@@ -1,5 +1,7 @@
 ﻿using ClienteDuo.DataService;
 using ClienteDuo.Utilities;
+using System;
+using System.ServiceModel;
 using System.Windows;
 
 namespace ClienteDuo.Pages.Sidebars
@@ -31,17 +33,29 @@ namespace ClienteDuo.Pages.Sidebars
         {
             if (!KickReasonComboBox.Text.Equals(""))
             {
-                if (SessionDetails.IsPlaying)
-                {
-                    MatchPlayerManagerClient client = new MatchPlayerManagerClient();
-
-                    client.KickPlayerFromGame(SessionDetails.LobbyCode, KickedUsername, KickReasonComboBox.Text);
-                }
-                else
-                {
-                    _lobbyManager.NotifyKickPlayer(SessionDetails.LobbyCode, KickedUsername, KickReasonComboBox.Text);
-                }
                 Close();
+
+                try
+                {
+                    if (SessionDetails.IsPlaying)
+                    {
+                        MatchPlayerManagerClient client = new MatchPlayerManagerClient();
+
+                        client.KickPlayerFromGame(SessionDetails.LobbyCode, KickedUsername, KickReasonComboBox.Text);
+                    }
+                    else
+                    {
+                        _lobbyManager.NotifyKickPlayer(SessionDetails.LobbyCode, KickedUsername, KickReasonComboBox.Text);
+                    }
+                }
+                catch (CommunicationException)
+                {
+                    SessionDetails.AbortOperation();
+                }
+                catch (TimeoutException)
+                {
+                    SessionDetails.AbortOperation();
+                }
             }
             else
             {
