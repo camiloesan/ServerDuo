@@ -132,7 +132,7 @@
           "hash": "LKYcp+j6+hl2lwMp7tdFk8Q2Nhp01aZD7wtpWavZGWo="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -144,7 +144,7 @@
           "hash": "aXN/0IwCvdYYJG9pUg6+HXFcQWNGn6xQ3ShiKM8BV/8="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -156,7 +156,7 @@
           "hash": "GmrdN+QgguwCoyrZ7JwNCW5+N4hEDnm5WZopjdJL2WY="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -216,7 +216,7 @@
           "hash": "hu51Jrq8xGezPVLPTpW6AhKT9y4Teit1mRpIp0ZaOR8="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -252,7 +252,7 @@
           "hash": "BGMinGNsdJzk87tNMAEmbon2fUdEL4vbCHt1anknJP4="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -299,7 +299,7 @@
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 17,
-          "skipped_file_count": 14
+          "skipped_file_count": 17
         },
         "TocDocumentProcessor": {
           "can_incremental": false,
