@@ -38,13 +38,5 @@ namespace CommunicationService
         /// <param name="reason"></param>
         [OperationContract]
         void KickPlayerFromGame(int partyCode, string username, string reason);
-
-        /// <summary>
-        /// Get the current turn in the match
-        /// </summary>
-        /// <param name="partyCode">Code of the match</param>
-        /// <returns></returns>
-        [OperationContract]
-        string GetCurrentTurn(int partyCode);
     }
 }

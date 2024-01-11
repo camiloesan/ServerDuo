@@ -221,6 +221,11 @@ namespace ClienteDuo.Pages
             BtnEndTurn.Visibility = Visibility.Collapsed;
             _gameMenu.Visibility = Visibility.Collapsed;
             BtnShowGameMenu.Visibility = Visibility.Collapsed;
+            BtnLeftCard.Visibility = Visibility.Collapsed;
+            BtnMiddleCard.Visibility = Visibility.Collapsed;
+            BtnRightCard.Visibility = Visibility.Collapsed;
+            BtnDeck.Visibility = Visibility.Collapsed;
+            PlayerDeck.Visibility = Visibility.Collapsed;
             SessionDetails.IsPlaying = false;
 
             try

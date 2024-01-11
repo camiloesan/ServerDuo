@@ -1422,12 +1422,6 @@ namespace ClienteDuo.DataService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/Subscribe", ReplyAction="http://tempuri.org/IMatchManager/SubscribeResponse")]
         System.Threading.Tasks.Task SubscribeAsync(int partyCode, string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/SetGameScore", ReplyAction="http://tempuri.org/IMatchManager/SetGameScoreResponse")]
-        void SetGameScore(int partyCode, string username, int cardCount);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/SetGameScore", ReplyAction="http://tempuri.org/IMatchManager/SetGameScoreResponse")]
-        System.Threading.Tasks.Task SetGameScoreAsync(int partyCode, string username, int cardCount);
-        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManager/EndGame")]
         void EndGame(int partyCode);
         
@@ -1445,6 +1439,12 @@ namespace ClienteDuo.DataService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/GetCurrentTurn", ReplyAction="http://tempuri.org/IMatchManager/GetCurrentTurnResponse")]
         System.Threading.Tasks.Task<string> GetCurrentTurnAsync(int partyCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/SetGameScore", ReplyAction="http://tempuri.org/IMatchManager/SetGameScoreResponse")]
+        void SetGameScore(int partyCode, string username, int cardCount);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/SetGameScore", ReplyAction="http://tempuri.org/IMatchManager/SetGameScoreResponse")]
+        System.Threading.Tasks.Task SetGameScoreAsync(int partyCode, string username, int cardCount);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManager/GetMatchResults", ReplyAction="http://tempuri.org/IMatchManager/GetMatchResultsResponse")]
         System.Collections.Generic.Dictionary<string, int> GetMatchResults(int partyCode);
@@ -1505,14 +1505,6 @@ namespace ClienteDuo.DataService {
             return base.Channel.SubscribeAsync(partyCode, username);
         }
         
-        public void SetGameScore(int partyCode, string username, int cardCount) {
-            base.Channel.SetGameScore(partyCode, username, cardCount);
-        }
-        
-        public System.Threading.Tasks.Task SetGameScoreAsync(int partyCode, string username, int cardCount) {
-            return base.Channel.SetGameScoreAsync(partyCode, username, cardCount);
-        }
-        
         public void EndGame(int partyCode) {
             base.Channel.EndGame(partyCode);
         }
@@ -1535,6 +1527,14 @@ namespace ClienteDuo.DataService {
         
         public System.Threading.Tasks.Task<string> GetCurrentTurnAsync(int partyCode) {
             return base.Channel.GetCurrentTurnAsync(partyCode);
+        }
+        
+        public void SetGameScore(int partyCode, string username, int cardCount) {
+            base.Channel.SetGameScore(partyCode, username, cardCount);
+        }
+        
+        public System.Threading.Tasks.Task SetGameScoreAsync(int partyCode, string username, int cardCount) {
+            return base.Channel.SetGameScoreAsync(partyCode, username, cardCount);
         }
         
         public System.Collections.Generic.Dictionary<string, int> GetMatchResults(int partyCode) {

@@ -28,7 +28,10 @@ namespace ClienteDuo.Pages.Tests
             _client = new MatchManagerClient(_context);
             _partyCode = _numberGenerator.Next(0, 10000);
             _client.Subscribe(_partyCode, _player1);
-            _gameTable.PartyCode = _partyCode;            
+            _gameTable.PartyCode = _partyCode;
+
+            MatchPlayerManagerClient playerManagerClient = new MatchPlayerManagerClient();
+            _gameTable.PlayerList = new List<string>(playerManagerClient.GetPlayerList(_partyCode));
         }
 
         [TestCleanup]
@@ -41,81 +44,10 @@ namespace ClienteDuo.Pages.Tests
         public void SubscribeTest()
         {
             _client.Subscribe(_partyCode, _player2);
-            List<string> playerList = new List<string>(_client.GetPlayerList(_partyCode));
+            MatchPlayerManagerClient matchPlayerManagerClient = new MatchPlayerManagerClient();
+            List<string> playerList = new List<string>(matchPlayerManagerClient.GetPlayerList(_partyCode));
 
             Assert.IsTrue(playerList.Contains<string>(_player2));
-        }
-
-        [TestMethod()]
-        public void KickPlayerFromGameTest()
-        {   
-            TestGameTable table = new TestGameTable();
-            InstanceContext context = new InstanceContext(_gameTable);
-            MatchManagerClient client = new MatchManagerClient(_context);
-            client.Subscribe(_partyCode, _player2);
-            table.PlayerList = new List<string>(_client.GetPlayerList(_partyCode));
-
-            _client.KickPlayerFromGame(_partyCode, _player2, "Testing Kick player Method");
-
-            List<string> playerList = new List<string>(_client.GetPlayerList(_partyCode));
-            Assert.IsFalse(playerList.Contains<string>(_player2));
-        }
-
-        [TestMethod()]
-        public void KickPlayerFromGame_IsPlayerTurnTest()
-        {
-            TestGameTable table = new TestGameTable();
-            InstanceContext context = new InstanceContext(_gameTable);
-            MatchManagerClient client = new MatchManagerClient(_context);
-            client.Subscribe(_partyCode, _player2);
-            table.PlayerList = new List<string>(_client.GetPlayerList(_partyCode));
-            table.CurrentTurn = _client.GetCurrentTurn(_partyCode);
-
-            while (!table.CurrentTurn.Equals(_player1))
-            {
-                client.EndTurn(_partyCode);
-            }
-
-            _client.KickPlayerFromGame(_partyCode, _player1, "Kicking the current turn player");
-
-            List<string> playerList = new List<string>(_client.GetPlayerList(_partyCode));
-            Assert.IsFalse(playerList.Contains<string>(_player1));
-        }
-
-        [TestMethod()]
-        public void ExitMatchTest()
-        {
-            TestGameTable table = new TestGameTable();
-            InstanceContext context = new InstanceContext(_gameTable);
-            MatchManagerClient client = new MatchManagerClient(_context);
-            client.Subscribe(_partyCode, _player2);
-            table.PlayerList = new List<string>(_client.GetPlayerList(_partyCode));
-
-            _client.ExitMatch(_partyCode, _player1);
-
-            List<string> playerList = new List<string>(_client.GetPlayerList(_partyCode));
-            Assert.IsFalse(playerList.Contains<string>(_player1));
-        }
-
-        [TestMethod()]
-        public void ExitMatch_IsPlayerTurnTest()
-        {
-            TestGameTable table = new TestGameTable();
-            InstanceContext context = new InstanceContext(_gameTable);
-            MatchManagerClient client = new MatchManagerClient(_context);
-            
-            client.Subscribe(_partyCode, _player2);
-            table.PlayerList = new List<string>(_client.GetPlayerList(_partyCode));
-
-            while (!client.GetCurrentTurn(_partyCode).Equals(_player2))
-            {
-                client.EndTurn(_partyCode);
-            }
-
-            _client.ExitMatch(_partyCode, _player2);
-
-            List<string> playerList = new List<string>(_client.GetPlayerList(_partyCode));
-            Assert.IsFalse(playerList.Contains<string>(_player2));
         }
 
         [TestMethod()]
@@ -135,7 +67,8 @@ namespace ClienteDuo.Pages.Tests
         [TestMethod()]
         public void GetCurrentTurnTest()
         {
-            List<string> playerList = new List<string>(_client.GetPlayerList(_partyCode));
+            MatchPlayerManagerClient matchPlayerManagerClient = new MatchPlayerManagerClient();
+            List<string> playerList = new List<string>(matchPlayerManagerClient.GetPlayerList(_partyCode));
             string currentTurn = _client.GetCurrentTurn(_partyCode);
 
             Assert.IsTrue(playerList.Contains(currentTurn));
@@ -144,7 +77,8 @@ namespace ClienteDuo.Pages.Tests
         [TestMethod()]
         public void SetGameScoreTest()
         {
-            List<string> playerList = new List<string>(_client.GetPlayerList(_partyCode));
+            MatchPlayerManagerClient matchPlayerManagerClient = new MatchPlayerManagerClient();
+            List<string> playerList = new List<string>(matchPlayerManagerClient.GetPlayerList(_partyCode));
 
             foreach (string player in playerList)
             {
@@ -158,7 +92,8 @@ namespace ClienteDuo.Pages.Tests
         [TestMethod()]
         public void GetMatchResultsTest()
         {
-            List<string> playerList = new List<string>(_client.GetPlayerList(_partyCode));
+            MatchPlayerManagerClient matchPlayerManagerClient = new MatchPlayerManagerClient();
+            List<string> playerList = new List<string>(matchPlayerManagerClient.GetPlayerList(_partyCode));
 
             foreach (string player in playerList)
             {
