@@ -33,72 +33,66 @@ namespace ClienteDuo.Pages
             string username = TBoxUsername.Text;
             string password = TBoxPassword.Password;
 
-            UserDTO loggedUser = null;
-            bool result = true;
+            UserDTO loggedUser = new UserDTO();
             bool isUserBanned = false;
             try
             {
                 loggedUser = UsersManager.AreCredentialsValid(username, password);
-                if (loggedUser != null)
+                if (loggedUser.ID != 0)
                 {
                     isUserBanned = UsersManager.IsUserBanned(loggedUser.ID);
                 }
             }
             catch (CommunicationException)
             {
-                result = false;
                 MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
             }
             catch (TimeoutException)
             {
-                result = false;
                 MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
             }
 
-            if (result)
+            if (loggedUser.ID == 0)
             {
-                if (loggedUser == null)
-                {
-                    MainWindow.ShowMessageBox(Properties.Resources.DlgFailedLogin, MessageBoxImage.Warning);
-                }
-                else if (isUserBanned)
-                {
-                    MainWindow.ShowMessageBox(Properties.Resources.DlgLoginBanned, MessageBoxImage.Warning);
-                }
-                else if (UsersManager.IsUserLoggedIn(loggedUser.UserName))
-                {
-                    MainWindow.ShowMessageBox(Properties.Resources.DlgUserAlreadyLoggedIn, MessageBoxImage.Warning);
-                }
-                else
-                {
-                    SessionDetails.UserId = loggedUser.ID;
-                    SessionDetails.Username = loggedUser.UserName;
-                    SessionDetails.Email = loggedUser.Email;
-                    SessionDetails.TotalWins = loggedUser.TotalWins;
-                    SessionDetails.PictureID = loggedUser.PictureID;
-                    SessionDetails.IsGuest = false;
-                    SessionDetails.IsLogged = true;
+                MainWindow.ShowMessageBox(Properties.Resources.DlgFailedLogin, MessageBoxImage.Warning);
+            }
+            else if (isUserBanned)
+            {
+                MainWindow.ShowMessageBox(Properties.Resources.DlgLoginBanned, MessageBoxImage.Warning);
+            }
+            else if (UsersManager.IsUserLoggedIn(loggedUser.UserName))
+            {
+                MainWindow.ShowMessageBox(Properties.Resources.DlgUserAlreadyLoggedIn, MessageBoxImage.Warning);
+            }
+            else
+            {
+                SessionDetails.UserId = loggedUser.ID;
+                SessionDetails.Username = loggedUser.UserName;
+                SessionDetails.Email = loggedUser.Email;
+                SessionDetails.TotalWins = loggedUser.TotalWins;
+                SessionDetails.PictureID = loggedUser.PictureID;
+                SessionDetails.IsGuest = false;
+                SessionDetails.IsLogged = true;
 
-                    UserDTO user = new UserDTO
-                    {
-                        UserName = SessionDetails.Username,
-                        ID = SessionDetails.UserId
-                    };
-                    Application.Current.MainWindow.Content = new MainMenu();
+                UserDTO user = new UserDTO
+                {
+                    UserName = SessionDetails.Username,
+                    ID = SessionDetails.UserId
+                };
+                Application.Current.MainWindow.Content = new MainMenu();
 
-                    var userConnectionHandler = new UserConnectionHandlerClient();
-                    try
-                    {
-                        userConnectionHandler.NotifyLogIn(user);
-                    }
-                    catch (CommunicationException)
-                    {
-                        MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
-                    }
-                    catch (TimeoutException)
-                    {
-                        MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
-                    }
+                var userConnectionHandler = new UserConnectionHandlerClient();
+                try
+                {
+                    userConnectionHandler.NotifyLogIn(user);
+                }
+                catch (CommunicationException)
+                {
+                    MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
+                }
+                catch (TimeoutException)
+                {
+                    MainWindow.ShowMessageBox(Properties.Resources.DlgConnectionError, MessageBoxImage.Error);
                 }
             }
         }

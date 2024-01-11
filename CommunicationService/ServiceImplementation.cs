@@ -102,7 +102,7 @@ namespace CommunicationService
                     log.Error(ex);
                 }
 
-                UserDTO resultUser = null;
+                UserDTO resultUser = new UserDTO();
                 if (databaseUser != null)
                 {
                     resultUser = new UserDTO
@@ -309,7 +309,7 @@ namespace CommunicationService
                 try
                 {
                     databaseUser = databaseContext.Users
-                        .First(user => user.Username == username);
+                        .FirstOrDefault(user => user.Username == username);
                 }
                 catch (EntityException ex)
                 {
