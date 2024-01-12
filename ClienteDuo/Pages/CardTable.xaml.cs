@@ -295,7 +295,7 @@ namespace ClienteDuo.Pages
 
         private void BtnDeckEvent(object sender, RoutedEventArgs e)
         {
-            if (LblCurrentTurn.Content.Equals(SessionDetails.Username))
+            if (_currentTurn.Equals(SessionDetails.Username))
             {
                 if (PlayerDeck.Children.Count < 30)
                 {

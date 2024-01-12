@@ -92,8 +92,18 @@ namespace ClienteDuo.Pages
 
             if (SessionDetails.IsPlaying)
             {
-                MatchPlayerManagerClient client = new MatchPlayerManagerClient();
-                client.ExitMatch(SessionDetails.LobbyCode, SessionDetails.Username);
+                try
+                {
+                    MatchPlayerManagerClient client = new MatchPlayerManagerClient();
+                    client.ExitMatch(SessionDetails.LobbyCode, SessionDetails.Username);
+                }
+                catch(CommunicationException)
+                {
+                    MessageBox.Show(Properties.Resources.DlgConnectionError);
+                }
+                catch(TimeoutException){
+                    MessageBox.Show(Properties.Resources.DlgConnectionError);
+                }
             }
         }
 
