@@ -1419,6 +1419,11 @@ namespace CommunicationService
 
         private async void NotifyPlayerQuit(int partyCode, string username, string reason)
         {
+            if (GetCurrentTurn(partyCode).Equals(username))
+            {
+                EndTurn(partyCode);
+            }
+
             foreach (KeyValuePair<string, IMatchManagerCallback> player in _playerCallbacks[partyCode])
             {
                 try
@@ -1442,14 +1447,7 @@ namespace CommunicationService
                 _playerCallbacks[partyCode].TryRemove(username, out _);
             }
 
-            if (_playerCallbacks[partyCode].Count > 1)
-            {
-                if (GetCurrentTurn(partyCode).Equals(username))
-                {
-                    EndTurn(partyCode);
-                }
-            }
-            else
+            if (_playerCallbacks[partyCode].Count <= 1)
             {
                 EndGame(partyCode);
             }

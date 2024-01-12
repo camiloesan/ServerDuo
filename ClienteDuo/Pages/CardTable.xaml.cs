@@ -175,11 +175,6 @@ namespace ClienteDuo.Pages
                         playerIcon.Visibility = Visibility.Collapsed;
                     }
                 }
-
-                Task.Delay(5000);
-                InstanceContext context = new InstanceContext(this);
-                MatchManagerClient matchClient = new MatchManagerClient(context);
-                LblCurrentTurn.Content = matchClient.GetCurrentTurn(SessionDetails.LobbyCode);
             }
         }
 
