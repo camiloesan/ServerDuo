@@ -87,7 +87,7 @@ namespace ClienteDuo.Pages.Tests
 
             UserDTO result = UsersManager.AreCredentialsValid(username, password);
 
-            Assert.IsNull(result);
+            Assert.AreEqual(0, result.ID);
         }
 
         [TestMethod()]
@@ -98,7 +98,7 @@ namespace ClienteDuo.Pages.Tests
 
             UserDTO result = UsersManager.AreCredentialsValid(username, password);
 
-            Assert.IsNull(result);
+            Assert.AreEqual(0, result.ID);
         }
     }
 }
