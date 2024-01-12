@@ -175,6 +175,11 @@ namespace ClienteDuo.Pages
                         playerIcon.Visibility = Visibility.Collapsed;
                     }
                 }
+
+                Task.Delay(5000);
+                InstanceContext context = new InstanceContext(this);
+                MatchManagerClient matchClient = new MatchManagerClient(context);
+                LblCurrentTurn.Content = matchClient.GetCurrentTurn(SessionDetails.LobbyCode);
             }
         }
 
@@ -310,7 +315,11 @@ namespace ClienteDuo.Pages
             bool result = false;
             int selectionSum = 0;
 
-            if (LblCurrentTurn.Content.Equals(SessionDetails.Username))
+            InstanceContext context = new InstanceContext(this);
+            MatchManagerClient matchClient = new MatchManagerClient(context);
+            LblCurrentTurn.Content = matchClient.GetCurrentTurn(SessionDetails.LobbyCode);
+
+            if (LblCurrentTurn.Equals(SessionDetails.Username))
             {
                 for (int i = 0; i < _selectedCards.Count; i++)
                 {

@@ -1562,10 +1562,10 @@ namespace ClienteDuo.DataService {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchPlayerManager/ExitMatch")]
         System.Threading.Tasks.Task ExitMatchAsync(int partyCode, string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchPlayerManager/KickPlayerFromGame", ReplyAction="http://tempuri.org/IMatchPlayerManager/KickPlayerFromGameResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchPlayerManager/KickPlayerFromGame")]
         void KickPlayerFromGame(int partyCode, string username, string reason);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchPlayerManager/KickPlayerFromGame", ReplyAction="http://tempuri.org/IMatchPlayerManager/KickPlayerFromGameResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchPlayerManager/KickPlayerFromGame")]
         System.Threading.Tasks.Task KickPlayerFromGameAsync(int partyCode, string username, string reason);
     }
     

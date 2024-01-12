@@ -1250,13 +1250,11 @@ namespace CommunicationService
                 {
                     _playerCallbacks[partyCode].TryRemove(player.Key, out _);
                     _onlineUsers.TryRemove(player.Key, out _);
-                    NotifyPlayerQuit(partyCode, player.Key, "Communication error");
                 }
                 catch (TimeoutException)
                 {
                     _playerCallbacks[partyCode].TryRemove(player.Key, out _);
                     _onlineUsers.TryRemove(player.Key, out _);
-                    NotifyPlayerQuit(partyCode, player.Key, "Timeout");
                 }
             }
 
@@ -1390,7 +1388,6 @@ namespace CommunicationService
             if (_gameCards[partyCode][position].Number.Equals("") && !card.Number.Equals("#"))
             {
                 _gameCards[partyCode][position] = card;
-
             }
             else
             {
@@ -1407,7 +1404,10 @@ namespace CommunicationService
 
         public void ExitMatch(int partyCode, string username)
         {
-            _playerCallbacks[partyCode].TryRemove(username, out _);
+            if (_playerCallbacks[partyCode].ContainsKey(username))
+            {
+                _playerCallbacks[partyCode].TryRemove(username, out _);
+            }
 
             NotifyPlayerQuit(partyCode, username, "User clicked exit button");
         }

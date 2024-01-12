@@ -1,6 +1,8 @@
 ﻿using ClienteDuo.DataService;
 using ClienteDuo.Utilities;
+using System;
 using System.Collections.Generic;
+using System.ServiceModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -90,8 +92,8 @@ namespace ClienteDuo.Pages
         {
             if (MainWindow.ShowConfirmationBox(Properties.Resources.DlgExitMatchConfirmation))
             {
-                MatchPlayerManagerClient client = new MatchPlayerManagerClient();
-                client.ExitMatch(SessionDetails.LobbyCode, SessionDetails.Username);
+                SessionDetails.IsPlaying = false;
+                SessionDetails.IsHost = false;
 
                 if (SessionDetails.IsGuest)
                 {
@@ -104,6 +106,20 @@ namespace ClienteDuo.Pages
                     MainMenu mainMenu = new MainMenu();
 
                     App.Current.MainWindow.Content = mainMenu;
+                }
+
+                try
+                {
+                    MatchPlayerManagerClient client = new MatchPlayerManagerClient();
+                    client.ExitMatch(SessionDetails.LobbyCode, SessionDetails.Username);
+                }
+                catch (CommunicationException)
+                {
+                    SessionDetails.AbortOperation();
+                }
+                catch (TimeoutException)
+                {
+                    SessionDetails.AbortOperation();
                 }
             }
         }
