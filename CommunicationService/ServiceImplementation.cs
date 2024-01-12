@@ -1419,7 +1419,7 @@ namespace CommunicationService
 
         private async void NotifyPlayerQuit(int partyCode, string username, string reason)
         {
-            if (GetCurrentTurn(partyCode).Equals(username))
+            if (_playerCallbacks[partyCode].Count > 2 && GetCurrentTurn(partyCode).Equals(username))
             {
                 EndTurn(partyCode);
             }
