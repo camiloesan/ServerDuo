@@ -61,8 +61,8 @@ namespace ClienteDuo.Pages.Tests
         public void KickPlayerFromGame_IsPlayerTurnTest()
         {
             TestGameTable table = new TestGameTable();
-            InstanceContext context = new InstanceContext(_gameTable);
-            MatchManagerClient client = new MatchManagerClient(_context);
+            InstanceContext context = new InstanceContext(table);
+            MatchManagerClient client = new MatchManagerClient(context);
             client.Subscribe(_partyCode, _player2);
 
             MatchPlayerManagerClient playerManagerClient = new MatchPlayerManagerClient();
@@ -85,8 +85,8 @@ namespace ClienteDuo.Pages.Tests
         public void ExitMatchTest()
         {
             TestGameTable table = new TestGameTable();
-            InstanceContext context = new InstanceContext(_gameTable);
-            MatchManagerClient matchClient = new MatchManagerClient(_context);
+            InstanceContext context = new InstanceContext(table);
+            MatchManagerClient matchClient = new MatchManagerClient(context);
             matchClient.Subscribe(_partyCode, _player2);
 
             MatchPlayerManagerClient playerManagerClient = new MatchPlayerManagerClient();
@@ -102,8 +102,8 @@ namespace ClienteDuo.Pages.Tests
         public void ExitMatch_IsPlayerTurnTest()
         {
             TestGameTable table = new TestGameTable();
-            InstanceContext context = new InstanceContext(_gameTable);
-            MatchManagerClient client = new MatchManagerClient(_context);
+            InstanceContext context = new InstanceContext(table);
+            MatchManagerClient client = new MatchManagerClient(context);
             client.Subscribe(_partyCode, _player2);
 
             MatchPlayerManagerClient matchPlayerManagerClient = new MatchPlayerManagerClient();

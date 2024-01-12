@@ -32,7 +32,7 @@ namespace ClienteDuo.Pages
                         MatchPlayerManagerClient client = new MatchPlayerManagerClient();
                         int result = client.SaveMatchResult(SessionDetails.LobbyCode);
 
-                        if (result < 1)
+                        if (result > 1)
                         {
                             SessionDetails.TotalWins++;
                         }

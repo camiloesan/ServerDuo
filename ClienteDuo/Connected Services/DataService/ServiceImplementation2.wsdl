@@ -110,10 +110,10 @@
   </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CommunicationService" />
-      <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://172.20.10.3:8082/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://172.20.10.3:8082/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://172.20.10.3:8082/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CommunicationService" />
+      <xsd:import schemaLocation="http://172.20.10.3:8082/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IUsersManager_UpdateProfilePictureByUserId_InputMessage">
@@ -1311,57 +1311,57 @@
   </wsdl:binding>
   <wsdl:service name="ServiceImplementation">
     <wsdl:port name="NetTcpBinding_IUsersManager" binding="tns:NetTcpBinding_IUsersManager">
-      <soap12:address location="net.tcp://localhost:8080/Service" />
+      <soap12:address location="net.tcp://172.20.10.3:8080/Service" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8080/Service</wsa10:Address>
+        <wsa10:Address>net.tcp://172.20.10.3:8080/Service</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IFriendsManager" binding="tns:NetTcpBinding_IFriendsManager">
-      <soap12:address location="net.tcp://localhost:8080/Service" />
+      <soap12:address location="net.tcp://172.20.10.3:8080/Service" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8080/Service</wsa10:Address>
+        <wsa10:Address>net.tcp://172.20.10.3:8080/Service</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IBlockManager" binding="tns:NetTcpBinding_IBlockManager">
-      <soap12:address location="net.tcp://localhost:8080/Service" />
+      <soap12:address location="net.tcp://172.20.10.3:8080/Service" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8080/Service</wsa10:Address>
+        <wsa10:Address>net.tcp://172.20.10.3:8080/Service</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IUserConnectionHandler" binding="tns:NetTcpBinding_IUserConnectionHandler">
-      <soap12:address location="net.tcp://localhost:8080/Service" />
+      <soap12:address location="net.tcp://172.20.10.3:8080/Service" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8080/Service</wsa10:Address>
+        <wsa10:Address>net.tcp://172.20.10.3:8080/Service</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_ILobbyManager" binding="tns:NetTcpBinding_ILobbyManager">
-      <soap12:address location="net.tcp://localhost:8080/Service" />
+      <soap12:address location="net.tcp://172.20.10.3:8080/Service" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8080/Service</wsa10:Address>
+        <wsa10:Address>net.tcp://172.20.10.3:8080/Service</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_ILobbyValidator" binding="tns:NetTcpBinding_ILobbyValidator">
-      <soap12:address location="net.tcp://localhost:8080/Service" />
+      <soap12:address location="net.tcp://172.20.10.3:8080/Service" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8080/Service</wsa10:Address>
+        <wsa10:Address>net.tcp://172.20.10.3:8080/Service</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_ICardManager" binding="tns:NetTcpBinding_ICardManager">
-      <soap12:address location="net.tcp://localhost:8080/Service" />
+      <soap12:address location="net.tcp://172.20.10.3:8080/Service" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8080/Service</wsa10:Address>
+        <wsa10:Address>net.tcp://172.20.10.3:8080/Service</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IMatchManager" binding="tns:NetTcpBinding_IMatchManager">
-      <soap12:address location="net.tcp://localhost:8080/Service" />
+      <soap12:address location="net.tcp://172.20.10.3:8080/Service" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8080/Service</wsa10:Address>
+        <wsa10:Address>net.tcp://172.20.10.3:8080/Service</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IMatchPlayerManager" binding="tns:NetTcpBinding_IMatchPlayerManager">
-      <soap12:address location="net.tcp://localhost:8080/Service" />
+      <soap12:address location="net.tcp://172.20.10.3:8080/Service" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8080/Service</wsa10:Address>
+        <wsa10:Address>net.tcp://172.20.10.3:8080/Service</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>
