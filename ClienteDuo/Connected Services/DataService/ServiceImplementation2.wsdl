@@ -461,6 +461,12 @@
   <wsdl:message name="IMatchPlayerManager_KickPlayerFromGame_InputMessage">
     <wsdl:part name="parameters" element="tns:KickPlayerFromGame" />
   </wsdl:message>
+  <wsdl:message name="IMatchPlayerManager_SaveMatchResult_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveMatchResult" />
+  </wsdl:message>
+  <wsdl:message name="IMatchPlayerManager_SaveMatchResult_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveMatchResultResponse" />
+  </wsdl:message>
   <wsdl:portType name="IUsersManager">
     <wsdl:operation name="UpdateProfilePictureByUserId">
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/UpdateProfilePictureByUserId" message="tns:IUsersManager_UpdateProfilePictureByUserId_InputMessage" />
@@ -718,6 +724,10 @@
     </wsdl:operation>
     <wsdl:operation name="KickPlayerFromGame">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchPlayerManager/KickPlayerFromGame" message="tns:IMatchPlayerManager_KickPlayerFromGame_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveMatchResult">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchPlayerManager/SaveMatchResult" message="tns:IMatchPlayerManager_SaveMatchResult_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchPlayerManager/SaveMatchResultResponse" message="tns:IMatchPlayerManager_SaveMatchResult_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IUsersManager" type="tns:IUsersManager">
@@ -1288,6 +1298,15 @@
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SaveMatchResult">
+      <soap12:operation soapAction="http://tempuri.org/IMatchPlayerManager/SaveMatchResult" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="ServiceImplementation">

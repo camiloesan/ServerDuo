@@ -1567,6 +1567,12 @@ namespace ClienteDuo.DataService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchPlayerManager/KickPlayerFromGame")]
         System.Threading.Tasks.Task KickPlayerFromGameAsync(int partyCode, string username, string reason);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchPlayerManager/SaveMatchResult", ReplyAction="http://tempuri.org/IMatchPlayerManager/SaveMatchResultResponse")]
+        int SaveMatchResult(int partyCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchPlayerManager/SaveMatchResult", ReplyAction="http://tempuri.org/IMatchPlayerManager/SaveMatchResultResponse")]
+        System.Threading.Tasks.Task<int> SaveMatchResultAsync(int partyCode);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1618,6 +1624,14 @@ namespace ClienteDuo.DataService {
         
         public System.Threading.Tasks.Task KickPlayerFromGameAsync(int partyCode, string username, string reason) {
             return base.Channel.KickPlayerFromGameAsync(partyCode, username, reason);
+        }
+        
+        public int SaveMatchResult(int partyCode) {
+            return base.Channel.SaveMatchResult(partyCode);
+        }
+        
+        public System.Threading.Tasks.Task<int> SaveMatchResultAsync(int partyCode) {
+            return base.Channel.SaveMatchResultAsync(partyCode);
         }
     }
 }

@@ -878,6 +878,19 @@ references:
   isSpec: "True"
   fullName: CommunicationService.IMatchPlayerManager.KickPlayerFromGame
   nameWithType: IMatchPlayerManager.KickPlayerFromGame
+- uid: CommunicationService.IMatchPlayerManager.SaveMatchResult(System.Int32)
+  name: SaveMatchResult(Int32)
+  href: api/CommunicationService.IMatchPlayerManager.html#CommunicationService_IMatchPlayerManager_SaveMatchResult_System_Int32_
+  commentId: M:CommunicationService.IMatchPlayerManager.SaveMatchResult(System.Int32)
+  fullName: CommunicationService.IMatchPlayerManager.SaveMatchResult(System.Int32)
+  nameWithType: IMatchPlayerManager.SaveMatchResult(Int32)
+- uid: CommunicationService.IMatchPlayerManager.SaveMatchResult*
+  name: SaveMatchResult
+  href: api/CommunicationService.IMatchPlayerManager.html#CommunicationService_IMatchPlayerManager_SaveMatchResult_
+  commentId: Overload:CommunicationService.IMatchPlayerManager.SaveMatchResult
+  isSpec: "True"
+  fullName: CommunicationService.IMatchPlayerManager.SaveMatchResult
+  nameWithType: IMatchPlayerManager.SaveMatchResult
 - uid: CommunicationService.IUserConnectionHandler
   name: IUserConnectionHandler
   href: api/CommunicationService.IUserConnectionHandler.html
@@ -1715,6 +1728,19 @@ references:
   isSpec: "True"
   fullName: CommunicationService.ServiceImplementation.RejectFriendRequest
   nameWithType: ServiceImplementation.RejectFriendRequest
+- uid: CommunicationService.ServiceImplementation.SaveMatchResult(System.Int32)
+  name: SaveMatchResult(Int32)
+  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_SaveMatchResult_System_Int32_
+  commentId: M:CommunicationService.ServiceImplementation.SaveMatchResult(System.Int32)
+  fullName: CommunicationService.ServiceImplementation.SaveMatchResult(System.Int32)
+  nameWithType: ServiceImplementation.SaveMatchResult(Int32)
+- uid: CommunicationService.ServiceImplementation.SaveMatchResult*
+  name: SaveMatchResult
+  href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_SaveMatchResult_
+  commentId: Overload:CommunicationService.ServiceImplementation.SaveMatchResult
+  isSpec: "True"
+  fullName: CommunicationService.ServiceImplementation.SaveMatchResult
+  nameWithType: ServiceImplementation.SaveMatchResult
 - uid: CommunicationService.ServiceImplementation.SendConfirmationCode(System.String,System.String)
   name: SendConfirmationCode(String, String)
   href: api/CommunicationService.ServiceImplementation.html#CommunicationService_ServiceImplementation_SendConfirmationCode_System_String_System_String_

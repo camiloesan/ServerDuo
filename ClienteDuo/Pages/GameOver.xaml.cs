@@ -1,6 +1,9 @@
-﻿using ClienteDuo.Utilities;
+﻿using ClienteDuo.DataService;
+using ClienteDuo.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -20,9 +23,29 @@ namespace ClienteDuo.Pages
 
             if (SessionDetails.Username.Equals(winner))
             {
-                SessionDetails.TotalWins++;
-
                 MusicManager.PlayVictoryMusic();
+
+                if (!SessionDetails.Username.Contains("guest"))
+                {
+                    try
+                    {
+                        MatchPlayerManagerClient client = new MatchPlayerManagerClient();
+                        int result = client.SaveMatchResult(SessionDetails.LobbyCode);
+
+                        if (result < 1)
+                        {
+                            SessionDetails.TotalWins++;
+                        }
+                    }
+                    catch (CommunicationException)
+                    {
+                        MainWindow.ShowMessageBox(Properties.Resources.DlgServiceException, MessageBoxImage.Error);
+                    }
+                    catch (TimeoutException)
+                    {
+                        MainWindow.ShowMessageBox(Properties.Resources.DlgServiceException, MessageBoxImage.Error);
+                    }
+                }
             }
 
             foreach (KeyValuePair<string, int> playerScore in playerScores)

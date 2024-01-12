@@ -38,5 +38,13 @@ namespace CommunicationService
         /// <param name="reason"></param>
         [OperationContract(IsOneWay = true)]
         void KickPlayerFromGame(int partyCode, string username, string reason);
+
+        /// <summary>
+        /// Increases WinCount of the player in the database unless they play as a guest
+        /// </summary>
+        /// <param name="partyCode"> PartyCode of the match </param>
+        /// <returns>0 if user is guest, Greater than 0 if the user is registered</returns>
+        [OperationContract]
+        int SaveMatchResult(int partyCode);
     }
 }

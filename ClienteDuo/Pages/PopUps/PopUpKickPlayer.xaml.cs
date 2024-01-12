@@ -21,6 +21,10 @@ namespace ClienteDuo.Pages.Sidebars
             KickReasonComboBox.Items.Add(Properties.Resources.RsnCheating);
             KickReasonComboBox.Items.Add(Properties.Resources.RsnInappropriateBehaviour);
             KickReasonComboBox.Items.Add(Properties.Resources.RsnSpam);
+
+
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            Closing += OnWindowClosing;
         }
 
         public string KickedUsername { get; set; }

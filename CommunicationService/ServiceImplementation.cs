@@ -1258,45 +1258,12 @@ namespace CommunicationService
                 }
             }
 
-            SaveMatchResult(partyCode);
-
             await Task.Delay(10000);
             //Match data will be deleted so players start out with fresh data every match
             _gameCards.TryRemove(partyCode, out _);
             _currentTurn.TryRemove(partyCode, out _);
             _playerCallbacks.TryRemove(partyCode, out _);
             _matchResults.TryRemove(partyCode, out _);
-        }
-
-        private void SaveMatchResult(int partyCode)
-        {
-            if (_matchResults.ContainsKey(partyCode))
-            {
-                using (DuoContext databaseContext = new DuoContext())
-                {
-                    string winner = _matchResults[partyCode].OrderBy(x => x.Value).First().Key;
-                    int winnerUserId = databaseContext.Users.Where(u => u.Username == winner).Select(u => u.UserID).FirstOrDefault();
-
-                    if (winnerUserId > 0)
-                    {
-                        try
-                        {
-                            User user = databaseContext.Users.Where(u => u.UserID == winnerUserId).FirstOrDefault();
-
-                            if (user != null)
-                            {
-                                user.TotalWins++;
-
-                                databaseContext.SaveChanges();
-                            }
-                        }
-                        catch (DbUpdateException exception)
-                        {
-                            log.Error("An error happened while trying to save a match into the DB", exception);
-                        }
-                    }
-                }
-            }
         }
     }
 
@@ -1451,6 +1418,41 @@ namespace CommunicationService
             {
                 EndGame(partyCode);
             }
+        }
+
+        public int SaveMatchResult(int partyCode)
+        {
+            int result = 0;
+
+            if (_matchResults.ContainsKey(partyCode))
+            {
+                using (DuoContext databaseContext = new DuoContext())
+                {
+                    string winner = _matchResults[partyCode].OrderBy(x => x.Value).First().Key;
+                    int winnerUserId = databaseContext.Users.Where(u => u.Username == winner).Select(u => u.UserID).FirstOrDefault();
+
+                    if (winnerUserId > 0)
+                    {
+                        try
+                        {
+                            User user = databaseContext.Users.Where(u => u.UserID == winnerUserId).FirstOrDefault();
+
+                            if (user != null)
+                            {
+                                user.TotalWins++;
+
+                                result = databaseContext.SaveChanges();
+                            }
+                        }
+                        catch (DbUpdateException exception)
+                        {
+                            log.Error("An error happened while trying to save a match into the DB", exception);
+                        }
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }
