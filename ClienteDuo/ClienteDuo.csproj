@@ -418,6 +418,7 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\DataService\item2.disco" />
     <Content Include="SFX\victoryMusic.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -458,7 +459,6 @@
     <Resource Include="Images\pfp1.png" />
     <Resource Include="Images\pfp2.png" />
     <Resource Include="Images\pfp3.png" />
-    <None Include="Connected Services\DataService\item2.disco" />
     <Content Include="SFX\cardFlippedSound.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
