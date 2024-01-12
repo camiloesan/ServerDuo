@@ -36,7 +36,7 @@ namespace CommunicationService
         /// <param name="partyCode">Code of the match</param>
         /// <param name="username">Name of the player is kicked</param>
         /// <param name="reason"></param>
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void KickPlayerFromGame(int partyCode, string username, string reason);
     }
 }

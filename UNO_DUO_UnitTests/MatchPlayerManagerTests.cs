@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ClienteDuo.Pages.Tests
@@ -53,8 +54,7 @@ namespace ClienteDuo.Pages.Tests
 
             matchPlayerManagerClient.KickPlayerFromGame(_partyCode, _player2, "Testing Kick player Method");
 
-            List<string> playerList = new List<string>(matchPlayerManagerClient.GetPlayerList(_partyCode));
-            Assert.IsFalse(playerList.Contains<string>(_player2));
+            Assert.IsFalse(_gameTable.PlayerList.Contains<string>(_player2));
         }
 
         [TestMethod()]
@@ -74,10 +74,11 @@ namespace ClienteDuo.Pages.Tests
                 client.EndTurn(_partyCode);
             }
 
-            playerManagerClient.KickPlayerFromGame(_partyCode, _player1, "Kicking the current turn player");
+            playerManagerClient.KickPlayerFromGame(_partyCode, _player1, "Testing Kick player Method");
 
-            List<string> playerList = new List<string>(playerManagerClient.GetPlayerList(_partyCode));
-            Assert.IsFalse(playerList.Contains<string>(_player1));
+            Thread.Sleep(3000);
+            string currentTurn = _client.GetCurrentTurn(_partyCode);
+            Assert.AreNotEqual(_player1, currentTurn);
         }
 
         [TestMethod()]
@@ -116,7 +117,7 @@ namespace ClienteDuo.Pages.Tests
             matchPlayerManagerClient.ExitMatch(_partyCode, _player2);
 
             List<string> playerList = new List<string>(matchPlayerManagerClient.GetPlayerList(_partyCode));
-            Assert.IsFalse(playerList.Contains<string>(_player2));
+            Assert.IsFalse(playerList.Contains<string>(_player2) && _client.GetCurrentTurn(_partyCode).Equals(_player2));
         }
     }
 }

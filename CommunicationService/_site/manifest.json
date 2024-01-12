@@ -1,6 +1,6 @@
 {
   "homepages": [],
-  "source_base_path": "C:/Users/desktop/Documents/ServerDuo/CommunicationService",
+  "source_base_path": "C:/Users/lisre/Documents/GitHub/ServerDuo/CommunicationService",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -9,7 +9,7 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "2sF8fMc/MHc8aqJgJaCeld3BUL+fpV96iRQEoashcnU="
+          "hash": "ZcRFJgNhvhM6kAH28Vkb5TxxGPe7FlftmernEpHWKBw="
         }
       },
       "is_incremental": true,
@@ -21,7 +21,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/intro.html",
-          "hash": "xUgfl4JKw9O9lgIpG0568RwAAqTV13XvcHVHDVNgRVs="
+          "hash": "yF4cM99miGSsrT64oV0kgkl56YkQylthgw5Gl1aJqzo="
         }
       },
       "is_incremental": true,
@@ -45,7 +45,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "mOpiKRULOP29hX7n0Z6KLSrJ33YAN6Mz4Z8gtpMfGEY="
+          "hash": "GGOovSab6ZFxRkwbTiKX/AxcXz9WU1qSZOSIhjRqq74="
         }
       },
       "is_incremental": true,
@@ -57,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.Card.html",
-          "hash": "TGoRcm42gLiIYkEUuf9B0CyjwwTNFI7Z957vi4/ye9Q="
+          "hash": "iqWQe9EAUjKzPIpGU1XHVN6rL0VwjETh3ZmtgthS9v8="
         }
       },
       "is_incremental": true,
@@ -69,7 +69,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.CardColors.html",
-          "hash": "Ex9YC+89WrQg+QFEyqNW+dS2vr4kiujVarcUUKBE7r4="
+          "hash": "oFiYU+H0ZESpdYHEDQQOWoMUR6NUdkngPBa4iXZRxg4="
         }
       },
       "is_incremental": true,
@@ -81,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.FriendRequestDTO.html",
-          "hash": "IAUFhEUAk0Kf1Hm2inPjbfHYnrQ1AQD91QNUIzmcz4I="
+          "hash": "j9XQbhYN0ppeA1FTreBF1ubPpOc6HKEMPv1qcp+7bpk="
         }
       },
       "is_incremental": true,
@@ -93,7 +93,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.FriendshipDTO.html",
-          "hash": "jsi1onoDSEWh/PvHQBt/tXCnwK6nUKsV7xKEJ+/+FXg="
+          "hash": "8CIOwsl+pZ/kl4ryGZ81xLms+G7ojisWtSSg7djUsGk="
         }
       },
       "is_incremental": true,
@@ -105,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.ICardManager.html",
-          "hash": "+52imS7vfl6n8hJKY1i8Jbh2jdqKNov852GAWAcm3A0="
+          "hash": "KdnkTnBSzEGyvnHwbXs3+oIhnm99DdCKlebAwifchdU="
         }
       },
       "is_incremental": true,
@@ -117,7 +117,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.IFriendsManager.html",
-          "hash": "xJ5zih9KH509jRMMMlLlnJQu2Q3PZnLnrj/8gTiDEhc="
+          "hash": "9rzPPzGHC50PJpgOPzsOPAMQi7NSjo+SccoRanwp3qE="
         }
       },
       "is_incremental": true,
@@ -129,7 +129,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.ILobbyManager.html",
-          "hash": "LKYcp+j6+hl2lwMp7tdFk8Q2Nhp01aZD7wtpWavZGWo="
+          "hash": "ZIQH01aos7AzmZkamManl86+5rHLrsGTcolpS+xg/hw="
         }
       },
       "is_incremental": true,
@@ -141,7 +141,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.ILobbyManagerCallback.html",
-          "hash": "aXN/0IwCvdYYJG9pUg6+HXFcQWNGn6xQ3ShiKM8BV/8="
+          "hash": "iXGhVem2xkExkXY5Pz9WK+184cQRZSxRlfbeYWp0tkk="
         }
       },
       "is_incremental": true,
@@ -153,7 +153,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.ILobbyValidator.html",
-          "hash": "GmrdN+QgguwCoyrZ7JwNCW5+N4hEDnm5WZopjdJL2WY="
+          "hash": "xVb6PsDEDe4FApinBBwuT9gpjBkyKsfpA7itZGdBr/U="
         }
       },
       "is_incremental": true,
@@ -165,10 +165,10 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.IMatchManager.html",
-          "hash": "zAghhJYwMdB+bo2SK3YFAmOIEBEiVYuqYArgseWXY6E="
+          "hash": "AHopNg/NwZQ+DVGlrOAg3MPBZP7uMs3HfwTQxPNzLQg="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -177,7 +177,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.IMatchManagerCallback.html",
-          "hash": "3to/y7BmK7Z4YP4mO/HPv1D6QV8IlttHlX7bbhI1I20="
+          "hash": "ZLy/taC+EhE8uq1vMdV3kK7mqkw7Jxmg1d1vuY1nyfo="
         }
       },
       "is_incremental": true,
@@ -189,7 +189,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.IMatchPlayerManager.html",
-          "hash": "GTN/KiBG9Y58tSnDMIYBV2d9q3B/J3T4KsoxaPIRziA="
+          "hash": "JQW4lCAnhzx5sQhzGcmP6NVTSZQEiYhuao1fp8hprAQ="
         }
       },
       "is_incremental": true,
@@ -201,7 +201,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.IUserConnectionHandler.html",
-          "hash": "yiKR5hce6IvzQ8pwY1vDiYO5493A4RRXp1uHTt69HHQ="
+          "hash": "11Xb5JsOXAe99sVhyEpysI35+gT+arF8w9YguqOCF3c="
         }
       },
       "is_incremental": true,
@@ -213,7 +213,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.IUsersManager.html",
-          "hash": "yvgdFd/9te2mwk9jRoVvXsC71fOjPV3PUvbHeZI61XM="
+          "hash": "gKSlIx6P3yOrqvmtmCn3AdrVAQJ7YwCFXMXk97SrdIM="
         }
       },
       "is_incremental": true,
@@ -225,10 +225,10 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.ServiceImplementation.html",
-          "hash": "AK7qTHsYHTyu1PbWJrd7hhenmlMR2xIBL5t6iCAfWFI="
+          "hash": "HcafA2kBH5XYeHX9mYePP6i613G1Utiw7unCrxfT06U="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -237,7 +237,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.UserBlockedDTO.html",
-          "hash": "vPjw+asI/8ud80XhV5JknJDbXFlxhSh07wuB7liWaI8="
+          "hash": "EIm6N3OrLAUkL9GV1pG1hKVGAEd1qeB6SIcdqFB1sJY="
         }
       },
       "is_incremental": true,
@@ -249,7 +249,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CommunicationService.UserDTO.html",
-          "hash": "FWmhZz3+6hV5vFCcdpz/pWP9FaKzI5cl4facLcV8BUk="
+          "hash": "qxqRZzB2KzDoYeUumCt0bjGZ6snGSoPpomc7/0L4O70="
         }
       },
       "is_incremental": true,
@@ -264,7 +264,7 @@
           "hash": "X5q73ZA5eI9nmekJwd+tOXyja9e3mi8gH9LIJER4cuE="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -311,7 +311,7 @@
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 18,
-          "skipped_file_count": 18
+          "skipped_file_count": 17
         },
         "TocDocumentProcessor": {
           "can_incremental": false,
