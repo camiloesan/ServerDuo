@@ -391,6 +391,7 @@ namespace ClienteDuo.Pages
             InstanceContext tableContext = new InstanceContext(cardTable);
             MatchManagerClient tableClient = new MatchManagerClient(tableContext);
             LblLoading.Visibility = Visibility.Visible;
+            BtnExitLobby.Visibility = Visibility.Collapsed;
             SessionDetails.IsPlaying = true;
 
             try

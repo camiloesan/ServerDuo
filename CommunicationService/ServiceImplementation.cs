@@ -1225,12 +1225,14 @@ namespace CommunicationService
                 }
                 catch (CommunicationException)
                 {
-                    NotifyPlayerQuit(partyCode, player.Key, "Error when trying to communicate with the server");
-                    player.Value.TurnFinished(GetCurrentTurn(partyCode));
+                    _playerCallbacks[partyCode].TryRemove(player.Key, out _);
+                    _onlineUsers.TryRemove(player.Key, out _);
+                    NotifyPlayerQuit(partyCode, player.Key, "Communication error");
                 }
                 catch (TimeoutException)
                 {
                     _playerCallbacks[partyCode].TryRemove(player.Key, out _);
+                    _onlineUsers.TryRemove(player.Key, out _);
                     NotifyPlayerQuit(partyCode, player.Key, "Timeout");
                 }
             }
@@ -1246,12 +1248,14 @@ namespace CommunicationService
                 }
                 catch (CommunicationException)
                 {
-                    NotifyPlayerQuit(partyCode, player.Key, "Error when trying to communicate with the server");
-                    player.Value.TurnFinished(GetCurrentTurn(partyCode));
+                    _playerCallbacks[partyCode].TryRemove(player.Key, out _);
+                    _onlineUsers.TryRemove(player.Key, out _);
+                    NotifyPlayerQuit(partyCode, player.Key, "Communication error");
                 }
                 catch (TimeoutException)
                 {
                     _playerCallbacks[partyCode].TryRemove(player.Key, out _);
+                    _onlineUsers.TryRemove(player.Key, out _);
                     NotifyPlayerQuit(partyCode, player.Key, "Timeout");
                 }
             }
@@ -1423,13 +1427,13 @@ namespace CommunicationService
                 }
                 catch (CommunicationException)
                 {
-                    NotifyPlayerQuit(partyCode, player.Key, "Error when trying to communicate with the server");
-                    player.Value.TurnFinished(GetCurrentTurn(partyCode));
+                    _playerCallbacks[partyCode].TryRemove(player.Key, out _);
+                    _onlineUsers.TryRemove(player.Key, out _);
                 }
                 catch (TimeoutException)
                 {
                     _playerCallbacks[partyCode].TryRemove(player.Key, out _);
-                    NotifyPlayerQuit(partyCode, player.Key, "Timeout");
+                    _onlineUsers.TryRemove(player.Key, out _);
                 }
             }
 

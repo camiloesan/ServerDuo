@@ -65,11 +65,22 @@ namespace ClienteDuo.Utilities
             waveOut.Play();
         }
 
+        public static void PlayVictoryMusic()
+        {
+            var audioFileReader = new AudioFileReader("SFX\\victoryMusic.wav");
+            var waveOut = new WaveOutEvent();
+            waveOut.Init(audioFileReader);
+            waveOut.Volume = 0.5f;
+            waveOut.Play();
+        }
+
         private void PlayMusic()
         {
-            if (!_isMusicEnabled) return;
-            _waveOutEvent.Volume = _volume;
-            _waveOutEvent.Play();
+            if (_isMusicEnabled)
+            {
+                _waveOutEvent.Volume = _volume;
+                _waveOutEvent.Play();
+            }
         }
 
         private void StopMusic()

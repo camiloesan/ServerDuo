@@ -418,6 +418,9 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SFX\victoryMusic.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Connected Services\DataService\configuration91.svcinfo" />
     <None Include="Connected Services\DataService\configuration.svcinfo" />
     <None Include="Connected Services\DataService\Reference.svcmap">
