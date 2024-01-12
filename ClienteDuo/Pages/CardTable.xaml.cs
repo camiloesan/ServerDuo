@@ -24,6 +24,7 @@ namespace ClienteDuo.Pages
         private Label[] _cardLabels = new Label[3];
         private Rectangle[] _cardColors = new Rectangle[3];
         private int _matchingColors;
+        private string _currentTurn;
 
         public CardTable()
         {
@@ -91,7 +92,8 @@ namespace ClienteDuo.Pages
 
                 InstanceContext instanceContext = new InstanceContext(this);
                 MatchManagerClient matchClient = new MatchManagerClient(instanceContext);
-                LblCurrentTurn.Content = new MatchManagerClient(instanceContext).GetCurrentTurn(SessionDetails.LobbyCode);
+                _currentTurn = new MatchManagerClient(instanceContext).GetCurrentTurn(SessionDetails.LobbyCode);
+                LblCurrentTurn.Content = _currentTurn;
 
                 List<string> otherPlayers = new List<string>();
                 foreach (string player in matchPlayers)
@@ -211,6 +213,7 @@ namespace ClienteDuo.Pages
 
         public void TurnFinished(string currentTurn)
         {
+            _currentTurn = currentTurn;
             LblCurrentTurn.Content = currentTurn;
 
             UpdateTableCards();
@@ -310,11 +313,7 @@ namespace ClienteDuo.Pages
             bool result = false;
             int selectionSum = 0;
 
-            InstanceContext context = new InstanceContext(this);
-            MatchManagerClient matchClient = new MatchManagerClient(context);
-            LblCurrentTurn.Content = matchClient.GetCurrentTurn(SessionDetails.LobbyCode);
-
-            if (LblCurrentTurn.Equals(SessionDetails.Username))
+            if (_currentTurn.Equals(SessionDetails.Username))
             {
                 for (int i = 0; i < _selectedCards.Count; i++)
                 {
@@ -433,6 +432,7 @@ namespace ClienteDuo.Pages
                 MatchManagerClient client = new MatchManagerClient(instanceContext);
                 BtnEndTurn.Visibility = Visibility.Collapsed;
                 _matchingColors = 0;
+                _hasDrawnCard = false;
 
                 CardManagerClient cardClient = new CardManagerClient();
                 cardClient.DealCards(SessionDetails.LobbyCode);

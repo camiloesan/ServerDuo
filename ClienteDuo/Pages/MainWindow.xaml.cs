@@ -89,6 +89,12 @@ namespace ClienteDuo.Pages
             {
                 NotifyLogOut(SessionDetails.UserId, SessionDetails.IsGuest);
             }
+
+            if (SessionDetails.IsPlaying)
+            {
+                MatchPlayerManagerClient client = new MatchPlayerManagerClient();
+                client.ExitMatch(SessionDetails.LobbyCode, SessionDetails.Username);
+            }
         }
 
         public static bool ShowConfirmationBox(string message)
