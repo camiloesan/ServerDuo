@@ -1,6 +1,7 @@
 ﻿using ClienteDuo.DataService;
 using ClienteDuo.Utilities;
 using System;
+using System.ComponentModel;
 using System.ServiceModel;
 using System.Windows;
 
@@ -29,10 +30,16 @@ namespace ClienteDuo.Pages.Sidebars
             _lobbyManager = client;
         }
 
+        private void OnWindowClosing(object sender, CancelEventArgs e)
+        {
+            System.Windows.Application.Current.MainWindow.IsEnabled = true;
+        }
+
         private void BtnKickEvent(object sender, RoutedEventArgs e)
         {
             if (!KickReasonComboBox.Text.Equals(""))
             {
+                System.Windows.Application.Current.MainWindow.IsEnabled = true;
                 Close();
 
                 try

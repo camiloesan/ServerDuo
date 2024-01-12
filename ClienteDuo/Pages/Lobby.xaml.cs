@@ -301,6 +301,7 @@ namespace ClienteDuo.Pages
         private void KickPlayerEvent(object sender, RoutedEventArgs e)
         {
             string username = ((FrameworkElement)sender).DataContext as string;
+            System.Windows.Application.Current.MainWindow.IsEnabled = false;
             PopUpKickPlayer popUpKickPlayer = new PopUpKickPlayer
             {
                 KickedUsername = username

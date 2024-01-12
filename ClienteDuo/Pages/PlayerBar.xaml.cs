@@ -70,6 +70,7 @@ namespace ClienteDuo.Pages
 
         private void BtnKickEvent(object sender, RoutedEventArgs e)
         {
+            System.Windows.Application.Current.MainWindow.IsEnabled = false;
             PopUpKickPlayer popUpKickPlayer = new PopUpKickPlayer
             {
                 KickedUsername = _username
