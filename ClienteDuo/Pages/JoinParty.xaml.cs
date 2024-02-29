@@ -74,7 +74,7 @@ namespace ClienteDuo.Pages
             {
                 MainWindow.ShowMessageBox(Properties.Resources.DlgFullParty, MessageBoxImage.Information);
             }
-            else if (SessionDetails.IsGuest && IsUserBlockedByPlayerInLobby(SessionDetails.Username, int.Parse(lobbyCode)))
+            else if (!SessionDetails.IsGuest && IsUserBlockedByPlayerInLobby(SessionDetails.Username, int.Parse(lobbyCode)))
             {
                 MainWindow.ShowMessageBox(Properties.Resources.DlgUserBlockedInParty, MessageBoxImage.Information);
             }
